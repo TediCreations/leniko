@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+py3clean .
+rm -rf db.sqlite3
+./manage.py makemigrations
+./manage.py migrate --run-syncdb
+./manage.py createsuperuser --username tedi --email hkanelhs@yahoo.gr
+./manage.py runserver

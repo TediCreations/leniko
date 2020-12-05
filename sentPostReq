@@ -1,0 +1,10 @@
+#!/bin/sh
+
+
+
+CSRFToken="XSgx0ZcLdzhTV77UUbx8OVWL7dSK7AmbOYtoIqcOKJQgHKYyAemZrEadWBEe6Key"
+URL="http://localhost:8000/product/create"
+
+REQUEST="username=admin&password=admin&title=Maria"
+
+curl -v ${URL} -H "X-CSRFToken: ${CSRFToken}" -b "csrftoken=${CSRFToken}" -d "${REQUEST}"

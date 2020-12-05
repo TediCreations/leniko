@@ -1,0 +1,25 @@
+{% extends 'leni/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="row">
+    <div class="box">
+      <div class="col-lg-12">
+	<hr>
+	<h2 class="intro-text text-center">Add new jewel</h2>
+	<hr>
+      </div>
+      <form method='POST'> {% csrf_token %}
+	{{ form.as_p }}
+	<input type='submit' value='Add new'>
+      </form>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+
+{% endblock %}

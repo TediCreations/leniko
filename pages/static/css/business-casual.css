@@ -1,0 +1,207 @@
+/*!
+ * Start Bootstrap - Business Casual (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    background: url('../img/bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    color: #0c423a
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    //text-transform: uppercase;
+    font-family: 'Acme', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.25em;
+    line-height: 1.6;
+    //color: #b8eae2;
+    color: #0c423a
+}
+
+hr {
+    max-width: 400px;
+}
+
+.brand,
+.address-bar {
+    display: none;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.navbar-nav {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.img-full {
+    min-width: 100%;
+}
+
+.brand-before,
+.brand-name {
+    text-transform: capitalize;
+}
+
+.brand-before {
+    margin: 15px 0;
+}
+
+.brand-name {
+    margin: 0;
+    font-size: 4em;
+}
+
+.tagline-divider {
+    margin: 15px auto 3px;
+    max-width: 250px;
+    //border-color: white;
+    border-color: #0c423a
+}
+
+.box {
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 30px 15px;
+    //background: #0c423a;
+    //color: white;
+    color: #0c423a;
+}
+
+input {
+    background: white;
+    color: #0c423a;
+}
+
+select {
+    background-color: white;
+    color: #0c423a;
+}
+
+.intro-text {
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    //color: white;
+    color: #0c423a;
+}
+
+.img-border {
+    float: none;
+    margin: 0 auto 0;
+    border: #0c423a solid 1px;
+    max-height: 100px;
+}
+
+.img-left {
+    float: none;
+    margin: 0 auto 0;
+}
+
+footer {
+    background: white;
+}
+
+footer p {
+    margin: 0;
+    padding: 50px 0;
+}
+
+@media screen and (min-width:768px) {
+    .brand {
+        display: inherit;
+        margin: 0;
+        padding: 30px 0 10px;
+        text-align: center;
+        text-shadow: 1px 1px 2px #0c423a;
+	font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	//font-family: "Helvetica Neue", Helvetica, sans-serif;
+	//font-family: 'Acme', sans-serif;
+	font-size: 5em;
+	font-weight: 700;
+	line-height: normal;
+	color: #2c7e71;
+    }
+    .top-divider {
+        margin-top: 0;
+    }
+    .img-left {
+        float: left;
+        margin-right: 25px;
+    }
+    .address-bar {
+        display: inherit;
+        margin: 0;
+        padding: 0 0 40px;
+        text-align: center;
+        text-shadow: 1px 1px 2px #0c423a;
+        text-transform: uppercase;
+        font-size: 1.25em;
+        font-weight: 400;
+        letter-spacing: 3px;
+        color: #2c7e71;
+    }
+    .navbar {
+        border-radius: 0;
+        color: red;
+    }
+    .navbar-header {
+        display: none;
+        color: red;
+    }
+    .navbar {
+        min-height: 0;
+        color: red;
+    }
+    .navbar-default {
+        border: none;
+        background: white;
+        color: red;
+    }
+    .nav>li>a {
+        padding: 35px;
+    }
+    .navbar-nav>li>a {
+        line-height: normal;
+        color: red;
+    }
+    .navbar-nav {
+        display: table;
+        float: none;
+        margin: 0 auto;
+        table-layout: fixed;
+        font-size: 1.25em;
+        color: red;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .box:after {
+        content: '';
+        display: table;
+        clear: both;
+        color: red;
+    }
+}

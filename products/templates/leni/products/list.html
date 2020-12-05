@@ -1,0 +1,80 @@
+{% extends 'leni/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+	<div class="box">
+	    <div class="col-lg-12">
+		<hr>
+		<h2 class="intro-text text-center">Filters</h2>
+		<hr>
+		<form method="get">
+
+		    <label for="macrame">Macrame:</label>
+		    <input type="checkbox" id="macrame" name="macrame"><br>
+
+		    <label for="featured">Featured:</label>
+		    <input type="checkbox" id="featured" name="featured"><br>
+
+		    <label for="group">Group:</label>
+		    <select id="group" name="group">
+			{% for i in objList.first.get_Groups %}
+			<option value="{{i}}">{{i}}</option>
+			{% endfor %}
+		    </select><br><br>
+
+		    <label for="metal">Metal:</label>
+		    <select id="metal" name="metal">
+			{% for i in objList.first.get_Metal %}
+			<option value="{{i}}">{{i}}</option>
+			{% endfor %}
+		    </select><br><br>
+
+		    <label for="platting">Platting:</label>
+		    <select id="platting" name="platting">
+			{% for i in objList.first.get_Platting %}
+			<option value="{{i}}">{{i}}</option>
+			{% endfor %}
+		    </select><br><br>
+
+		    <label for="price_max">Max Price:</label>
+		    <input type="text" id="price_max" name="price_max"><br><br>
+		    <label for="price_min">Min Price:</label>
+		    <input type="text" id="price_min" name="price_min"><br><br>
+		    <input type="submit" value="Submit">
+
+		</form>
+
+		<hr>
+		<h2 class="intro-text text-center">List of jewels [{{objList.count}}]</h2>
+		<hr>
+	    </div>
+
+
+	    {% for obj in objList %}
+
+	    <div class="col-sm-3 text-center">
+		<a href="{{ obj.get_absolute_url }}">
+		    <img class="img-responsive center-block" src="/{{obj.photo.url}}" alt="Image not available!">
+		</a>
+		<a href="{{ obj.get_absolute_url }}">
+		    <h3>{{obj.title}}<br>
+		</a>
+		<small>{{obj.brief}}</small>
+		<br>
+		<small>{{obj.price}} &euro;</small>
+		</h3>
+	    </div>
+
+	    {% endfor %}
+
+	    <div class="clearfix"></div>
+	</div>
+    </div>
+</div>
+<!-- /.container -->
+
+{% endblock %}

@@ -12,8 +12,29 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from dotenv import load_dotenv, find_dotenv
+
+from django.utils.crypto import get_random_string
+
+#-------------------------------------------------------------------------------
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+#-------------------------------------------------------------------------------
+# Load environment variables
+dotenv_path = os.path.join(BASE_DIR, '.env')
+if not os.path.isfile(dotenv_path):
+	print(f"[ERROR]: '{dotenv_path}' is missing!")
+
+	txt  = f"DJANGO_SECRET_KEY={get_random_string()}\n"
+	txt += f"DJANGO_DEBUG=False\n"
+
+	f = open(dotenv_path, "w")
+	f.write(txt)
+	f.close()
+
+	print(f"[LOG  ]: Created '{dotenv_path}'!")
+load_dotenv(dotenv_path)
 
 
 # Quick-start development settings - unsuitable for production

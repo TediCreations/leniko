@@ -1,7 +1,9 @@
 asgiref==3.2.5
 Django==3.0.4
 django-enum-choices==2.1.2
+django-reverse-admin==2.9.4
 Pillow==7.0.0
-pkg-resources==0.0.0
+python-dotenv==0.15.0
 pytz==2019.3
+sorl-thumbnail==12.7.0
 sqlparse==0.3.1

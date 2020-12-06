@@ -1,2 +1,10 @@
+# TODO
 - Drop JewelryPhoto. Only one secondary color per Variation Jewelry.
 - add actions
+
+# Lazy loading
+-https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/
+-https://github.com/jazzband/sorl-thumbnail
+
+# Best practices
+https://12factor.net/

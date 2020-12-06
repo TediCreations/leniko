@@ -28,7 +28,15 @@ if SECRET_KEY is None:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', False)
 
+
 ALLOWED_HOSTS = []
+if DEBUG is False:
+	ALLOWED_HOSTS = [
+		"leniko.gr",
+		"lenikojewelry.gr",
+		"lenikojewelry.com",
+		"tedicreations.pythonanywhere.com"
+	]
 
 
 # Application definition
@@ -124,10 +132,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = [
-	os.path.join(BASE_DIR, "static"),
-]
+#STATICFILES_DIRS = [
+#	os.path.join(BASE_DIR, "static"),
+#]
 
 # User uploaded files
 MEDIA_URL  = '/media/'

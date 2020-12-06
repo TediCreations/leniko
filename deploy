@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# If not on a virtual environment
+#deactivate
+#mkvirtualenv leniko --python=/usr/bin/python3.6
+#workon leniko
+
+# Fetch new
+git pull -u origin master
+pip install -r requirements.txt
+
+rm -rf static
+./manage.py collectstatic

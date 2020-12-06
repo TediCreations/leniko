@@ -2,6 +2,7 @@
 
 py3clean .
 rm -rf db.sqlite3
+rm -rf media
 ./manage.py makemigrations
 ./manage.py migrate --run-syncdb
 ./manage.py createsuperuser --username tedi --email hkanelhs@yahoo.gr

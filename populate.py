@@ -3,13 +3,6 @@
 import os
 import random
 
-import django
-
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "leniko.settings")
-django.setup()
-
-
 from products.models     import Product
 from products.models     import Jewelry
 from products.models     import JewelryGroup
@@ -27,16 +20,6 @@ from products.internal.enum import ColorEnum
 from products.internal.enum import MaterialEnum
 from products.internal.enum import PlattingEnum
 from products.internal.enum import GroupEnum
-
-
-#def test(self, indent=0):
-#	print(f"Self:      {self}")
-#	print(f"Meta:      {self._meta}")
-#	print(f"Type self: {type(self)}")
-#	print(f"Type meta: {type(self._meta)}")
-#	print(f"Concrete:  {self._meta.concrete_fields}")
-#	print(f"Private:   {self._meta.private_fields}")
-#	pass
 
 
 def registerJewelryVariation():
@@ -111,21 +94,3 @@ def registerJewelryVariation():
 
 	ProductTool.create(dictionary)
 	print("Done")
-
-
-	#tablelist = (Product, Jewelry, JewelryGroup, JewelryPhoto, JewelryColor, Bracelet, Necklace, Ring, Earring)
-	#method_list = dir(Fuck)
-	#method_list = [func for func in dir(Fuck) if callable(getattr(Fuck, func)) and not func.startswith("__")]
-	#for m in method_list:
-	#	#print(m)
-	#	pass
-
-
-def main():
-	for i in range(100):
-		print("---------------------")
-		registerJewelryVariation()
-
-
-if __name__ == "__main__":
-	main()

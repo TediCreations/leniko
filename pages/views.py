@@ -2,6 +2,7 @@ import random
 from django.shortcuts import render
 from .apps import PagesConfig
 
+
 theme = PagesConfig.theme
 
 # Create your views here.
@@ -29,12 +30,12 @@ def contact_view(request, *args, **kwargs):
 	}
 	return render(request, template_name, context)
 
-def getSm():
-	random.choice([2,2,2,2,3,3,4])
-
 def dev_view(request, *args, **kwargs):
+
+	def getSm():
+		random.choice([2,2,2,2,3,3,4])
+
 	template_name = theme + '/dev.html'
-	PagesConfig.theme = 'leni'
 	webpage_name = "Dev"
 	context = {
 		"webpage_name": webpage_name,

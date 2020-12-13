@@ -6,15 +6,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Learts – Handmade Shop eCommerce HTML Template</title>
+
+    <!-- Title -->
+    {% if webpage_name is Null %}
+    <title>Leniko</title>
+    {% else %}
+    <title>Leniko | {{webpage_name}}</title>
+    {% endif %}
+
     <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
+
+    <!-- Description -->
+    <meta name="description" content="{{webpage_description}}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
-    <!-- CSS
-	============================================ -->
+    <!-- CSS ============================================ -->
 
     <!-- Vendor CSS (Bootstrap & Icon Font) -->
     <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}">
@@ -64,6 +73,7 @@
         </div>
     </div>
     <!-- Topbar Section End -->
+
     <!-- Header Section Start -->
     <div class="header-section section bg-white d-none d-xl-block">
         <div class="container">

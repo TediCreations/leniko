@@ -145,29 +145,63 @@
 
         <div class="grid-sizer col-1"></div>
 
+        {% for obj in objList %}
+        <!--
+        <div class="grid-item col new">
+        <div class="grid-item col sales featured">
+        <div class="grid-item col sales new">
+        -->
         <div class="grid-item col featured">
           <div class="product">
             <div class="product-thumb">
               <a href="product-details.html" class="image">
-                <img src="{% static 'assets/images/product/s328/product-17.jpg' %}" alt="Product Image">
+                <span class="product-badges">
+                  <span class="onsale">-20%</span>
+                  <span class="hot">hot</span>
+                  <span class="outofstock"><i class="fal fa-frown"></i></span>
+                </span>
+                <img src="{{obj.getPhotoUrl}}" alt="Product Image">
                 <img class="image-hover " src="{% static 'assets/images/product/s328/product-17-hover.jpg' %}" alt="Product Image">
               </a>
+              <!--
               <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+              -->
+              <div class="product-options">
+                <ul class="colors">
+                  <li style="background-color: #000000;">color one</li>
+                  <li style="background-color: #b2483c;">color two</li>
+                </ul>
+                <ul class="sizes">
+                  <li>Large</li>
+                  <li>Medium</li>
+                  <li>Small</li>
+                </ul>
+              </div>
             </div>
             <div class="product-info">
-              <h6 class="title"><a href="product-details.html">3D Attractive Pot</a></h6>
+              <h6 class="title"><a href="{{obj.getPhotoUrl}}">{{obj.getTitle}}</a></h6>
               <span class="price">
-                $90.00
+                {{obj.getPrice}} &euro;
+                <!--
+                <span class="old">$15.00</span>
+                <span class="new">$12.00</span>
+                -->
               </span>
               <div class="product-buttons">
                 <a href="#quickViewModal" data-toggle="modal" class="product-button hintT-top" data-hint="Quick View"><i class="fal fa-search"></i></a>
                 <a href="#" class="product-button hintT-top" data-hint="Add to Cart"><i class="fal fa-shopping-cart"></i></a>
                 <a href="#" class="product-button hintT-top" data-hint="Compare"><i class="fal fa-random"></i></a>
+                {% if request.user.is_superuser %}
+                <a href="#" class="product-button hintT-top" data-hint="Edit"><i class="fal fa-pencil"></i></a>
+                <a href="#" class="product-button hintT-top" data-hint="Add variation"><i class="fal fa-plus"></i></a>
+                {% endif %}
               </div>
             </div>
           </div>
         </div>
+        {% endfor %}
 
+        <!--
         <div class="grid-item col new">
           <div class="product">
             <div class="product-thumb">
@@ -529,6 +563,7 @@
             </div>
           </div>
         </div>
+        -->
 
       </div>
       <!-- Products End -->

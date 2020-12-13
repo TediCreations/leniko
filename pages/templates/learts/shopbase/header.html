@@ -47,6 +47,12 @@
             </li>
             <li><a href="/about"><span class="menu-text">About</span></a>
             </li>
+            {% if request.user.is_superuser %}
+            <li><a href="/dev"><span class="menu-text"><p style="color:red;" >Development</p></span></a>
+            </li>
+            <li><a href="/admin" target="_blank"><span class="menu-text"><p style="color:red;" >Admin</p></span></a>
+            </li>
+            {% endif %}
           </ul>
         </nav>
       </div>
@@ -110,7 +116,7 @@
       <div class="col-auto mr-auto d-none d-xl-block">
         <nav class="site-main-menu site-main-menu-left justify-content-center">
           <ul>
-            <li class="has-children"><a href="/"><span class="menu-text">Home</span></a>
+            <li><a href="/"><span class="menu-text">Home</span></a>
             </li>
             <li class="has-children"><a href="/shop"><span class="menu-text">Shop</span></a>
               <ul class="sub-menu mega-menu">
@@ -140,6 +146,12 @@
             </li>
             <li><a href="/about"><span class="menu-text">About</span></a>
             </li>
+            {% if request.user.is_superuser %}
+            <li><a href="/dev"><span class="menu-text"><p style="color:red;" >Development</p></span></a>
+            </li>
+            <li><a href="/admin" target="_blank"><span class="menu-text"><p style="color:red;" >Admin</p></span></a>
+            </li>
+            {% endif %}
           </ul>
         </nav>
       </div>
@@ -471,6 +483,12 @@
         </li>
         <li><a href="/about"><span class="menu-text">About</span></a>
         </li>
+        {% if request.user.is_superuser %}
+        <li><a href="/dev"><span class="menu-text"><p style="color:red;" >Development</p></span></a>
+        </li>
+        <li><a href="/admin" target="_blank"><span class="menu-text"><p style="color:red;" >Admin</p></span></a>
+        </li>
+        {% endif %}
       </ul>
     </div>
     <div class="offcanvas-buttons">

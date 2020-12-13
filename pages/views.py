@@ -8,12 +8,16 @@ theme = PagesConfig.theme
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-	template_name = theme + '/home.html'
+	template_name = theme + '/homebase.html'
 	webpage_name = "Home"
 	webpage_description = "Leniko jewelry home page"
+
+	objList = Product.objects.filter(isActive = True)
+
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
+		"objList":             objList
 	}
 	return render(request, template_name, context)
 
@@ -42,9 +46,7 @@ def dev_view(request, *args, **kwargs):
 	webpage_name = "Test"
 	webpage_description = "Leniko jewelry test page"
 
-	#objList = None
-	objList = Product.objects.all()
-	#objList = Product.objects.filter(isActive = True)
+	objList = Product.objects.filter(isActive = True)
 
 	context = {
 		"webpage_name":        webpage_name,

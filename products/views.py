@@ -10,8 +10,9 @@ from pages.apps import PagesConfig
 theme = PagesConfig.theme
 
 def product_list_view(request):
-	template_name = theme +'/products/list.html'
-	webpage_name = "Product list"
+	template_name = theme +'/shop.html'
+	webpage_name = "Shop"
+	webpage_description = "Leniko jewelry shop page"
 
 	#objList = Product.objects.all()
 	objList = Product.objects.filter(isActive = True)
@@ -33,7 +34,8 @@ def product_list_view(request):
 	#    objList = objList.filter(price__gte = price_min )
 
 	context = {
-		"webpage_name": webpage_name,
+		"webpage_name":        webpage_name,
+		"webpage_description": webpage_description,
 		"objList":      objList
 	}
 	print("\n")

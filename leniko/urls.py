@@ -29,6 +29,7 @@ from pages.views import dev_view
 urlpatterns = [
 	path(''         , home_view            , name='home'),
 
+	path('shop/'    , include('products.urls')),
 	path('product/' , include('products.urls')),
 
 	path('about'    , about_view           , name='about'),

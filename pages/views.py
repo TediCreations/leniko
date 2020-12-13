@@ -38,7 +38,7 @@ def contact_view(request, *args, **kwargs):
 	return render(request, template_name, context)
 
 def dev_view(request, *args, **kwargs):
-	template_name = theme + '/homebase.html'
+	template_name = theme + '/shopbase.html'
 	webpage_name = "Test"
 	webpage_description = "Leniko jewelry test page"
 

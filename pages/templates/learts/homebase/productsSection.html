@@ -56,6 +56,10 @@
               <a href="#quickViewModal" data-toggle="modal" class="product-button hintT-top" data-hint="Quick View"><i class="fal fa-search"></i></a>
               <a href="#" class="product-button hintT-top" data-hint="Add to Cart"><i class="fal fa-shopping-cart"></i></a>
               <a href="#" class="product-button hintT-top" data-hint="Compare"><i class="fal fa-random"></i></a>
+              {% if request.user.is_superuser %}
+              <a href="#" class="product-button hintT-top" data-hint="Edit"><i class="fal fa-pencil"></i></a>
+              <a href="#" class="product-button hintT-top" data-hint="Add variation"><i class="fal fa-plus"></i></a>
+              {% endif %}
             </div>
           </div>
         </div>

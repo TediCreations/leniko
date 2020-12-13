@@ -37,16 +37,11 @@ def contact_view(request, *args, **kwargs):
 	return render(request, template_name, context)
 
 def dev_view(request, *args, **kwargs):
-
-	def getSm():
-		random.choice([2,2,2,2,3,3,4])
-
-	template_name = theme + '/dev.html'
-	webpage_name = "Dev"
+	template_name = theme + '/base.html'
+	webpage_name = "Test"
+	webpage_description = "Leniko jewelry test page"
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
-		"list": range(10),
-		"sm": getSm()
 	}
 	return render(request, template_name, context)

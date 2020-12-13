@@ -1,0 +1,162 @@
+/* 04.02 Blockquote CSS */
+
+/* Default */
+blockquote {
+    &:not(.learts-blockquote):not(.learts-blockquote2) {
+        margin-bottom: 20px;
+        margin-left: 40px;
+        padding: 10px 20px;
+
+        border-left: 2px solid $heading-color;
+
+        & p {
+            font-size: 18px !important;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.675;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @media #{$small-mobile} {
+            margin-left: 0;
+        }
+    }
+}
+
+/* Custom Style One */
+blockquote.learts-blockquote,
+.learts-blockquote {
+    overflow: hidden;
+
+    height: 100%;
+    padding: 60px;
+
+    background-color: #F5EDE6;
+
+    & .inner {
+        & .title {
+            font-size: 40px;
+            font-weight: 400;
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+        & .desc {
+            margin-bottom: 20px;
+
+            & p {
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+
+        & .link {
+            font-size: 16px;
+            font-weight: 400;
+
+            position: relative;
+
+            float: right;
+
+            margin-left: auto;
+
+            color: $heading-color;
+
+            &::before {
+                position: absolute;
+                top: 50%;
+                right: 100%;
+
+                width: 60px;
+                height: 2px;
+                margin-right: 20px;
+
+                content: "";
+                transition: $transition;
+                transform: translateY(-50%);
+
+                background-color: $heading-color;
+            }
+
+            &:hover {
+                &::before {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    @media #{$laptop-device} {
+        padding: 50px;
+
+        & .inner {
+            & .title {
+                font-size: 36px;
+            }
+        }
+    }
+
+    @media #{$tablet-device} {
+        padding: 50px;
+
+        & .inner {
+            & .title {
+                font-size: 32px;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        padding: 40px;
+
+        & .inner {
+            & .title {
+                font-size: 30px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        padding: 30px;
+
+        & .inner {
+            & .title {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+/* Custom Style Two */
+blockquote.learts-blockquote2,
+.learts-blockquote2 {
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: 0;
+
+    text-align: center;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    & .icon {
+        margin-bottom: 36px;
+
+        & img {
+        }
+    }
+
+    & .content {
+        & p {
+            font-family: $marcellus;
+            font-size: 24px !important;
+            font-weight: 400;
+            line-height: 1.675;
+        }
+    }
+}

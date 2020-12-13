@@ -1,0 +1,120 @@
+/* Category Banner Style Three CSS */
+.category-banner3 {
+    position: relative;
+
+    display: block;
+    float: left;
+
+    width: 100%;
+
+    & .inner {
+        position: relative;
+
+        display: block;
+
+        & .image {
+            position: relative;
+
+            display: block;
+            overflow: hidden;
+
+            margin-bottom: 0;
+
+            &::before {
+                position: absolute;
+                z-index: 2;
+                top: 15px;
+                left: 15px;
+
+                width: calc(100% - 30px);
+                height: calc(100% - 30px);
+
+                content: "";
+                transition: $transition;
+
+                opacity: 0;
+                border: 1px solid $white;
+            }
+
+            & img {
+                width: 100%;
+            }
+        }
+
+        & .content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            padding: 0 40px 50px;
+
+            & .title {
+                font-size: 34px;
+                font-weight: 400;
+
+                display: flex;
+                align-items: flex-start;
+                flex-wrap: wrap;
+
+                margin: 0;
+
+                & .number {
+                    font-family: $futura;
+                    font-size: 16px;
+                    line-height: 1;
+
+                    position: relative;
+
+                    padding-left: 5px;
+
+                    color: $heading-color;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        & .inner {
+            & .image {
+                & img {
+                    transform: scale(1.1);
+                }
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    @media #{$tablet-device,
+    $large-mobile
+    } {
+        & .inner {
+            & .content {
+                & .title {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
+    @media #{$tablet-device,
+    $small-mobile
+    } {
+        & .inner {
+            & .content {
+                padding-bottom: 35px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .inner {
+            & .content {
+                padding: 0 25px 20px;
+            }
+        }
+    }
+}

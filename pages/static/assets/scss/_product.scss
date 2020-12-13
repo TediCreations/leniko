@@ -1,0 +1,203 @@
+/*----------------------------------------*/
+/*  09. Product CSS
+/*----------------------------------------*/
+
+/* Product Wrapper */
+.products {
+    margin-bottom: -50px;
+
+    & .product {
+        margin-bottom: 50px;
+    }
+
+    &-no-space {
+        margin-bottom: 0;
+
+        & .product {
+            margin-bottom: 0;
+        }
+    }
+
+    @media #{$tablet-device,
+    $large-mobile
+    } {
+        margin-bottom: -50px;
+
+        & .product {
+            margin-bottom: 50px;
+        }
+    }
+}
+
+/* Product Tab List */
+.product-tab-list {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 66px;
+
+    & li {
+        line-height: 1;
+
+        margin: 0 20px;
+
+        & a {
+            font-family: $marcellus;
+            font-size: 34px;
+            font-weight: 400;
+            line-height: 1;
+
+            position: relative;
+
+            display: block;
+
+            color: #ABABAB;
+
+            &:after {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+
+                content: url("../images/others/tab-hover.png");
+                transition: $transition;
+                text-align: center;
+
+                opacity: 0;
+            }
+
+            &.active,
+            &:hover {
+                color: $heading-color;
+
+                &:after {
+                    top: 100%;
+
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.tab-hover2 {
+        & li {
+            & a {
+                &:after {
+                    display: flex;
+                    justify-content: center;
+
+                    margin-top: 10px;
+
+                    content: url("../images/others/tab-hover-2.png");
+                }
+            }
+        }
+    }
+
+    @media #{$tablet-device} {
+        & li {
+            & a {
+                font-size: 24px;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        margin-bottom: 20px;
+
+        & li {
+            margin: 0 10px 10px;
+
+            & a {
+                font-size: 20px;
+
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        & li {
+            & a {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+/* Product List Slider */
+.product-list-slider {
+    position: relative;
+
+    overflow: visible;
+
+    margin: 0;
+    padding: 0;
+
+    & .slick-arrow {
+        line-height: 1;
+
+        position: absolute;
+        top: -60px;
+
+        visibility: visible;
+
+        width: auto;
+        height: 30px;
+        padding: 0;
+
+        transition: $transition;
+
+        opacity: 1;
+        color: $body-light;
+        border: none;
+        background-color: transparent;
+
+        & i {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $heading-color;
+        }
+
+        &.slick-prev {
+            right: 30px !important;
+            left: auto !important;
+        }
+
+        &.slick-next {
+            right: 0 !important;
+        }
+    }
+
+    & .slick-list {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    & .slick-slide {
+        & > div {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid #EEEEEE;
+
+            &:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+
+                border-bottom: none;
+            }
+        }
+    }
+}
+
+@import "product/product";
+@import "product/deal-product";
+@import "product/single-product";
+@import "product/quick-view";

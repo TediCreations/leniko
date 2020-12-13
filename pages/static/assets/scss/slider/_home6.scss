@@ -1,0 +1,111 @@
+/* 06.06. Home Six Slider */
+.home6-slider {
+}
+
+/* Home Six Slide Item */
+.home6-slide-item {
+    display: flex;
+    align-items: center;
+
+    min-height: 90vh;
+    padding: 60px 0;
+}
+
+/* Home Six Slide One Content */
+.home6-slide1-content {
+    text-align: center;
+
+    & .sub-title {
+        font-family: $modesty;
+        font-size: 80px;
+        font-weight: 400;
+        line-height: 1.375;
+
+        color: $white;
+    }
+
+    & .title {
+        font-size: 64px;
+        font-weight: 400;
+        line-height: 1.25;
+
+        color: $white;
+
+        &:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    }
+
+    & .link {
+        & .btn {
+        }
+    }
+
+    @media #{$desktop-device,
+    $tablet-device
+    } {
+        & .sub-title {
+            font-size: 70px;
+        }
+
+        & .title {
+            font-size: 56px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 40px;
+
+            &:not(:last-child) {
+                margin-bottom: 30px;
+            }
+        }
+
+        & .link {
+            & .btn {
+                padding: 10px 30px;
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 36px;
+
+            &:not(:last-child) {
+                margin-bottom: 25px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .sub-title {
+            font-size: 30px;
+        }
+
+        & .title {
+            font-size: 30px;
+
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+        }
+
+        & .link {
+            & .btn {
+                font-size: 14px;
+
+                padding: 8px 25px;
+            }
+        }
+    }
+}

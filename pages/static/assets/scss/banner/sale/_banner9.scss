@@ -1,0 +1,116 @@
+/* Sale Banner Style Nine CSS */
+.sale-banner9 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    padding: 60px 30px;
+
+    & .inner {
+        & .content {
+            text-align: center;
+
+            & .title {
+                font-family: $modesty;
+                font-size: 100px;
+                font-weight: 400;
+                line-height: 1;
+
+                margin-bottom: 30px;
+
+                color: $primary2;
+            }
+
+            & .cuppon {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+
+                display: block;
+
+                margin-bottom: 34px;
+
+                letter-spacing: 2px;
+
+                color: $heading-color;
+
+                & .code {
+                    font-weight: 600;
+
+                    padding: 1px 16px;
+
+                    color: $white;
+                    background-image: url(../images/banner/sale/sale-banner9-1.1.png);
+                    background-size: cover;
+                }
+            }
+
+            & .offer {
+                font-size: 90px;
+                font-weight: 600;
+                line-height: 1;
+
+                display: block;
+
+                margin-bottom: 35px;
+
+                color: $heading-color;
+            }
+
+            & .btn {
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .inner {
+            & .content {
+                & .title {
+                    font-size: 80px;
+                }
+
+                & .cuppon {
+                    font-size: 14px;
+
+                    margin-bottom: 25px;
+                }
+
+                & .offer {
+                    font-size: 80px;
+
+                    margin-bottom: 25px;
+                }
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .inner {
+            & .content {
+                & .title {
+                    font-size: 60px;
+                }
+
+                & .cuppon {
+                    font-size: 12px;
+                }
+
+                & .offer {
+                    font-size: 60px;
+                }
+            }
+        }
+    }
+}
+
+.sale-banner9-image {
+    height: 100%;
+
+    & img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+}

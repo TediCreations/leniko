@@ -1,0 +1,176 @@
+/*----------------------------------------*/
+/*  14. Countdown CSS
+/*----------------------------------------*/
+
+/* Countdown Style One */
+.countdown1 {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-right: -5px;
+    margin-left: -5px;
+
+    & .count {
+        flex: 1 0 25%;
+
+        max-width: 25%;
+        padding: 0 5px;
+
+        & span {
+            display: block;
+
+            &.amount {
+                font-size: 36px;
+                font-weight: 700;
+                line-height: 1;
+
+                margin-bottom: 27px;
+
+                color: $heading-color;
+
+                &::after {
+                    font-weight: 300;
+
+                    float: right;
+
+                    margin-top: -4px;
+
+                    content: ":";
+
+                    color: $body-light;
+                }
+            }
+
+            &.period {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1;
+
+                text-transform: uppercase;
+
+                color: $body-light;
+            }
+        }
+
+        &:last-child {
+            & .amount {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .count {
+            & span {
+                &.amount {
+                    font-size: 30px;
+
+                    margin-bottom: 15px;
+                }
+
+                &.period {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+/* Countdown Style Two */
+.countdown2 {
+    display: flex;
+    flex-wrap: wrap;
+
+    & .count {
+        margin-right: 30px;
+        padding-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
+            padding-right: 0;
+        }
+
+        & span {
+            display: block;
+
+            text-align: center;
+
+            &.amount {
+                font-family: $marcellus;
+                font-size: 36px;
+                font-weight: 400;
+                line-height: 1;
+
+                margin-bottom: 27px;
+
+                color: $primary;
+
+                &::after {
+                    font-weight: 100;
+
+                    float: right;
+
+                    margin-top: -4px;
+                    margin-right: -20px;
+
+                    content: ":";
+
+                    color: $body-light;
+                }
+            }
+
+            &.period {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1;
+
+                text-transform: uppercase;
+
+                color: $body-light;
+            }
+        }
+
+        &:last-child {
+            & .amount {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &.primary2 {
+        & .count {
+            & span {
+                &.amount {
+                    color: $primary2;
+                }
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .count {
+            margin-right: 20px;
+            padding-right: 10px;
+
+            & span {
+                &.amount {
+                    font-size: 30px;
+
+                    margin-bottom: 15px;
+
+                    &::after {
+                        margin-right: -15px;
+                    }
+                }
+
+                &.period {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

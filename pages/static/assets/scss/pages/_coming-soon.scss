@@ -1,0 +1,142 @@
+/* 18.05. Coming Soon Page CSS */
+
+/* Coming Soon Section */
+.coming-soon-section {
+    display: flex;
+
+    min-height: 100vh;
+}
+
+/* Coming Soon Content */
+.coming-soon-content {
+    text-align: center;
+
+    & .logo {
+        margin-bottom: 80px;
+
+        & a {
+            & img {
+            }
+        }
+    }
+
+    & .title {
+        font-size: 56px;
+        font-weight: 400;
+
+        margin-bottom: 40px;
+    }
+
+    & .countdown3 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        margin-bottom: 80px;
+
+        & .count {
+            min-width: 130px;
+            margin: 0 10px;
+
+            & span {
+                display: block;
+
+                color: $heading-color;
+
+                &.amount {
+                    font-size: 100px;
+                    line-height: 1;
+                }
+
+                &.period {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 1;
+
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+
+    & .coming-soon-subscribe {
+    }
+
+    @media #{$tablet-device} {
+        & .countdown3 {
+            & .count {
+                min-width: 100px;
+
+                & span {
+                    &.amount {
+                        font-size: 80px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .logo {
+            margin-bottom: 60px;
+        }
+
+        & .title {
+            font-size: 44px;
+
+            margin-bottom: 30px;
+        }
+
+        & .countdown3 {
+            margin-bottom: 60px;
+
+            & .count {
+                min-width: 80px;
+
+                & span {
+                    &.amount {
+                        font-size: 60px;
+                    }
+
+                    &.period {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .logo {
+            margin-bottom: 40px;
+        }
+
+        & .title {
+            font-size: 30px;
+
+            margin-bottom: 30px;
+        }
+
+        & .countdown3 {
+            margin-bottom: 40px;
+
+            & .count {
+                min-width: 60px;
+                margin: 0 5px;
+
+                & span {
+                    &.amount {
+                        font-size: 40px;
+                    }
+
+                    &.period {
+                        font-size: 12px;
+
+                        letter-spacing: 0;
+                    }
+                }
+            }
+        }
+    }
+}

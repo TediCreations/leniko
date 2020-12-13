@@ -1,0 +1,83 @@
+/* 04.05 Form CSS */
+
+/* Label */
+label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    letter-spacing: 1.6px;
+
+    color: $heading-color;
+
+    & .required {
+        font-size: 16px;
+
+        color: #FF0000;
+    }
+}
+
+/* Input & Textarea */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea {
+    font-size: 16px;
+    font-weight: 400;
+
+    display: block;
+
+    width: 100%;
+    padding: 10px 0;
+
+    color: $heading-color;
+    border: 2px solid transparent;
+    border-bottom-color: #EDEDED;
+    background-color: transparent;
+
+@include placeholder {
+        color: $body-light;
+    }
+
+    &:focus {
+        border-bottom-color: $heading-color;
+    }
+}
+
+textarea {
+    height: 200px;
+
+    resize: none;
+}
+
+/* Checkbox */
+.form-check {
+    input[type="checkbox"] {
+        margin-top: 2px;
+    }
+}
+
+/* Fieldset */
+fieldset {
+    padding: 30px 40px;
+
+    border: 1px solid #EEEEEE;
+
+    & legend {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1;
+
+        width: auto;
+        margin-top: -9px;
+        margin-bottom: 0;
+        padding: 0 15px;
+
+        text-transform: uppercase;
+
+        color: $heading-color;
+        background-color: $white;
+    }
+}

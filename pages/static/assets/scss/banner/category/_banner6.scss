@@ -1,0 +1,149 @@
+/* Category Banner Style Six CSS */
+.category-banner6 {
+    position: relative;
+
+    display: block;
+    float: left;
+
+    width: 100%;
+
+    & .inner {
+        position: relative;
+
+        & .image {
+            position: relative;
+            z-index: 1;
+
+            display: block;
+            overflow: hidden;
+
+            margin-bottom: 0;
+
+            &::before {
+                position: absolute;
+                z-index: 2;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 100%;
+
+                content: "";
+                transition: $transition;
+
+                opacity: 0;
+                background-color: rgba($black, 0.6);
+            }
+
+            & img {
+                width: 100%;
+            }
+        }
+
+        & .content {
+            position: absolute;
+            z-index: 9;
+            top: 50%;
+            left: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+
+            transition: $transition;
+            transform: translateY(-50%);
+
+            opacity: 0;
+
+            & .title {
+                font-size: 20px;
+                font-weight: 400;
+
+                position: relative;
+
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                margin: 0;
+                padding-bottom: 5px;
+
+                &::before {
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+
+                    width: 0;
+                    height: 2px;
+
+                    content: "";
+                    transition: $transition;
+                    transform: translateX(-50%);
+
+                    background-color: $white;
+                }
+
+                & a {
+                    color: $white;
+
+                    &:hover {
+                        color: $white;
+                    }
+                }
+
+                & .number {
+                    font-family: $futura;
+                    font-size: 16px;
+                    line-height: 1;
+
+                    position: relative;
+
+                    align-self: center;
+
+                    margin-left: 50px;
+
+                    color: $white;
+
+                    &::before {
+                        position: absolute;
+                        top: calc(50% + 2px);
+                        right: calc(100% + 10px);
+
+                        width: 30px;
+                        height: 1px;
+
+                        content: "";
+
+                        background-color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover {
+        & .inner {
+            & .image {
+                &::before {
+                    opacity: 1;
+                }
+
+                & img {
+                    transform: scale(1.1);
+                }
+            }
+
+            & .content {
+                opacity: 1;
+
+                & .title {
+                    &::before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

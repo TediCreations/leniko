@@ -1,0 +1,380 @@
+/*----------------------------------------*/
+/*  01. Template default CSS
+/*----------------------------------------*/
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+
+    &:-moz-placeholder {
+        @content
+    }
+
+    &::-moz-placeholder {
+        @content
+    }
+
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+/* Common Style */
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html,
+body,
+.site-wrapper {
+    height: 100%;
+}
+
+body {
+    font-family: $body-font,
+    Arial,
+    Helvetica,
+    sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.75;
+
+    position: relative;
+
+    visibility: visible;
+    overflow-x: hidden;
+
+    color: $body-color;
+    background-color: $white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $heading-font,
+    Arial,
+    Helvetica,
+    sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+
+    margin-top: 0;
+
+    color: $heading-color;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    line-height: inherit;
+
+    margin: 0;
+}
+
+h1,
+.h1 {
+    @media #{$large-mobile} {
+    }
+
+    @media #{$small-mobile} {
+    }
+}
+
+h2,
+.h2 {
+    @media #{$large-mobile} {
+    }
+
+    @media #{$small-mobile} {
+    }
+}
+
+h3,
+.h3 {
+    @media #{$large-mobile} {
+    }
+
+    @media #{$small-mobile} {
+    }
+}
+
+h4,
+.h4 {
+    @media #{$large-mobile} {
+    }
+
+    @media #{$small-mobile} {
+    }
+}
+
+h5,
+.h5 {
+    @media #{$large-mobile} {
+    }
+
+    @media #{$small-mobile} {
+    }
+}
+
+h6,
+.h6 {
+    @media #{$large-mobile} {
+    }
+
+    @media #{$small-mobile} {
+    }
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+a,
+button {
+    line-height: inherit;
+
+    display: inline-block;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    color: inherit;
+}
+
+a,
+button,
+img,
+input {
+    transition: $transition;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+a:focus {
+    text-decoration: none;
+
+    color: inherit;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+
+    color: $primary;
+}
+
+button,
+input[type="submit"] {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+input,
+textarea {
+    @include placeholder {
+        opacity: 1;
+    }
+}
+
+ul {
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    & li {
+    }
+}
+
+hr {
+    border-top-width: 2px;
+}
+
+/* Common Classes */
+.fix {
+    overflow: hidden;
+}
+
+.section,
+.main-wrapper {
+    float: left;
+
+    width: 100%;
+}
+
+.section-fluid {
+    @media only screen and (min-width: 1500px) {
+        padding-right: 55px;
+        padding-left: 55px;
+
+        & > .container,
+        & > .container-fluid {
+            max-width: 100%;
+        }
+    }
+
+    @media #{$laptop-device} {
+        padding-right: 35px;
+        padding-left: 35px;
+
+        & > .container,
+        & > .container-fluid {
+            max-width: 100%;
+        }
+    }
+
+    @media #{$desktop-device,
+    $tablet-device
+    } {
+        padding-right: 25px;
+        padding-left: 25px;
+
+        & > .container,
+        & > .container-fluid {
+            max-width: 100%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+@media #{$small-mobile} {
+    .container {
+        max-width: 450px;
+    }
+}
+
+@media #{$extra-small-mobile} {
+    .container {
+        max-width: 350px;
+    }
+}
+
+
+@each $name,
+$color in $templateColors {
+    // Background Color
+    .bg-#{$name} {
+        background-color: $color !important;
+    }
+
+    // Text Color
+    .text-#{$name} {
+        color: $color !important;
+    }
+}
+
+/* Font Weight */
+@for $i from 1 through 9 {
+    .fw-#{100 * $i} {
+        font-weight: 100 * $i;
+    }
+}
+
+/* Overlay */
+[data-overlay] {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        content: "";
+
+        background-color: $black;
+    }
+}
+
+@for $i from 0 through 20 {
+    [data-overlay="#{$i * 5}"] {
+        &::before {
+            opacity: 0.05 * $i;
+        }
+    }
+}
+
+/* Background Image */
+[data-bg-image] {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* Other */
+body.homepage-bg1 {
+    padding: 0 15px 15px !important;
+
+    background-color: #F4EDE7;
+
+    & .topbar-section {
+        background-color: #F4EDE7 !important;
+    }
+
+    &.offcanvas-open {
+        padding-right: 32px !important;
+        @media #{$tablet-device,
+        $large-mobile
+        } {
+            padding-right: 15px !important;
+        }
+    }
+}
+
+/* Scroll Up */
+#scrollUp {
+    right: 25px;
+    bottom: 25px;
+
+    width: 40px;
+    height: 40px;
+
+    text-align: center;
+
+    color: $white;
+    background-color: $primary;
+
+    & i {
+        line-height: 40px;
+    }
+}
+
+/* Border Style */
+.border-top-dashed {
+    border-top: 1px dashed #D2D2D2;
+}
+
+.border-bottom-dashed {
+    border-bottom: 1px dashed #D2D2D2;
+}
+
+/* Image Over Gray Scale */
+.img-hover-color {
+    filter: grayscale(100);
+
+    &:hover {
+        filter: grayscale(0);
+    }
+}

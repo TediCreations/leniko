@@ -1,0 +1,139 @@
+/*----------------------------------------*/
+/*  11. Team CSS
+/*----------------------------------------*/
+
+.team {
+    & .image {
+        position: relative;
+
+        overflow: hidden;
+
+        margin-bottom: 20px;
+
+        & img {
+            width: 100%;
+
+            transition: $transition;
+        }
+
+        &::before {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+
+            visibility: hidden;
+
+            width: 100%;
+            height: 100%;
+
+            content: "";
+            transition: $transition;
+
+            opacity: 0;
+            background-color: rgba($heading-color, 0.8);
+        }
+
+        &::after {
+            position: absolute;
+            z-index: 3;
+            top: 20px;
+            left: 20px;
+
+            visibility: hidden;
+
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+
+            content: "";
+            transition: $transition;
+
+            opacity: 0;
+            border: 1px solid rgba($white, 0.8);
+            background-color: transparent;
+        }
+
+        & .social {
+            position: absolute;
+            z-index: 9;
+            top: 50%;
+            left: 0;
+
+            display: flex;
+            visibility: hidden;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            width: 100%;
+
+            transform: translateY(-50%);
+
+            opacity: 0;
+
+            & a {
+                line-height: 1.25;
+
+                display: block;
+
+                margin: 0 10px;
+                padding: 0 5px;
+
+                color: $white;
+
+                & i {
+                    font-size: 18px;
+                }
+
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    }
+
+    & .content {
+        & .name {
+            font-family: $futura;
+            font-size: 18px;
+            font-weight: 600;
+
+            color: $heading-color;
+        }
+
+        & .title {
+            font-size: 14px;
+            font-weight: 400;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            color: $body-light;
+        }
+    }
+
+    &:hover {
+        & .image {
+            & img {
+                transform: scale(1.1);
+            }
+
+            &::before {
+                visibility: visible;
+
+                opacity: 1;
+            }
+
+            &::after {
+                visibility: visible;
+
+                opacity: 1;
+            }
+
+            & .social {
+                visibility: visible;
+
+                opacity: 1;
+            }
+        }
+    }
+}

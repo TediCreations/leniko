@@ -1,0 +1,336 @@
+/* Section Title Style One */
+.section-title {
+    margin-bottom: 80px;
+
+    & .sub-title {
+        font-family: $modesty;
+        font-size: 76px;
+        font-weight: 300;
+        line-height: 1;
+
+        margin-bottom: 5px;
+
+        color: $primary2;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    & .title {
+        font-size: 56px;
+        font-weight: 400;
+        line-height: 1;
+
+        margin-bottom: 0;
+
+        color: $heading-color;
+
+        &.title-icon-both {
+            &::before {
+                padding-right: 10px;
+
+                content: url("../images/title/title-decor-left.png");
+            }
+
+            &::after {
+                padding-left: 10px;
+
+                content: url("../images/title/title-decor-right.png");
+            }
+        }
+
+        &.title-icon-left {
+            &::before {
+                padding-right: 10px;
+
+                content: url("../images/title/title-decor-left.png");
+            }
+        }
+
+        &.title-icon-right {
+            &::after {
+                padding-left: 10px;
+
+                content: url("../images/title/title-decor-right.png");
+            }
+        }
+    }
+
+    @media #{$tablet-device} {
+        & .sub-title {
+            font-size: 60px;
+        }
+
+        & .title {
+            font-size: 44px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        margin-bottom: 60px;
+
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 30px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        margin-bottom: 50px;
+
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 24px;
+
+            &::before,
+            &::after {
+                display: none !important;
+            }
+        }
+    }
+}
+
+/* Section Title Style Two */
+.section-title2 {
+    margin-bottom: 80px;
+
+    & .sub-title {
+        font-family: $modesty;
+        font-size: 56px;
+        font-weight: 300;
+        line-height: 1;
+
+        margin-bottom: 8px;
+
+        color: $primary2;
+    }
+
+    & .title {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 1;
+
+        margin-bottom: 0;
+
+        color: $heading-color;
+
+        &.title-icon-both {
+            &::before {
+                padding-right: 10px;
+
+                content: url("../images/title/title-decor-left.png");
+            }
+
+            &::after {
+                padding-left: 10px;
+
+                content: url("../images/title/title-decor-right.png");
+            }
+        }
+
+        &.title-icon-left {
+            &::before {
+                padding-right: 10px;
+
+                content: url("../images/title/title-decor-left.png");
+            }
+        }
+
+        &.title-icon-right {
+            &::after {
+                padding-left: 10px;
+
+                content: url("../images/title/title-decor-right.png");
+            }
+        }
+    }
+
+    & p {
+        line-height: 1.75;
+
+        max-width: 570px;
+        margin-top: 25px;
+    }
+
+    &.text-center {
+        & p {
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    @media #{$large-mobile} {
+        margin-bottom: 60px;
+
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 32px;
+        }
+
+        & p {
+            margin-top: 15px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        margin-bottom: 50px;
+
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 24px;
+
+            &::before,
+            &::after {
+                display: none !important;
+            }
+        }
+
+        & p {
+            margin-top: 10px;
+        }
+    }
+}
+
+/* Section Title Style Three */
+.section-title3 {
+    margin-bottom: 80px;
+    padding: 20px 0;
+
+    background-size: auto 100%;
+
+    & .sub-title {
+    }
+
+    & .title {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 1;
+
+        margin-bottom: 0;
+
+        color: $heading-color;
+    }
+
+    & .desc {
+        font-weight: 400;
+        line-height: 1.5;
+
+        margin-top: 15px;
+    }
+
+    @media #{$large-mobile} {
+        margin-bottom: 60px;
+
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 32px;
+        }
+
+        & p {
+            margin-top: 15px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        margin-bottom: 50px;
+
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 24px;
+        }
+
+        & p {
+            margin-top: 10px;
+        }
+    }
+}
+
+/* Section Title Style Four */
+.section-title4 {
+    margin-bottom: 80px;
+
+    & .title {
+        font-family: $modesty;
+        font-size: 72px;
+        font-weight: 400;
+        line-height: 1;
+
+        margin-bottom: 0;
+
+        &.title-icon-both {
+            &::before {
+                padding-right: 10px;
+
+                content: url("../images/title/title-decor-left.png");
+            }
+
+            &::after {
+                padding-left: 10px;
+
+                content: url("../images/title/title-decor-right.png");
+            }
+        }
+
+        &.title-icon-left {
+            &::before {
+                padding-right: 10px;
+
+                content: url("../images/title/title-decor-left.png");
+            }
+        }
+
+        &.title-icon-right {
+            &::after {
+                padding-left: 10px;
+
+                content: url("../images/title/title-decor-right.png");
+            }
+        }
+    }
+
+    @media #{$tablet-device} {
+        & .title {
+            font-size: 60px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        margin-bottom: 60px;
+
+        & .title {
+            font-size: 50px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        margin-bottom: 50px;
+
+        & .title {
+            font-size: 40px;
+
+            &::before,
+            &::after {
+                display: none !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,277 @@
+/* 04.06 Icon Box CSS */
+
+/* Style One */
+.icon-box1 {
+    display: flex;
+    justify-content: center;
+
+    min-height: 100%;
+
+    & .inner {
+        text-align: center;
+
+        & .icon {
+            margin-bottom: 30px;
+
+            color: #CCCCCC;
+
+            & i {
+                font-size: 56px;
+                line-height: 1;
+
+                display: block;
+            }
+        }
+
+        & .content {
+            & .title {
+                font-family: $futura;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1;
+
+                margin-bottom: 15px;
+
+                color: $heading-color;
+            }
+
+            & p {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+
+                color: $body-light;
+            }
+        }
+    }
+}
+
+/* Style Two */
+.icon-box2 {
+    display: flex;
+
+    & .inner {
+        text-align: left;
+
+        & .icon {
+            float: left;
+
+            padding-right: 20px;
+
+            color: #CCCCCC;
+
+            & i {
+                font-size: 30px;
+                line-height: 1;
+
+                display: block;
+            }
+        }
+
+        & .content {
+            overflow: hidden;
+
+            & .title {
+                font-family: $futura;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1;
+
+                margin-bottom: 10px;
+
+                color: $heading-color;
+            }
+
+            & p {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+
+                color: $body-light;
+            }
+        }
+    }
+}
+
+/* Style Three */
+.icon-box3 {
+    display: flex;
+    justify-content: center;
+
+    min-height: 100%;
+
+    &:nth-child(1) {
+        background-color: #EDF6EB;
+
+        & .inner {
+            & .icon {
+                color: #A3D39C;
+            }
+        }
+    }
+
+    &:nth-child(2) {
+        background-color: #F8F5DE;
+
+        & .inner {
+            & .icon {
+                color: #DDB758;
+            }
+        }
+    }
+
+    &:nth-child(3) {
+        background-color: #ECF4FB;
+
+        & .inner {
+            & .icon {
+                color: #7EB7E6;
+            }
+        }
+    }
+
+    & .inner {
+        padding: 60px 20px;
+
+        text-align: center;
+
+        & .icon {
+            margin-bottom: 30px;
+
+            color: #CCCCCC;
+
+            & i {
+                font-size: 56px;
+                line-height: 1;
+
+                display: block;
+            }
+        }
+
+        & .content {
+            & .title {
+                font-family: $futura;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1;
+
+                margin-bottom: 15px;
+
+                color: $heading-color;
+            }
+
+            & p {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+
+                color: $body-light;
+            }
+        }
+    }
+
+    @media #{$tablet-device} {
+        & .inner {
+            padding: 40px 15px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .inner {
+            padding: 50px 15px;
+        }
+    }
+}
+
+/* Style Four */
+.icon-box4 {
+    display: flex;
+    justify-content: center;
+
+    min-height: 100%;
+
+    text-align: center;
+
+    & .inner {
+        & .icon {
+            margin-bottom: 30px;
+
+            color: #CCCCCC;
+
+            & i {
+                font-size: 56px;
+                line-height: 1;
+
+                display: block;
+            }
+        }
+
+        & .content {
+            & .title {
+                font-family: $futura;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1;
+
+                margin-bottom: 15px;
+
+                color: $heading-color;
+            }
+
+            & p {
+                line-height: 1.5;
+
+                color: $body-light;
+            }
+        }
+    }
+}
+
+/* Style Five */
+.icon-box5 {
+    display: flex;
+    align-items: center;
+
+    & .icon {
+        flex: 1 0 90px;
+
+        max-width: 90px;
+        height: 90px;
+
+        text-align: center;
+
+        color: $primary;
+        border-radius: 50%;
+        background-color: $white;
+
+        & i {
+            font-size: 22px;
+            line-height: 90px;
+
+            transition: $transition;
+        }
+    }
+
+    & .content {
+        padding-left: 20px;
+
+        & .title {
+            font-family: $futura;
+            font-size: 24px;
+            font-weight: 400;
+
+            margin-bottom: 10px;
+        }
+
+        & p {
+        }
+    }
+
+    &:hover {
+        & .icon {
+            & i {
+                transform: scale(1.25);
+            }
+        }
+    }
+}

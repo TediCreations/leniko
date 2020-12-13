@@ -1,0 +1,62 @@
+/* 09.04. Quick View CSS */
+
+.quickViewModal {
+    & .modal-dialog {
+        width: calc(100% - 30px);
+        max-width: 1200px;
+
+        & .modal-content {
+            padding: 30px;
+
+            & .close {
+                font-size: 30px;
+                font-weight: 300;
+
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                width: 40px;
+                height: 40px;
+            }
+
+            @media only screen and (min-width: 992px) {
+                & .product-summery {
+                    position: absolute;
+                    right: 15px;
+                    left: 15px;
+
+                    overflow-x: hidden;
+                    overflow-y: auto;
+
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .modal-dialog {
+            & .modal-content {
+                padding: 20px;
+            }
+        }
+    }
+}
+
+.product-gallery-slider-quickview {
+    margin: 0;
+    padding: 0;
+
+    & .slick-list {
+        margin: 0;
+    }
+
+    & .slick-dots {
+        position: absolute;
+        bottom: 40px;
+        left: 0;
+
+        width: 100%;
+    }
+}

@@ -1,0 +1,27 @@
+/* 04.03 Brand CSS */
+
+.brand-carousel {
+    & .slick-track {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.brand-item {
+    display: flex;
+    justify-content: center;
+
+    & a {
+        display: block;
+
+        opacity: 0.4;
+
+        & img {
+            max-width: 100%;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

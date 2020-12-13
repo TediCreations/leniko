@@ -1,0 +1,108 @@
+/* 18.01.08. My Account CSS */
+.myaccount-tab-list {
+    display: block;
+
+    margin-right: 30px;
+
+    border: 1px solid #EEEEEE;
+
+    & a {
+        font-weight: 500;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 14px 20px;
+
+        & + a {
+            border-top: 1px solid #EEEEEE;
+        }
+
+        & i {
+        }
+
+        &:hover {
+            color: $heading-color;
+        }
+
+        &.active {
+            cursor: default;
+
+            background-color: #FAFAFA;
+        }
+    }
+
+    @media #{$tablet-device,
+    $large-mobile
+    } {
+        margin-right: 0;
+    }
+}
+
+
+.myaccount-content {
+    font-size: 16px;
+    font-weight: 400;
+
+    &.dashboad {
+        & p {
+            padding: 20px;
+
+            background-color: #FAFAFA;
+
+            &:not(:last-child) {
+                margin-bottom: 24px;
+            }
+
+            & span {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &.order,
+    &.download {
+        & table {
+            white-space: nowrap;
+        }
+    }
+
+    &.address {
+        & > p {
+            padding: 20px;
+
+            background-color: #FAFAFA;
+
+            &:not(:last-child) {
+                margin-bottom: 24px;
+            }
+
+            & span {
+                text-decoration: underline;
+            }
+        }
+
+        & .title {
+            margin-bottom: 20px;
+
+            & .edit-link {
+                font-size: 12px;
+
+                margin-left: 5px;
+
+                text-transform: capitalize;
+
+                color: $body-light;
+
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+
+        & address {
+            margin-bottom: 0;
+        }
+    }
+}

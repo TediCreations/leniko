@@ -1,0 +1,168 @@
+/* Sale Banner Style Three CSS */
+.sale-banner3 {
+    position: relative;
+
+    width: 100%;
+    padding: 80px 30px;
+
+    text-align: center;
+
+    border: 3px solid rgba($primary2, 0.4);
+
+    & .special-title {
+        font-family: $modesty;
+        font-size: 56px;
+        line-height: 1.25;
+
+        display: block;
+
+        margin-bottom: 25px;
+
+        color: $primary2;
+    }
+
+    & .title {
+        font-size: 40px;
+        font-weight: 400;
+
+        position: relative;
+        z-index: 1;
+
+        margin-bottom: 48px;
+
+        &::before {
+            font-family: $futura;
+            font-size: 100px;
+            font-weight: 700;
+            line-height: 1;
+
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 0;
+
+            width: 100%;
+
+            content: attr(data-text);
+            transform: translateY(-60%);
+            text-align: center;
+
+            color: #F2F2F2;
+        }
+    }
+
+    & .link {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.25;
+
+        padding-bottom: 4px;
+
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        color: $heading-color;
+        border-bottom: 1px solid rgba($heading-color, 0.2);
+
+        &:hover {
+            border-color: $heading-color;
+        }
+    }
+
+    @media #{$desktop-device} {
+        & .title {
+            font-size: 32px;
+
+            &::before {
+                font-size: 80px;
+            }
+        }
+    }
+}
+
+.sale-banner3-1 {
+    position: relative;
+
+    width: 100%;
+
+    text-align: center;
+
+    & .image {
+        & img {
+            width: 100%;
+        }
+    }
+
+    & .content {
+        position: absolute;
+        z-index: 9;
+        top: 50%;
+        left: 0;
+
+        width: 100%;
+
+        transform: translateY(-50%);
+
+        & .special-title {
+            font-family: $modesty;
+            font-size: 56px;
+            line-height: 1.25;
+
+            display: block;
+
+            margin-bottom: 25px;
+
+            color: $primary2;
+        }
+
+        & .title {
+            font-size: 34px;
+            font-weight: 400;
+
+            position: relative;
+            z-index: 1;
+
+            margin-bottom: 48px;
+        }
+
+        & .link {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.25;
+
+            padding-bottom: 4px;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            color: $heading-color;
+            border-bottom: 1px solid rgba($heading-color, 0.2);
+
+            &:hover {
+                border-color: $heading-color;
+            }
+        }
+    }
+
+    @media #{$desktop-device,
+    $tablet-device
+    } {
+        & .content {
+            & .title {
+                font-size: 32px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .content {
+            & .special-title {
+                font-size: 44px;
+            }
+
+            & .title {
+                font-size: 28px;
+            }
+        }
+    }
+}

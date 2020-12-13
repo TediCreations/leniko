@@ -1,0 +1,127 @@
+/* 04.04 Button CSS */
+
+.btn {
+    font-weight: 400;
+    line-height: 24px;
+
+    padding: 15px 40px;
+
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    border-radius: 500px;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
+    &-icon {
+        width: 56px;
+        padding: 15px;
+    }
+}
+
+/* Button Sizes */
+.btn-sm {
+    font-size: 12px;
+
+    padding: 5px 20px;
+}
+
+.btn-md {
+    font-size: 14px;
+
+    padding: 10px 30px;
+}
+
+.btn-lg {
+    font-size: 18px;
+
+    padding: 20px 50px;
+}
+
+.btn-xl {
+    font-size: 20px;
+
+    padding: 25px 60px;
+}
+
+/* Button Color & Style (Solid & Outline) */
+@each $name,
+$value in $templateColors {
+    .btn-#{$name} {
+        border-color: $value;
+        background-color: $value;
+
+        @if $name==warning or $name==light {
+            color: $heading-color;
+        }
+
+        @else {
+            color: $white;
+        }
+
+        &:hover {
+            border-color: darken($value, 7.5%);
+            background-color: darken($value, 7.5%);
+
+            @if $name==warning or $name==light {
+                color: $heading-color;
+            }
+
+            @else {
+                color: $white;
+            }
+        }
+    }
+
+    .btn-outline-#{$name} {
+        color: $value;
+        border-color: $value;
+        background-color: transparent;
+
+        &:hover {
+            border-color: $value;
+            background-color: $value;
+
+            @if $name==warning or $name==light {
+                color: $heading-color;
+            }
+
+            @else {
+                color: $white;
+            }
+        }
+    }
+}
+
+/* Button Hover Color & Style (Solid & Outline) */
+@each $name,
+$value in $templateColors {
+    .btn-hover-#{$name} {
+        &:hover,
+        &:not(:disabled):not(.disabled).active {
+            border-color: $value;
+            background-color: $value;
+
+            @if $name==warning or $name==light {
+                color: $heading-color;
+            }
+
+            @else {
+                color: $white;
+            }
+        }
+    }
+
+    .btn-outline-hover-#{$name} {
+        &:hover,
+        &:not(:disabled):not(.disabled).active {
+            color: $value;
+            border-color: $value;
+            background-color: transparent;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+/* 04.01 Accordion CSS */
+
+.accordion {
+    & .card {
+        border-width: 1px 0 0;
+        border-color: rgba(0, 0, 0, 0.075);
+        border-radius: 0 !important;
+
+        &:last-child {
+            border-bottom-width: 1px;
+        }
+
+        & .card-header {
+            padding: 0;
+
+            border: none;
+            background-color: transparent;
+
+            & .btn {
+                font-family: $marcellus;
+                font-size: 18px;
+
+                display: block;
+
+                width: 100%;
+                padding: 0;
+                padding: 15px 20px;
+
+                text-align: left;
+                text-decoration: none;
+                text-transform: inherit;
+
+                color: $heading-color;
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+
+                &:not(.collapsed) {
+                    background-color: rgba(0, 0, 0, 0.075);
+                }
+            }
+        }
+
+        & .card-body {
+            padding: 30px 0;
+
+            & p {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 2;
+
+                color: $body-light;
+            }
+        }
+    }
+}

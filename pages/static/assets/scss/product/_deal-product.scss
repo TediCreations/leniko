@@ -1,0 +1,85 @@
+/* 09.02. Deal Product CSS */
+
+/* Deal Priduct Image */
+.product-deal-image {
+    & img {
+        animation: dealImage 2s linear infinite alternate both;
+    }
+}
+
+@keyframes dealImage {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-40px);
+    }
+}
+
+/* Deal Priduct Content */
+.product-deal-content {
+    max-width: 525px;
+
+    & .title {
+        font-size: 40px;
+        font-weight: 400;
+
+        margin-bottom: 20px;
+
+        &::after {
+            padding-left: 10px;
+
+            content: url("../images/title/title-decor-right.png");
+        }
+    }
+
+    & .desc {
+        max-width: 460px;
+        margin-bottom: 30px;
+
+        & p {
+        }
+    }
+
+    & .countdown1 {
+        margin-bottom: 55px;
+    }
+
+    & .btn {
+    }
+
+    @media #{$desktop-device} {
+        & .title {
+            font-size: 34px;
+        }
+
+        & .countdown1 {
+            margin-bottom: 45px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .title {
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        & .title {
+            font-size: 34px;
+        }
+
+        & .countdown1 {
+            margin-bottom: 40px;
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .title {
+            font-size: 28px;
+        }
+    }
+}

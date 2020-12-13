@@ -1,0 +1,19 @@
+/* 18.01.02. Product Filter CSS */
+.product-filter {
+    display: none;
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* Filter Widget Title */
+.product-filter-widget-title {
+    font-family: $marcellus;
+
+    margin-bottom: 30px;
+}
+
+/* Filter Widget */
+.product-filter-widget {
+    max-height: 210px;
+}

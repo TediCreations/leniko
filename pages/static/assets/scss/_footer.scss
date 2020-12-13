@@ -1,0 +1,79 @@
+/*----------------------------------------*/
+/*  17. Footer CSS
+/*----------------------------------------*/
+
+/* Footer Style One */
+.footer1-section {
+    background-color: #F4EDE7;
+}
+
+/* Footer Style One Logo */
+.footer1-logo {
+    margin-bottom: 60px;
+
+    @media #{$large-mobile} {
+        margin-bottom: 40px;
+    }
+}
+
+/* Footer Style One Menu */
+.footer1-menu {
+    margin-bottom: 40px;
+}
+
+/* Footer Style One Subscribe */
+.footer1-subscribe {
+    margin-bottom: 55px;
+
+    @media #{$tablet-device,
+    $large-mobile
+    } {
+        margin-bottom: 40px;
+    }
+}
+
+/* Footer Style One Social */
+.footer1-social {
+    margin-bottom: 50px;
+
+    @media #{$tablet-device,
+    $large-mobile
+    } {
+        margin-bottom: 30px;
+    }
+}
+
+/* Footer Style One Copyright */
+.footer1-copyright {
+}
+
+
+/* Footer Style Two */
+.footer2-section {
+    background-color: #F8F8F8;
+}
+
+/* Footer Style Two Copyright */
+.footer2-copyright {
+    padding: 20px 0;
+
+    color: #999999;
+    border-top: 1px solid darken(#F8F8F8, 5);
+    background-color: #F8F8F8;
+}
+
+/* Copyright */
+.copyright {
+    font-size: 16px;
+    font-weight: 400;
+
+    & strong {
+        color: $heading-color;
+    }
+
+    & a {
+        &:hover {
+            color: $heading-color;
+        }
+    }
+}

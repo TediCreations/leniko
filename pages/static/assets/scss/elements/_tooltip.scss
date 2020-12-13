@@ -1,0 +1,171 @@
+/* 04.07 Tooltip CSS */
+
+[class*="hintT"] {
+    position: relative;
+    z-index: 9;
+
+    &::before {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 12px;
+
+        position: absolute;
+        z-index: 9;
+
+        visibility: hidden;
+
+        padding: 8px 10px;
+
+        content: attr(data-hint);
+        transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1) 0s;
+        white-space: nowrap;
+        text-transform: initial;
+        pointer-events: none;
+
+        opacity: 0;
+        color: $white;
+        background: $heading-color;
+        box-shadow: 4px 4px 8px rgba($black, 0.3);
+        text-shadow: 0 -1px 0 $black;
+    }
+
+    &::after {
+        position: absolute;
+        z-index: 1000001;
+        z-index: 8;
+
+        visibility: hidden;
+
+        content: "";
+        transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1) 0s;
+
+        opacity: 0;
+        border: 6px solid transparent;
+        background: 0 0;
+    }
+
+    &:hover {
+        &::before,
+        &::after {
+            visibility: visible;
+
+            opacity: 1;
+        }
+    }
+}
+
+/* Position Top */
+.hintT-top {
+    &::before {
+        bottom: calc(100% - 4px);
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
+
+    &::after {
+        bottom: calc(100% - 16px);
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        border-top-color: $heading-color;
+    }
+
+    &:hover {
+        &::before {
+            bottom: calc(100% + 6px);
+        }
+
+        &::after {
+            bottom: calc(100% - 5px);
+        }
+    }
+}
+
+/* Position Right */
+.hintT-right {
+    &::before {
+        top: 50%;
+        left: calc(100% - 4px);
+
+        transform: translateY(-50%);
+    }
+
+    &::after {
+        top: 50%;
+        left: calc(100% - 16px);
+
+        transform: translateY(-50%);
+
+        border-right-color: $heading-color;
+    }
+
+    &:hover {
+        &::before {
+            left: calc(100% + 6px);
+        }
+
+        &::after {
+            left: calc(100% - 5px);
+        }
+    }
+}
+
+/* Position Bottom */
+.hintT-bottom {
+    &::before {
+        top: calc(100% - 4px);
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
+
+    &::after {
+        top: calc(100% - 16px);
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        border-bottom-color: $heading-color;
+    }
+
+    &:hover {
+        &::before {
+            top: calc(100% + 6px);
+        }
+
+        &::after {
+            top: calc(100% - 5px);
+        }
+    }
+}
+
+/* Position Left */
+.hintT-left {
+    &::before {
+        top: 50%;
+        right: calc(100% - 4px);
+
+        transform: translateY(-50%);
+    }
+
+    &::after {
+        top: 50%;
+        right: calc(100% - 16px);
+
+        transform: translateY(-50%);
+
+        border-left-color: $heading-color;
+    }
+
+    &:hover {
+        &::before {
+            right: calc(100% + 6px);
+        }
+
+        &::after {
+            right: calc(100% - 5px);
+        }
+    }
+}

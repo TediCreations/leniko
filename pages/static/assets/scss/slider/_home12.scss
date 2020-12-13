@@ -1,0 +1,519 @@
+/* 06.09. Home Twelve Slider */
+.home12-slider {
+    width: 100%;
+
+    &:hover {
+        & [class*="swiper-button"] {
+            opacity: 1;
+
+            &:hover {
+                & i {
+                    transform: scale(1.5);
+                }
+            }
+        }
+    }
+}
+
+/* Home Twelve Slide Item */
+.home12-slide-item {
+    display: flex;
+    justify-content: center;
+
+    height: 645px;
+
+    @media #{$large-mobile} {
+        height: 550px;
+    }
+
+    @media #{$small-mobile} {
+        height: 500px;
+    }
+
+    @media #{$extra-small-mobile} {
+        height: 450px;
+    }
+}
+
+/* Home Twelve Slide One Content */
+.home12-slide1-content {
+    position: relative;
+    z-index: 1;
+
+    align-self: center;
+
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 40px 55px;
+
+    text-align: center;
+
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        transform: scale(0.85);
+
+        background-color: $white;
+
+        &::before {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+
+            content: "";
+
+            border: 1px dashed $primary2;
+        }
+    }
+
+    & .sub-title {
+        font-family: $modesty;
+        font-size: 55px;
+        font-weight: 400;
+        line-height: 1.25;
+
+        display: block;
+
+        margin-bottom: 28px;
+
+        transform: translateY(30px);
+
+        color: $primary2;
+    }
+
+    & .title {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 1;
+
+        margin-bottom: 25px;
+
+        transform: translateY(30px);
+        letter-spacing: 3px;
+
+        color: $heading-color;
+    }
+
+    & .price {
+        transform: translateY(30px);
+    }
+
+    @media #{$large-mobile} {
+        max-width: 450px;
+
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 36px;
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 30px;
+        }
+    }
+}
+
+/* Home Twelve Slide Two Content */
+.home12-slide2-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 466px;
+    height: 466px;
+    padding: 25px;
+
+    border-radius: 50%;
+    background-color: transparent;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .bg {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        transform: scale(0.85);
+
+        border-radius: 50%;
+        background-color: $white;
+    }
+
+    & .icon {
+        margin-bottom: 25px;
+
+        transform: translateY(-30px);
+    }
+
+    & .title {
+        font-family: $modesty;
+        font-size: 80px;
+        font-weight: 300;
+        line-height: 1;
+
+        margin-bottom: 11px;
+
+        transform: translateY(30px);
+    }
+
+    & .price {
+        margin-bottom: 20px;
+
+        transform: translateY(30px);
+    }
+
+    & .link {
+        transform: translateY(30px);
+
+        & a {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+
+            padding-bottom: 2px;
+
+            text-transform: uppercase;
+
+            color: $heading-color;
+            border-bottom: 1px solid $heading-color;
+
+            &:hover {
+                color: $primary2;
+                border-color: $primary2;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        width: 400px;
+        height: 400px;
+
+        & .title {
+            font-size: 60px;
+        }
+
+        & .price {
+        }
+
+        & .link {
+            & a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        width: 350px;
+        height: 350px;
+
+        & .icon {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        & .title {
+            font-size: 48px;
+        }
+
+        & .price {
+            height: 60px;
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        width: 300px;
+        height: 300px;
+
+        & .title {
+            font-size: 40px;
+        }
+
+        & .price {
+            height: 50px;
+        }
+
+        & .link {
+            & a {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+/* Home Twelve Slide Three Content */
+.home12-slide3-content {
+    max-width: calc(100% - 20px);
+    margin-top: 80px;
+
+    text-align: center;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .title {
+        font-family: $modesty;
+        font-size: 76px;
+        font-weight: 300;
+        line-height: 1;
+
+        margin-bottom: 20px;
+
+        transform: translateY(30px);
+
+        color: $primary2;
+    }
+
+    & .sub-title {
+        font-size: 56px;
+        font-weight: 400;
+        line-height: 1.1;
+
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 35px;
+        padding: 0 80px;
+
+        transform: translateY(30px);
+        text-align: center;
+
+        color: $black;
+
+        & img {
+            position: absolute;
+            top: 50%;
+
+            margin-top: -12px;
+
+            opacity: 0;
+
+            &.left-icon {
+                left: 0;
+
+                transform: translateX(30px);
+            }
+
+            &.right-icon {
+                right: 0;
+
+                transform: translateX(-30px);
+            }
+        }
+    }
+
+    & .price {
+        font-family: $marcellus;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.4;
+
+        z-index: 9;
+
+        display: inline-block;
+
+        padding: 0 45px;
+
+        transform: translateY(30px);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+        color: $white;
+        background-image: url("../images/slider/home1/slide-3-3.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    @media #{$large-mobile} {
+        margin-top: 60px;
+
+        & .title {
+            font-size: 70px;
+
+            margin-bottom: 20px;
+        }
+
+        & .sub-title {
+            font-size: 36px;
+
+            margin-bottom: 25px;
+        }
+
+        & .price {
+            font-size: 14px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        margin-top: 60px;
+
+        & .title {
+            font-size: 54px;
+        }
+
+        & .sub-title {
+            font-size: 30px;
+
+            margin-bottom: 20px;
+            padding: 0 50px;
+
+            & img {
+                height: 16px;
+                margin-top: -8px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .title {
+            font-size: 40px;
+        }
+
+        & .sub-title {
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+        & .price {
+            font-size: 12px;
+        }
+    }
+}
+
+/* Home Twelve Slide Content Animation */
+.swiper-slide-active {
+    & .home12-slide1-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .bg {
+            transition-delay: 0.75s;
+            transform: scale(1);
+        }
+
+        & .sub-title {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+
+        & .title {
+            transition-delay: 1.5s;
+            transform: translateY(0);
+        }
+
+        & .price {
+            transition-delay: 1.7s;
+            transform: translateY(0);
+        }
+    }
+
+    & .home12-slide2-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .bg {
+            transition-delay: 0.75s;
+            transform: scale(1);
+        }
+
+        & .icon {
+            transition-delay: 1s;
+            transform: translateY(0);
+        }
+
+        & .title {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+
+        & .price {
+            transition-delay: 1.5s;
+            transform: translateY(0);
+        }
+
+        & .link {
+            transition-delay: 1.7s;
+            transform: translateY(0);
+        }
+    }
+
+    & .home12-slide3-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .title {
+            transition-delay: 0.75s;
+            transform: translateY(0);
+        }
+
+        & .sub-title {
+            transition-delay: 0.95s;
+            transform: translateY(0);
+
+            & img {
+                transition-delay: 1.5s;
+
+                opacity: 1;
+
+                &.left-icon {
+                    transform: translateX(0);
+                }
+
+                &.right-icon {
+                    transform: translateX(0);
+                }
+            }
+        }
+
+        & .price {
+            transition-delay: 1.15s;
+            transform: translateY(0);
+        }
+    }
+}

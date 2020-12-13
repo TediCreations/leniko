@@ -1,0 +1,77 @@
+/* Category Banner Style Four CSS */
+.category-banner4 {
+    position: relative;
+
+    display: block;
+    float: left;
+
+    width: 100%;
+
+    & .inner {
+        position: relative;
+
+        display: block;
+
+        & .image {
+            position: relative;
+
+            display: block;
+            overflow: hidden;
+
+            margin-bottom: 0;
+
+            &::before {
+                position: absolute;
+                z-index: 2;
+                top: 15px;
+                left: 15px;
+
+                width: calc(100% - 30px);
+                height: calc(100% - 30px);
+
+                content: "";
+                transition: $transition;
+
+                opacity: 0;
+                border: 1px solid $white;
+            }
+
+            & img {
+                width: 100%;
+            }
+        }
+
+        & .content {
+            position: relative;
+            z-index: 9;
+
+            max-width: 80%;
+            margin: -25px auto 0;
+            padding: 15px 10px;
+
+            & .title {
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 1.125;
+
+                margin: 0;
+
+                text-align: center;
+            }
+        }
+    }
+
+    &:hover {
+        & .inner {
+            & .image {
+                & img {
+                    transform: scale(1.1);
+                }
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

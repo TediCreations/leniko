@@ -7,7 +7,7 @@ theme = PagesConfig.theme
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-	template_name = theme + '/home.html'
+	template_name = theme + '/index.html'
 	webpage_name = "Home"
 	context = {
 		"webpage_name": webpage_name,

@@ -1,0 +1,125 @@
+/* Header Tools/Action Buttons */
+.header-tools {
+    display: flex;
+
+    & > div {
+        margin-left: 25px;
+
+        & a {
+            position: relative;
+
+            display: flex;
+
+            color: $heading-color;
+
+            & span {
+                font-size: 13px;
+                font-weight: 700;
+                line-height: 1rem;
+
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                right: 0;
+
+                min-width: 16px;
+                height: 16px;
+                padding: 0 3px;
+
+                text-align: center;
+
+                color: $white;
+                border-radius: 14px;
+                background-color: $primary;
+            }
+
+            & i {
+                font-size: 20px;
+                line-height: 32px;
+
+                display: block;
+            }
+        }
+
+        &.header-wishlist,
+        &.header-cart {
+            & > a {
+                & i {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        &.mobile-menu-toggle {
+            & > a {
+                width: 24px;
+                height: 32px;
+            }
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
+    @media #{$small-mobile} {
+        & > div {
+            margin-left: 15px;
+        }
+    }
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    & svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        width: 50px;
+        height: 60px;
+        margin-top: -2px;
+        margin-left: -2px;
+
+        cursor: pointer;
+        transform: translate3d(-50%, -50%, 0);
+
+        & path {
+            transition: stroke-dashoffset 0.5s cubic-bezier(0.250, -0.250, 0.750, 1.250), stroke-dasharray 0.5s cubic-bezier(0.250, -0.250, 0.750, 1.250);
+
+            fill: none;
+            stroke: $heading-color;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            stroke-width: 30px;
+
+            &#top,
+            &#bottom {
+                stroke-dasharray: 240px 950px;
+            }
+
+            &#middle {
+                stroke-dasharray: 240px 240px;
+            }
+        }
+    }
+
+    & .close {
+        opacity: 1;
+
+        & svg {
+            & path {
+                &#top,
+                &#bottom {
+                    stroke-dasharray: -650px;
+                    stroke-dashoffset: -650px;
+                }
+
+                &#middle {
+                    stroke-dasharray: 1px 220px;
+                    stroke-dashoffset: -115px;
+                }
+            }
+        }
+    }
+}

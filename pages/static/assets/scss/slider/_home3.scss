@@ -1,0 +1,247 @@
+/* 06.03. Home Three Slider */
+.home3-slider {
+    height: 600px;
+
+    // Slider Arrow
+    & [class*="swiper-button"] {
+        top: auto;
+        top: auto;
+        bottom: 0;
+        left: auto;
+
+        width: 80px;
+        height: 80px;
+
+        transform: translate(0, 0);
+
+        opacity: 1;
+        color: $body-light;
+        background-color: $white;
+
+        & i {
+            font-size: 18px;
+        }
+
+        &:hover {
+            color: $heading-color;
+            background-color: #F5EDE6;
+        }
+    }
+
+    & .swiper-button-prev {
+        right: 80px;
+    }
+
+    & .swiper-button-next {
+        right: 0;
+    }
+
+    @media #{$desktop-device} {
+        height: 450px;
+    }
+
+    @media #{$tablet-device} {
+        height: 350px;
+
+        & [class*="swiper-button"] {
+            width: 60px;
+            height: 60px;
+        }
+
+        & .swiper-button-prev {
+            right: 60px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        height: 300px;
+
+        & [class*="swiper-button"] {
+            width: 50px;
+            height: 50px;
+
+            &::after {
+                font-size: 14px;
+            }
+        }
+
+        & .swiper-button-prev {
+            right: 50px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        height: 250px;
+
+        & [class*="swiper-button"] {
+            width: 40px;
+            height: 40px;
+        }
+
+        & .swiper-button-prev {
+            right: 40px;
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        height: 200px;
+
+        & [class*="swiper-button"] {
+            width: 30px;
+            height: 30px;
+        }
+
+        & .swiper-button-prev {
+            right: 30px;
+        }
+    }
+}
+
+/* Home Three Slide Item */
+.home3-slide-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Home Three Slide Content */
+.home3-slide-content {
+    display: inline-block;
+
+    text-align: center;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    & .sub-title {
+        font-family: $modesty;
+        font-size: 52px;
+        font-weight: 400;
+        line-height: 1;
+
+        margin-bottom: 24px;
+
+        transform: translateY(30px);
+
+        color: $primary2;
+    }
+
+    & .title {
+        font-size: 52px;
+        font-weight: 400;
+        line-height: 1.55;
+
+        margin-bottom: 18px;
+
+        transform: translateY(30px);
+    }
+
+    & .link {
+        transform: translateY(30px);
+
+        & .btn {
+        }
+    }
+
+    @media #{$desktop-device} {
+        & .sub-title {
+            font-size: 44px;
+
+            margin-bottom: 20px;
+        }
+
+        & .title {
+            font-size: 40px;
+        }
+    }
+
+    @media #{$tablet-device} {
+        & .sub-title {
+            font-size: 36px;
+
+            margin-bottom: 15px;
+        }
+
+        & .title {
+            font-size: 30px;
+        }
+
+        & .link {
+            & .btn {
+                padding: 10px 30px;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .sub-title {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        & .title {
+            font-size: 24px;
+        }
+
+        & .link {
+            & .btn {
+                font-size: 14px;
+
+                padding: 8px 25px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .sub-title {
+            font-size: 24px;
+
+            margin-bottom: 5px;
+        }
+
+        & .title {
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        & .link {
+            & .btn {
+                font-size: 12px;
+
+                padding: 3px 20px;
+            }
+        }
+    }
+}
+
+/* Home Three Slide Content Animation */
+.swiper-slide-active {
+    & .home3-slide-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .sub-title {
+            transition-delay: 0.75s;
+            transform: translateY(0);
+        }
+
+        & .title {
+            transition-delay: 0.95s;
+            transform: translateY(0);
+        }
+
+        & .link {
+            transition-delay: 1.15s;
+            transform: translateY(0);
+        }
+    }
+}

@@ -1,0 +1,377 @@
+/* 06.07. Home Seven Slider */
+.home7-slider {
+    height: 850px;
+
+    & [class*="swiper-button"] {
+        &:hover {
+            & i {
+                transform: scale(1.5);
+            }
+        }
+    }
+
+    &:hover {
+        & [class*="swiper-button"] {
+            opacity: 1;
+        }
+    }
+
+    @media #{$tablet-device} {
+        height: 650px;
+    }
+
+    @media #{$large-mobile} {
+        height: 550px;
+    }
+
+    @media #{$small-mobile} {
+        height: 500px;
+    }
+
+    @media #{$extra-small-mobile} {
+        height: 450px;
+    }
+}
+
+/* Home Six Slide Item */
+.home7-slide-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Home Six Slide One Content */
+.home7-slide1-content {
+    z-index: 1;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .name {
+        font-family: $modesty;
+        font-size: 120px;
+        line-height: 1.2;
+
+        display: block;
+
+        margin-bottom: -30px;
+
+        transform: scale(0.85);
+
+        color: #454545;
+    }
+
+    & .title {
+        font-family: $futura;
+        font-size: 55px;
+        font-weight: 500;
+        line-height: 1.25;
+
+        margin-bottom: 11px;
+
+        transform: translateY(-30px);
+        letter-spacing: 20px;
+        text-transform: uppercase;
+
+        color: $primary3;
+    }
+
+    @media #{$tablet-device} {
+        & .name {
+            font-size: 90px;
+        }
+
+        & .title {
+            font-size: 44px;
+
+            letter-spacing: 15px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .name {
+            font-size: 70px;
+
+            margin-bottom: -15px;
+        }
+
+        & .title {
+            font-size: 36px;
+
+            letter-spacing: 10px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        & .name {
+            font-size: 50px;
+
+            margin-bottom: 0;
+        }
+
+        & .title {
+            font-size: 30px;
+
+            letter-spacing: 5px;
+        }
+    }
+}
+
+/* Home Six Slide One Image */
+.home7-slide1-image {
+    position: relative;
+
+    display: inline-block;
+
+    transition: all 1s ease 0s;
+    transform: scale(0.85);
+
+    opacity: 0;
+
+    &:not(:first-child) {
+        margin-top: 50px;
+    }
+
+    & .price {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.35;
+
+        position: absolute;
+        top: 0;
+        left: 30px;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 100px;
+        height: 100px;
+
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+        color: $heading-color;
+        border-radius: 50%;
+        background-color: $white;
+
+        & .amount {
+            font-size: 24px;
+            font-weight: 700;
+
+            display: block;
+
+            letter-spacing: 0;
+        }
+    }
+
+    & img {
+        animation: hero7SlideUpDown 2s linear infinite alternate both;
+    }
+
+    @media #{$large-mobile} {
+        & .price {
+            font-size: 10px;
+
+            left: 20px;
+
+            width: 60px;
+            height: 60px;
+
+            & .amount {
+                font-size: 18px;
+                ;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .price {
+            top: -10px;
+        }
+    }
+}
+
+@keyframes hero7SlideUpDown {
+    0% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Home Six Slide Two Content */
+.home7-slide2-content {
+    z-index: 1;
+
+    display: inline-block;
+    overflow: hidden;
+
+    text-align: center;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .sub-title {
+        font-family: $modesty;
+        font-size: 70px;
+        line-height: 1;
+
+        display: block;
+
+        margin-bottom: 20px;
+
+        transform: scale(0.85);
+
+        color: #454545;
+    }
+
+    & .title {
+        font-size: 65px;
+        font-weight: 400;
+        line-height: 1.25;
+
+        position: relative;
+
+        margin-bottom: 40px;
+        padding: 0 60px;
+
+        transform: translateX(-100%);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+
+        &::before,
+        &::after {
+            line-height: 0.9;
+
+            position: absolute;
+            top: 0;
+        }
+
+        &::before {
+            left: 0;
+
+            content: url(../images/slider/home7/slide2-title-1.png);
+        }
+
+        &::after {
+            right: 0;
+
+            content: url(../images/slider/home7/slide2-title-2.png);
+        }
+    }
+
+    & .link {
+        transform: translateY(-30px);
+    }
+
+    @media #{$tablet-device} {
+        & .sub-title {
+            font-size: 60px;
+        }
+
+        & .title {
+            font-size: 50px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 40px;
+
+            margin-bottom: 30px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 30px;
+
+            margin-bottom: 30px;
+            padding: 0;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .sub-title {
+            font-size: 26px;
+        }
+
+        & .title {
+            font-size: 24px;
+        }
+    }
+}
+
+/* Home Six Slide Animation On Active */
+.swiper-slide-active {
+    & .home7-slide1-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .name {
+            transition-delay: 0.8s;
+            transform: scale(1);
+        }
+
+        & .title {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+    }
+
+    & .home7-slide1-image {
+        transition-delay: 1s;
+        transform: scale(1);
+
+        opacity: 1;
+    }
+
+    & .home7-slide2-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .sub-title {
+            transition-delay: 0.8s;
+            transform: scale(1);
+        }
+
+        & .title {
+            transition-delay: 1.3s;
+            transform: translateX(0);
+        }
+
+        & .link {
+            transition-delay: 1.7s;
+            transform: translateY(0);
+        }
+    }
+}

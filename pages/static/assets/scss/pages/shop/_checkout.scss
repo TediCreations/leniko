@@ -1,0 +1,281 @@
+/* 18.01.04. Checkout CSS */
+
+/* Checkout Coupon */
+.checkout-coupon {
+    font-weight: 400;
+
+    margin-bottom: 50px;
+
+    & .coupon-toggle {
+        margin-bottom: 20px;
+
+        & a {
+            color: $heading-color;
+            border-bottom: 1px solid $heading-color;
+        }
+    }
+}
+
+/* Coupon Form */
+.coupon-form {
+    max-width: 500px;
+    margin-bottom: 20px;
+    padding: 30px;
+
+    background-color: $light;
+
+    & p {
+        font-size: 16px;
+
+        margin-bottom: 25px;
+    }
+
+    & form {
+        display: flex;
+
+        & input {
+            font-weight: 400;
+        }
+
+        & .btn {
+            white-space: nowrap;
+        }
+    }
+
+    @media #{$small-mobile} {
+        & form {
+            flex-wrap: wrap;
+
+            & .btn {
+                width: 100%;
+            }
+        }
+    }
+}
+
+/* Checkout Form */
+.checkout-form {
+    & input,
+    textarea {
+        font-weight: 400 !important;
+    }
+
+    & .select2-selection__rendered {
+        font-weight: 400;
+    }
+}
+
+/* Order Review */
+.order-review {
+    & .table {
+        margin: 0;
+
+        text-align: left;
+
+        border-bottom: 1px solid #EDEDED;
+
+        & thead {
+            & tr {
+                & th {
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 24px;
+
+                    padding: 16px 10px;
+
+                    text-transform: none;
+
+                    color: $heading-color;
+                    border: none;
+                    background-color: transparent;
+
+                    &.name {
+                    }
+
+                    &.total {
+                        font-size: 18px;
+
+                        text-align: right;
+                    }
+                }
+            }
+        }
+
+        & tbody {
+            & tr {
+                & td {
+                    font-size: 16px;
+                    font-weight: 400;
+
+                    padding: 10px;
+
+                    border-color: #EDEDED;
+
+                    &.name {
+                        color: $body-light;
+                    }
+
+                    &.total {
+                        font-size: 14px;
+                        font-weight: 700;
+
+                        text-align: right;
+                    }
+                }
+            }
+        }
+
+        & tfoot {
+            & tr {
+                & th {
+                    font-size: 18px;
+                    font-weight: 700;
+
+                    border: none;
+                }
+
+                & td {
+                    font-weight: 700;
+
+                    text-align: right;
+
+                    border: none;
+                }
+
+                &.subtotal {
+                    & td {
+                        font-size: 14px;
+                    }
+                }
+
+                &.total {
+                    & td {
+                        font-size: 24px;
+
+                        color: $primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Payment Method */
+.payment-method {
+    margin-bottom: 30px;
+
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.075);
+
+    & .accordion {
+        & .card {
+            padding: 20px;
+
+            & .card-header {
+                & button {
+                    font-size: 24px;
+                    font-weight: 500;
+                    line-height: 1.675;
+
+                    position: relative;
+
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    padding: 0;
+                    padding-left: 22px;
+
+                    border: none;
+                    background-color: transparent;
+
+                    &::before {
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+
+                        width: 16px;
+                        height: 16px;
+                        margin-top: 2px;
+
+                        content: "";
+                        transform: translateY(-50%);
+
+                        border: 1px solid $heading-color;
+                        border-radius: 50%;
+                    }
+
+                    &::after {
+                        position: absolute;
+                        top: 50%;
+                        left: 2px;
+
+                        width: 11px;
+                        height: 11px;
+                        margin-top: 2px;
+
+                        content: "";
+                        transition: $transition;
+                        transform: translateY(-50%);
+
+                        opacity: 0;
+                        border-radius: 50%;
+                        background-color: $heading-color;
+                    }
+
+                    & img {
+                        height: 40px;
+                        margin: 0 10px;
+                    }
+                }
+            }
+
+            & .card-body {
+                position: relative;
+
+                margin-top: 12px;
+                padding: 10px 15px;
+
+                background-color: $white;
+                box-shadow: 0 0 10px rgba($black, 0.1);
+
+                &::before {
+                    position: absolute;
+                    top: -3px;
+                    left: 25px;
+
+                    width: 10px;
+                    height: 10px;
+
+                    content: "";
+                    transform: rotate(45deg);
+
+                    background-color: $white;
+                }
+
+                & p {
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+
+            &.active {
+                & .card-header {
+                    & button {
+                        &::after {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Payment Note */
+.payment-note {
+    font-size: 16px;
+    font-weight: 400;
+
+    margin-bottom: 30px;
+}

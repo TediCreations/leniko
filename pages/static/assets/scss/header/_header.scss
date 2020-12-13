@@ -1,0 +1,140 @@
+/* 05.02 Main Header CSS */
+
+.header-section {
+    position: relative;
+    z-index: 98;
+
+    & .container,
+    & .container-fluid {
+        position: relative;
+    }
+
+    & .row {
+        & > [class*="col"] {
+            position: static;
+        }
+    }
+
+    &.header-menu-center {
+        & .row {
+            & > [class*="col"] {
+                &:first-child,
+                &:last-child {
+                    flex: 1 0 210px;
+
+                    max-width: 210px;
+                }
+            }
+        }
+    }
+
+    &.header-transparent {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        background-color: transparent !important;
+    }
+}
+
+/* Sticky Header */
+.sticky-header {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    transition: $transition;
+    transform: translateY(-100%);
+
+    border-bottom: 1px solid rgba($black, 0.075);
+
+    & .container,
+    & .container-fluid {
+        position: relative;
+    }
+
+    & .row {
+        & > [class*="col"] {
+            position: static;
+        }
+    }
+
+    &.header-menu-center {
+        & .row {
+            @media only screen and (min-width: 1200px) {
+                & > [class*="col"] {
+                    &:first-child,
+                    &:last-child {
+                        flex: 1 0 210px;
+
+                        max-width: 210px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.is-sticky {
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Header */
+.mobile-header {
+}
+
+
+body.offside-header-left {
+    margin-left: 400px;
+
+    @media #{$laptop-device} {
+        margin-left: 300px;
+    }
+
+    @media #{$desktop-device,
+    $tablet-device,
+    $large-mobile
+    } {
+        margin-left: 0;
+    }
+}
+
+/* Header Call */
+.header-call {
+    position: absolute;
+    top: 0;
+    right: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 200px;
+    height: 100%;
+
+    border-right: 1px solid #DEE2E6;
+    border-left: 1px solid #DEE2E6;
+
+    & p {
+        font-size: 16px;
+        font-weight: 600;
+
+        & i {
+            margin-right: 10px;
+        }
+    }
+}
+
+@import "logo";
+@import "lan-curr";
+@import "tools";
+@import "menu";
+@import "offcanvas";
+@import "overlay-menu";
+@import "search";
+@import "category";

@@ -1,0 +1,141 @@
+/* 03.05. Product 360 */
+
+.cd-product-viewer-wrapper {
+    position: relative;
+
+    padding-bottom: 20px;
+
+    & .close {
+        font-weight: 400;
+        line-height: 40px;
+
+        position: absolute;
+        top: -35px;
+        right: -35px;
+
+        width: 40px;
+        height: 40px;
+
+        opacity: 1;
+        border-radius: 50%;
+        background-color: $white;
+        box-shadow: 0 2px 3px rgba($black, 0.1);
+
+        &:hover {
+            opacity: 1 !important;
+        }
+    }
+}
+
+.cd-product-viewer-wrapper .product-viewer {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.cd-product-viewer-wrapper img {
+    position: relative;
+    z-index: 1;
+
+/* this is the image visible before the image sprite is loaded */
+
+    display: block;
+}
+
+.cd-product-viewer-wrapper .product-sprite {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+
+/* our image sprite is composed of 16 frames */
+
+    width: 1600%;
+    height: 100%;
+
+    transition: opacity 0.3s;
+
+    opacity: 0;
+    background: url(../images/product/single/7/frame-total.jpg) no-repeat center center;
+    background-size: 100%;
+}
+
+.cd-product-viewer-wrapper.loaded .product-sprite {
+    /* image sprite has been loaded */
+    opacity: 1;
+}
+
+.cd-product-viewer-handle {
+    position: relative;
+    z-index: 2;
+
+    width: 60%;
+    max-width: 300px;
+    height: 4px;
+    margin: auto;
+
+    background: #4D4D4D;
+}
+
+.cd-product-viewer-handle .fill {
+    /* this is used to create the loading fill effect */
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    border-radius: inherit;
+    background: #B54240;
+}
+
+.loaded .cd-product-viewer-handle .fill {
+    /* image sprite has been loaded */
+    opacity: 0;
+}
+
+.cd-product-viewer-handle .handle {
+    position: absolute;
+    z-index: 2;
+    top: -20px;
+    left: 0;
+
+    display: inline-block;
+
+    width: 44px;
+    height: 44px;
+
+    transform: translateX(-50%) scale(0);
+    text-indent: -9999px;
+
+    border-radius: 50%;
+    background: #B54240 url(../images/icons/cd-arrows.svg) no-repeat center center;
+}
+
+.loaded .cd-product-viewer-handle .handle {
+    /* image sprite has been loaded */
+    transform: translateX(-50%) scale(1);
+    animation: cd-bounce 0.3s 0.3s;
+
+    animation-fill-mode: both;
+}
+
+@keyframes cd-bounce {
+    0% {
+        transform: translateX(-50%) scale(0);
+    }
+
+    60% {
+        transform: translateX(-50%) scale(1.1);
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+}

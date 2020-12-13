@@ -1,0 +1,57 @@
+/* Sale Banner Style Eleven CSS */
+.sale-banner11 {
+    & .inner {
+        position: relative;
+
+        overflow: hidden;
+
+        &::before {
+            position: absolute;
+            z-index: 2;
+            top: 20px;
+            left: 20px;
+
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+
+            content: "";
+
+            border: 1px solid $white;
+        }
+
+        & > img {
+            width: 100%;
+        }
+
+        & .content {
+            position: absolute;
+            z-index: 9;
+            bottom: 75px;
+            left: 0;
+
+            width: 100%;
+            padding: 0 30px;
+
+            text-align: center;
+
+            & .title {
+                font-size: 34px;
+                font-weight: 400;
+                line-height: 1.1;
+
+                margin-bottom: 20px;
+            }
+
+            & .price {
+            }
+        }
+    }
+
+    &:hover {
+        & .inner {
+            & > img {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

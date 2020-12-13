@@ -1,0 +1,75 @@
+/* Sale Banner Style Five CSS */
+.sale-banner5 {
+    & .inner {
+        position: relative;
+
+        display: block;
+
+        & > img {
+            z-index: 1;
+
+            display: block;
+
+            width: 100%;
+        }
+
+        & .content {
+            position: absolute;
+            z-index: 9;
+            bottom: 50px;
+            left: 50px;
+
+            & .title {
+                font-size: 40px;
+                font-weight: 400;
+                line-height: 1.2;
+
+                margin-bottom: 25px;
+            }
+
+            & .price {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 1;
+
+                color: $heading-color;
+            }
+        }
+    }
+
+    @media #{$desktop-device,
+    $small-mobile
+
+    } {
+        & .inner {
+            & .content {
+                bottom: 40px;
+                left: 40px;
+
+                & .title {
+                    font-size: 32px;
+
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .inner {
+            & .content {
+                left: 20px;
+
+                & .title {
+                    font-size: 22px;
+
+                    margin-bottom: 5px;
+                }
+
+                & .price {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

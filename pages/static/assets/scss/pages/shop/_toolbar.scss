@@ -1,0 +1,248 @@
+/* 18.01.01. Product Toolbar CSS */
+.shop-toolbar {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+/* Shop Product Filter */
+.shop-product-filter {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0 -20px -10px;
+
+    & button {
+        font-size: 18px;
+        line-height: 1;
+
+        margin: 0 20px 10px;
+        padding: 0;
+
+        text-transform: uppercase;
+
+        color: #ABABAB;
+        border: none;
+        background-color: transparent;
+
+        &:hover,
+        &.active {
+            color: $heading-color;
+        }
+    }
+
+    @media #{$desktop-device,
+    $tablet-device,
+    $large-mobile
+    } {
+        margin: 0 -15px -10px;
+
+        & button {
+            font-size: 16px;
+
+            margin: 0 15px 10px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        margin: 0 -10px -10px;
+
+        & button {
+            font-size: 14px;
+
+            margin: 0 10px 10px;
+        }
+    }
+}
+
+/* Shop Toolbar Control */
+.shop-toolbar-controls {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0 -15px;
+    padding-left: 0;
+
+    list-style: none;
+
+    & > li {
+        margin: 0 15px;
+    }
+
+    @media #{$desktop-device,
+    $tablet-device,
+    $large-mobile
+    } {
+        justify-content: space-between;
+    }
+}
+
+/* Product Sorting */
+.product-sorting {
+    position: relative;
+    z-index: 9;
+
+    & .nice-select {
+        height: auto;
+        padding-left: 0;
+
+        border: none;
+        border-bottom: 2px solid #CCCCCC;
+        border-radius: 0;
+
+        &::after {
+            font-family: $fontAwesome5Pro;
+            font-weight: 700;
+            line-height: 1;
+
+            top: 50%;
+            right: 8px;
+            bottom: auto;
+
+            width: auto;
+            height: auto;
+            margin: 0;
+
+            content: "\f0d7";
+            transform: rotate(0) translateY(-50%);
+
+            color: #ABABAB;
+            border: none;
+        }
+
+        & .current {
+            font-size: 16px;
+            line-height: 28px;
+
+            display: block;
+
+            padding-bottom: 4px;
+        }
+
+        & .list {
+            margin-top: 10px;
+            padding: 15px;
+
+            transform: scale(1) translate(0, 0);
+
+            border-radius: 0;
+            box-shadow: 0 3px 5px rgba($black, 0.15);
+
+            & li {
+                font-size: 16px;
+                font-weight: 400 !important;
+                line-height: 1.25;
+
+                min-height: auto;
+                padding: 8px;
+
+                &.selected {
+                    color: $heading-color;
+                    background-color: transparent;
+                }
+
+                &:hover {
+                    transform: translateX(5px);
+
+                    background-color: transparent;
+                }
+            }
+        }
+
+        &.open {
+            & .list {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+/* Product Column Toggle */
+.product-column-toggle {
+    display: flex;
+
+    margin: 0 -10px;
+
+    & .toggle {
+        margin: 0 10px;
+        padding: 0;
+
+        color: #ABABAB;
+        border: none;
+        background-color: transparent;
+
+        & i {
+            font-size: 14px;
+        }
+
+        &:hover,
+        &.active {
+            color: $heading-color;
+        }
+    }
+}
+
+/* Product Filter Toggle */
+.product-filter-toggle {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    color: $body-color;
+
+    &::before {
+        font-family: $fontAwesome5Pro;
+        font-size: 13px;
+        line-height: 1;
+
+        margin-right: 6px;
+        margin-bottom: -3px;
+
+        content: "\f0b0";
+        transition: $transition;
+    }
+
+    &::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        width: 0;
+        height: 1px;
+
+        content: "";
+        transition: $transition;
+
+        background-color: $heading-color;
+    }
+
+    &:hover {
+        color: $heading-color;
+
+        &::after {
+            right: auto;
+            left: 0;
+
+            width: 100%;
+        }
+    }
+
+    &.active {
+        color: $heading-color;
+
+        &::before {
+            transform: rotate(180deg);
+        }
+
+        &::after {
+            right: auto;
+            left: 0;
+
+            width: 100%;
+        }
+    }
+}

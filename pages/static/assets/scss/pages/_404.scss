@@ -1,0 +1,75 @@
+/* 18.04. 404 Page CSS */
+
+/* 404 Section */
+.section-404 {
+    display: flex;
+    align-items: center;
+
+    min-height: 100vh;
+
+    @media #{$tablet-device,
+    $large-mobile
+    } {
+        min-height: calc(100vh - 70px);
+    }
+}
+
+/* 404 Content */
+.content-404 {
+    padding: 100px 0;
+
+    & .title {
+        font-size: 100px;
+        font-weight: 400;
+        line-height: 1;
+
+        margin: 0;
+    }
+
+    & .sub-title {
+        font-size: 64px;
+        font-weight: 400;
+        line-height: 1.2;
+
+        margin-bottom: 30px;
+    }
+
+    & p {
+        margin-bottom: 40px;
+    }
+
+    & .buttons {
+        display: flex;
+        flex-wrap: wrap;
+
+        margin-right: -20px;
+        margin-bottom: -20px;
+
+        & .btn {
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        padding: 100px 0 60px;
+
+        & .title {
+            font-size: 80px;
+        }
+
+        & .sub-title {
+            font-size: 50px;
+        }
+    }
+
+    @media #{$small-mobile} {
+        & .title {
+            font-size: 60px;
+        }
+
+        & .sub-title {
+            font-size: 40px;
+        }
+    }
+}

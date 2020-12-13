@@ -1,0 +1,92 @@
+/* 10.01. Blog Style CSS */
+.blog {
+    & .image {
+        margin-bottom: 30px;
+
+        & a {
+            display: block;
+
+            & img {
+                width: 100%;
+            }
+        }
+    }
+
+    & .content {
+        & .meta {
+            display: flex;
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+            padding-left: 0;
+
+            list-style: none;
+
+            & li {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.25;
+
+                margin-right: 25px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                & i {
+                    margin-right: 8px;
+
+                    color: #999999;
+                }
+
+                & a {
+                    border-bottom: 1px solid transparent;
+
+                    &:hover {
+                        color: $heading-color;
+                        border-color: rgba($heading-color, 0.2);
+                    }
+                }
+            }
+        }
+
+        & .title {
+            font-size: 20px;
+            font-weight: 400;
+
+            margin-bottom: 20px;
+
+            & a {
+                &:hover {
+                    color: $heading-color;
+                }
+            }
+        }
+
+        & .desc {
+            margin-bottom: 20px;
+
+            & p {
+                font-size: 16px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        & .link {
+            font-size: 16px;
+            font-weight: 400;
+
+            text-transform: uppercase;
+
+            color: $heading-color;
+            border-bottom: 1px solid rgba($heading-color, 0.2);
+
+            &:hover {
+                border-color: $heading-color;
+            }
+        }
+    }
+}

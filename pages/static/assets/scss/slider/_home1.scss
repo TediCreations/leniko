@@ -1,0 +1,661 @@
+/* 06.01. Home One Slider */
+.home1-slider {
+    width: 100%;
+    height: 750px;
+
+    &:hover {
+        & [class*="swiper-button"] {
+            opacity: 1;
+
+            &:hover {
+                & i {
+                    transform: scale(1.5);
+                }
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        height: 550px;
+    }
+
+    @media #{$small-mobile} {
+        height: 500px;
+    }
+
+    @media #{$extra-small-mobile} {
+        height: 450px;
+    }
+}
+
+/* Home One Slide Item */
+.home1-slide-item {
+    display: flex;
+    justify-content: center;
+}
+
+/* Home One Slide One Content */
+.home1-slide1-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 466px;
+    height: 466px;
+    padding: 25px;
+
+    border-radius: 50%;
+    background-color: transparent;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .bg {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        transform: scale(0.85);
+
+        border-radius: 50%;
+        background-color: $white;
+    }
+
+    & .slide-border {
+        position: absolute;
+        z-index: -1;
+        top: 20px;
+        right: 20px;
+        bottom: 20px;
+        left: 20px;
+
+        transform: scale(0.8);
+
+        border: 1px dashed $primary2;
+        border-radius: 50%;
+    }
+
+    & .icon {
+        display: flex;
+        justify-content: center;
+
+        margin-bottom: 15px;
+
+        transform: translateY(-30px);
+
+        & img {
+        }
+    }
+
+    & .title {
+        font-family: $modesty;
+        font-size: 80px;
+        font-weight: 300;
+        line-height: 1;
+
+        margin-bottom: 11px;
+
+        transform: translateY(30px);
+
+        color: $heading-color;
+    }
+
+    & .sub-title {
+        font-size: 34px;
+        font-weight: 400;
+        line-height: 1.25;
+
+        margin-bottom: 28px;
+
+        transform: translateY(30px);
+
+        color: $primary2;
+    }
+
+    & .link {
+        transform: translateY(30px);
+
+        & a {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+
+            padding-bottom: 2px;
+
+            text-transform: uppercase;
+
+            color: $heading-color;
+            border-bottom: 1px solid $heading-color;
+
+            &:hover {
+                color: $primary2;
+                border-color: $primary2;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        width: 400px;
+        height: 400px;
+
+        & .icon {
+            & img {
+                height: 100px;
+            }
+        }
+
+        & .title {
+            font-size: 54px;
+        }
+
+        & .sub-title {
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        & .link {
+            & a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        width: 350px;
+        height: 350px;
+
+        & .icon {
+            & img {
+                height: 80px;
+            }
+        }
+
+        & .title {
+            font-size: 48px;
+        }
+
+        & .sub-title {
+            font-size: 20px;
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        width: 300px;
+        height: 300px;
+
+        & .icon {
+            & img {
+                height: 60px;
+            }
+        }
+
+        & .title {
+            font-size: 40px;
+        }
+
+        & .sub-title {
+            font-size: 18px;
+
+            margin-bottom: 15px;
+        }
+
+        & .link {
+            & a {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+/* Home One Slide Two Content */
+.home1-slide2-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 466px;
+    height: 466px;
+    padding: 25px;
+
+    border-radius: 50%;
+    background-color: transparent;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .bg {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        transform: scale(0.85);
+
+        border-radius: 50%;
+        background-color: transparent;
+    }
+
+    & .slide-border {
+        position: absolute;
+        z-index: -1;
+        top: 20px;
+        right: 20px;
+        bottom: 20px;
+        left: 20px;
+
+        transform: scale(0.8);
+
+        border: 3px solid lighten($primary3, 20);
+        border-radius: 50%;
+    }
+
+    & .icon {
+        display: flex;
+        justify-content: center;
+
+        margin-bottom: 25px;
+
+        transform: translateY(-30px);
+
+        & img {
+            &:last-child:not(:first-child) {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    & .title {
+        font-family: $modesty;
+        font-size: 80px;
+        font-weight: 300;
+        line-height: 1;
+
+        margin-bottom: 11px;
+
+        transform: translateY(30px);
+
+        color: $primary3;
+    }
+
+    & .sub-title {
+        font-size: 56px;
+        font-weight: 400;
+        line-height: 1.1;
+
+        margin-bottom: 25px;
+
+        transform: translateY(30px);
+        text-align: center;
+
+        color: $heading-color;
+    }
+
+    & .link {
+        transform: translateY(30px);
+
+        & a {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+
+            padding-bottom: 2px;
+
+            text-transform: uppercase;
+
+            color: $heading-color;
+            border-bottom: 1px solid $heading-color;
+
+            &:hover {
+                color: $primary2;
+                border-color: $primary2;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        width: 400px;
+        height: 400px;
+
+        & .title {
+            font-size: 54px;
+
+            margin-bottom: 20px;
+        }
+
+        & .sub-title {
+            font-size: 28px;
+
+            margin-bottom: 20px;
+        }
+
+        & .link {
+            & a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        width: 350px;
+        height: 350px;
+
+        & .title {
+            font-size: 48px;
+        }
+
+        & .sub-title {
+            font-size: 24px;
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        width: 300px;
+        height: 300px;
+
+        & .icon {
+            margin-bottom: 15px;
+        }
+
+        & .title {
+            font-size: 40px;
+        }
+
+        & .sub-title {
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+        & .link {
+            & a {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+/* Home One Slide Three Content */
+.home1-slide3-content {
+    max-width: calc(100% - 20px);
+    margin-top: 80px;
+
+    text-align: center;
+
+    & > * {
+        transition: all 1s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .title {
+        font-family: $modesty;
+        font-size: 76px;
+        font-weight: 300;
+        line-height: 1;
+
+        margin-bottom: 20px;
+
+        transform: translateY(30px);
+
+        color: $primary3;
+    }
+
+    & .sub-title {
+        font-size: 56px;
+        font-weight: 400;
+        line-height: 1.1;
+
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 35px;
+        padding: 0 80px;
+
+        transform: translateY(30px);
+        text-align: center;
+
+        color: $black;
+
+        & img {
+            position: absolute;
+            top: 50%;
+
+            margin-top: -12px;
+
+            opacity: 0;
+
+            &.left-icon {
+                left: 0;
+
+                transform: translateX(30px);
+            }
+
+            &.right-icon {
+                right: 0;
+
+                transform: translateX(-30px);
+            }
+        }
+    }
+
+    & .link {
+        transform: translateY(30px);
+
+        & a {
+            font-family: $marcellus;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.4;
+
+            z-index: 9;
+
+            padding: 0 45px;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            color: $white;
+            background-image: url("../images/slider/home1/slide-3-3.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+    }
+
+    @media #{$large-mobile} {
+        margin-top: 60px;
+
+        & .title {
+            font-size: 70px;
+
+            margin-bottom: 20px;
+        }
+
+        & .sub-title {
+            font-size: 36px;
+
+            margin-bottom: 25px;
+        }
+
+        & .link {
+            & a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        margin-top: 60px;
+
+        & .title {
+            font-size: 54px;
+        }
+
+        & .sub-title {
+            font-size: 30px;
+
+            margin-bottom: 20px;
+            padding: 0 50px;
+
+            & img {
+                height: 16px;
+                margin-top: -8px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .title {
+            font-size: 40px;
+        }
+
+        & .sub-title {
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+        & .link {
+            & a {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+/* Home One Slide Content Animation */
+.swiper-slide-active {
+    & .home1-slide1-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .bg {
+            transition-delay: 0.75s;
+            transform: scale(1);
+        }
+
+        & .slide-border {
+            transition-delay: 1s;
+            transform: scale(1);
+        }
+
+        & .icon {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+
+        & .title {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+
+        & .sub-title {
+            transition-delay: 1.5s;
+            transform: translateY(0);
+        }
+
+        & .link {
+            transition-delay: 1.7s;
+            transform: translateY(0);
+        }
+    }
+
+    & .home1-slide2-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .bg {
+            transition-delay: 0.75s;
+            transform: scale(1);
+        }
+
+        & .slide-border {
+            transition-delay: 1s;
+            transform: scale(1);
+        }
+
+        & .icon {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+
+        & .title {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+
+        & .sub-title {
+            transition-delay: 1.5s;
+            transform: translateY(0);
+        }
+
+        & .link {
+            transition-delay: 1.7s;
+            transform: translateY(0);
+        }
+    }
+
+    & .home1-slide3-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .title {
+            transition-delay: 0.75s;
+            transform: translateY(0);
+        }
+
+        & .sub-title {
+            transition-delay: 0.95s;
+            transform: translateY(0);
+
+            & img {
+                transition-delay: 1.5s;
+
+                opacity: 1;
+
+                &.left-icon {
+                    transform: translateX(0);
+                }
+
+                &.right-icon {
+                    transform: translateX(0);
+                }
+            }
+        }
+
+        & .link {
+            transition-delay: 1.15s;
+            transform: translateY(0);
+        }
+    }
+}

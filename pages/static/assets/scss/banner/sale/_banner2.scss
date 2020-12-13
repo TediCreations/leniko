@@ -1,0 +1,70 @@
+/* Sale Banner Style Two CSS */
+.sale-banner2 {
+    & .inner {
+        & .image {
+            position: relative;
+
+            display: block;
+            overflow: hidden;
+
+            margin-bottom: 35px;
+
+            &::before {
+                position: absolute;
+                z-index: 2;
+                top: 15px;
+                left: 15px;
+
+                width: calc(100% - 30px);
+                height: calc(100% - 30px);
+
+                content: "";
+
+                border: 1px solid $white;
+            }
+
+            & img {
+                width: 100%;
+            }
+
+            &:hover {
+                & img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        & .content {
+            & .sale-percent {
+                font-size: 40px;
+                font-weight: 400;
+                line-height: 1.2;
+
+                margin-bottom: 3px;
+            }
+
+            & .text {
+                font-family: $abeezee;
+                font-size: 16px;
+                font-weight: 400;
+
+                letter-spacing: 3px;
+                text-transform: uppercase;
+
+                color: $heading-color;
+            }
+
+            & .btn {
+                background-color: #F9F0EE;
+            }
+        }
+    }
+
+    @media #{$small-mobile} {
+        & .inner {
+            & .image {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

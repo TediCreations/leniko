@@ -1,0 +1,31 @@
+/* 18.01.05. Order Tracking CSS */
+.order-tracking {
+    max-width: 630px;
+    margin: auto;
+    padding: 60px;
+
+    background-color: $light;
+
+    & p {
+        font-size: 16px;
+        font-weight: 400;
+
+        margin-bottom: 30px;
+    }
+
+    & input {
+        font-weight: 400;
+
+@include placeholder {
+            font-weight: 400;
+        }
+    }
+
+    @media #{$small-mobile} {
+        padding: 40px;
+    }
+
+    @media #{$extra-small-mobile} {
+        padding: 30px;
+    }
+}

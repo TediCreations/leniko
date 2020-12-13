@@ -1,0 +1,258 @@
+/* 08.04. Other Banner CSS */
+
+/* Instagram Banner */
+.instagram-banner1 {
+    & .image {
+        & img {
+            width: 100%;
+        }
+    }
+
+    & .content {
+        position: absolute;
+        z-index: 9;
+        top: 50%;
+        left: 0;
+
+        width: 100%;
+
+        transform: translateY(-50%);
+        text-align: center;
+
+        .icon {
+            margin-bottom: 20px;
+
+            color: #E2EFEC;
+
+            & i {
+                font-size: 40px;
+                line-height: 1;
+
+                display: block;
+            }
+        }
+
+        & .sub-title {
+            font-size: 18px;
+            font-weight: 400;
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: $heading-color;
+        }
+
+        & .title {
+            font-size: 34px;
+            font-weight: 400;
+
+            margin-bottom: 0;
+
+            & a {
+                &:hover {
+                    color: $primary2;
+                }
+            }
+        }
+    }
+
+    @media #{$tablet-device,
+    $extra-small-mobile
+    } {
+        & .content {
+            & .sub-title {
+                font-size: 14px;
+            }
+
+            & .title {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+/* Video Banner */
+.video-banner {
+    display: flex;
+    justify-content: center;
+
+    height: 750px;
+
+    & .content {
+        margin-top: 170px;
+
+        text-align: center;
+
+        & .title {
+            font-family: $futura;
+            font-size: 34px;
+            font-weight: 400;
+
+            margin-bottom: 70px;
+
+            letter-spacing: 12px;
+
+            color: #ABABAB;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            & span {
+                font-weight: 600;
+            }
+        }
+
+        & .video-popup {
+            display: inline-flex;
+
+            border-radius: 50%;
+
+            & img {
+            }
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    @media #{$laptop-device} {
+        height: 600px;
+
+        & .content {
+            margin-top: 100px;
+        }
+    }
+
+    @media #{$desktop-device,
+    $tablet-device
+    } {
+        height: 500px;
+
+        & .content {
+            margin-top: 80px;
+
+            & .title {
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @media #{$tablet-device} {
+        & .content {
+            & .title {
+                font-size: 30px;
+
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        height: 400px;
+
+        & .content {
+            margin-top: 50px;
+
+            & .title {
+                font-size: 30px;
+
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        & .content {
+            margin-top: 40px;
+
+            & .title {
+                font-size: 24px;
+
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+
+.video-banner2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 560px;
+
+    & .content {
+        text-align: center;
+
+        & .video-popup {
+            display: block;
+
+            border-radius: 50%;
+
+            & img {
+            }
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    @media #{$desktop-device,
+    $tablet-device
+    } {
+        height: 500px;
+    }
+
+    @media #{$large-mobile} {
+        height: 400px;
+    }
+}
+
+/* Widget Banner */
+.widget-banner {
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    &::before {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: -100%;
+
+        display: block;
+
+        width: 50%;
+        height: 100%;
+
+        content: "";
+        transform: skewX(-25deg);
+
+        background: linear-gradient(to right, rgba($white, 0) 0%, rgba($white, 0.3) 100%);
+    }
+
+    & img {
+        width: 100%;
+    }
+
+    &:hover {
+        &::before {
+            animation: shine 0.75s;
+        }
+    }
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 125%;
+    }
+}

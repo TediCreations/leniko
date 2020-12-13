@@ -1,0 +1,149 @@
+/* Header Two Search */
+.header2-search {
+    & form {
+        position: relative;
+
+        & input[type="text"] {
+            font-size: 16px;
+            line-height: 19px;
+
+            width: 100%;
+            height: 40px;
+            margin: 0;
+            padding-right: 10px;
+            padding-left: 30px;
+
+            color: $heading-color;
+            border: none;
+            background-color: transparent;
+
+@include placeholder {
+                letter-spacing: 0.5px;
+
+                color: #ABABAB;
+            }
+        }
+
+        & .btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            display: block;
+
+            width: 30px;
+            height: 40px;
+            padding: 0;
+
+            text-align: center;
+
+            color: #ABABAB;
+
+            & i {
+                line-height: 40px;
+            }
+        }
+    }
+
+    @media #{$laptop-device} {
+        & form {
+            & input[type="text"] {
+                width: 135px;
+            }
+        }
+    }
+}
+
+/* Header Six Search */
+.header6-search {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+
+    & form {
+        position: relative;
+
+        & .select2 {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1;
+
+            width: 170px !important;
+            padding: 7px 0;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            color: $heading-color;
+            border: none;
+
+            & .selection {
+                & .select2-selection {
+                    height: auto;
+                    padding: 5px 0;
+
+                    border: none !important;
+                    border-radius: 0;
+                    background-color: $white;
+
+                    & .select2-selection__rendered {
+                        font-weight: 500;
+                        line-height: inherit;
+
+                        position: relative;
+
+                        display: flex;
+                        overflow: visible;
+                        align-items: center;
+
+                        height: 100%;
+                        padding-left: 0;
+
+                        opacity: 0.8;
+
+                        &::before {
+                            font-family: $fontAwesome5Pro;
+                            font-weight: 700;
+
+                            position: absolute;
+                            top: 50%;
+                            right: 5px;
+
+                            content: "\f0d7";
+                            transform: translateY(-50%);
+                        }
+                    }
+
+                    & .select2-selection__arrow {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        & input[type="text"] {
+            font-size: 16px;
+            line-height: 26px;
+
+            width: 100%;
+            padding: 10px 20px;
+
+            color: $body-color;
+            border-width: 2px;
+            border-style: solid;
+            border-color: transparent transparent #EDEDED;
+        }
+
+        & button {
+            width: 30px;
+            margin-left: -30px;
+            padding: 0;
+
+            text-align: center;
+
+            color: $heading-color;
+            border: none;
+            background-color: transparent;
+        }
+    }
+}

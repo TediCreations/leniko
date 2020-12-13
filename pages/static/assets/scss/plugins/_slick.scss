@@ -1,0 +1,123 @@
+/* 03.07. Slick Slider */
+
+.slick-slider {
+    overflow: hidden;
+
+    margin-right: -40px;
+    margin-left: -40px;
+    padding-right: 40px;
+    padding-left: 40px;
+
+    &:hover {
+        .slick-arrow {
+            opacity: 1;
+
+            &.slick-prev {
+                left: 0;
+            }
+
+            &.slick-next {
+                right: 0;
+            }
+        }
+    }
+
+    & .slick-list {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+}
+
+.slick-arrow {
+    position: absolute;
+    z-index: 9;
+    top: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    transition: $transition;
+    transform: translateY(-50%);
+
+    opacity: 0;
+    color: $body-color;
+    border: none;
+    background-color: transparent;
+
+    & i {
+        font-size: 25px;
+        line-height: 1;
+
+        transition: $transition;
+    }
+
+    &.slick-prev {
+        right: auto;
+        left: -40px;
+    }
+
+    &.slick-next {
+        right: -40px;
+        left: auto;
+    }
+
+    &:hover {
+        color: $heading-color;
+    }
+}
+
+
+.slick-dots {
+    position: static;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 18px;
+    margin-top: 35px;
+    margin-bottom: 0;
+    padding: 0;
+
+    list-style: none;
+
+    & li {
+        line-height: 1;
+
+        display: flex;
+
+        margin: 0 6px;
+
+        transition: $transition;
+
+        & button {
+            width: 10px;
+            height: 10px;
+            padding: 0;
+
+            transition: $transition;
+            text-indent: -9999px;
+
+            opacity: 0.2;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            background-color: #1F1F1F;
+        }
+
+        &.slick-active {
+            & button {
+                width: 18px;
+                height: 18px;
+
+                opacity: 1;
+                border-color: $heading-color;
+                background-color: transparent;
+            }
+        }
+    }
+}

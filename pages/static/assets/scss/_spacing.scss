@@ -1,0 +1,80 @@
+/*----------------------------------------*/
+/*  02. Template Spacing CSS
+/*----------------------------------------*/
+
+/* Section Spacing */
+.section-padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    // Responsive
+    @media #{$desktop-device} {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @media #{$tablet-device} {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @media #{$large-mobile} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+/* Custom Column For Large Device Minimum Width 1500px */
+@for $i from 1 through 12 {
+    @media #{$extraBig-device} {
+        .col-xxl-#{1 * $i} {
+            flex: 0 0 (8.333333% * $i);
+
+            max-width: 8.333333% * $i;
+        }
+    }
+}
+
+/* Custom Order For Large Device Minimum Width 1500px */
+@for $i from 1 through 12 {
+    @media #{$extraBig-device} {
+        .order-xxl-#{1 * $i} {
+            order: 1 * $i;
+        }
+    }
+}
+
+
+/* Margin */
+@for $i from 1 through 10 {
+    .learts-mb-#{10 * $i} {
+        margin-bottom: 10px * $i;
+    }
+
+    .learts-mb-n#{10 * $i} {
+        margin-bottom: -10px * $i;
+    }
+}
+
+@for $i from 1 through 10 {
+    .learts-mt-#{10 * $i} {
+        margin-top: 10px * $i;
+    }
+
+    .learts-mt-n#{10 * $i} {
+        margin-top: -10px * $i;
+    }
+}
+
+/* Padding */
+@for $i from 1 through 10 {
+    .learts-pb-#{10 * $i} {
+        padding-bottom: 10px * $i;
+    }
+}
+
+@for $i from 1 through 10 {
+    .learts-pt-#{10 * $i} {
+        padding-top: 10px * $i;
+    }
+}

@@ -1,0 +1,121 @@
+/* 05.01 Topbar CSS */
+
+/* Topbar Section */
+.topbar-section {
+    font-size: 16px;
+    font-weight: 400;
+
+    position: relative;
+    z-index: 101;
+
+    &.section-fluid {
+        @media only screen and (min-width: 1500px) {
+            padding-right: 55px;
+            padding-left: 55px;
+
+            & .container,
+            & .container-fluid {
+                max-width: 100%;
+            }
+        }
+
+        @media #{$laptop-device} {
+            padding-right: 35px;
+            padding-left: 35px;
+
+            & .container,
+            & .container-fluid {
+                max-width: 100%;
+            }
+        }
+
+        @media #{$desktop-device} {
+            padding-right: 0;
+            padding-left: 0;
+
+            & .container {
+                max-width: 960px;
+            }
+        }
+
+        @media #{$tablet-device} {
+            padding-right: 0;
+            padding-left: 0;
+
+            & .container {
+                max-width: 720px;
+            }
+        }
+    }
+}
+
+/* Topbar Menu */
+.topbar-menu {
+    & ul {
+        font-weight: 400;
+
+        display: flex;
+        flex-wrap: wrap;
+
+        margin: 0;
+        padding-left: 0;
+
+        list-style: none;
+
+        & li {
+            position: relative;
+
+            margin-right: 15px;
+            padding-top: 10px;
+            padding-right: 15px;
+            padding-bottom: 10px;
+
+            &::after {
+                position: absolute;
+                top: 50%;
+                right: 0;
+
+                width: 1px;
+                height: 15px;
+
+                content: "";
+                transform: translateY(-50%);
+
+                background-color: #D8D8D8;
+            }
+
+            &:last-child {
+                margin-right: 0;
+                padding-right: 0;
+
+                &::after {
+                    display: none;
+                }
+            }
+
+            & a {
+                & i {
+                    font-size: 14px;
+
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+/* Topbar Language & Currency */
+.header-lan-curr {
+    & ~ ul {
+        & li {
+            &:last-child {
+                margin-right: 15px;
+                padding-right: 15px;
+
+                &::after {
+                    display: block !important;
+                }
+            }
+        }
+    }
+}

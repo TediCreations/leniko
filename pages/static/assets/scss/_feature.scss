@@ -1,0 +1,51 @@
+.feature-section {
+	padding: 30px 0;
+}
+
+.feature {
+	display: flex;
+	align-items: center;
+
+	& .icon {
+		flex: 1 0 90px;
+
+		max-width: 90px;
+		height: 90px;
+
+		text-align: center;
+
+		color: $primary;
+		border-radius: 50%;
+		background-color: $white;
+
+		& i {
+			font-size: 22px;
+			line-height: 90px;
+
+			transition: $transition;
+		}
+	}
+
+	& .content {
+		padding-left: 20px;
+
+		& .title {
+			font-family: $futura;
+			font-size: 24px;
+			font-weight: 400;
+
+			margin-bottom: 10px;
+		}
+
+		& p {
+		}
+	}
+
+	&:hover {
+		& .icon {
+			& i {
+				transform: scale(1.25);
+			}
+		}
+	}
+}

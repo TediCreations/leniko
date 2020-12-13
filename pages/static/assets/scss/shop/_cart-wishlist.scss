@@ -1,0 +1,215 @@
+.cart-wishlist-table {
+    margin-bottom: 25px;
+
+    border: 1px solid #EDEDED;
+
+    & thead {
+        & tr {
+            & th {
+                padding: 12px 16px;
+
+                border-top: none;
+                border-bottom: 1px solid #EDEDED;
+
+                &:first-child {
+                    padding-left: 25px;
+                }
+            }
+        }
+    }
+
+    & tbody {
+        & tr {
+            position: relative;
+
+            & td {
+                padding: 25px 10px 25px 25px;
+
+                vertical-align: middle;
+
+                border-color: #EDEDED;
+
+                &.thumbnail {
+                    width: 110px;
+                    min-width: 110px;
+
+                    & a {
+                        display: block;
+                    }
+                }
+
+                &.name {
+                    & a {
+                        font-size: 16px;
+                        font-weight: 400;
+
+                        color: $body-color;
+
+                        &:hover {
+                            color: $heading-color;
+                        }
+                    }
+                }
+
+                &.price,
+                &.subtotal {
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                &.remove {
+                    & .btn {
+                        font-size: 24px;
+
+                        padding: 5px 10px;
+
+                        color: $body-color;
+
+                        &:hover {
+                            color: $danger;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        & thead {
+            display: none;
+        }
+
+        & tbody {
+            & tr {
+                & td {
+                    display: block;
+
+                    width: 100% !important;
+                    margin-bottom: 15px;
+                    padding: 0;
+
+                    text-align: center;
+
+                    &:not(:first-child) {
+                        border-top: none;
+                    }
+
+                    &.thumbnail {
+                        & a {
+                            & img {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    & .product-quantity {
+                        margin: auto;
+                    }
+
+                    &.remove {
+                        position: absolute;
+                        z-index: 9;
+                        top: 0;
+                        right: 0;
+
+                        width: auto !important;
+                    }
+                }
+
+                &:first-child {
+                    & td {
+                        &:first-child {
+                            border-top: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.cart-coupon {
+    position: relative;
+
+    & input[type="text"] {
+        width: 300px;
+    }
+
+    & .btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        padding: 12px 0;
+
+        & i {
+            font-size: 20px;
+        }
+    }
+}
+
+
+.cart-totals {
+    float: right;
+
+    width: 400px;
+    padding: 40px 30px;
+
+    text-align: center;
+
+    background-color: #F7F7F7;
+
+    & .title {
+        margin-bottom: 25px;
+    }
+
+    & table {
+        width: 100%;
+        margin-bottom: 30px;
+
+        & tbody {
+            & tr {
+                font-family: $futura;
+                font-weight: 700;
+
+                color: $heading-color;
+
+                &.subtotal {
+                    & td {
+                        font-size: 14px;
+                    }
+                }
+
+                &.total {
+                    & td {
+                        font-size: 24px;
+                    }
+                }
+
+                & th {
+                    font-size: 18px;
+
+                    padding: 15px 10px;
+
+                    text-align: left;
+                }
+
+                & td {
+                    padding: 15px 10px;
+
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    & .btn {
+    }
+
+    @media #{$tablet-device,
+    $large-mobile
+    } {
+        width: 100%;
+    }
+}

@@ -1,0 +1,328 @@
+/* 06.08. Home Eight Slider */
+.home8-slider {
+    & .swiper-pagination {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+
+        flex-direction: column;
+
+        width: auto;
+        height: auto;
+        margin: 0;
+
+        transform: translateY(-50%);
+    }
+}
+
+/* Home Eight Slide Item */
+.home8-slide-item {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Home Eight Slide Image */
+.home8-slide-image {
+    z-index: 1;
+
+    overflow: hidden;
+
+    max-width: 64%;
+
+    & img {
+        width: 100%;
+
+        transition: all 0.5s ease 0s;
+        transform: translateX(100%);
+    }
+
+    @media #{$tablet-device} {
+        max-width: 70%;
+    }
+
+    @media #{$large-mobile} {
+        max-width: 100%;
+    }
+}
+
+/* Home Eight Slide Content */
+.home8-slide-content {
+    position: absolute;
+    z-index: 1;
+    z-index: 8;
+    top: 50%;
+    left: 64%;
+
+    transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: nowrap;
+
+    & > * {
+        transition: all 0.5s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .sub-title {
+        font-family: $modesty;
+        font-size: 75px;
+        font-weight: 400;
+        line-height: 1.5;
+
+        display: block;
+
+        transform: translateY(30px);
+
+        color: $heading-color;
+    }
+
+    & .title {
+        font-size: 60px;
+        font-weight: 400;
+        line-height: 1.25;
+
+        margin-bottom: 30px;
+
+        transform: translateY(30px);
+    }
+
+    & .link {
+        transform: translateY(30px);
+
+        & a {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+
+            padding-bottom: 2px;
+
+            text-transform: uppercase;
+
+            color: $heading-color;
+            border-bottom: 1px solid $heading-color;
+
+            &:hover {
+                color: $primary2;
+                border-color: $primary2;
+            }
+        }
+    }
+
+    @media #{$laptop-device} {
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 50px;
+        }
+    }
+
+    @media #{$desktop-device} {
+        & .sub-title {
+            font-size: 50px;
+        }
+
+        & .title {
+            font-size: 40px;
+        }
+    }
+
+    @media #{$tablet-device} {
+        left: 70%;
+
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        & .link {
+            & a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media #{$large-mobile} {
+        position: relative;
+        right: 0;
+        left: 0;
+
+        flex: 1 0 100%;
+
+        margin-top: -80px;
+
+        transform: translateY(0);
+
+        & .sub-title {
+            font-size: 40px;
+        }
+
+        & .title {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        & .link {
+            & a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media #{$extra-small-mobile} {
+        margin-top: -40px;
+
+        & .sub-title {
+            font-size: 36px;
+        }
+
+        & .title {
+            font-size: 24px;
+        }
+    }
+}
+
+/* Home Eight Slide Pages */
+.home8-slide-pages {
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1;
+
+    position: absolute;
+    z-index: 9;
+    right: 3%;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+
+    transform: translateY(-100%);
+
+    & > * {
+        transition: all 0.5s ease 0s;
+
+        opacity: 0;
+    }
+
+    & .current {
+        transform: translateX(40px);
+
+        color: $heading-color;
+    }
+
+    & .border {
+        display: block;
+
+        width: 80px;
+        height: 2px;
+        margin: 5px 15px 0;
+
+        transform: translateX(40px);
+
+        border: none !important;
+        background-color: $heading-color;
+    }
+
+    & .total {
+        transform: translateX(40px);
+
+        color: rgba($body-light, 0.5);
+    }
+
+    @media #{$desktop-device} {
+        font-size: 44px;
+
+        & .border {
+            width: 50px;
+        }
+    }
+
+    @media #{$tablet-device,
+    $large-mobile} {
+        font-size: 40px;
+
+        right: 0;
+
+        transform: translateY(-50%);
+
+        & .border {
+            width: 40px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
+
+    @media #{$large-mobile} {
+        font-size: 30px;
+
+        right: 5px;
+        bottom: 5px;
+
+        transform: translateY(0);
+
+        & .border {
+            width: 30px;
+        }
+    }
+}
+
+/* Home Eight Slide Content Animation */
+.swiper-slide-active {
+    .home8-slide-image {
+        & img {
+            transition-delay: 0.75s;
+            transform: translateX(0);
+        }
+    }
+
+    & .home8-slide-content {
+        & > * {
+            opacity: 1;
+        }
+
+        & .sub-title {
+            transition-delay: 1.3s;
+            transform: translateY(0);
+        }
+
+        & .title {
+            transition-delay: 1.6s;
+            transform: translateY(0);
+        }
+
+        & .link {
+            transition-delay: 2s;
+            transform: translateY(0);
+        }
+    }
+
+    & .home8-slide-pages {
+        & > * {
+            opacity: 1;
+        }
+
+        & .current {
+            transition-delay: 1s;
+            transform: translateX(0);
+        }
+
+        & .border {
+            transition-delay: 1.2s;
+            transform: translateX(0);
+        }
+
+        & .total {
+            transition-delay: 1.4s;
+            transform: translateX(0);
+        }
+    }
+}

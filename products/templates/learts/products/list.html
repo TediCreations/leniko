@@ -1,0 +1,99 @@
+{% extends 'bare/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Filters -->
+<!--
+<div class="container" style="margin-top:30px">
+    <div class="row">
+	<div class="col-lg-12">
+	    <h2 class="intro-text text-center">Filters</h2>
+	</div>
+	<form method="get">
+	    <div class="col-lg-12">
+		<div class="row">
+
+		    <div class="col-lg-4">
+			<label for="price_max">Max Price:</label>
+			<input type="text" id="price_max" name="price_max"><br><br>
+			<label for="price_min">Min Price:</label>
+			<input type="text" id="price_min" name="price_min"><br><br>
+		    </div>
+
+		    <div class="col-lg-4">
+			<label for="macrame">Macrame:</label>
+			<input type="checkbox" id="macrame" name="macrame"><br>
+
+			<label for="featured">Featured:</label>
+			<input type="checkbox" id="featured" name="featured"><br>
+		    </div>
+
+		    <div class="col-lg-4">
+			<label for="group">Group:</label>
+			<select id="group" name="group">
+			    {% for i in objList.first.get_Groups %}
+			    <option value="{{i}}">{{i}}</option>
+			    {% endfor %}
+			</select><br><br>
+			<label for="metal">Metal:</label>
+			<select id="metal" name="metal">
+			    {% for i in objList.first.get_Metal %}
+			    <option value="{{i}}">{{i}}</option>
+			    {% endfor %}
+			</select><br><br>
+			<label for="platting">Platting:</label>
+			<select id="platting" name="platting">
+			    {% for i in objList.first.get_Platting %}
+			    <option value="{{i}}">{{i}}</option>
+			    {% endfor %}
+			</select>
+		    </div>
+		    <div class="col-lg-4">
+			<input type="submit" value="Submit">
+		    </div>
+		</div>
+	    </div>
+	</form>
+	<div class="col-lg-12">
+	    <h2 class="intro-text text-center">List of jewels [{{objList.count}}]</h2>
+	</div>
+    </div>
+</div>
+-->
+<!-- /Filters -->
+
+{% if request.user.is_superuser %}
+<div class="col-lg-12">
+  <h2 class="intro-text text-center">List of jewels [{{objList.count}}]</h2>
+</div>
+{% endif %}
+
+<!-- Items -->
+<div class="container" style="margin-top:30px">
+    <div class="row">
+	{% for obj in objList %}
+	<div class="col-md-2 col-md-4 col-lg-3" style="margin-bottom:30px">
+	    <div>
+		<!-- Photo -->
+		<a href="{{ obj.get_absolute_url }}">
+		    <img style="max-width: 100%" src="{{obj.getPhotoUrl}}" loading="lazy" alt="Image not available!">
+		</a>
+
+		<!-- Title -->
+		<a href="{{ obj.get_absolute_url }}">
+		    <p>{{obj.getTitle}}</p>
+		</a>
+		<!-- Brief -->
+		<small>{{obj.getBrief}}</small>
+		<br>
+		<!-- Price -->
+		<small>{{obj.getPrice}} &euro;</small>
+	    </div>
+	</div>
+	{% endfor %}
+    </div>
+</div>
+<!-- /Items -->
+
+{% endblock %}

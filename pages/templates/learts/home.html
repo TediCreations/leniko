@@ -1311,10 +1311,18 @@
                                             <td class="value">0404019</td>
                                         </tr>
                                         <tr>
+                                            <td class="label"><span>Width</span></td>
+                                            <td class="value">32</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"><span>Macrame</span></td>
+                                            <td class="value">Yes</td>
+                                        </tr>
+                                        <tr>
                                             <td class="label"><span>Category</span></td>
                                             <td class="value">
                                                 <ul class="product-category">
-                                                    <li><a href="#">Kitchen</a></li>
+                                                    <li><a href="#">Bracelet</a></li>
                                                 </ul>
                                             </td>
                                         </tr>
@@ -1334,11 +1342,11 @@
                                             <td class="label"><span>Share on</span></td>
                                             <td class="va">
                                                 <div class="product-share">
-                                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"><i class="fab fa-facebook-f"></i></a>
+                                                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Title"><i class="fab fa-twitter"></i></a>
                                                     <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                                                    <a href="#"><i class="fal fa-envelope"></i></a>
+                                                    <a href="https://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}&media=&description=Title"><i class="fab fa-pinterest"></i></a>
+                                                    <a href="mailto:info@example.com?&subject=&body={{ request.build_absolute_uri }} Title"><i class="fal fa-envelope"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

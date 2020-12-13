@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -9,35 +11,35 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
 
     <!-- CSS
 	============================================ -->
 
     <!-- Vendor CSS (Bootstrap & Icon Font) -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/font-awesome-pro.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/vendor/customFonts.css">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome-pro.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/customFonts.css' %}">
 
     <!-- Plugins CSS (All Plugins Files) -->
-    <link rel="stylesheet" href="assets/css/plugins/select2.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/css/plugins/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/photoswipe.css">
-    <link rel="stylesheet" href="assets/css/plugins/photoswipe-default-skin.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/ion.rangeSlider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/photoswipe.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/photoswipe-default-skin.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/slick.css' %}">
 
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
     <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <!-- <link rel="stylesheet" href="assets/css/vendor/vendor.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css">
-    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/vendor/vendor.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/plugins.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.min.css' %}"> -->
 
 </head>
 
@@ -89,7 +91,7 @@
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo justify-content-center">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Learts Logo"></a>
+                        <a href="index.html"><img src="{% static 'assets/images/logo/logo.png' %}" alt="Learts Logo"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -126,31 +128,31 @@
                                 <li>
                                     <a href="#" class="mega-menu-title"><span class="menu-text">HOME GROUP</span></a>
                                     <ul>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-01.jpg"> <a href="index.html"><span class="menu-text">Arts Propelled</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-02.jpg"> <a href="index-2.html"><span class="menu-text">Decor Thriving</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-03.jpg"> <a href="index-3.html"><span class="menu-text">Savvy Delight</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-04.jpg"> <a href="index-4.html"><span class="menu-text">Perfect Escapes</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-01.jpg' %}"> <a href="index.html"><span class="menu-text">Arts Propelled</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-02.jpg' %}"> <a href="index-2.html"><span class="menu-text">Decor Thriving</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-03.jpg' %}"> <a href="index-3.html"><span class="menu-text">Savvy Delight</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-04.jpg' %}"> <a href="index-4.html"><span class="menu-text">Perfect Escapes</span></a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="index-2.html" class="mega-menu-title"><span class="menu-text">HOME GROUP</span></a>
                                     <ul>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-05.jpg"> <a href="index-5.html"><span class="menu-text">Kitchen Cozy</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-06.jpg"> <a href="index-6.html"><span class="menu-text">Dreamy Designs</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-07.jpg"> <a href="index-7.html"><span class="menu-text">Crispy Recipes</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-08.jpg"> <a href="index-8.html"><span class="menu-text">Decoholic Chic</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-05.jpg' %}"> <a href="index-5.html"><span class="menu-text">Kitchen Cozy</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-06.jpg' %}"> <a href="index-6.html"><span class="menu-text">Dreamy Designs</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-07.jpg' %}"> <a href="index-7.html"><span class="menu-text">Crispy Recipes</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-08.jpg' %}"> <a href="index-8.html"><span class="menu-text">Decoholic Chic</span></a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="index-2.html" class="mega-menu-title"><span class="menu-text">HOME GROUP</span></a>
                                     <ul>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-9.jpg"> <a href="index-9.html"><span class="menu-text">Reblended Dish</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-10.jpg"> <a href="index-10.html"><span class="menu-text">Craftin House</span></a></li>
-                                        <li> <img class="mmh_img " src="assets/images/demo/menu/home-11.jpg"> <a href="index-11.html"><span class="menu-text">Craftswork Biz</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-9.jpg' %}"> <a href="index-9.html"><span class="menu-text">Reblended Dish</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-10.jpg' %}"> <a href="index-10.html"><span class="menu-text">Craftin House</span></a></li>
+                                        <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-11.jpg' %}"> <a href="index-11.html"><span class="menu-text">Craftswork Biz</span></a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" class="menu-banner"><img src="assets/images/banner/menu-banner-1.jpg" alt="Home Menu Banner"></a>
+                                    <a href="#" class="menu-banner"><img src="{% static 'assets/images/banner/menu-banner-1.jpg' %}" alt="Home Menu Banner"></a>
                                 </li>
                             </ul>
                         </li>
@@ -195,7 +197,7 @@
                                     </ul>
                                 </li>
                                 <li class="align-self-center">
-                                    <a href="#" class="menu-banner"><img src="assets/images/banner/menu-banner-2.png" alt="Shop Menu Banner"></a>
+                                    <a href="#" class="menu-banner"><img src="{% static 'assets/images/banner/menu-banner-2.png' %}" alt="Shop Menu Banner"></a>
                                 </li>
                             </ul>
                         </li>
@@ -308,7 +310,7 @@
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo-2.png" alt="Learts Logo"></a>
+                        <a href="index.html"><img src="{% static 'assets/images/logo/logo-2.png' %}" alt="Learts Logo"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -322,31 +324,31 @@
                                     <li>
                                         <a href="#" class="mega-menu-title"><span class="menu-text">HOME GROUP</span></a>
                                         <ul>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-01.jpg"> <a href="index.html"><span class="menu-text">Arts Propelled</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-02.jpg"> <a href="index-2.html"><span class="menu-text">Decor Thriving</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-03.jpg"> <a href="index-3.html"><span class="menu-text">Savvy Delight</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-04.jpg"> <a href="index-4.html"><span class="menu-text">Perfect Escapes</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-01.jpg' %}"> <a href="index.html"><span class="menu-text">Arts Propelled</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-02.jpg' %}"> <a href="index-2.html"><span class="menu-text">Decor Thriving</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-03.jpg' %}"> <a href="index-3.html"><span class="menu-text">Savvy Delight</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-04.jpg' %}"> <a href="index-4.html"><span class="menu-text">Perfect Escapes</span></a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="index-2.html" class="mega-menu-title"><span class="menu-text">HOME GROUP</span></a>
                                         <ul>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-05.jpg"> <a href="index-5.html"><span class="menu-text">Kitchen Cozy</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-06.jpg"> <a href="index-6.html"><span class="menu-text">Dreamy Designs</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-07.jpg"> <a href="index-7.html"><span class="menu-text">Crispy Recipes</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-08.jpg"> <a href="index-8.html"><span class="menu-text">Decoholic Chic</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-05.jpg' %}"> <a href="index-5.html"><span class="menu-text">Kitchen Cozy</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-06.jpg' %}"> <a href="index-6.html"><span class="menu-text">Dreamy Designs</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-07.jpg' %}"> <a href="index-7.html"><span class="menu-text">Crispy Recipes</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-08.jpg' %}"> <a href="index-8.html"><span class="menu-text">Decoholic Chic</span></a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="index-2.html" class="mega-menu-title"><span class="menu-text">HOME GROUP</span></a>
                                         <ul>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-9.jpg"> <a href="index-9.html"><span class="menu-text">Reblended Dish</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-10.jpg"> <a href="index-10.html"><span class="menu-text">Craftin House</span></a></li>
-                                            <li> <img class="mmh_img " src="assets/images/demo/menu/home-11.jpg"> <a href="index-11.html"><span class="menu-text">Craftswork Biz</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-9.jpg' %}"> <a href="index-9.html"><span class="menu-text">Reblended Dish</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-10.jpg' %}"> <a href="index-10.html"><span class="menu-text">Craftin House</span></a></li>
+                                            <li> <img class="mmh_img " src="{% static 'assets/images/demo/menu/home-11.jpg' %}"> <a href="index-11.html"><span class="menu-text">Craftswork Biz</span></a></li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="#" class="menu-banner"><img src="assets/images/banner/menu-banner-1.jpg" alt="Home Menu Banner"></a>
+                                        <a href="#" class="menu-banner"><img src="{% static 'assets/images/banner/menu-banner-1.jpg' %}" alt="Home Menu Banner"></a>
                                     </li>
                                 </ul>
                             </li>
@@ -391,7 +393,7 @@
                                         </ul>
                                     </li>
                                     <li class="align-self-center">
-                                        <a href="#" class="menu-banner"><img src="assets/images/banner/menu-banner-2.png" alt="Shop Menu Banner"></a>
+                                        <a href="#" class="menu-banner"><img src="{% static 'assets/images/banner/menu-banner-2.png' %}" alt="Shop Menu Banner"></a>
                                     </li>
                                 </ul>
                             </li>
@@ -533,7 +535,7 @@
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo-2.png" alt="Learts Logo"></a>
+                        <a href="index.html"><img src="{% static 'assets/images/logo/logo-2.png' %}" alt="Learts Logo"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -579,7 +581,7 @@
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo-2.png" alt="Learts Logo"></a>
+                        <a href="index.html"><img src="{% static 'assets/images/logo/logo-2.png' %}" alt="Learts Logo"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -655,7 +657,7 @@
             <div class="body customScroll">
                 <ul class="minicart-product-list">
                     <li>
-                        <a href="product-details.html" class="image"><img src="assets/images/product/cart-product-1.jpg" alt="Cart product Image"></a>
+                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-1.jpg' %}" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="product-details.html" class="title">Walnut Cutting Board</a>
                             <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
@@ -663,7 +665,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="product-details.html" class="image"><img src="assets/images/product/cart-product-2.jpg" alt="Cart product Image"></a>
+                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-2.jpg' %}" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="product-details.html" class="title">Lucky Wooden Elephant</a>
                             <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
@@ -671,7 +673,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="product-details.html" class="image"><img src="assets/images/product/cart-product-3.jpg" alt="Cart product Image"></a>
+                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-3.jpg' %}" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="product-details.html" class="title">Fish Cut Out Set</a>
                             <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
@@ -699,7 +701,7 @@
             <div class="body customScroll">
                 <ul class="minicart-product-list">
                     <li>
-                        <a href="product-details.html" class="image"><img src="assets/images/product/cart-product-1.jpg" alt="Cart product Image"></a>
+                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-1.jpg' %}" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="product-details.html" class="title">Walnut Cutting Board</a>
                             <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
@@ -707,7 +709,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="product-details.html" class="image"><img src="assets/images/product/cart-product-2.jpg" alt="Cart product Image"></a>
+                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-2.jpg' %}" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="product-details.html" class="title">Lucky Wooden Elephant</a>
                             <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
@@ -715,7 +717,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="product-details.html" class="image"><img src="assets/images/product/cart-product-3.jpg" alt="Cart product Image"></a>
+                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-3.jpg' %}" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="product-details.html" class="title">Fish Cut Out Set</a>
                             <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
@@ -944,36 +946,36 @@
     <!-- Slider main container Start -->
     <div class="home1-slider swiper-container">
         <div class="swiper-wrapper">
-            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-1.jpg">
+            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="{% static 'assets/images/slider/home1/slide-1.jpg' %}">
                 <div class="home1-slide1-content">
                     <span class="bg"></span>
                     <span class="slide-border"></span>
-                    <span class="icon"><img src="assets/images/slider/home1/slide-1-1.png" alt="Slide Icon"></span>
+                    <span class="icon"><img src="{% static 'assets/images/slider/home1/slide-1-1.png' %}" alt="Slide Icon"></span>
                     <h2 class="title">Handicraft Shop</h2>
                     <h3 class="sub-title">Just for you</h3>
                     <div class="link"><a href="shop.html">shop now</a></div>
                 </div>
             </div>
-            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-2.jpg">
+            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="{% static 'assets/images/slider/home1/slide-2.jpg' %}">
                 <div class="home1-slide2-content">
-                    <span class="bg" data-bg-image="assets/images/slider/home1/slide-2-1.png"></span>
+                    <span class="bg" data-bg-image="{% static 'assets/images/slider/home1/slide-2-1.png' %}"></span>
                     <span class="slide-border"></span>
                     <span class="icon">
-                        <img src="assets/images/slider/home1/slide-2-2.png" alt="Slide Icon">
-                        <img src="assets/images/slider/home1/slide-2-3.png" alt="Slide Icon">
+                        <img src="{% static 'assets/images/slider/home1/slide-2-2.png' %}" alt="Slide Icon">
+                        <img src="{% static 'assets/images/slider/home1/slide-2-3.png' %}" alt="Slide Icon">
                     </span>
                     <h2 class="title">Newly arrived</h2>
                     <h3 class="sub-title">Sale up to <br>10%</h3>
                     <div class="link"><a href="shop.html">shop now</a></div>
                 </div>
             </div>
-            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-3.jpg">
+            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="{% static 'assets/images/slider/home1/slide-3.jpg' %}">
                 <div class="home1-slide3-content">
                     <h2 class="title">Affectious gifts</h2>
                     <h3 class="sub-title">
-                        <img class="left-icon " src="assets/images/slider/home1/slide-2-2.png" alt="Slide Icon">
+                        <img class="left-icon " src="{% static 'assets/images/slider/home1/slide-2-2.png' %}" alt="Slide Icon">
                         For friends & family
-                        <img class="right-icon " src="assets/images/slider/home1/slide-2-3.png" alt="Slide Icon">
+                        <img class="right-icon " src="{% static 'assets/images/slider/home1/slide-2-3.png' %}" alt="Slide Icon">
                     </h3>
                     <div class="link"><a href="shop.html">shop now</a></div>
                 </div>
@@ -998,9 +1000,9 @@
             <div class="row learts-mb-n40">
 
                 <div class="col-lg-5 col-md-6 col-12 mr-auto learts-mb-40">
-                    <div class="sale-banner1" data-bg-image="assets/images/banner/sale/sale-banner1-1.png">
+                    <div class="sale-banner1" data-bg-image="{% static 'assets/images/banner/sale/sale-banner1-1.png' %}">
                         <div class="inner">
-                            <img src="assets/images/banner/sale/sale-banner1-1.1.png" alt="Sale Banner Icon">
+                            <img src="{% static 'assets/images/banner/sale/sale-banner1-1.1.png' %}" alt="Sale Banner Icon">
                             <span class="title">Spring sale</span>
                             <h2 class="sale-percent">
                                 <spam class="number">40</spam> % <br> off
@@ -1013,7 +1015,7 @@
                 <div class="col-lg-6 col-md-6 col-12 learts-mb-40">
                     <div class="sale-banner2">
                         <div class="inner">
-                            <div class="image"><img src="assets/images/banner/sale/sale-banner2-1.jpg" alt=""></div>
+                            <div class="image"><img src="{% static 'assets/images/banner/sale/sale-banner2-1.jpg' %}" alt=""></div>
                             <div class="content row justify-content-between mb-n3">
                                 <div class="col-auto mb-3">
                                     <h2 class="sale-percent">10% off</h2>
@@ -1040,7 +1042,7 @@
                 <div class="col">
                     <div class="category-banner1">
                         <div class="inner">
-                            <a href="shop.html" class="image"><img src="assets/images/banner/category/banner-s1-1.jpg" alt=""></a>
+                            <a href="shop.html" class="image"><img src="{% static 'assets/images/banner/category/banner-s1-1.jpg' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
                                     <a href="shop.html">Gift ideas</a>
@@ -1054,7 +1056,7 @@
                 <div class="col">
                     <div class="category-banner1">
                         <div class="inner">
-                            <a href="shop.html" class="image"><img src="assets/images/banner/category/banner-s1-2.jpg" alt=""></a>
+                            <a href="shop.html" class="image"><img src="{% static 'assets/images/banner/category/banner-s1-2.jpg' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
                                     <a href="shop.html">Home Decor</a>
@@ -1068,7 +1070,7 @@
                 <div class="col">
                     <div class="category-banner1">
                         <div class="inner">
-                            <a href="shop.html" class="image"><img src="assets/images/banner/category/banner-s1-3.jpg" alt=""></a>
+                            <a href="shop.html" class="image"><img src="{% static 'assets/images/banner/category/banner-s1-3.jpg' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
                                     <a href="shop.html">Kids & Babies</a>
@@ -1082,7 +1084,7 @@
                 <div class="col">
                     <div class="category-banner1">
                         <div class="inner">
-                            <a href="shop.html" class="image"><img src="assets/images/banner/category/banner-s1-4.jpg" alt=""></a>
+                            <a href="shop.html" class="image"><img src="{% static 'assets/images/banner/category/banner-s1-4.jpg' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
                                     <a href="shop.html">Kitchen</a>
@@ -1096,7 +1098,7 @@
                 <div class="col">
                     <div class="category-banner1">
                         <div class="inner">
-                            <a href="shop.html" class="image"><img src="assets/images/banner/category/banner-s1-5.jpg" alt=""></a>
+                            <a href="shop.html" class="image"><img src="{% static 'assets/images/banner/category/banner-s1-5.jpg' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
                                     <a href="shop.html">Kniting & Sewing</a>
@@ -1133,8 +1135,8 @@
                                 <span class="product-badges">
                                     <span class="onsale">-13%</span>
                                 </span>
-                                <img src="assets/images/product/s328/product-1.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-1-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-1.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-1-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1157,8 +1159,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-2.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-2-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-2.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-2-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1183,8 +1185,8 @@
                                 <span class="hot">hot</span>
                             </span>
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-3.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-3-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-3.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-3-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1209,8 +1211,8 @@
                                 <span class="product-badges">
                                     <span class="onsale">-27%</span>
                                 </span>
-                                <img src="assets/images/product/s328/product-4.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-4-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-4.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-4-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1233,8 +1235,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-5.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-5-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-5.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-5-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                             <div class="product-options">
@@ -1268,8 +1270,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-6.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-6-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-6.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-6-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1294,8 +1296,8 @@
                                 <span class="product-badges">
                                     <span class="hot">hot</span>
                                 </span>
-                                <img src="assets/images/product/s328/product-7.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-7-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-7.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-7-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1321,8 +1323,8 @@
                                     <span class="outofstock"><i class="fal fa-frown"></i></span>
                                 <span class="hot">hot</span>
                                 </span>
-                                <img src="assets/images/product/s328/product-8.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-8-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-8.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-8-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                             <div class="product-options">
@@ -1355,8 +1357,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-9.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-9-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-9.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-9-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1378,8 +1380,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-10.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-10-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-10.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-10-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1401,8 +1403,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-11.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-11-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-11.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-11-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1424,8 +1426,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-12.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-12-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-12.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-12-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1447,8 +1449,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-13.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-13-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-13.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-13-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                             <div class="product-options">
@@ -1479,8 +1481,8 @@
                                 <span class="product-badges">
                                     <span class="outofstock"><i class="fal fa-frown"></i></span>
                                 </span>
-                                <img src="assets/images/product/s328/product-14.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-14-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-14.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-14-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                             <div class="product-options">
@@ -1508,8 +1510,8 @@
                     <div class="product">
                         <div class="product-thumb">
                             <a href="product-details.html" class="image">
-                                <img src="assets/images/product/s328/product-15.jpg" alt="Product Image">
-                                <img class="image-hover " src="assets/images/product/s328/product-15-hover.jpg" alt="Product Image">
+                                <img src="{% static 'assets/images/product/s328/product-15.jpg' %}" alt="Product Image">
+                                <img class="image-hover " src="{% static 'assets/images/product/s328/product-15-hover.jpg' %}" alt="Product Image">
                             </a>
                             <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
                         </div>
@@ -1539,7 +1541,7 @@
             <div class="row text-center row-cols-1">
 
                 <div class="footer1-logo col text-center">
-                    <img src="assets/images/logo/logo.png" alt="">
+                    <img src="{% static 'assets/images/logo/logo.png' %}" alt="">
                 </div>
 
                 <div class="footer1-menu col">
@@ -1590,17 +1592,17 @@
                     <div class="col-lg-6 col-12 learts-mb-30">
                         <div class="product-images">
                             <div class="product-gallery-slider-quickview">
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-1.jpg">
-                                    <img src="assets/images/product/single/1/product-1.jpg" alt="">
+                                <div class="product-zoom" data-image="{% static 'assets/images/product/single/1/product-zoom-1.jpg' %}">
+                                    <img src="{% static 'assets/images/product/single/1/product-1.jpg' %}" alt="">
                                 </div>
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-2.jpg">
-                                    <img src="assets/images/product/single/1/product-2.jpg" alt="">
+                                <div class="product-zoom" data-image="{% static 'assets/images/product/single/1/product-zoom-2.jpg' %}">
+                                    <img src="{% static 'assets/images/product/single/1/product-2.jpg' %}" alt="">
                                 </div>
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-3.jpg">
-                                    <img src="assets/images/product/single/1/product-3.jpg" alt="">
+                                <div class="product-zoom" data-image="{% static 'assets/images/product/single/1/product-zoom-3.jpg' %}">
+                                    <img src="{% static 'assets/images/product/single/1/product-3.jpg' %}" alt="">
                                 </div>
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-4.jpg">
-                                    <img src="assets/images/product/single/1/product-4.jpg" alt="">
+                                <div class="product-zoom" data-image="{% static 'assets/images/product/single/1/product-zoom-4.jpg' %}">
+                                    <img src="{% static 'assets/images/product/single/1/product-4.jpg' %}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -1664,8 +1666,8 @@
                             <div class="product-brands">
                                 <span class="title">Brands</span>
                                 <div class="brands">
-                                    <a href="#"><img src="assets/images/brands/brand-3.png" alt=""></a>
-                                    <a href="#"><img src="assets/images/brands/brand-8.png" alt=""></a>
+                                    <a href="#"><img src="{% static 'assets/images/brands/brand-3.png' %}" alt=""></a>
+                                    <a href="#"><img src="{% static 'assets/images/brands/brand-8.png' %}" alt=""></a>
                                 </div>
                             </div>
                             <div class="product-meta mb-0">
@@ -1723,41 +1725,41 @@
 ============================================ -->
 
     <!-- Vendors JS -->
-    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-migrate-3.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Plugins JS -->
-    <script src="assets/js/plugins/select2.min.js"></script>
-    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/plugins/swiper.min.js"></script>
-    <script src="assets/js/plugins/slick.min.js"></script>
-    <script src="assets/js/plugins/mo.min.js"></script>
-    <script src="assets/js/plugins/jquery.instagramFeed.min.js"></script>
-    <script src="assets/js/plugins/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/js/plugins/jquery.countdown.min.js"></script>
-    <script src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
-    <script src="assets/js/plugins/jquery.matchHeight-min.js"></script>
-    <script src="assets/js/plugins/ion.rangeSlider.min.js"></script>
-    <script src="assets/js/plugins/photoswipe.min.js"></script>
-    <script src="assets/js/plugins/photoswipe-ui-default.min.js"></script>
-    <script src="assets/js/plugins/jquery.zoom.min.js"></script>
-    <script src="assets/js/plugins/ResizeSensor.js"></script>
-    <script src="assets/js/plugins/jquery.sticky-sidebar.min.js"></script>
-    <script src="assets/js/plugins/product360.js"></script>
-    <script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/plugins/jquery.scrollUp.min.js"></script>
-    <script src="assets/js/plugins/scrollax.min.js"></script>
+    <script src="{% static 'assets/js/plugins/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/swiper.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/slick.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/mo.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.instagramFeed.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.matchHeight-min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/ion.rangeSlider.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/photoswipe.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/photoswipe-ui-default.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.zoom.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/ResizeSensor.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/product360.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/scrollax.min.js' %}"></script>
 
     <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <!-- <script src="assets/js/vendor/vendor.min.js"></script>
-<script src="assets/js/plugins/plugins.min.js"></script> -->
+    <!-- <script src="{% static 'assets/js/vendor/vendor.min.js' %}"></script>
+         <script src="{% static 'assets/js/plugins/plugins.min.js' %}"></script> -->
 
     <!-- Main Activation JS -->
-    <script src="assets/js/main.js"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
 

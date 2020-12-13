@@ -2,6 +2,7 @@ import random
 from django.shortcuts import render
 from .apps import PagesConfig
 
+from products.models import Product
 
 theme = PagesConfig.theme
 
@@ -37,11 +38,17 @@ def contact_view(request, *args, **kwargs):
 	return render(request, template_name, context)
 
 def dev_view(request, *args, **kwargs):
-	template_name = theme + '/base.html'
+	template_name = theme + '/homebase.html'
 	webpage_name = "Test"
 	webpage_description = "Leniko jewelry test page"
+
+	#objList = None
+	objList = Product.objects.all()
+	#objList = Product.objects.filter(isActive = True)
+
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
+		"objList":             objList
 	}
 	return render(request, template_name, context)

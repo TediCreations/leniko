@@ -54,20 +54,19 @@
 
 <body>
 
-    <!-- Test -->
-    {% include './topbar.html' %}
-    {% include './header.html' %}
-    {% include './slider.html' %}
-
-    {% include './saleBanner.html' %}
-    {% include './categoryBanner.html' %}
-
-    {% include './productsSection.html' %}
-    {% include './modal.html' %}
-    {% include './footer1.html' %}
-
     {% block content %}
-    This is a template
+
+    {% include './homebase/topbar.html' %}
+    {% include './homebase/header.html' %}
+    {% include './homebase/slider.html' %}
+
+    {% include './homebase/saleBanner.html' %}
+    {% include './homebase/categoryBanner.html' %}
+
+    {% include './homebase/productsSection.html' %}
+    {% include './homebase/modal.html' %}
+    {% include './homebase/footer1.html' %}
+
     {% endblock %}
 
     <!-- JS ============================================ -->

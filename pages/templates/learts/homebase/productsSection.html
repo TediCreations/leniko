@@ -14,6 +14,56 @@
     <!-- Products Start -->
     <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
 
+      {% for obj in objList %}
+      <div class="col">
+        <div class="product">
+          <div class="product-thumb">
+            <a href="{{ obj.get_absolute_url }}" class="image">
+              <span class="product-badges">
+                <span class="outofstock"><i class="fal fa-frown"></i></span>
+                <span class="onsale">-13%</span>
+                <span class="hot">hot</span>
+              </span>
+              <img src="{{obj.getPhotoUrl}}" alt="Product Image">
+              <img class="image-hover " src="{% static 'assets/images/product/s328/product-1-hover.jpg' %}" alt="Product Image">
+            </a>
+            <!--
+            <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+            -->
+            <div class="product-options">
+              <ul class="colors">
+                <li style="background-color: #c2c2c2;">color one</li>
+                <li style="background-color: #374140;">color two</li>
+                <li style="background-color: #8ea1b2;">color three</li>
+              </ul>
+              <ul class="sizes">
+                <li>Large</li>
+                <li>Medium</li>
+                <li>Small</li>
+              </ul>
+            </div>
+          </div>
+          <div class="product-info">
+            <h6 class="title"><a href="{{obj.getPhotoUrl}}">{{obj.getTitle}}</a></h6>
+            <span class="price">
+              {{obj.getPrice}} &euro;
+              <!--
+              <span class="old">$45.00</span>
+              <span class="new">{{obj.getPrice}} &euro;</span>
+              -->
+            </span>
+            <div class="product-buttons">
+              <a href="#quickViewModal" data-toggle="modal" class="product-button hintT-top" data-hint="Quick View"><i class="fal fa-search"></i></a>
+              <a href="#" class="product-button hintT-top" data-hint="Add to Cart"><i class="fal fa-shopping-cart"></i></a>
+              <a href="#" class="product-button hintT-top" data-hint="Compare"><i class="fal fa-random"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
+      <!--
       <div class="col">
         <div class="product">
           <div class="product-thumb">
@@ -416,6 +466,7 @@
       </div>
 
     </div>
+    -->
     <!-- Products End -->
 
   </div>

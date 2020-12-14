@@ -43,7 +43,7 @@ def product_list_view(request):
 
 
 def product_detail_view(request, id):
-	template_name = theme +'/products/detail.html'
+	template_name = theme +'/product-details.html'
 	webpage_name = "Product list"
 	obj = get_object_or_404(Product, id=id)
 	context = {

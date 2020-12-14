@@ -1,810 +1,183 @@
+{% extends './base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+{% block content %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+{% include './shopbase/header.html' %}
 
-    <!-- Title -->
-    {% if webpage_name is Null %}
-    <title>Leniko</title>
-    {% else %}
-    <title>Leniko | {{webpage_name}}</title>
-    {% endif %}
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static '/img/about/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
 
-    <meta name="robots" content="noindex, follow" />
-
-    <!-- Description -->
-    <meta name="description" content="{{webpage_description}}">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-
-    <!-- CSS ============================================ -->
-
-    <!-- Vendor CSS (Bootstrap & Icon Font) -->
-    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome-pro.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/vendor/themify-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/vendor/customFonts.css' %}">
-
-    <!-- Plugins CSS (All Plugins Files) -->
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/select2.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/perfect-scrollbar.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/swiper.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/nice-select.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/ion.rangeSlider.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/photoswipe.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/photoswipe-default-skin.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/slick.css' %}">
-
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-
-    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <!-- <link rel="stylesheet" href="{% static 'assets/css/vendor/vendor.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/plugins/plugins.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/style.min.css' %}"> -->
-
-</head>
-
-<body>
-
-    <!-- Header Section Start -->
-    <div class="header-section section section-fluid bg-white d-none d-xl-block">
-        <div class="container">
-            <div class="row align-items-center">
-
-                <!-- Header Logo Start -->
-                <div class="col-auto">
-                    <div class="header-logo">
-                        <a href="/"><img src="{% static 'assets/images/logo/logo-2.png' %}" alt="Leniko Logo"></a>
-                    </div>
-                </div>
-                <!-- Header Logo End -->
-
-                <!-- Search Start -->
-                <div class="col-auto mr-auto">
-                    <nav class="site-main-menu site-main-menu-left menu-height-100 justify-content-center">
-                        <ul>
-                            <li><a href="/"><span class="menu-text">Home</span></a>
-                            </li>
-                            <li class="has-children"><a href="/shop"><span class="menu-text">Shop</span></a>
-                              <ul class="sub-menu mega-menu">
-                                <li>
-                                  <a href="/shop" class="mega-menu-title"><span class="menu-text">Material</span></a>
-                                  <ul>
-                                    <li><a href="#"><span class="menu-text">Macrame</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Silver 925</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Bronze</span></a></li>
-                                  </ul>
-                                </li>
-                                <li>
-                                  <a href="/shop" class="mega-menu-title"><span class="menu-text">Categories</span></a>
-                                  <ul>
-                                    <li><a href="#"><span class="menu-text">Rings</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Earrings</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Bracelets</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Necklaces</span></a></li>
-                                  </ul>
-                                </li>
-                                <li class="align-self-center">
-                                  <a href="/shop" class="menu-banner"><img src="{% static 'assets/images/banner/menu-banner-2.png' %}" alt="Shop Menu Banner"></a>
-                                </li>
-                              </ul>
-                            </li>
-                            <li><a href="/contact"><span class="menu-text">Contact</span></a>
-                            </li>
-                            <li><a href="/about"><span class="menu-text">About</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- Search End -->
-
-                <!-- Search Start -->
-                <div class="col-auto d-none d-xl-block">
-                    <div class="header2-search">
-                        <form action="#">
-                            <input type="text" placeholder="Search...">
-                            <button class="btn"><i class="far fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Search End -->
-
-                <!-- Header Tools Start -->
-                <div class="col-auto">
-                    <div class="header-tools justify-content-end">
-                        <div class="header-login">
-                            <a href="my-account.html"><i class="fal fa-user"></i></a>
-                        </div>
-                        <div class="header-wishlist">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="fal fa-heart"></i></a>
-                        </div>
-                        <div class="header-cart">
-                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fal fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Header Tools End -->
-
-            </div>
+        <div class="page-title">
+          <h1 class="title">About us</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">About us</li>
+          </ul>
         </div>
 
+      </div>
     </div>
-    <!-- Header Section End -->
+  </div>
+</div>
+<!-- Page Title/Header End -->
 
-    <!-- Header Section Start -->
-    <div class="sticky-header section bg-white section-fluid d-none d-xl-block">
-        <div class="container">
-            <div class="row align-items-center">
+<!-- About Section Start -->
+<div class="section section-padding pb-0">
+  <div class="container">
+    <div class="row learts-mb-n30">
 
-                <!-- Header Logo Start -->
-                <div class="col-xl-auto col">
-                    <div class="header-logo">
-                        <a href="/"><img src="{% static 'assets/images/logo/logo-2.png' %}" alt="Leniko Logo"></a>
-                    </div>
-                </div>
-                <!-- Header Logo End -->
+      <div class="col-md-6 col-12 align-self-center learts-mb-30">
+        <div class="about-us3">
+          <span class="sub-title">Live out your life.</span>
+          <h2 class="title">The happiness of <br> crafting artworks</h2>
+          <div class="desc">
+            <p>
+              The world of leniko jewelry is full of color, imagination and creativity.
+              Sketches, paintings and dancing surround the childhood of Leni who grew up in a small town with a big mountain behind and a beautiful sea in front.
 
-                <!-- Search Start -->
-                <div class="col-auto mr-auto d-none d-xl-block">
-                    <nav class="site-main-menu site-main-menu-left justify-content-center">
-                        <ul>
-                            <li><a href="/"><span class="menu-text">Home</span></a>
-                            </li>
-                            <li class="has-children"><a href="/shop"><span class="menu-text">Shop</span></a>
-                                <ul class="sub-menu mega-menu">
-                                    <li>
-                                        <a href="/shop" class="mega-menu-title"><span class="menu-text">Material</span></a>
-                                        <ul>
-                                            <li><a href="#"><span class="menu-text">Macrame</span></a></li>
-                                            <li><a href="#"><span class="menu-text">Silver 925</span></a></li>
-                                            <li><a href="#"><span class="menu-text">Bronze</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/shop" class="mega-menu-title"><span class="menu-text">Categories</span></a>
-                                        <ul>
-                                            <li><a href="#"><span class="menu-text">Rings</span></a></li>
-                                            <li><a href="#"><span class="menu-text">Earrings</span></a></li>
-                                            <li><a href="#"><span class="menu-text">Bracelets</span></a></li>
-                                            <li><a href="#"><span class="menu-text">Necklaces</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="align-self-center">
-                                        <a href="/shop" class="menu-banner"><img src="{% static 'assets/images/banner/menu-banner-2.png' %}" alt="Shop Menu Banner"></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="/contact"><span class="menu-text">Contact</span></a>
-                            </li>
-                            <li><a href="/about"><span class="menu-text">About</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- Search End -->
-
-                <!-- Search Start -->
-                <div class="col-auto d-none d-xl-block">
-                    <div class="header2-search">
-                        <form action="#">
-                            <input type="text" placeholder="Search...">
-                            <button class="btn"><i class="far fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Search End -->
-
-                <!-- Header Tools Start -->
-                <div class="col-auto">
-                    <div class="header-tools justify-content-end">
-                        <!--
-                        <div class="header-login d-none d-sm-block">
-                            <a href="my-account.html"><i class="fal fa-user"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-search d-none d-sm-block d-xl-none">
-                            <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fal fa-search"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-wishlist d-none d-sm-block">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="fal fa-heart"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-cart">
-                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fal fa-shopping-cart"></i></a>
-                        </div>
-                        -->
-                        <div class="mobile-menu-toggle d-xl-none">
-                            <a href="#" class="offcanvas-toggle">
-                                <svg viewBox="0 0 800 600">
-                                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
-                                    <path d="M300,320 L540,320" id="middle"></path>
-                                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Header Tools End -->
-
-            </div>
+              By studying landscape architecture, I was given the desire to learn the art of macrame and this gave me the push to deal with the creation of jewelry with this technique.
+              Studies have led to my direct contact with nature and, by extension, the textures, the colors, the alternations formed within it, and the curiosity of dealing with a different form of jewelry.
+              Waxed thread, various metals, ceramic beads are some of the materials I use by combining them with any new material helps me to experiment.
+              Applying the basic metalworking techniques combined with the traditional macrame technique, I aim to create jewels that will give smiles and be unique to anyone!
+            </p>
+          </div>
+          <!--
+              <a href="#" class="link">Learn more</a>
+              -->
         </div>
+      </div>
+      <div class="col-md-6 col-12 text-center learts-mb-30">
+        <img src="{% static '/img/about/lena.jpg' %}" alt="">
+      </div>
 
     </div>
-    <!-- Header Section End -->
-    <!-- Mobile Header Section Start -->
-    <div class="mobile-header bg-white section d-xl-none">
-        <div class="container">
-            <div class="row align-items-center">
+  </div>
 
-                <!-- Header Logo Start -->
-                <div class="col">
-                    <div class="header-logo">
-                        <a href="/"><img src="{% static 'assets/images/logo/logo-2.png' %}" alt="Leniko Logo"></a>
-                    </div>
-                </div>
-                <!-- Header Logo End -->
+</div>
+<!-- About Section End -->
 
-                <!-- Header Tools Start -->
-                <div class="col-auto">
-                    <div class="header-tools justify-content-end">
-                        <!--
-                        <div class="header-login d-none d-sm-block">
-                            <a href="my-account.html"><i class="fal fa-user"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-search d-none d-sm-block">
-                            <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fal fa-search"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-wishlist d-none d-sm-block">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="fal fa-heart"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-cart">
-                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fal fa-shopping-cart"></i></a>
-                        </div>
-                        -->
-                        <div class="mobile-menu-toggle">
-                            <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
-                                <svg viewBox="0 0 800 600">
-                                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
-                                    <path d="M300,320 L540,320" id="middle"></path>
-                                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Header Tools End -->
+<!-- Feature Section Start -->
+<div class="section section-padding">
+  <div class="container">
+    <div class="row row-cols-md-3 row-cols-1 learts-mb-n30">
 
+      <div class="col learts-mb-30">
+        <div class="icon-box4">
+          <div class="inner">
+            <div class="content">
+              <h6 class="title">FREE SHIPPING</h6>
+              <p>Once receiving your order, we will turn your products around in 3- 5 business days.</p>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- Mobile Header Section End -->
+      </div>
 
-    <!-- Mobile Header Section Start -->
-    <div class="mobile-header sticky-header bg-white section d-xl-none">
-        <div class="container">
-            <div class="row align-items-center">
-
-                <!-- Header Logo Start -->
-                <div class="col">
-                    <div class="header-logo">
-                        <a href="/"><img src="{% static 'assets/images/logo/logo-2.png' %}" alt="Leniko Logo"></a>
-                    </div>
-                </div>
-                <!-- Header Logo End -->
-
-                <!-- Header Tools Start -->
-                <div class="col-auto">
-                    <div class="header-tools justify-content-end">
-                        <!--
-                        <div class="header-login d-none d-sm-block">
-                            <a href="my-account.html"><i class="fal fa-user"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-search d-none d-sm-block">
-                            <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fal fa-search"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-wishlist d-none d-sm-block">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="fal fa-heart"></i></a>
-                        </div>
-                        -->
-                        <!--
-                        <div class="header-cart">
-                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fal fa-shopping-cart"></i></a>
-                        </div>
-                        -->
-                        <div class="mobile-menu-toggle">
-                            <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
-                                <svg viewBox="0 0 800 600">
-                                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
-                                    <path d="M300,320 L540,320" id="middle"></path>
-                                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Header Tools End -->
-
+      <div class="col border-left border-right learts-mb-30">
+        <div class="icon-box4">
+          <div class="inner">
+            <div class="content">
+              <h6 class="title">FREE RETURNS</h6>
+              <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- Mobile Header Section End -->
-    <!-- OffCanvas Search Start -->
-    <div id="offcanvas-search" class="offcanvas offcanvas-search">
-        <div class="inner">
-            <div class="offcanvas-search-form">
-                <button class="offcanvas-close">×</button>
-                <form action="#">
-                    <div class="row mb-n3">
-                        <div class="col-lg-8 col-12 mb-3"><input type="text" placeholder="Search Products..."></div>
-                        <div class="col-lg-4 col-12 mb-3">
-                            <select class="search-select select2-basic">
-                                <option value="0">All Categories</option>
-                                <option value="kids-babies">Kids &amp; Babies</option>
-                                <option value="home-decor">Home Decor</option>
-                                <option value="gift-ideas">Gift ideas</option>
-                                <option value="kitchen">Kitchen</option>
-                                <option value="toys">Toys</option>
-                                <option value="kniting-sewing">Kniting &amp; Sewing</option>
-                                <option value="pots">Pots</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+      </div>
+
+      <div class="col learts-mb-30">
+        <div class="icon-box4">
+          <div class="inner">
+            <div class="content">
+              <h6 class="title">SECURE PAYMENT</h6>
+              <img class="img-hover-color " src="{% static 'assets/images/others/pay.png' %}" alt="">
             </div>
-            <p class="search-description text-body-light mt-2"> <span># Type at least 1 character to search</span> <span># Hit enter to search or ESC to close</span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Feature Section End -->
+
+<!-- Video Banner Section Start -->
+<!--
+<div class="section">
+  <div class="container">
+    <div class="video-banner2" data-bg-image="{% static 'assets/images/banner/video/video-banner-2.jpg' %}">
+      <div class="content">
+        <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="video-popup">
+          <img src="{% static 'assets/images/icons/button-play-light.png' %}" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<!-- Video Banner Section End -->
+
+<!-- Feature Section Start -->
+<div class="section section-padding">
+  <div class="container">
+
+    <div class="row learts-mb-n30">
+
+      <div class="col-xl-3 col-lg-4 col-12 mr-auto learts-mb-30">
+        <h1 class="fw-400">The difference when you shop Learts!</h1>
+      </div>
+      <div class="col-lg-8 col-12 learts-mb-30">
+        <div class="row learts-mb-n30">
+
+          <div class="col-md-6 col-12 learts-mb-30">
+            <p class="text-heading fw-600 learts-mb-10">Free Shipping</p>
+            <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+          </div>
+
+          <div class="col-md-6 col-12 learts-mb-30">
+            <p class="text-heading fw-600 learts-mb-10">Free Returns</p>
+            <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
+          </div>
+
+          <div class="col-md-6 col-12 learts-mb-30">
+            <p class="text-heading fw-600 learts-mb-10">Superb Quality</p>
+            <p>We make commitments that the quality of our products will and always will be superb.</p>
+          </div>
+
+          <div class="col-md-6 col-12 learts-mb-30">
+            <p class="text-heading fw-600 learts-mb-10">Free Wrapping</p>
+            <p>Upon request, items bought as gifts from our store can receive free wrapping service.</p>
+          </div>
 
         </div>
-    </div>
-    <!-- OffCanvas Search End -->
-
-    <!-- OffCanvas Wishlist Start -->
-    <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
-        <div class="inner">
-            <div class="head">
-                <span class="title">Wishlist</span>
-                <button class="offcanvas-close">×</button>
-            </div>
-            <div class="body customScroll">
-                <ul class="minicart-product-list">
-                    <li>
-                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-1.jpg' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="product-details.html" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-2.jpg' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="product-details.html" class="title">Lucky Wooden Elephant</a>
-                            <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-3.jpg' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="product-details.html" class="title">Fish Cut Out Set</a>
-                            <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="foot">
-                <div class="buttons">
-                    <a href="wishlist.html" class="btn btn-dark btn-hover-primary">view wishlist</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- OffCanvas Wishlist End -->
-
-    <!-- OffCanvas Cart Start -->
-    <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
-        <div class="inner">
-            <div class="head">
-                <span class="title">Cart</span>
-                <button class="offcanvas-close">×</button>
-            </div>
-            <div class="body customScroll">
-                <ul class="minicart-product-list">
-                    <li>
-                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-1.jpg' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="product-details.html" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-2.jpg' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="product-details.html" class="title">Lucky Wooden Elephant</a>
-                            <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-details.html" class="image"><img src="{% static 'assets/images/product/cart-product-3.jpg' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="product-details.html" class="title">Fish Cut Out Set</a>
-                            <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="foot">
-                <div class="sub-total">
-                    <strong>Subtotal :</strong>
-                    <span class="amount">$144.00</span>
-                </div>
-                <div class="buttons">
-                    <a href="shopping-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
-                    <a href="checkout.html" class="btn btn-outline-dark">checkout</a>
-                </div>
-                <p class="minicart-message">Free Shipping on All Orders Over $100!</p>
-            </div>
-        </div>
-    </div>
-    <!-- OffCanvas Cart End -->
-
-    <!-- OffCanvas Search Start -->
-    <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
-        <div class="inner customScroll">
-            <!--
-            <div class="offcanvas-menu-search-form">
-                <form action="#">
-                    <input type="text" placeholder="Search...">
-                    <button><i class="fal fa-search"></i></button>
-                </form>
-            </div>
-            -->
-            <div class="offcanvas-menu">
-                <ul>
-                    <li><a href="/"><span class="menu-text">Home</span></a>
-                    </li>
-                    <li><a href="/shop"><span class="menu-text">Shop</span></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="/shop"><span class="menu-text">Material</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="#"><span class="menu-text">Macrame</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Silver 925</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Bronze</span></a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/shop"><span class="menu-text">Categories</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="#"><span class="menu-text">Rings</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Earrings</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Bracelets</span></a></li>
-                                    <li><a href="#"><span class="menu-text">Necklaces</span></a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="/contact"><span class="menu-text">Contact</span></a>
-                    </li>
-                    <li><a href="/about"><span class="menu-text">About</span></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="offcanvas-buttons">
-                <div class="header-tools">
-                    <!--
-                    <div class="header-login">
-                        <a href="my-account.html"><i class="fal fa-user"></i></a>
-                    </div>
-                    -->
-                    <!--
-                    <div class="header-wishlist">
-                        <a href="wishlist.html"><span>3</span><i class="fal fa-heart"></i></a>
-                    </div>
-                    -->
-                    <!--
-                    <div class="header-cart">
-                        <a href="shopping-cart.html"><span class="cart-count">3</span><i class="fal fa-shopping-cart"></i></a>
-                    </div>
-                    -->
-                </div>
-            </div>
-            <div class="offcanvas-social">
-                <a href="https://www.facebook.com/lenikojewelry/"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/lenikojewelry/"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </div>
-    <!-- OffCanvas Search End -->
-
-    <div class="offcanvas-overlay"></div>
-
-    <!-- Page Title/Header Start -->
-    <div class="page-title-section section" data-bg-image="{% static '/img/about/bg.jpg' %}">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-
-                    <div class="page-title">
-                        <h1 class="title">About us</h1>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active">About us</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Page Title/Header End -->
-
-    <!-- About Section Start -->
-    <div class="section section-padding pb-0">
-        <div class="container">
-            <div class="row learts-mb-n30">
-
-                <div class="col-md-6 col-12 align-self-center learts-mb-30">
-                    <div class="about-us3">
-                        <span class="sub-title">Live out your life.</span>
-                        <h2 class="title">The happiness of <br> crafting artworks</h2>
-                        <div class="desc">
-                          <p>
-                              The world of leniko jewelry is full of color, imagination and creativity.
-                              Sketches, paintings and dancing surround the childhood of Leni who grew up in a small town with a big mountain behind and a beautiful sea in front.
-
-                              By studying landscape architecture, I was given the desire to learn the art of macrame and this gave me the push to deal with the creation of jewelry with this technique.
-                              Studies have led to my direct contact with nature and, by extension, the textures, the colors, the alternations formed within it, and the curiosity of dealing with a different form of jewelry.
-                              Waxed thread, various metals, ceramic beads are some of the materials I use by combining them with any new material helps me to experiment.
-                              Applying the basic metalworking techniques combined with the traditional macrame technique, I aim to create jewels that will give smiles and be unique to anyone!
-                          </p>
-                        </div>
-                        <!--
-                        <a href="#" class="link">Learn more</a>
-                        -->
-                    </div>
-                </div>
-                <div class="col-md-6 col-12 text-center learts-mb-30">
-                    <img src="{% static '/img/about/lena.jpg' %}" alt="">
-                </div>
-
-            </div>
-        </div>
+      </div>
 
     </div>
-    <!-- About Section End -->
 
-    <!-- Feature Section Start -->
-    <div class="section section-padding">
-        <div class="container">
-            <div class="row row-cols-md-3 row-cols-1 learts-mb-n30">
+  </div>
+</div>
+<!-- Feature Section End -->
 
-                <div class="col learts-mb-30">
-                    <div class="icon-box4">
-                        <div class="inner">
-                            <div class="content">
-                                <h6 class="title">FREE SHIPPING</h6>
-                                <p>Once receiving your order, we will turn your products around in 3- 5 business days.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- Instagram Section Start -->
+<div class="section section-padding border-top">
+  <div class="container">
 
-                <div class="col border-left border-right learts-mb-30">
-                    <div class="icon-box4">
-                        <div class="inner">
-                            <div class="content">
-                                <h6 class="title">FREE RETURNS</h6>
-                                <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col learts-mb-30">
-                    <div class="icon-box4">
-                        <div class="inner">
-                            <div class="content">
-                                <h6 class="title">SECURE PAYMENT</h6>
-                                <img class="img-hover-color " src="{% static 'assets/images/others/pay.png' %}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+    <!-- Section Title Start -->
+    <div class="section-title2 text-center">
+      <h2 class="title">@lenikojewelry</h2>
+      <p class="fw-400">Follow us on Instagram</p>
     </div>
-    <!-- Feature Section End -->
+    <!-- Section Title End -->
 
-    <!-- Video Banner Section Start -->
-    <!--
-    <div class="section">
-        <div class="container">
-            <div class="video-banner2" data-bg-image="{% static 'assets/images/banner/video/video-banner-2.jpg' %}">
-                <div class="content">
-                    <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="video-popup">
-                        <img src="{% static 'assets/images/icons/button-play-light.png' %}" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-    <!-- Video Banner Section End -->
-
-    <!-- Feature Section Start -->
-    <div class="section section-padding">
-        <div class="container">
-
-            <div class="row learts-mb-n30">
-
-                <div class="col-xl-3 col-lg-4 col-12 mr-auto learts-mb-30">
-                    <h1 class="fw-400">The difference when you shop Learts!</h1>
-                </div>
-                <div class="col-lg-8 col-12 learts-mb-30">
-                    <div class="row learts-mb-n30">
-
-                        <div class="col-md-6 col-12 learts-mb-30">
-                            <p class="text-heading fw-600 learts-mb-10">Free Shipping</p>
-                            <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
-                        </div>
-
-                        <div class="col-md-6 col-12 learts-mb-30">
-                            <p class="text-heading fw-600 learts-mb-10">Free Returns</p>
-                            <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
-                        </div>
-
-                        <div class="col-md-6 col-12 learts-mb-30">
-                            <p class="text-heading fw-600 learts-mb-10">Superb Quality</p>
-                            <p>We make commitments that the quality of our products will and always will be superb.</p>
-                        </div>
-
-                        <div class="col-md-6 col-12 learts-mb-30">
-                            <p class="text-heading fw-600 learts-mb-10">Free Wrapping</p>
-                            <p>Upon request, items bought as gifts from our store can receive free wrapping service.</p>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <!-- Feature Section End -->
-
-    <!-- Instagram Section Start -->
-    <div class="section section-padding border-top">
-        <div class="container">
-
-            <!-- Section Title Start -->
-            <div class="section-title2 text-center">
-                <h2 class="title">@lenikojewelry</h2>
-                <p class="fw-400">Follow us on Instagram</p>
-            </div>
-            <!-- Section Title End -->
-
-            <div id="instagram-feed221" class="instagram-carousel instagram-carousel1 instagram-feed">
-            </div>
-
-        </div>
-    </div>
-    <!-- Instagram Section End -->
-
-    <div class="footer2-section section section-padding">
-        <div class="container">
-            <div class="row learts-mb-n40">
-
-                <div class="col-lg-6 learts-mb-40">
-                    <div class="widget-about">
-                        <img src="{% static 'assets/images/logo/logo-2.png' %}" alt="">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod itaque recusandae commodi mollitia facere iure nisi, laudantium quis quas perferendis a minus dolores.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 learts-mb-40">
-                    <div class="row">
-                        <div class="col">
-                            <ul class="widget-list">
-                                <li><a href="/about">About us</a></li>
-                                <li><a href="#">Store location</a></li>
-                                <li><a href="/contact">Contact</a></li>
-                                <li><a href="#">Orders</a></li>
-                            </ul>
-                        </div>
-                        <div class="col">
-                            <ul class="widget-list">
-                                <li><a href="#">Returns</a></li>
-                                <li><a href="#">Support Policy</a></li>
-                                <li><a href="#">Size Guide</a></li>
-                                <li><a href="#">FAQs</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 learts-mb-40">
-                    <ul class="widget-list">
-                        <li> <i class="fab fa-facebook-f"></i> <a href="https://www.facebook.com/lenikojewelry/">Facebook</a></li>
-                        <li> <i class="fab fa-instagram"></i> <a href="https://www.instagram.com/lenikojewelry/">Instagram</a></li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
+    <div id="instagram-feed221" class="instagram-carousel instagram-carousel1 instagram-feed">
     </div>
 
-    <div class="footer2-copyright section">
-        <div class="container">
-            <p class="copyright text-center">&copy; 2020 Leniko Jewelry. All Rights Reserved</a></p>
-        </div>
-    </div>
+  </div>
+</div>
+<!-- Instagram Section End -->
 
-    <!-- JS ============================================ -->
+{% include './base/footer2.html' %}
 
-    <!-- Vendors JS -->
-    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
-    <script src="{% static 'assets/js/vendor/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'assets/js/vendor/jquery-migrate-3.1.0.min.js' %}"></script>
-    <script src="{% static 'assets/js/vendor/bootstrap.bundle.min.js' %}"></script>
-
-    <!-- Plugins JS -->
-    <script src="{% static 'assets/js/plugins/select2.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.nice-select.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/swiper.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/slick.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/mo.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.instagramFeed.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.ajaxchimp.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.countdown.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/imagesloaded.pkgd.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.matchHeight-min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/ion.rangeSlider.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/photoswipe.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/photoswipe-ui-default.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.zoom.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/ResizeSensor.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/product360.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/jquery.scrollUp.min.js' %}"></script>
-    <script src="{% static 'assets/js/plugins/scrollax.min.js' %}"></script>
-
-    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <!-- <script src="{% static 'assets/js/vendor/vendor.min.js' %}"></script>
-         <script src="{% static 'assets/js/plugins/plugins.min.js' %}"></script> -->
-
-    <!-- Main Activation JS -->
-    <script src="{% static 'assets/js/main.js' %}"></script>
-
-</body>
-
-</html>
+{% endblock %}

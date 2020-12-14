@@ -8,7 +8,7 @@ theme = PagesConfig.theme
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-	template_name = theme + '/homebase.html'
+	template_name = theme + '/home.html'
 	webpage_name = "Home"
 	webpage_description = "Leniko jewelry home page"
 
@@ -42,7 +42,7 @@ def contact_view(request, *args, **kwargs):
 	return render(request, template_name, context)
 
 def dev_view(request, *args, **kwargs):
-	template_name = theme + '/shopbase.html'
+	template_name = theme + '/home.html'
 	webpage_name = "Test"
 	webpage_description = "Leniko jewelry test page"
 

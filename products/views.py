@@ -10,7 +10,7 @@ from pages.apps import PagesConfig
 theme = PagesConfig.theme
 
 def product_list_view(request):
-	template_name = theme +'/shopbase.html'
+	template_name = theme +'/shop.html'
 	webpage_name = "Shop"
 	webpage_description = "Leniko jewelry shop page"
 

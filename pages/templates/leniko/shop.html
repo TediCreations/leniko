@@ -56,16 +56,12 @@
 
     {% block content %}
 
-    {% include './homebase/topbar.html' %}
-    {% include './homebase/header.html' %}
-    {% include './homebase/slider.html' %}
+    {% include './shopbase/header.html' %}
+    {% include './shopbase/breadcrumbs.html' %}
+    {% include './shopbase/productFilters.html' %}
+    {% include './base/footer2.html' %}
 
-    {% include './homebase/saleBanner.html' %}
-    {% include './homebase/categoryBanner.html' %}
-
-    {% include './homebase/productsSection.html' %}
     {% include './base/modal.html' %}
-    {% include './homebase/footer1.html' %}
 
     {% endblock %}
 

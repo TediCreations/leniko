@@ -1,0 +1,40 @@
+{% load static %}
+
+<ul>
+  <li><a href="/"><span class="menu-text">Home</span></a>
+  </li>
+  <li><a href="/shop"><span class="menu-text">Shop</span></a>
+    <ul class="sub-menu">
+      <li>
+        <a href="/shop"><span class="menu-text">Material</span></a>
+        <ul class="sub-menu">
+          <li><a href="#"><span class="menu-text">Macrame</span></a></li>
+          <li><a href="#"><span class="menu-text">Silver 925</span></a></li>
+          <li><a href="#"><span class="menu-text">Bronze</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/shop"><span class="menu-text">Categories</span></a>
+        <ul class="sub-menu">
+          <li><a href="#"><span class="menu-text">Rings</span></a></li>
+          <li><a href="#"><span class="menu-text">Earrings</span></a></li>
+          <li><a href="#"><span class="menu-text">Bracelets</span></a></li>
+          <li><a href="#"><span class="menu-text">Necklaces</span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="/contact"><span class="menu-text">Contact</span></a>
+  </li>
+  <li><a href="/about"><span class="menu-text">About</span></a>
+  </li>
+  {% if request.user.is_superuser %}
+  <li class="has-children"><a href="/dev"><span class="menu-text"><p style="color:red;" >Development</p></span></a>
+    <ul class="sub-menu">
+      <li><a href="#"><span class="menu-text">Test</span></a></li>
+    </ul>
+  </li>
+  <li><a href="/admin" target="_blank"><span class="menu-text"><p style="color:red;" >Admin</p></span></a>
+  </li>
+  {% endif %}
+</ul>

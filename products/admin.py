@@ -79,6 +79,20 @@ class ProductAdmin(admin.ModelAdmin):
 	#	return False
 	#	#return super().has_change_permission(request, obj=obj)
 
+	def activate(modeladmin, request, queryset):
+		l = len(queryset)
+		for product in queryset:
+			product.isActive = True
+			product.save()
+		messages.add_message(request, messages.INFO, f"Activated {l} products.")
+
+
+	def deactivate(modeladmin, request, queryset):
+		l = len(queryset)
+		for product in queryset:
+			product.isActive = False
+			product.save()
+		messages.add_message(request, messages.INFO, f"Deactivated {l} products.")
 
 	def export(modeladmin, request, queryset):
 		"""Action to export selected products"""
@@ -202,7 +216,7 @@ class ProductAdmin(admin.ModelAdmin):
 	list_display = ('photo_tag', 'getTitle', 'sku', 'isFeatured', 'isActive', 'price', 'jewelry')
 
 	#ordering = ['isFeatured']
-	actions = [export]
+	actions = [activate, deactivate, export]
 
 	fieldsets = [
 		("Product info", {

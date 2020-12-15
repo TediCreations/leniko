@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+from distutils.util import strtobool
 from dotenv import load_dotenv, find_dotenv
 
 from django.utils.crypto import get_random_string
@@ -46,9 +46,10 @@ if SECRET_KEY is None:
 	print("Food has no salt!")
 	exit()
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', False)
-
+DEBUG = bool(strtobool(DEBUG))
 
 ALLOWED_HOSTS = []
 if DEBUG is False:
@@ -58,7 +59,6 @@ if DEBUG is False:
 		"lenikojewelry.com",
 		"tedicreations.pythonanywhere.com"
 	]
-
 
 # Application definition
 
@@ -74,6 +74,10 @@ INSTALLED_APPS = [
 	'products'
 ]
 
+if DEBUG is True:
+	INSTALLED_APPS.append('debug_toolbar')
+
+
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
@@ -83,6 +87,9 @@ MIDDLEWARE = [
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG is True:
+	MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 ROOT_URLCONF = 'leniko.urls'
 
@@ -158,3 +165,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # User uploaded files
 MEDIA_URL  = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+INTERNAL_IPS = []
+
+if DEBUG is True:
+	INTERNAL_IPS.append('127.0.0.1')

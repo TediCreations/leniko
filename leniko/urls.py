@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls    import path
 from django.urls    import include
 
+
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -37,8 +38,13 @@ urlpatterns = [
 	path('admin/'   , admin.site.urls      , name='admin'),
 
 	path('dev/'     , dev_view             , name='dev'),
+
 ]
 
+if settings.DEBUG is True:
+	import debug_toolbar
+	urlpatterns.append(path('debug/' , include(debug_toolbar.urls))
+)
 
 if settings.DEBUG:
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

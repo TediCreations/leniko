@@ -68,11 +68,13 @@ INSTALLED_APPS = [
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
 	'django.contrib.messages',
-	'django.contrib.staticfiles',
 
 	'pages',
 	'products'
 ]
+
+if DEBUG is True:
+	INSTALLED_APPS.append('django.contrib.staticfiles')
 
 if DEBUG is True:
 	INSTALLED_APPS.append('debug_toolbar')

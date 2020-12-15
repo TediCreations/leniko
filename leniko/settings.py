@@ -48,7 +48,7 @@ if SECRET_KEY is None:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', False)
+DEBUG = os.environ.get('DJANGO_DEBUG', "False")
 DEBUG = bool(strtobool(DEBUG))
 
 ALLOWED_HOSTS = []

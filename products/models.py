@@ -107,9 +107,13 @@ class Product(AbstractModel):
 		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry)
 		return len(obj)
 
+	def getPrevObject(self):
+		obj = Product.objects.get_prev_by_number(Product, id=self.id)
+		return obj
+
 	def getNextObject(self):
 		obj = Product.objects.get_next_by_number(Product, id=self.id)
-		return self
+		return obj
 
 	def getInfo(self):
 		return self.jewelry.getInfo()

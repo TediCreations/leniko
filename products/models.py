@@ -61,6 +61,17 @@ class Product(AbstractModel):
 			txt = "/static/img/jewelry-placeholder.jpg"
 		return f"{txt}"
 
+	def getPhoto(self):
+		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()
+		try:
+			p = obj.photo
+		except IndexError:
+			p = None
+		except AttributeError:
+			p = None
+		return p
+
+
 	def getPhotoList(self):
 		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority")
 		l = list()

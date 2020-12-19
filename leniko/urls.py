@@ -43,7 +43,7 @@ urlpatterns = [
 
 if settings.DEBUG is True:
 	import debug_toolbar
-	urlpatterns.append(path('__debug__/' , include(debug_toolbar.urls)))
+	urlpatterns.append(path('debug/' , include(debug_toolbar.urls)))
 
 if settings.DEBUG is True:
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

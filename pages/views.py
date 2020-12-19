@@ -42,11 +42,11 @@ def contact_view(request, *args, **kwargs):
 	return render(request, template_name, context)
 
 def dev_view(request, *args, **kwargs):
-	template_name = theme + '/home.html'
+	template_name = theme + '/dev.html'
 	webpage_name = "Test"
 	webpage_description = "Leniko jewelry test page"
 
-	objList = Product.objects.filter(isActive = True)
+	objList = Product.objects.all()
 
 	context = {
 		"webpage_name":        webpage_name,

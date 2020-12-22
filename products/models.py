@@ -108,11 +108,11 @@ class Product(AbstractModel):
 		return len(obj)
 
 	def getPrevObject(self):
-		obj = Product.objects.get_prev_by_number(Product, id=self.id)
+		obj = Product.objects.filter(id__lt=self.id).order_by('id').last()
 		return obj
 
 	def getNextObject(self):
-		obj = Product.objects.get_next_by_number(Product, id=self.id)
+		obj = Product.objects.filter(id__gt=self.id).order_by('id').first()
 		return obj
 
 	def getInfo(self):

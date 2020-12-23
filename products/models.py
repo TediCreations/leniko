@@ -56,9 +56,9 @@ class Product(AbstractModel):
 		try:
 			txt = obj.photo.url
 		except IndexError:
-			txt = "/static/img/jewelry-placeholder.jpg"
+			txt = "/static/img/shop/placeholder.jpg"
 		except AttributeError:
-			txt = "/static/img/jewelry-placeholder.jpg"
+			txt = "/static/img/shop/placeholder.jpg"
 		return f"{txt}"
 
 	def getPhoto(self):

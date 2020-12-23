@@ -8,8 +8,8 @@
         <span class="onsale">-13%</span>
         <span class="hot">hot</span>
       </span>
-      <img src="{{obj.getPhotoUrl}}" alt="Product Image">
       <!-- 328x437 -->
+      <img src="{{obj.getPhotoUrl}}" alt="Product Image">
       <img class="image-hover " src="{% static 'img/shop/product/328x437.jpg' %}" alt="Product Image">
     </a>
     <!--
@@ -37,11 +37,9 @@
       -->
     </span>
     <div class="product-buttons">
+      <a href="{{obj.get_absolute_url}}" class="product-button hintT-top" data-hint="View"><i class="fal fa-eye"></i></a>
       <!--
       <a href="#quickViewModal" data-toggle="modal" class="product-button hintT-top" data-hint="Quick View"><i class="fal fa-search"></i></a>
-      -->
-      <a href="{{obj.getPhotoUrl}}" data-toggle="modal" class="product-button hintT-top" data-hint="Quick View"><i class="fal fa-search"></i></a>
-      <!--
       <a href="#" class="product-button hintT-top" data-hint="Add to Cart"><i class="fal fa-shopping-cart"></i></a>
       <a href="#" class="product-button hintT-top" data-hint="Compare"><i class="fal fa-random"></i></a>
       {% if request.user.is_superuser %}

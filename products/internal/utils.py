@@ -1,8 +1,11 @@
 import random
 
-from django.db   import models
+from django.core.exceptions import FieldDoesNotExist
+from django.db              import models
+
 from enum        import Enum
 from itertools   import chain
+
 
 
 class AbstractModel(models.Model):
@@ -22,7 +25,7 @@ class AbstractModel(models.Model):
 			try:
 				cls._meta.get_field(key)
 				sanitizedDictionary[key] = value
-			except models.FieldDoesNotExist:
+			except FieldDoesNotExist:
 				pass
 
 		# Create instance

@@ -1,12 +1,25 @@
 import random
 from django.shortcuts import render
+
 from .apps import PagesConfig
 
 from products.models import Product
 
 theme = PagesConfig.theme
 
-# Create your views here.
+
+def handler404(request, *args, **argv):
+	template_name = theme + '/404.html'
+	request.status_code = 404
+	return render(request, template_name, None)
+
+
+def handler500(request, *args, **argv):
+	template_name = theme + '/500.html'
+	request.status_code = 500
+	return render(request, template_name, None)
+
+
 def home_view(request, *args, **kwargs):
 	template_name = theme + '/home.html'
 	webpage_name = "Home"
@@ -21,6 +34,7 @@ def home_view(request, *args, **kwargs):
 	}
 	return render(request, template_name, context)
 
+
 def about_view(request, *args, **kwargs):
 	template_name = theme + '/about.html'
 	webpage_name = "About"
@@ -31,6 +45,7 @@ def about_view(request, *args, **kwargs):
 	}
 	return render(request, template_name, context)
 
+
 def contact_view(request, *args, **kwargs):
 	template_name = theme + '/contact.html'
 	webpage_name = "Contact"
@@ -40,6 +55,7 @@ def contact_view(request, *args, **kwargs):
 		"webpage_description": webpage_description,
 	}
 	return render(request, template_name, context)
+
 
 def dev_view(request, *args, **kwargs):
 	template_name = theme + '/dev.html'

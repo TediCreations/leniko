@@ -1,0 +1,27 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include './shopbase/header.html' %}
+
+<!-- 404 Section Start -->
+<div class="section-404 section" data-bg-image="{% static 'img/bg-404.jpg' %}">
+  <div class="container">
+    <div class="content-404">
+      <h1 class="title">Oops!</h1>
+      <h2 class="sub-title">Page not found!</h2>
+      <p>You could either go back or go to homepage</p>
+      <div class="buttons">
+        <a class="btn btn-primary btn-outline-hover-dark" href="/">Go back</a>
+        <a class="btn btn-dark btn-outline-hover-dark" href="/">Homepage</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 404 Section End -->
+
+
+{% include './base/footer2.html' %}
+
+{% endblock %}

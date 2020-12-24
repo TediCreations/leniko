@@ -24,8 +24,10 @@ from django.conf.urls.static import static
 from pages.views import home_view
 from pages.views import about_view
 from pages.views import contact_view
-from pages.views import dev_view
 
+from pages.views import dev_view
+from pages.views import handler404
+from pages.views import handler500
 
 urlpatterns = [
 	path(''         , home_view            , name='home'),
@@ -37,8 +39,12 @@ urlpatterns = [
 	path('admin/'   , admin.site.urls      , name='admin'),
 
 	path('dev/'     , dev_view             , name='dev'),
-
+	path('dev/404'  , handler404           , name='dev'),
+	path('dev/500'  , handler500           , name='dev'),
 ]
+
+handler404 = 'pages.views.handler404'
+handler500 = 'pages.views.handler500'
 
 if settings.DEBUG is True:
 	import debug_toolbar

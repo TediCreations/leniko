@@ -81,7 +81,7 @@ class Product(AbstractModel):
 			l.append(d)
 			number += 1
 		if len(l) is 0:
-			d = { "no": 1, "url": "/static/img/jewelry-placeholder.jpg", "priority": 0}
+			d = { "no": 1, "url": "/static/img/shop/placeholder.jpg", "priority": 0}
 			l.append(d)
 		return l
 

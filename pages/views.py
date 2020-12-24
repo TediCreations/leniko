@@ -9,15 +9,35 @@ theme = PagesConfig.theme
 
 
 def handler404(request, *args, **argv):
-	template_name = theme + '/404.html'
+	template_name = theme + '/error.html'
+	webpage_name = "404"
+	webpage_description = "404 error"
+
+	context = {
+		"webpage_name":        webpage_name,
+		"webpage_description": webpage_description,
+		"previousUrl":         request.META.get('HTTP_REFERER'),
+		"Message":             "The page you requested cannot be found!",
+	}
+
 	request.status_code = 404
-	return render(request, template_name, None)
+	return render(request, template_name, context)
 
 
 def handler500(request, *args, **argv):
-	template_name = theme + '/500.html'
+	template_name = theme + '/error.html'
+	webpage_name = "500"
+	webpage_description = "500 error"
+
+	context = {
+		"webpage_name":        webpage_name,
+		"webpage_description": webpage_description,
+		"previousUrl":         request.META.get('HTTP_REFERER'),
+		"Message":             "Server error! We are informed!",
+	}
+
 	request.status_code = 500
-	return render(request, template_name, None)
+	return render(request, template_name, context)
 
 
 def home_view(request, *args, **kwargs):

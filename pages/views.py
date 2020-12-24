@@ -90,3 +90,14 @@ def dev_view(request, *args, **kwargs):
 		"objList":             objList
 	}
 	return render(request, template_name, context)
+
+def dev_form(request, *args, **kwargs):
+	template_name = theme + '/dev/form.html'
+	webpage_name = "Test"
+	webpage_description = "Leniko jewelry test page"
+
+	context = {
+		"webpage_name":        webpage_name,
+		"webpage_description": webpage_description,
+	}
+	return render(request, template_name, context)

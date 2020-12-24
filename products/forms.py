@@ -1,21 +1,53 @@
 from django import forms
-#from .models import Product
+
+from .internal.enum import GroupEnum
+from .internal.enum import StoneEnum
+from .internal.enum import ColorEnum
 
 
 class ProductForm(forms.Form):
-    # Basic information
-    title       = forms.CharField()
-    #brief       = forms.TextField(blank=True, null=True)
-    #photo       = forms.ImageField(upload_to='static/uploads/', default='static/img/tedi.png')
-    #description = forms.TextField(blank=True, null=True)
+	sku        = forms.CharField()
+	price      = forms.FloatField()
+	isFeatured = forms.BooleanField(required=False, initial=False)
+	isActive   = forms.BooleanField(required=False, initial=True)
 
-    # Shop
-    #featured    = forms.BooleanField()
-    #price       = forms.DecimalField()
-    #group       = EnumChoiceField(GroupEnum, default=GroupEnum.N)
-    #quantity    = forms.DecimalField()
 
-    # Material
-    #metal       = EnumChoiceField(MetalEnum, default=MetalEnum.N)
-    #platting    = EnumChoiceField(PlattingEnum, default=PlattingEnum.N)
-    #macrame     = forms.BooleanField()
+class JewelryCommonForm(ProductForm):
+	title       = forms.CharField(max_length=120)
+	brief       = forms.CharField(required=False)
+	description = forms.CharField(required=False)
+	stone       = forms.ChoiceField(choices = StoneEnum.choices(), initial=StoneEnum.N)
+	color       = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
+	macrame     = forms.BooleanField(required=False, initial=False)
+
+
+class BraceletForm(JewelryCommonForm):
+	group        = forms.ChoiceField(widget=forms.HiddenInput(), choices = GroupEnum.choices(), initial=GroupEnum.BR.value)
+	diameter_max = forms.FloatField(required=False, initial=None) # in cm
+	diameter_min = forms.FloatField(required=False, initial=None) # in cm
+	width_max    = forms.FloatField(required=False, initial=None) # in cm
+	width_min    = forms.FloatField(required=False, initial=None) # in cm
+	isAdjustable = forms.BooleanField(required=False, initial=True)
+
+
+class NecklaceForm(JewelryCommonForm):
+	group        = forms.ChoiceField(widget=forms.HiddenInput(), choices = GroupEnum.choices(), initial=GroupEnum.NE.value)
+	length       = forms.FloatField(required=False, initial=None) # in cm
+	width_max    = forms.FloatField(required=False, initial=None) # in cm
+	width_min    = forms.FloatField(required=False, initial=None) # in cm
+	isAdjustable = forms.BooleanField(required=False, initial=True)
+
+
+class RingForm(JewelryCommonForm):
+	group         = forms.ChoiceField(widget=forms.HiddenInput(), choices = GroupEnum.choices(), initial=GroupEnum.RI.value)
+	circumference = forms.FloatField(required=False, initial=None) # in mm
+	width_max     = forms.FloatField(required=False, initial=None) # in cm
+	width_min     = forms.FloatField(required=False, initial=None) # in cm
+	isAdjustable  = forms.BooleanField(required=False, initial=True)
+
+
+class EarringForm(JewelryCommonForm):
+	group     = forms.ChoiceField(widget=forms.HiddenInput(), choices = GroupEnum.choices(), initial=GroupEnum.EA.value)
+	heigth    = forms.FloatField(required=False, initial=None) # in cm
+	width_max = forms.FloatField(required=False, initial=None) # in cm
+	width_min = forms.FloatField(required=False, initial=None) # in cm

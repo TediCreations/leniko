@@ -27,6 +27,7 @@ from pages.views import contact_view
 
 from pages.views import dev_view
 from pages.views import dev_form
+from pages.views import handler400
 from pages.views import handler404
 from pages.views import handler500
 
@@ -41,10 +42,12 @@ urlpatterns = [
 
 	path('dev/'     , dev_view             , name='dev'),
 	path('dev/form' , dev_form             , name='dev'),
+	path('dev/400'  , handler400           , name='dev'),
 	path('dev/404'  , handler404           , name='dev'),
 	path('dev/500'  , handler500           , name='dev'),
 ]
 
+handler400 = 'pages.views.handler400'
 handler404 = 'pages.views.handler404'
 handler500 = 'pages.views.handler500'
 

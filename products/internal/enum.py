@@ -23,6 +23,9 @@ class GroupEnum(Enum):
 		v = [e for e in GroupEnum]
 		return random.choice(v)
 
+	def choices():
+		return [(e.value, e.value) for e in GroupEnum]
+
 
 class MaterialEnum(Enum):
 	N    = "None"
@@ -42,6 +45,9 @@ class MaterialEnum(Enum):
 		v = [e for e in MaterialEnum]
 		return random.choice(v)
 
+	def choices():
+		return [(e.value, e.value) for e in MaterialEnum]
+
 
 class PlattingEnum(Enum):
 	N  = "Not platted"
@@ -59,6 +65,9 @@ class PlattingEnum(Enum):
 		v = [e for e in PlattingEnum]
 		return random.choice(v)
 
+	def choices():
+		return [(e.value, e.value) for e in PlattingEnum]
+
 
 class FinishEnum(Enum):
 	N = "None"
@@ -75,6 +84,9 @@ class FinishEnum(Enum):
 	def random():
 		v = [e for e in FinishEnum]
 		return random.choice(v)
+
+	def choices():
+		return [(e.value, e.value) for e in FinishEnum]
 
 
 class StoneEnum(Enum):
@@ -98,6 +110,9 @@ class StoneEnum(Enum):
 		v = [e for e in StoneEnum]
 		return random.choice(v)
 
+	def choices():
+		return [(e.value, e.value) for e in StoneEnum]
+
 
 class ColorEnum(Enum):
 	N  = "None"
@@ -117,5 +132,8 @@ class ColorEnum(Enum):
 		return ColorEnum.N
 
 	def random():
-            v = [e for e in ColorEnum]
-            return random.choice(v)
+		v = [e for e in ColorEnum]
+		return random.choice(v)
+
+	def choices():
+		return [(e.value, e.value) for e in ColorEnum]

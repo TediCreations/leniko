@@ -1,8 +1,19 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
+from django.shortcuts               import render
+from django.shortcuts               import get_object_or_404
+from django.contrib.auth.decorators import user_passes_test
+from django.http                    import HttpResponseRedirect
+from django.http                    import HttpResponseBadRequest
+from django.http                    import HttpResponseServerError
 
-from .forms import ProductForm
+from .forms  import RingForm
+from .forms  import EarringForm
+from .forms  import NecklaceForm
+from .forms  import BraceletForm
+
 from .models import Product
+from .models import ProductTool
+
+from .internal.enum import GroupEnum
 
 from pages.apps import PagesConfig
 
@@ -43,7 +54,7 @@ def product_list_view(request):
 
 
 def product_detail_view(request, id):
-	template_name = theme +'/product-details.html'
+	template_name = theme + '/product-details.html'
 	webpage_name = "Product list"
 	obj = get_object_or_404(Product, id=id)
 	context = {
@@ -53,29 +64,64 @@ def product_detail_view(request, id):
 	return render(request, template_name, context)
 
 
-def product_create_view(request):
-	webpage_name = "New product"
-	if request.method == "POST":
-		print( "\n\nMETHOD IS POST!\n\n" )
-		template_name = theme +'/products/list.html'
-		title = request.POST.get("title")
-		print("Title: {}\n\n".format(title))
-		#objList = Product.objects.all()
-		objList = Product.objects.filter(title = title)
-		context = {
-			"webpage_name": webpage_name,
-			"objList":      objList
-		}
-	else:
-		print( "\n\nMETHOD IS GET!\n\n" )
-		template_name = theme +'/products/create.html'
-		form = ProductForm(request.POST or None)
-		if form.is_valid():
-			form.save()
-			form = ProductForm(request.POST or None)
+@user_passes_test(lambda u: u.is_superuser)
+def product_create_view(request, *args, **kwargs):
 
-		context = {
-			"webpage_name": webpage_name,
-			"form":         form
-		}
+	group = "None"
+
+	msg = None
+	if request.method == 'POST':
+		msg = request.POST
+		group = request.POST.get('group')
+		if group == GroupEnum.RI.value:
+			form = RingForm(request.POST or None)
+		elif group == GroupEnum.BR.value:
+			form = BraceletForm(request.POST or None)
+		elif group == GroupEnum.NE.value:
+			form = NecklaceForm(request.POST or None)
+		elif group == GroupEnum.EA.value:
+			form = EarringForm(request.POST or None)
+		else:
+			form = None
+			return HttpResponseBadRequest()
+
+		if form.is_valid():
+			d = dict(form.cleaned_data)
+			print( d)
+
+			try:
+				obj = ProductTool.create(d)
+				obj.save()
+			except Exception:
+				return HttpResponseServerError()
+
+			return HttpResponseRedirect(obj.get_absolute_url())
+
+	else:
+		group = request.GET.get('group')
+
+		form = None
+		if group == GroupEnum.RI.value:
+			form = RingForm()
+		elif group == GroupEnum.BR.value:
+			form = BraceletForm()
+		elif group == GroupEnum.NE.value:
+			form = NecklaceForm()
+		elif group == GroupEnum.EA.value:
+			form = EarringForm()
+		else:
+			form = None
+			return HttpResponseBadRequest()
+
+	template_name = theme + '/product-create.html'
+	webpage_name = "Create product"
+	webpage_description = "Leniko jewelry create product"
+
+	context = {
+		"webpage_name":        webpage_name,
+		"webpage_description": webpage_description,
+		"message":             msg,
+		"form":                form,
+		"group":               group
+	}
 	return render(request, template_name, context)

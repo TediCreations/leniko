@@ -3,9 +3,25 @@ from django.shortcuts import render
 
 from .apps import PagesConfig
 
-from products.models import Product
+from products.models        import Product
 
 theme = PagesConfig.theme
+
+
+def handler400(request, *args, **argv):
+	template_name = theme + '/error.html'
+	webpage_name = "400"
+	webpage_description = "400 error"
+
+	context = {
+		"webpage_name":        webpage_name,
+		"webpage_description": webpage_description,
+		"previousUrl":         request.META.get('HTTP_REFERER'),
+		"Message":             "Bad request!",
+	}
+
+	request.status_code = 400
+	return render(request, template_name, context)
 
 
 def handler404(request, *args, **argv):

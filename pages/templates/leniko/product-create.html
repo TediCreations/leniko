@@ -1,0 +1,56 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include './shopbase/header.html' %}
+
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static '/img/shop/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="page-title">
+          <h1 class="title">Create {{group}}</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/product">Product</a></li>
+            <li class="breadcrumb-item active">Create {{group}}</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Title/Header End -->
+
+
+{% if message != None %}
+<div class="section section-fluid section-padding pt-0">
+  <div class="container">
+    <p>
+      <br>
+      {{message}}
+    </p>
+  </div>
+</div>
+{% endif %}
+
+
+<div class="section section-fluid section-padding pt-0">
+  <div class="container">
+
+    <br>
+    <form method='POST'> {% csrf_token %}
+      {{ form.as_p }}
+      <input type='submit' value='Create new'>
+    </form>
+
+  </div>
+</div>
+
+{% include './base/footer2.html' %}
+
+{% endblock %}

@@ -70,15 +70,15 @@ def registerJewelryVariation():
 	# Jewelry Variation
 	dictionary["material"]     = MaterialEnum.random()
 	dictionary["platting"]     = PlattingEnum.random()
-	dictionary["group"]        = GroupEnum.random()
+	dictionary["group"]        = GroupEnum.random().value
 
-	dictionary["heigth"]        = int(random.uniform(0, 999))
-	dictionary["length"]        = int(random.uniform(0, 999))
-	dictionary["circumference"] = int(random.uniform(0, 999))
-	dictionary["width_max"]     = int(random.uniform(0, 999))
-	dictionary["width_min"]     = int(random.uniform(0, 999))
-	dictionary["diameter_max"]  = int(random.uniform(0, 999))
-	dictionary["diameter_min"]  = int(random.uniform(0, 999))
+	dictionary["heigth"]        = str(int(random.uniform(0, 999)))
+	dictionary["length"]        = str(int(random.uniform(0, 999)))
+	dictionary["circumference"] = str(int(random.uniform(0, 999)))
+	dictionary["width_max"]     = str(int(random.uniform(0, 999)))
+	dictionary["width_min"]     = str(int(random.uniform(0, 999)))
+	dictionary["diameter_max"]  = str(int(random.uniform(0, 999)))
+	dictionary["diameter_min"]  = str(int(random.uniform(0, 999)))
 	dictionary["isAdjustable"]  = random_bool()
 
 	dictionary["photos"]        = getRandomPhotoList("pages/static/delete/jewel2/")

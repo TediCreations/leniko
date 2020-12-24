@@ -133,6 +133,7 @@ class ProductTool():
 
 		# Get group so as to decide
 		def getGroupClass(group):
+			group = GroupEnum.str2Enum(group)
 			if group == GroupEnum.N:
 				#raise Exception("Group is None")
 				print("Group is None")
@@ -178,6 +179,8 @@ class ProductTool():
 			earring  = None
 			necklace = None
 			ring     = None
+
+			group = GroupEnum.str2Enum(group)
 			if group == GroupEnum.N:
 				#raise Exception("Group is None")
 				print("Group is None")
@@ -197,6 +200,7 @@ class ProductTool():
 		if isBaseJewelryRegistered is True:
 			# So jewelryGroup is SHOULD  also be available
 			def locateJewelryGroup(group, jewelryObj):
+				group = GroupEnum.str2Enum(group)
 				if group == GroupEnum.N:
 					#raise Exception("Group is None")
 					print("Group is None")
@@ -266,7 +270,7 @@ class ProductTool():
 			i += 1
 
 			try:
-				jewelryPhotoObj.photo.save(f'{dictionary["group"].value}_{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
+				jewelryPhotoObj.photo.save(f'{dictionary["group"]}_{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
 				#jewelryPhotoObj.save()
 			except Exception:
 				raise Exception("Could not save {photo}")

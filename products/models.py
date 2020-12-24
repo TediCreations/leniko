@@ -27,7 +27,7 @@ from .internal.enum   import ColorEnum
 class Product(AbstractModel):
 	#sku       = https://getshogun.com/learn/sku-generator | https://en.wikipedia.org/wiki/Stock_keeping_unit
 	sku        = models.TextField(blank=False, null=False)
-	price      = models.FloatField()
+	price      = models.FloatField(blank=False, null=False)
 	isFeatured = models.BooleanField(default=False)
 	isActive   = models.BooleanField(default=True)
 	jewelry    = models.OneToOneField(Jewelry, on_delete=models.CASCADE, primary_key=False)
@@ -122,7 +122,83 @@ class Product(AbstractModel):
 		db_table = 'Product'
 
 
+
+
+
+
+import os
+import random
+
+def getRandomPhotoList(static_dir):
+	n = int(random.uniform(0, 9))
+	photoList = list()
+	for i in range(n):
+		url = random.choice([x for x in os.listdir(static_dir) if os.path.isfile(os.path.join(static_dir, x))])
+		baseUrl = os.path.join(static_dir, url)
+		photoList.append(baseUrl)
+	return photoList
+
+def getRandomColorList():
+	n = int(random.uniform(0, 5))
+	colorList = list()
+	for i in range(n):
+		color = ColorEnum.random()
+		colorList.append(color)
+	return colorList
+
+
 class ProductTool():
+
+	def createFromForm(form):
+
+		def getDictValue(d, key, default=None):
+			try:
+				v = d[key]
+			except Exception:
+				v = default
+
+			return v
+
+		d = dict(form.cleaned_data)
+		#print( d)
+
+		dictionary = dict()
+
+		# Product
+		#dictionary["sku"]          = "?"
+		dictionary["price"]         = d["price"]
+		dictionary["isFeatured"]    = d["isFeatured"]
+		dictionary["isActive"]      = d["isActive"]
+
+		# Jewelry Common
+		dictionary["title"]         = d['title']
+		dictionary["brief"]         = d['brief']
+		dictionary["description"]   = d['description']
+		dictionary["stone"]         = StoneEnum.str2Enum(d['stone'])
+		dictionary["macrame"]       = d['macrame']
+		dictionary["color"]         = ColorEnum.str2Enum(d['color'])
+
+		# Jewelry Variation
+		dictionary["material"]     = MaterialEnum.str2Enum(d['material'])
+		dictionary["platting"]     = PlattingEnum.str2Enum(d['platting'])
+		dictionary["group"]        = GroupEnum.str2Enum(d['group'])
+
+		dictionary["heigth"]        = getDictValue(d, 'heigth')
+		dictionary["length"]        = getDictValue(d, 'length')
+		dictionary["circumference"] = getDictValue(d, 'circumference')
+		dictionary["width_max"]     = getDictValue(d, 'width_max')
+		dictionary["width_min"]     = getDictValue(d, 'width_min')
+		dictionary["diameter_max"]  = getDictValue(d, 'diameter_max')
+		dictionary["diameter_min"]  = getDictValue(d, 'diameter_min')
+		dictionary["isAdjustable"]  = getDictValue(d, 'isAdjustable')
+
+		dictionary["photos"]        = getRandomPhotoList("pages/static/delete/jewel2/")
+		dictionary["colors"]        = getRandomColorList()
+
+		return ProductTool.create(dictionary)
+
+		#return dictionary
+
 
 	def create(dictionary):
 		className = __class__.__name__
@@ -133,7 +209,6 @@ class ProductTool():
 
 		# Get group so as to decide
 		def getGroupClass(group):
-			group = GroupEnum.str2Enum(group)
 			if group == GroupEnum.N:
 				#raise Exception("Group is None")
 				print("Group is None")
@@ -180,7 +255,6 @@ class ProductTool():
 			necklace = None
 			ring     = None
 
-			group = GroupEnum.str2Enum(group)
 			if group == GroupEnum.N:
 				#raise Exception("Group is None")
 				print("Group is None")
@@ -200,7 +274,6 @@ class ProductTool():
 		if isBaseJewelryRegistered is True:
 			# So jewelryGroup is SHOULD  also be available
 			def locateJewelryGroup(group, jewelryObj):
-				group = GroupEnum.str2Enum(group)
 				if group == GroupEnum.N:
 					#raise Exception("Group is None")
 					print("Group is None")
@@ -270,7 +343,7 @@ class ProductTool():
 			i += 1
 
 			try:
-				jewelryPhotoObj.photo.save(f'{dictionary["group"]}_{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
+				jewelryPhotoObj.photo.save(f'{dictionary["group"].value}_{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
 				#jewelryPhotoObj.save()
 			except Exception:
 				raise Exception("Could not save {photo}")
@@ -310,3 +383,5 @@ class ProductTool():
 
 		print(f"Created {productObj}")
 		print(productObj.to_txt())
+
+		return productObj

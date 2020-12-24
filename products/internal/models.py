@@ -1,7 +1,8 @@
 #from enum        import Enum
 
-from django.db   import models
-from django.urls import reverse
+from django.core.exceptions import ValidationError
+from django.db              import models
+from django.urls            import reverse
 
 from django_enum_choices.fields import EnumChoiceField
 
@@ -61,10 +62,10 @@ class JewelryCommon(AbstractModel):
 
 
 class Bracelet(JewelryCommon):
-	diameter_max = models.FloatField() # in cm
-	diameter_min = models.FloatField() # in cm
-	width_max    = models.FloatField() # in cm
-	width_min    = models.FloatField() # in cm
+	diameter_max = models.FloatField(blank=True, null=True) # in cm
+	diameter_min = models.FloatField(blank=True, null=True) # in cm
+	width_max    = models.FloatField(blank=True, null=True) # in cm
+	width_min    = models.FloatField(blank=True, null=True) # in cm
 	isAdjustable = models.BooleanField(default=True)
 
 	def getInfo(self):
@@ -79,9 +80,9 @@ class Bracelet(JewelryCommon):
 
 
 class Necklace(JewelryCommon):
-	length       = models.FloatField() # in cm
-	width_max    = models.FloatField() # in cm
-	width_min    = models.FloatField() # in cm
+	length       = models.FloatField(blank=True, null=True) # in cm
+	width_max    = models.FloatField(blank=True, null=True) # in cm
+	width_min    = models.FloatField(blank=True, null=True) # in cm
 	isAdjustable = models.BooleanField(default=True)
 
 	def getInfo(self):
@@ -95,9 +96,9 @@ class Necklace(JewelryCommon):
 
 
 class Ring(JewelryCommon):
-	circumference = models.FloatField() # in mm
-	width_max     = models.FloatField() # in cm
-	width_min     = models.FloatField() # in cm
+	circumference = models.FloatField(blank=True, null=True) # in mm
+	width_max     = models.FloatField(blank=True, null=True) # in cm
+	width_min     = models.FloatField(blank=True, null=True) # in cm
 	isAdjustable  = models.BooleanField(default=True)
 
 	def getInfo(self):
@@ -111,9 +112,9 @@ class Ring(JewelryCommon):
 
 
 class Earring(JewelryCommon):
-	heigth    = models.FloatField() # in cm
-	width_max = models.FloatField() # in cm
-	width_min = models.FloatField() # in cm
+	heigth    = models.FloatField(blank=True, null=True) # in cm
+	width_max = models.FloatField(blank=True, null=True) # in cm
+	width_min = models.FloatField(blank=True, null=True) # in cm
 
 	def getInfo(self):
 		#info = dict()

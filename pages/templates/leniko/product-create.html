@@ -12,11 +12,19 @@
       <div class="col">
 
         <div class="page-title">
+          {% if group != None %}
           <h1 class="title">Create {{group}}</h1>
+          {% else %}
+          <h1 class="title">Create</h1>
+          {% endif %}
+
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/product">Product</a></li>
-            <li class="breadcrumb-item active">Create {{group}}</li>
+            {% if group != None %}
+            <li class="breadcrumb-item"><a href="/product?group={{group|lower}}">{{group}}</a></li>
+            {% endif %}
+            <li class="breadcrumb-item active">Create</li>
           </ul>
         </div>
 
@@ -26,6 +34,7 @@
 </div>
 <!-- Page Title/Header End -->
 
+{% if group != None %}
 
 {% if message != None %}
 <div class="section section-fluid section-padding pt-0">
@@ -50,6 +59,19 @@
 
   </div>
 </div>
+
+{% else %}
+
+<div class="section section-fluid section-padding pt-0">
+  <div class="container">
+    <a href="/product/create?group=Ring">Create Ring</a>
+    <a href="/product/create?group=Bracelet">Create Bracelet</a>
+    <a href="/product/create?group=Earring">Create Earring</a>
+    <a href="/product/create?group=Necklace">Create Necklace</a>
+  </div>
+</div>
+
+{% endif %}
 
 {% include './base/footer2.html' %}
 

@@ -3,6 +3,8 @@ from django import forms
 from .internal.enum import GroupEnum
 from .internal.enum import StoneEnum
 from .internal.enum import ColorEnum
+from .internal.enum import MaterialEnum
+from .internal.enum import PlattingEnum
 
 
 class ProductForm(forms.Form):
@@ -13,12 +15,15 @@ class ProductForm(forms.Form):
 
 
 class JewelryCommonForm(ProductForm):
-	title       = forms.CharField(max_length=120)
+	title       = forms.CharField(max_length=120, min_length=1)
 	brief       = forms.CharField(required=False)
 	description = forms.CharField(required=False)
 	stone       = forms.ChoiceField(choices = StoneEnum.choices(), initial=StoneEnum.N)
 	color       = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
 	macrame     = forms.BooleanField(required=False, initial=False)
+
+	material    = forms.ChoiceField(choices = MaterialEnum.choices(), initial=MaterialEnum.N)
+	platting    = forms.ChoiceField(choices = PlattingEnum.choices(), initial=PlattingEnum.N)
 
 
 class BraceletForm(JewelryCommonForm):

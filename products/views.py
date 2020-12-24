@@ -20,6 +20,7 @@ from pages.apps import PagesConfig
 
 theme = PagesConfig.theme
 
+
 def product_list_view(request):
 	template_name = theme +'/shop.html'
 	webpage_name = "Shop"
@@ -83,17 +84,15 @@ def product_create_view(request, *args, **kwargs):
 			form = EarringForm(request.POST or None)
 		else:
 			form = None
-			return HttpResponseBadRequest()
+			return HttpResponseBadRequest("Group is invalid")
 
 		if form.is_valid():
-			d = dict(form.cleaned_data)
-			print( d)
 
+			obj = None
 			try:
-				obj = ProductTool.create(d)
-				obj.save()
-			except Exception:
-				return HttpResponseServerError()
+				obj = ProductTool.createFromForm(form)
+			except Exception as e:
+				return HttpResponseServerError(e)
 
 			return HttpResponseRedirect(obj.get_absolute_url())
 
@@ -111,7 +110,6 @@ def product_create_view(request, *args, **kwargs):
 			form = EarringForm()
 		else:
 			form = None
-			return HttpResponseBadRequest()
 
 	template_name = theme + '/product-create.html'
 	webpage_name = "Create product"

@@ -31,7 +31,8 @@ django.setup()
 # Libraries to import
 #
 
-from populate import registerJewelryVariation
+from populate   import registerJewelryVariation
+from exportDocx import export2WholeSaleCatalog
 
 # ------------------------------------------------------------------------------
 # Tasks
@@ -48,13 +49,18 @@ def populate(ctx, number=10):
 		print("---------------------")
 		registerJewelryVariation()
 
-	print("Worked!")
 
+@task(help={
+	"filepath": "How generated document filepath."
+})
+def wholeSaleCatalog(ctx, filepath="wholesale.docx"):
+	"""Generate the wholesale catalog"""
+	export2WholeSaleCatalog(filepath)
 
 
 # ------------------------------------------------------------------------------
 # Add all tasks to the namespace
-ns = Collection(populate)
+ns = Collection(populate, wholeSaleCatalog)
 
 # Configure every task to act as a shell command (will print colors,
 # allow interactive CLI)

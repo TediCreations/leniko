@@ -24,6 +24,16 @@
       </li>
     </ul>
   </li>
+  {% if request.user.is_superuser %}
+  <li class="has-children"><a href="/product/create"><span class="menu-text"><p style="color:red;" >Work</p></span></a>
+    <ul class="sub-menu">
+      <li><a href="/product/create?group=Ring">    <span class="menu-text">Create Ring</span></a></li>
+      <li><a href="/product/create?group=Earring"> <span class="menu-text">Create Earring</span></a></li>
+      <li><a href="/product/create?group=Bracelet"><span class="menu-text">Create Bracelet</span></a></li>
+      <li><a href="/product/create?group=Necklace"><span class="menu-text">Create Necklace</span></a></li>
+    </ul>
+  </li>
+  {% endif %}
   <li><a href="/contact"><span class="menu-text">Contact</span></a>
   </li>
   <li><a href="/about"><span class="menu-text">About</span></a>

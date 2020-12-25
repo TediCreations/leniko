@@ -8,7 +8,6 @@ from .internal.enum import PlattingEnum
 
 
 class ProductForm(forms.Form):
-	sku        = forms.CharField()
 	price      = forms.FloatField()
 	isFeatured = forms.BooleanField(required=False, initial=False)
 	isActive   = forms.BooleanField(required=False, initial=True)
@@ -25,7 +24,7 @@ class JewelryCommonForm(ProductForm):
 	material    = forms.ChoiceField(choices = MaterialEnum.choices(), initial=MaterialEnum.N)
 	platting    = forms.ChoiceField(choices = PlattingEnum.choices(), initial=PlattingEnum.N)
 
-	photo2      = forms.ImageField()
+	photos      = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': True}))
 	#colors     = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
 
 

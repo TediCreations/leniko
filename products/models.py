@@ -149,7 +149,7 @@ def getRandomColorList():
 
 class ProductTool():
 
-	def createFromForm(form):
+	def createFromForm(d):
 
 		def getDictValue(d, key, default=None):
 			try:
@@ -158,9 +158,6 @@ class ProductTool():
 				v = default
 
 			return v
-
-		d = dict(form.cleaned_data)
-		#print( d)
 
 		dictionary = dict()
 
@@ -192,12 +189,48 @@ class ProductTool():
 		dictionary["diameter_min"]  = getDictValue(d, 'diameter_min')
 		dictionary["isAdjustable"]  = getDictValue(d, 'isAdjustable')
 
-		dictionary["photos"]        = getRandomPhotoList("pages/static/delete/jewel2/")
+		dictionary["photos"]        = d["photos"]
 		dictionary["colors"]        = getRandomColorList()
 
-		return ProductTool.create(dictionary)
 
-		#return dictionary
+		#tmp1 = dictionary["photos"]
+		#tmp2 = d["photos"]
+
+		"""
+		print("----------------------------------------------------------------------")
+		print("")
+		print("")
+		print("")
+		print(type(tmp1))
+		print(tmp1)
+		print("")
+		print(type(tmp2))
+		print(tmp2)
+		print("")
+		print("")
+		print("")
+		print("----------------------------------------------------------------------")
+		print("")
+		print("")
+		print("")
+		print(type(tmp1))
+		print(tmp1)
+		for i in tmp1:
+			print(type(i))
+			print(i)
+		print("")
+		print(type(tmp2))
+		print(tmp2)
+		for i in tmp2:
+			print(type(i))
+			print(i)
+		print("")
+		print("")
+		print("")
+		print("----------------------------------------------------------------------")
+		"""
+
+		return ProductTool.create(dictionary)
 
 
 	def create(dictionary):

@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts               import render
 from django.shortcuts               import get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
@@ -89,22 +91,44 @@ def product_create_view(request, *args, **kwargs):
 
 		if form.is_valid():
 
-			import os
-			def handle_uploaded_file(request, key, destPath):
-				if not os.path.exists(destPath):
-					os.mkdir(destPath)
-				f = request.FILES[key]
-				with open(os.path.join(destPath + str(f)), 'wb+') as destination:
-				#with open(destPath + str(f), 'wb+') as destination:
-					for chunk in f.chunks():
-						destination.write(chunk)
+			#def handle_uploaded_file(request, key, destPath):
+			#	os.makedirs(destPath, exist_ok = True)
+			#	f = None
+			#	try:
+			#		f = request.FILES[key]
+			#	except Exception as e:
+			#		return HttpResponseServerError(e)
+			#	with open(os.path.join(destPath + str(f)), 'wb+') as destination:
+			#	#with open(destPath + str(f), 'wb+') as destination:
+			#		for chunk in f.chunks():
+			#			destination.write(chunk)
+			#
+			#handle_uploaded_file(request, 'photo', os.path.join(BASE_DIR, "media/restapi/"))
 
-			handle_uploaded_file(request, 'photo2', os.path.join(BASE_DIR, "media/restapi/"))
+			def handle_multiuploaded_file(request, key, destPath):
+				filePathList = list()
+				os.makedirs(destPath, exist_ok = True)
+				f_list = request.FILES.getlist(key)
+				for f in f_list:
+					print(f"File: '{f}'")
+					filepath = os.path.join(destPath + str(f))
+					filePathList.append(filepath)
 
+					with open(os.path.join(destPath + str(f)), 'wb+') as destination:
+						for chunk in f.chunks():
+							destination.write(chunk)
+
+				return filePathList
+
+
+			d = dict(form.cleaned_data)
+
+			filePathList = handle_multiuploaded_file(request, 'photos', os.path.join(BASE_DIR, "media/restapi/"))
+			d['photos'] = filePathList
 
 			obj = None
 			try:
-				obj = ProductTool.createFromForm(form)
+				obj = ProductTool.createFromForm(d)
 			except Exception as e:
 				return HttpResponseServerError(e)
 

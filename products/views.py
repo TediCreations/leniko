@@ -15,7 +15,8 @@ from .models import ProductTool
 
 from .internal.enum import GroupEnum
 
-from pages.apps import PagesConfig
+from leniko.settings import BASE_DIR
+from pages.apps      import PagesConfig
 
 
 theme = PagesConfig.theme
@@ -75,18 +76,31 @@ def product_create_view(request, *args, **kwargs):
 		msg = request.POST
 		group = request.POST.get('group')
 		if group == GroupEnum.RI.value:
-			form = RingForm(request.POST or None)
+			form = RingForm(request.POST, request.FILES)
 		elif group == GroupEnum.BR.value:
-			form = BraceletForm(request.POST or None)
+			form = BraceletForm(request.POST, request.FILES)
 		elif group == GroupEnum.NE.value:
-			form = NecklaceForm(request.POST or None)
+			form = NecklaceForm(request.POST, request.FILES)
 		elif group == GroupEnum.EA.value:
-			form = EarringForm(request.POST or None)
+			form = EarringForm(request.POST, request.FILES)
 		else:
 			form = None
 			return HttpResponseBadRequest("Group is invalid")
 
 		if form.is_valid():
+
+			import os
+			def handle_uploaded_file(request, key, destPath):
+				if not os.path.exists(destPath):
+					os.mkdir(destPath)
+				f = request.FILES[key]
+				with open(os.path.join(destPath + str(f)), 'wb+') as destination:
+				#with open(destPath + str(f), 'wb+') as destination:
+					for chunk in f.chunks():
+						destination.write(chunk)
+
+			handle_uploaded_file(request, 'photo2', os.path.join(BASE_DIR, "media/restapi/"))
+
 
 			obj = None
 			try:

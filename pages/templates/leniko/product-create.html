@@ -63,14 +63,51 @@
 
 {% else %}
 
-<div class="section section-fluid section-padding pt-0">
+<!-- Create Section Start -->
+<div class="section section-fluid section-padding">
   <div class="container">
-    <a href="/product/create?group=Ring">Create Ring</a>
-    <a href="/product/create?group=Bracelet">Create Bracelet</a>
-    <a href="/product/create?group=Earring">Create Earring</a>
-    <a href="/product/create?group=Necklace">Create Necklace</a>
+    <div class="row row-cols-xl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 learts-mb-n30">
+
+      <div class="col learts-mb-30">
+        <div>
+          <a href="/product/create?group=Ring">
+            <!-- 370x370 -->
+            <img src="{% static 'img/create/ring.jpg' %}" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="col learts-mb-30">
+        <div>
+          <a href="/product/create?group=Bracelet">
+            <!-- 370x370 -->
+            <img src="{% static 'img/create/bracelet.jpg' %}" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="col learts-mb-30">
+        <div>
+          <a href="/product/create?group=Earring">
+            <!-- 370x370 -->
+            <img src="{% static 'img/create/earring.jpg' %}" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="col learts-mb-30">
+        <div>
+          <a href="/product/create?group=Necklace">
+            <!-- 370x370 -->
+            <img src="{% static 'img/create/necklace.jpg' %}" alt="">
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
+<!-- Create Section End -->
 
 {% endif %}
 

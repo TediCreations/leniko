@@ -161,8 +161,12 @@ class ProductTool():
 
 		dictionary = dict()
 
+		colors = list()
+		for sc in d["colors"]:
+			ec = ColorEnum.str2Enum(sc)
+			colors.append(ec)
+
 		# Product
-		#dictionary["sku"]          = "?"
 		dictionary["price"]         = d["price"]
 		dictionary["isFeatured"]    = d["isFeatured"]
 		dictionary["isActive"]      = d["isActive"]
@@ -190,45 +194,7 @@ class ProductTool():
 		dictionary["isAdjustable"]  = getDictValue(d, 'isAdjustable')
 
 		dictionary["photos"]        = d["photos"]
-		dictionary["colors"]        = getRandomColorList()
-
-
-		#tmp1 = dictionary["photos"]
-		#tmp2 = d["photos"]
-
-		"""
-		print("----------------------------------------------------------------------")
-		print("")
-		print("")
-		print("")
-		print(type(tmp1))
-		print(tmp1)
-		print("")
-		print(type(tmp2))
-		print(tmp2)
-		print("")
-		print("")
-		print("")
-		print("----------------------------------------------------------------------")
-		print("")
-		print("")
-		print("")
-		print(type(tmp1))
-		print(tmp1)
-		for i in tmp1:
-			print(type(i))
-			print(i)
-		print("")
-		print(type(tmp2))
-		print(tmp2)
-		for i in tmp2:
-			print(type(i))
-			print(i)
-		print("")
-		print("")
-		print("")
-		print("----------------------------------------------------------------------")
-		"""
+		dictionary["colors"]        = colors
 
 		return ProductTool.create(dictionary)
 

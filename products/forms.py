@@ -25,8 +25,8 @@ class JewelryCommonForm(ProductForm):
 	platting    = forms.ChoiceField(choices = PlattingEnum.choices(), initial=PlattingEnum.N)
 
 	photos      = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': True}))
+	colors      = forms.MultipleChoiceField(choices = ColorEnum.choices(), widget=forms.SelectMultiple())
 	#colors     = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
-
 
 class BraceletForm(JewelryCommonForm):
 	group        = forms.ChoiceField(widget=forms.HiddenInput(), choices = GroupEnum.choices(), initial=GroupEnum.BR.value)

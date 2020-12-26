@@ -36,49 +36,48 @@
       <div class="col-lg-6 col-12 learts-mb-40">
         <div class="product-images">
           <button class="product-gallery-popup hintT-left" data-hint="Click to enlarge" data-images='[
+
+            {% for image in obj.getPhotoList %}
+            {"src": "{{image.url}}", "w": 700, "h": 1100},
+            {% endfor %}
+
             {"src": "{% static 'img/shop/product/810x1080.jpg' %}", "w": 700, "h": 1100},
-            {"src": "{% static 'img/shop/product/810x1080.jpg' %}", "w": 700, "h": 1100},
-            {"src": "{% static 'img/shop/product/810x1080.jpg' %}", "w": 700, "h": 1100},
-            {"src": "{% static 'img/shop/product/810x1080.jpg' %}", "w": 700, "h": 1100}
+
+            {# Workaround fix for escaping the last comma(,) by providing an extra image only in preview #}
+            {"src": "{% static 'img/shop/placeholder.jpg' %}", "w": 700, "h": 1100}
             ]'><i class="far fa-expand"></i>
           </button>
           <!--
           <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="product-video-popup video-popup hintT-left" data-hint="Click to see video"><i class="fal fa-play"></i></a>
           -->
           <div class="product-gallery-slider">
+
+            {% for image in obj.getPhotoList %}
+            <!-- 810x1080 570x760 -->
+            <div class="product-zoom" data-image="{{image.url}}">
+              <img src="{{image.url}}" alt="">
+            </div>
+            {% endfor %}
+
             <!-- 810x1080 570x760 -->
             <div class="product-zoom" data-image="{% static 'img/shop/product/810x1080.jpg' %}">
               <img src="{% static 'img/shop/product/570x760.jpg' %}" alt="">
             </div>
-            <!-- 810x1080 570x760 -->
-            <div class="product-zoom" data-image="{% static 'img/shop/product/810x1080.jpg' %}">
-              <img src="{% static 'img/shop/product/570x760.jpg' %}" alt="">
-            </div>
-            <!-- 810x1080 570x760 -->
-            <div class="product-zoom" data-image="{% static 'img/shop/product/810x1080.jpg' %}">
-              <img src="{% static 'img/shop/product/570x760.jpg' %}" alt="">
-            </div>
-            <!-- 810x1080 570x760 -->
-            <div class="product-zoom" data-image="{% static 'img/shop/product/810x1080.jpg' %}">
-              <img src="{% static 'img/shop/product/570x760.jpg' %}" alt="">
-            </div>
+
           </div>
           <div class="product-thumb-slider">
+
+            {% for image in obj.getPhotoList %}
             <div class="item">
               <!-- 120x150 -->
-              <img src="{% static 'img/shop/product/120x150.jpg' %}" alt="">
+              <img src="{{image.url}}" alt="">
             </div>
+            {% endfor %}
+
             <div class="item">
               <!-- 120x150 -->
               <img src="{% static 'img/shop/product/120x150.jpg' %}" alt="">
-            </div>
-            <div class="item">
-              <!-- 120x150 -->
-              <img src="{% static 'img/shop/product/120x150.jpg' %}" alt="">
-            </div>
-            <div class="item">
-              <!-- 120x150 -->
-              <img src="{% static 'img/shop/product/120x150.jpg' %}" alt="">
+
             </div>
           </div>
         </div>
@@ -101,7 +100,7 @@
           </div>
           -->
           <h3 class="product-title">{{obj.getTitle}}</h3>
-          <div class="product-price">{{obj.price}} &euro;</div>
+          <div class="product-price">{{obj.price|floatformat:2}} &euro;</div>
           <div class="product-description">
             <p>{{obj.getDescription}}</p>
           </div>

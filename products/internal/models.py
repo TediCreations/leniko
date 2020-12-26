@@ -181,15 +181,16 @@ class JewelryGroup(AbstractModel):
 	def getDescription(self):
 		description = None
 		if self.group == GroupEnum.N:
-			description = "ERROR"
+			description = None
 		elif self.group == GroupEnum.BR:
-			description = f"{self.bracelet.description}"
+			description = self.bracelet.description
 		elif self.group == GroupEnum.NE:
-			description = f"{self.necklace.description}"
+			description = self.necklace.description
 		elif self.group == GroupEnum.RI:
-			description = f"{self.ring.description}"
+			description = self.ring.description
 		elif self.group == GroupEnum.EA:
-			description = f"{self.earring.description}"
+			description = self.earring.description
+
 		return description
 
 
@@ -275,7 +276,7 @@ class Jewelry(AbstractModel):
 		return f"{self.group.getBrief()}"
 
 	def getDescription(self):
-		return f"{self.group.getDescription()}"
+		return self.group.getDescription()
 
 	def getStone(self):
 		return f"{self.group.getStone()}"

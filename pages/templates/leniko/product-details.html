@@ -1,5 +1,6 @@
 {% extends './base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block content %}
 
@@ -35,13 +36,15 @@
       <!-- Product Images Start -->
       <div class="col-lg-6 col-12 learts-mb-40">
         <div class="product-images">
+
           <button class="product-gallery-popup hintT-left" data-hint="Click to enlarge" data-images='[
 
             {% for image in obj.getPhotoList %}
-            {"src": "{{image.url}}", "w": 700, "h": 1100},
+            {% thumbnail image.photo "810x1080" crop="center" padding=True quality=100 upscale=True as im %}
+            {# 810x1080 #}
+            {"src": "{{im.url}}", "w": 700, "h": 1100},
+            {% endthumbnail %}
             {% endfor %}
-
-            {"src": "{% static 'img/shop/product/810x1080.jpg' %}", "w": 700, "h": 1100},
 
             {# Workaround fix for escaping the last comma(,) by providing an extra image only in preview #}
             {"src": "{% static 'img/shop/placeholder.jpg' %}", "w": 700, "h": 1100}
@@ -53,32 +56,29 @@
           <div class="product-gallery-slider">
 
             {% for image in obj.getPhotoList %}
-            <!-- 810x1080 570x760 -->
-            <div class="product-zoom" data-image="{{image.url}}">
-              <img src="{{image.url}}" alt="">
+            {% thumbnail image.photo "810x1080" crop="center" padding=True quality=80 upscale=True as im %}
+            <!-- 810x1080 -->
+            <div class="product-zoom" data-image="{{im.url}}">
+              {% endthumbnail %}
+              {% thumbnail image.photo "570x760" crop="center" padding=True quality=80 upscale=True as im %}
+              <!-- 570x760 -->
+              <img src="{{im.url}}" alt="">
+              {% endthumbnail %}
             </div>
             {% endfor %}
-
-            <!-- 810x1080 570x760 -->
-            <div class="product-zoom" data-image="{% static 'img/shop/product/810x1080.jpg' %}">
-              <img src="{% static 'img/shop/product/570x760.jpg' %}" alt="">
-            </div>
 
           </div>
           <div class="product-thumb-slider">
 
             {% for image in obj.getPhotoList %}
             <div class="item">
+              {% thumbnail image.photo "120x150" crop="center" padding=True quality=80 upscale=True as im %}
               <!-- 120x150 -->
-              <img src="{{image.url}}" alt="">
+              <img src="{{im.url}}" alt="">
+              {% endthumbnail %}
             </div>
             {% endfor %}
 
-            <div class="item">
-              <!-- 120x150 -->
-              <img src="{% static 'img/shop/product/120x150.jpg' %}" alt="">
-
-            </div>
           </div>
         </div>
       </div>

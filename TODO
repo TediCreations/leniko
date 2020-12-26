@@ -2,9 +2,11 @@
 
 # Planning
 
-- PostGreSql or MySql instead of sqlite
-- Pagination system
+- Images
+  - Zoom
 - Thumbnails (Redis)
+- Pagination system
+- PostGreSql or MySql instead of sqlite
 - Django storages(Dropbox, Amazon, Azure)
 
 

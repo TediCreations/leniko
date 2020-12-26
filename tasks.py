@@ -31,8 +31,9 @@ django.setup()
 # Libraries to import
 #
 
-from populate   import registerJewelryVariation
-from exportDocx import export2WholeSaleCatalog
+from populate       import registerJewelryVariation
+from exportDocx     import export2WholeSaleCatalog
+from importProducts import importData
 
 # ------------------------------------------------------------------------------
 # Tasks
@@ -51,16 +52,24 @@ def populate(ctx, number=10):
 
 
 @task(help={
-	"filepath": "How generated document filepath."
+	"filepath": "Out document filepath."
 })
 def wholeSaleCatalog(ctx, filepath="wholesale.docx"):
 	"""Generate the wholesale catalog"""
 	export2WholeSaleCatalog(filepath)
 
 
+@task(help={
+	"dirpath": "Input directory path."
+})
+def importProducts(ctx, dirpath=None):
+	"""Import products to db"""
+	importData(dirpath)
+
+
 # ------------------------------------------------------------------------------
 # Add all tasks to the namespace
-ns = Collection(populate, wholeSaleCatalog)
+ns = Collection(populate, wholeSaleCatalog, importProducts)
 
 # Configure every task to act as a shell command (will print colors,
 # allow interactive CLI)

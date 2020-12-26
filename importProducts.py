@@ -212,6 +212,10 @@ def fprint(f):
 
 def importData(sourceDir):
 
+	if not isinstance(sourceDir, str):
+		print(f"Please give a valid directory path")
+		exit()
+
 	if not os.path.isdir(sourceDir):
 		print(f"{sourceDir} is missing")
 		exit()

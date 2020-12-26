@@ -123,31 +123,6 @@ class Product(AbstractModel):
 		db_table = 'Product'
 
 
-
-
-
-
-import os
-import random
-
-def getRandomPhotoList(static_dir):
-	n = int(random.uniform(0, 9))
-	photoList = list()
-	for i in range(n):
-		url = random.choice([x for x in os.listdir(static_dir) if os.path.isfile(os.path.join(static_dir, x))])
-		baseUrl = os.path.join(static_dir, url)
-		photoList.append(baseUrl)
-	return photoList
-
-def getRandomColorList():
-	n = int(random.uniform(0, 5))
-	colorList = list()
-	for i in range(n):
-		color = ColorEnum.random()
-		colorList.append(color)
-	return colorList
-
-
 class ProductTool():
 
 	def createFromForm(d):

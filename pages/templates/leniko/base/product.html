@@ -14,7 +14,10 @@
       </span>
       <!-- 328x437 -->
       <img src="{{obj.getPhotoUrl}}" alt="Product Image">
-      <img class="image-hover " src="{% static 'img/shop/product/328x437.jpg' %}" alt="Product Image">
+      {% if obj.getNoOfPhotos > 1 %}
+      <!-- 328x437 -->
+      <img class="image-hover " src="{{obj.getPhotoList.1.url}}" alt="Product Zoom Image">
+      {% endif %}
     </a>
     <!--
     <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>

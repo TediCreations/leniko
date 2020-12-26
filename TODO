@@ -2,8 +2,6 @@
 
 # Planning
 
-- Images
-  - Zoom
 - Thumbnails (Redis)
 - Pagination system
 - PostGreSql or MySql instead of sqlite

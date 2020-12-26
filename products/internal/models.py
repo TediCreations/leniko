@@ -323,7 +323,7 @@ class JewelryColor(AbstractModel):
 	jewelry = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return f"{self.jewelry} | {self.color.value}"
+		return f"{self.jewelry} | {self.color.value['name']}"
 
 	def getPhotoUrl(self):
 		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()

@@ -205,7 +205,7 @@ class ColorEnum(Enum):
 	@staticmethod
 	def str2Enum(s):
 		for e in ColorEnum:
-			if s == e.value:
+			if s == e.value['name']:
 				return e
 		return ColorEnum.N
 

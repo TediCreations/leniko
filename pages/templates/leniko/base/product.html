@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load thumbnail %}
+
 <div class="product">
   <div class="product-thumb">
     <a href="{{ obj.get_absolute_url }}" class="image">
@@ -12,11 +14,23 @@
         <span class="hot">hot</span>
         {% endif %}
       </span>
+
+      {% thumbnail obj.getPhoto "328x437" crop="center" padding=True quality=80 upscale=True as im %}
+      <!-- 328x437 -->
+      <img src="{{im.url}}" loading="lazy" alt="Product Image">
+      <!--
+      <img src="{{obj.getPhotoUrl}}" alt="Product Image">
+      -->
+      {% empty %}
       <!-- 328x437 -->
       <img src="{{obj.getPhotoUrl}}" alt="Product Image">
+      {% endthumbnail %}
+
       {% if obj.getNoOfPhotos > 1 %}
+      {% thumbnail obj.getPhotoList.1.photo "328x437" crop="center" padding=True quality=80 upscale=True as im %}
       <!-- 328x437 -->
-      <img class="image-hover " src="{{obj.getPhotoList.1.url}}" alt="Product Zoom Image">
+      <img class="image-hover" src="{{im.url}}" alt="Product Zoom Image">
+      {% endthumbnail %}
       {% endif %}
     </a>
     <!--

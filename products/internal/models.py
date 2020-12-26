@@ -5,6 +5,7 @@ from django.db              import models
 from django.urls            import reverse
 
 from django_enum_choices.fields import EnumChoiceField
+from sorl.thumbnail             import ImageField
 
 from .enum  import GroupEnum
 from .enum  import MaterialEnum
@@ -305,7 +306,8 @@ class Jewelry(AbstractModel):
 
 
 class JewelryPhoto(AbstractModel):
-	photo    = models.ImageField(upload_to='img/jewelryPhoto', blank=False)
+	#photo   = models.ImageField(upload_to='img/jewelryPhoto', blank=False)
+	photo    = ImageField(upload_to='img/jewelryPhoto', blank=False)
 	jewelry  = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
 	priority = models.DecimalField(decimal_places=0, max_digits=2)
 

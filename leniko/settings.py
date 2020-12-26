@@ -69,6 +69,8 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 
+	'sorl.thumbnail',
+
 	'pages',
 	'products'
 ]

@@ -9,11 +9,13 @@
 {% for obj in objList %}
 <ul>
   <li>{{obj}}</li>
-  <img src="{{ obj.getPhoto.url }}" loading="lazy" width="500">
-  {% thumbnail obj.getPhoto "500" padding_color="#123456" crop="center" padding=True as im %}
-  <img src="{{ im.url }}" loading="lazy" width="{{ im.width }}">
+  <!--
+  <img src="{{ obj.getPhoto.url }}" loading="lazy" width="328">
+  -->
+  {% thumbnail obj.getPhoto "328x437" padding_color="#123456" crop="center" padding=True quality=80 as im %}
+  <img src="{{ im.url }}" loading="lazy" width="{{ im.width }}" heigth="{{ im.heigth }}">
   {% empty %}
-  <img src="{% static 'img/shop/placeholder.jpg' %}">
+  <img src="{% static 'img/shop/placeholder.jpg' %}" loading="lazy" width="{{ im.width }}" heigth="{{ im.heigth }}">
   {% endthumbnail %}
 </ul>
 {% endfor %}

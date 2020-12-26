@@ -13,8 +13,10 @@
           <div class="isotope-filter shop-product-filter" data-target="#shop-products">
             <button class="active" data-filter="*">all</button>
             <button data-filter=".featured">Featured</button>
+            <!--
             <button data-filter=".new">New</button>
             <button data-filter=".sales">Sales</button>
+            -->
           </div>
         </div>
         <!-- Isotop Filter End -->
@@ -151,7 +153,10 @@
         <div class="grid-item col sales featured">
         <div class="grid-item col sales new">
         -->
-        <div class="grid-item col featured">
+        <div class="grid-item col 
+                    {% if obj.isFeatured %}featured{% endif %}
+                    ">
+
           {% include './product.html' %}
         </div>
         {% endfor %}

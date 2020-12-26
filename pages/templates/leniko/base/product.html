@@ -4,9 +4,13 @@
   <div class="product-thumb">
     <a href="{{ obj.get_absolute_url }}" class="image">
       <span class="product-badges">
-        <span class="outofstock"><i class="fal fa-frown"></i></span>
+        <!--
+        <span class="outofstock"><i class="fal fa-truck"></i></span>
         <span class="onsale">-13%</span>
+        -->
+        {% if obj.isFeatured %}
         <span class="hot">hot</span>
+        {% endif %}
       </span>
       <!-- 328x437 -->
       <img src="{{obj.getPhotoUrl}}" alt="Product Image">

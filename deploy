@@ -6,7 +6,9 @@
 #workon leniko
 
 # Fetch new
-git pull origin master
+GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+git pull origin "${GIT_BRANCH}"
 pip install -r requirements.txt
 
 rm -rf static

@@ -53,7 +53,7 @@ admin.site.register(Jewelry, JewelryAdmin)
 
 class JewelryPhotoAdmin(admin.ModelAdmin):
 	def photo_tag(self, obj):
-		return format_html(f'<img src="{obj.photo}" width="35" height="35" >')
+		return format_html(f'<img src="{obj.photo.url}" width="35" height="35" >')
 	photo_tag.short_description = 'Photo'
 
 	list_display = ('photo_tag', 'priority', 'jewelry')
@@ -66,7 +66,13 @@ class JewelryColorAdmin(admin.ModelAdmin):
 		return format_html(f'<img src="{obj.getPhotoUrl()}" width="35" height="35" >')
 	photo_tag.short_description = 'Photo'
 
-	list_display = ('photo_tag', 'color', 'jewelry')
+	def color_tag(self, obj):
+		name  = obj.color.value["name"]
+		#value = obj.color.value["value"]
+		return format_html(f'<div>{name}</div>')
+	color_tag.short_description = 'Color'
+
+	list_display = ('photo_tag', 'color_tag', 'jewelry')
 
 admin.site.register(JewelryColor, JewelryColorAdmin)
 

@@ -81,7 +81,7 @@ def registerJewelryVariation():
 	dictionary["diameter_min"]  = int(random.uniform(0, 999))
 	dictionary["isAdjustable"]  = random_bool()
 
-	dictionary["photos"]        = getRandomPhotoList("pages/static/delete/jewel2/")
+	dictionary["photos"]        = getRandomPhotoList("pages/static/delete/jewel3/")
 	dictionary["colors"]        = getRandomColorList()
 
 	# Invalid

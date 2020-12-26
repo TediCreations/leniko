@@ -2,7 +2,6 @@ import random
 from enum import Enum
 
 from django.db import models
-from django_enum_choices.fields import EnumChoiceField
 
 
 class GroupEnum(Enum):
@@ -145,53 +144,62 @@ class StoneEnum(Enum):
 		return [(e.value, e.value) for e in StoneEnum]
 
 
+def createColor(name, hexValue):
+	d = dict()
+	d["name"]  = name
+	d["value"] = hexValue
+
+	return d
+
 class ColorEnum(Enum):
 
-	N                = "None"
-	BLACK            = "Black"            #000000
-	DARK_SLATE_GRAY  = "Dark Slate Gray"  #2F4F4F
-	SLATE_GRAY       = "Slate Gray"       #708090
-	GRAY             = "Gray"             #808080
-	SILVER           = "Silver"           #C0C0C0
-	IVORY            = "Ivory"            #FFFFF0
-	BEIGE            = "Beige"            #F5F5DC
-	WHITE            = "White"            #FFFFFF
-	DARK_RED         = "Dark Red"         #A52A2A
-	SADDLE_BROWN     = "Saddle Brown"     #8B4513
-	SIENNA           = "Sienna"           #A0522D
-	DARK_BLUE        = "Dark Blue"        #00008B
-	ROYAL_BLUE       = "Royal Blue"       #4169E1
-	LIGHT_SKY_BLUE   = "Light Sky Blue"   #87CEFA
-	CADET_BLUE       = "Cadet Blue"       #5F9EA0
-	TURQUOISE        = "Turquoise"        #40E0D0
-	AQUAMARINE       = "Aquamarine"       #7FFFD4
-	LIGHT_CYAN       = "Light Cyan"       #E0FFFF
-	TEAL             = "Teal"             #008080
-	LIGHT_SEA_GREEN  = "Light Sea Green"  #20B2AA
-	DARK_SEA_GREEN   = "Dark Sea Green"   #8FBC8B
-	DARK_OLIVE_GREEN = "Dark Olive Green" #556B2F
-	OLIVE            = "Olive"            #808000
-	DARK_GREEN       = "Dark Green"       #006400
-	GREEN            = "Green"            #008000
-	FOREST_GREEN     = "Forest Green"     #228B22
-	SEA_GREEN        = "Sea Green"        #2E8B57
-	EMERALD          = "Emerald"          #50C878
-	INDIGO           = "Indigo"           #4B0082
-	PURPLE           = "Purple"           #800080
-	DARK_VIOLET      = "Dark Violet"      #9400D3
-	DARK_KHAKI       = "Dark Khaki"       #BDB76B
-	GOLD             = "Gold"             #FFD700
-	YELLOW           = "Yellow"           #FFFF00
-	ORANGE           = "Orange"           #FFA500
-	DARK_ORANGE      = "Dark Orange"      #FF8C00
-	ORANGE_RED       = "Orange Red"       #FF4500
-	CORAL            = "Coral"            #FF7F50
-	LIGHT_SALMON     = "Light Salmon"     #FFA07A
-	PINK             = "Pink"             #FFC0CB
-	FIRE_BRICK       = "Fire Brick"       #B22222
-	RED              = "Red"              #FF0000
-	SALMON           = "Salmon"           #FA8072
-	INDIAN_RED       = "Indian Red"       #CD5C5C
+	N                = createColor("None",             "#ffffff")
+
+	BLACK            = createColor("Black",            "#000000")
+	DARK_SLATE_GRAY  = createColor("Dark Slate Gray",  "#2F4F4F")
+	SLATE_GRAY       = createColor("Slate Gray",       "#708090")
+	GRAY             = createColor("Gray",             "#808080")
+
+	SILVER           = createColor("Silver",           "#C0C0C0")
+	IVORY            = createColor("Ivory",            "#FFFFF0")
+	BEIGE            = createColor("Beige",            "#F5F5DC")
+	WHITE            = createColor("White",            "#FFFFFF")
+	DARK_RED         = createColor("Dark Red",         "#A52A2A")
+	SADDLE_BROWN     = createColor("Saddle Brown",     "#8B4513")
+	SIENNA           = createColor("Sienna",           "#A0522D")
+	DARK_BLUE        = createColor("Dark Blue",        "#00008B")
+	ROYAL_BLUE       = createColor("Royal Blue",       "#4169E1")
+	LIGHT_SKY_BLUE   = createColor("Light Sky Blue",   "#87CEFA")
+	CADET_BLUE       = createColor("Cadet Blue",       "#5F9EA0")
+	TURQUOISE        = createColor("Turquoise",        "#40E0D0")
+	AQUAMARINE       = createColor("Aquamarine",       "#7FFFD4")
+	LIGHT_CYAN       = createColor("Light Cyan",       "#E0FFFF")
+	TEAL             = createColor("Teal",             "#008080")
+	LIGHT_SEA_GREEN  = createColor("Light Sea Green",  "#20B2AA")
+	DARK_SEA_GREEN   = createColor("Dark Sea Green",   "#8FBC8B")
+	DARK_OLIVE_GREEN = createColor("Dark Olive Green", "#556B2F")
+	OLIVE            = createColor("Olive",            "#808000")
+	DARK_GREEN       = createColor("Dark Green",       "#006400")
+	GREEN            = createColor("Green",            "#008000")
+	FOREST_GREEN     = createColor("Forest Green",     "#228B22")
+	SEA_GREEN        = createColor("Sea Green",        "#2E8B57")
+	EMERALD          = createColor("Emerald",          "#50C878")
+	INDIGO           = createColor("Indigo",           "#4B0082")
+	PURPLE           = createColor("Purple",           "#800080")
+	DARK_VIOLET      = createColor("Dark Violet",      "#9400D3")
+	DARK_KHAKI       = createColor("Dark Khaki",       "#BDB76B")
+	GOLD             = createColor("Gold",             "#FFD700")
+	YELLOW           = createColor("Yellow",           "#FFFF00")
+	ORANGE           = createColor("Orange",           "#FFA500")
+	DARK_ORANGE      = createColor("Dark Orange",      "#FF8C00")
+	ORANGE_RED       = createColor("Orange Red",       "#FF4500")
+	CORAL            = createColor("Coral",            "#FF7F50")
+	LIGHT_SALMON     = createColor("Light Salmon",     "#FFA07A")
+	PINK             = createColor("Pink",             "#FFC0CB")
+	FIRE_BRICK       = createColor("Fire Brick",       "#B22222")
+	RED              = createColor("Red",              "#FF0000")
+	SALMON           = createColor("Salmon",           "#FA8072")
+	INDIAN_RED       = createColor("Indian Red",       "#CD5C5C")
 
 
 	@staticmethod
@@ -208,4 +216,4 @@ class ColorEnum(Enum):
 
 
 	def choices():
-		return [(e.value, e.value) for e in ColorEnum]
+		return [(e.value, e.value['name']) for e in ColorEnum]

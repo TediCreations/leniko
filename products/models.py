@@ -91,7 +91,7 @@ class Product(AbstractModel):
 		l = list()
 		number = 1
 		primaryColor = self.jewelry.getPrimaryColor()
-		if primaryColor is not "None":
+		if primaryColor['name'] is not "None":
 			d = { "no": number, "color": primaryColor}
 			l.append(d)
 			number += 1
@@ -101,6 +101,7 @@ class Product(AbstractModel):
 				d = { "no": number, "color": secondaryColor}
 				l.append(d)
 				number += 1
+
 		return l
 
 	def getNoOfPhotos(self):

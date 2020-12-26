@@ -17,8 +17,9 @@
     -->
     <div class="product-options">
       <ul class="colors">
-        <li style="background-color: #000000;">color one</li>
-        <li style="background-color: #b2483c;">color two</li>
+        {% for color in obj.getColorList %}
+        <li style="background-color: {{color.color.value}};">{{color.color.name}}</li>
+        {% endfor %}
       </ul>
       <ul class="sizes">
         <li>Large</li>

@@ -224,15 +224,15 @@ class JewelryGroup(AbstractModel):
 	def getPrimaryColor(self):
 		color = None
 		if self.group == GroupEnum.N:
-			color = "ERROR"
+			color = None
 		elif self.group == GroupEnum.BR:
-			color = f"{self.bracelet.color.value}"
+			color = self.bracelet.color.value
 		elif self.group == GroupEnum.NE:
-			color = f"{self.necklace.color.value}"
+			color = self.necklace.color.value
 		elif self.group == GroupEnum.RI:
-			color = f"{self.ring.color.value}"
+			color = self.ring.color.value
 		elif self.group == GroupEnum.EA:
-			color = f"{self.earring.color.value}"
+			color = self.earring.color.value
 		return color
 
 	class Meta:

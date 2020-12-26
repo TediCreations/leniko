@@ -124,9 +124,13 @@
                   <td class="label"><span>Color</span></td>
                   <td class="value">
                     <div class="product-colors">
-                      <a href="#" data-bg-color="#000000"></a>
-                      <a href="#" data-bg-color="#ffffff"></a>
-                    </div>
+                      {% for color in obj.getColorList %}
+                      <!--
+                      <a href="#" data-bg-color="{{color.color.value}}"></a>
+                      -->
+                      <a data-bg-color="{{color.color.value}}"></a>
+                      {% endfor %}
+                      </div>
                   </td>
                 </tr>
                 <!--

@@ -13,7 +13,7 @@
   {% thumbnail obj.getPhoto "500" padding_color="#123456" crop="center" padding=True as im %}
   <img src="{{ im.url }}" loading="lazy" width="{{ im.width }}">
   {% empty %}
-  <img src="{% static 'img/jewelry-placeholder.jpg' %}">
+  <img src="{% static 'img/shop/placeholder.jpg' %}">
   {% endthumbnail %}
 </ul>
 {% endfor %}

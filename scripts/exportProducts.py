@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 
 import os
+import errno
 import shutil
 
-import django
-
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "leniko.settings")
-django.setup()
-
+from leniko.settings import BASE_DIR
 
 from products.internal.enum import ColorEnum
 
@@ -32,7 +28,12 @@ def bool2YesNo(b):
 	else:
 		return "No"
 
-def export(baseDirPath):
+def exportData(baseDirPath):
+
+	if not isinstance(baseDirPath, str):
+		print("Please give a valid directory path")
+		exit()
+
 	#-----------------------------------------------------------------------
 	# Queries
 	products = Product.objects.all()
@@ -97,7 +98,7 @@ def export(baseDirPath):
 		d['description'] = product.jewelry.getDescription()
 		d['stone']       = product.jewelry.getStone()
 		d['macrame']     = product.jewelry.getMacrame()
-		d['color']       = product.jewelry.getPrimaryColor() # Primary
+		d['color']       = product.jewelry.getPrimaryColor()['name'] # Primary
 
 		d['material']    = product.jewelry.getMaterial()
 		d['platting']    = product.jewelry.getPlatting()
@@ -120,7 +121,7 @@ def export(baseDirPath):
 			j = 1
 			for photo in JewelryPhoto.objects.filter(jewelry=variation).order_by("priority"):
 				pd = dict()
-				pd['path']     = os.path.join(os.getcwd(), str(photo.photo))
+				pd['path']     = str(photo.photo.url)
 				pd['priority'] = photo.priority
 				d['photos'].append(pd)
 				j += 1
@@ -128,7 +129,8 @@ def export(baseDirPath):
 			# Colors
 			for color in JewelryColor.objects.filter(jewelry=variation): #.order_by("priority")
 				if color.color is not ColorEnum.N:
-					d['colors'] += color.color.value + ", "
+					colorName = color.color.value['name']
+					d['colors'] += colorName + ", "
 
 			def rchop(s, suffix):
 				if suffix and s.endswith(suffix):
@@ -190,7 +192,7 @@ def export(baseDirPath):
 		# Copy photos
 		for photo in d['photos']:
 			no = photo['priority']
-			sourcePhotoPath = os.path.join(os.getcwd(), photo['path'])
+			sourcePhotoPath = BASE_DIR + photo['path']
 			extension = os.path.splitext(sourcePhotoPath)[1]
 			destinationPhotoPath = os.path.join(jewelryVariationDirPath, str(no) + "_" + "photo" + extension)
 
@@ -198,7 +200,7 @@ def export(baseDirPath):
 				shutil.copyfile(sourcePhotoPath, destinationPhotoPath)
 				pass
 			except IOError:
-				print(f"Failed to copy to '{destinationPhotoPath}'.")
+				print(f"Failed to copy '{sourcePhotoPath}' to '{destinationPhotoPath}'.")
 				break
 
 		# Write info.txt
@@ -271,12 +273,3 @@ def export(baseDirPath):
 	os.sync()
 	txt = f"Exported {productLen} products to {baseDirPath} successfully."
 	print(txt)
-
-def main():
-	#baseDirPath = os.path.join(os.getcwd(), "static/export/")
-	baseDirPath = "/tmp/lenikoExport"
-
-	export(baseDirPath)
-
-if __name__ == "__main__":
-	main()

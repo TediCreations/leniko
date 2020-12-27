@@ -36,6 +36,7 @@ django.setup()
 from scripts.populate       import registerJewelryVariation
 from scripts.exportDocx     import export2WholeSaleCatalog
 from scripts.importProducts import importData
+from scripts.exportProducts import exportData
 
 
 # ------------------------------------------------------------------------------
@@ -66,13 +67,21 @@ def wholeSaleCatalog(ctx, filepath="wholesale.docx"):
 	"dirpath": "Input directory path."
 })
 def importProducts(ctx, dirpath=None):
-	"""Import products to db"""
+	"""Imports products to db"""
 	importData(dirpath)
+
+
+@task(help={
+	"dirpath": "Output directory path."
+})
+def exportProducts(ctx, dirpath="/tmp/lenikoExport"):
+	"""Exports products from db"""
+	exportData(dirpath)
 
 
 # ------------------------------------------------------------------------------
 # Add all tasks to the namespace
-ns = Collection(populate, wholeSaleCatalog, importProducts)
+ns = Collection(populate, wholeSaleCatalog, importProducts, exportProducts)
 
 # Configure every task to act as a shell command (will print colors,
 # allow interactive CLI)

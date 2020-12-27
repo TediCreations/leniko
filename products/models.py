@@ -1,7 +1,9 @@
 from django.db   import models
 from django.urls import reverse
-from django.core.files import File
-from django.core.exceptions import ValidationError
+
+from django.core.files          import File
+from django.core.exceptions     import ValidationError
+
 from django_enum_choices.fields import EnumChoiceField
 
 from .internal.models import Jewelry
@@ -21,7 +23,6 @@ from .internal.enum   import PlattingEnum
 from .internal.enum   import FinishEnum
 from .internal.enum   import StoneEnum
 from .internal.enum   import ColorEnum
-
 
 
 class Product(AbstractModel):

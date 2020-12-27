@@ -1,7 +1,6 @@
 # TODO
 
-- Organize invoke tasks in scripts directory
-- Pagination system
+- Common utilities
 - PostGreSql or MySql instead of sqlite
 - Django storages(Dropbox, Amazon, Azure)
 - Thumbnails (Redis)

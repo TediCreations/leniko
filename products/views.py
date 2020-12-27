@@ -1,8 +1,10 @@
 import os
 
+from django.core.paginator          import Paginator
 from django.shortcuts               import render
 from django.shortcuts               import get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
+from django.http                    import Http404
 from django.http                    import HttpResponseRedirect
 from django.http                    import HttpResponseBadRequest
 from django.http                    import HttpResponseServerError
@@ -24,13 +26,26 @@ from pages.apps      import PagesConfig
 theme = PagesConfig.theme
 
 
+
 def product_list_view(request):
 	template_name = theme +'/shop.html'
 	webpage_name = "Shop"
 	webpage_description = "Leniko jewelry shop page"
 
+	page_num = 1
+	if request.method == 'GET':
+		raw_page_num = request.GET.get('page')
+		if raw_page_num is not None:
+			try:
+				page_num = int(raw_page_num)
+			except Exception:
+				raise Http404("Invalid page number")
+
+	# --------------------------------------------------
+	# Objects
 	#objList = Product.objects.all()
-	objList = Product.objects.filter(isActive = True)
+	objList = Product.objects.filter(isActive = True).order_by('sku')
+
 
 	#featured = request.GET.get("featured")
 	#if featured:
@@ -48,12 +63,26 @@ def product_list_view(request):
 	#if price_min:
 	#    objList = objList.filter(price__gte = price_min )
 
+	# --------------------------------------------------
+	# Pagination
+	productsPerPage = 5
+	productPager = Paginator(objList, productsPerPage)
+
+	if 1 > page_num or page_num > productPager.num_pages:
+		raise Http404("Page does not exist")
+
+	objList = productPager.page(page_num).object_list
+	page = productPager.page(page_num)
+
+	# --------------------------------------------------
+	# Render
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
-		"objList":      objList
+		"objList":             objList,
+		"page":                page
 	}
-	print("\n")
+
 	return render(request, template_name, context)
 
 

@@ -18,6 +18,7 @@ import os
 
 from invoke import Collection, Config, Exit, task
 
+
 # ------------------------------------------------------------------------------
 # Connect with Django
 #
@@ -27,13 +28,15 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "leniko.settings")
 django.setup()
 
+
 # ------------------------------------------------------------------------------
 # Libraries to import
 #
 
-from scripts.populate   import registerJewelryVariation
-from scripts.exportDocx import export2WholeSaleCatalog
-from importProducts     import importData
+from scripts.populate       import registerJewelryVariation
+from scripts.exportDocx     import export2WholeSaleCatalog
+from scripts.importProducts import importData
+
 
 # ------------------------------------------------------------------------------
 # Tasks

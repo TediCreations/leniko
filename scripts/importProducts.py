@@ -1,14 +1,5 @@
-#!/usr/bin/env python3
-
 import os
 import shutil
-
-import django
-
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "leniko.settings")
-django.setup()
-
 
 from products.internal.enum import GroupEnum
 from products.internal.enum import MaterialEnum
@@ -290,12 +281,3 @@ def importData(sourceDir):
 				ProductTool.create(d)
 
 		fprint("\r\n")
-
-
-def main():
-	sourceDir = "/tmp/lenikoExport/"
-
-	importData(sourceDir)
-
-if __name__ == "__main__":
-	main()

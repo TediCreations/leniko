@@ -50,6 +50,10 @@ def registerJewelryVariation():
 			colorList.append(color)
 		return colorList
 
+	# Make sure group is not None
+	group = GroupEnum.N
+	while group == GroupEnum.N:
+		group = GroupEnum.random()
 
 	dictionary = dict()
 
@@ -70,7 +74,7 @@ def registerJewelryVariation():
 	# Jewelry Variation
 	dictionary["material"]     = MaterialEnum.random()
 	dictionary["platting"]     = PlattingEnum.random()
-	dictionary["group"]        = GroupEnum.random()
+	dictionary["group"]        = group
 
 	dictionary["heigth"]        = int(random.uniform(0, 999))
 	dictionary["length"]        = int(random.uniform(0, 999))
@@ -86,11 +90,6 @@ def registerJewelryVariation():
 
 	# Invalid
 	dictionary["invalid"]       = "Invalid dictionary keys are ignored!"
-
-	# Do not let Group to be None
-	if dictionary["group"] is GroupEnum.N:
-		print("Group is None")
-		return
 
 	ProductTool.create(dictionary)
 	print("Done")

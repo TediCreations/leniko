@@ -1,28 +1,15 @@
 # TODO
 
-# Planning
-
-- Thumbnails (Redis)
+- Organize invoke tasks in scripts directory
 - Pagination system
 - PostGreSql or MySql instead of sqlite
 - Django storages(Dropbox, Amazon, Azure)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Thumbnails (Redis)
+- Google analytics
+- seo
+- More actions
 - Drop JewelryPhoto. Only one secondary color per Variation Jewelry.
-- add actions
+
 
 # Lazy loading
 -https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/

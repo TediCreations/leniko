@@ -21,6 +21,8 @@ from django.urls    import include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from pages.views import login_view
+from pages.views import logout_view
 from pages.views import home_view
 from pages.views import about_view
 from pages.views import contact_view
@@ -32,19 +34,23 @@ from pages.views import handler404
 from pages.views import handler500
 
 urlpatterns = [
-	path(''         , home_view            , name='home'),
+	path(''            , home_view            , name='home'),
 
-	path('product/' , include('products.urls')),
+	path('login/'      , login_view           , name='login'),
+	path('logout/'     , logout_view          , name='logout'),
+	path('about/'      , about_view           , name='about'),
+	path('contact/'    , contact_view         , name='contact'),
 
-	path('about'    , about_view           , name='about'),
-	path('contact'  , contact_view         , name='contact'),
-	path('admin/'   , admin.site.urls      , name='admin'),
+	path('product/'    , include('products.urls')),
 
-	path('dev/'     , dev_view             , name='dev'),
-	path('dev/form' , dev_form             , name='dev'),
-	path('dev/400'  , handler400           , name='dev'),
-	path('dev/404'  , handler404           , name='dev'),
-	path('dev/500'  , handler500           , name='dev'),
+	path('dev/'        , dev_view             , name='dev'),
+	path('dev/form/'   , dev_form             , name='dev'),
+	path('dev/400/'    , handler400           , name='dev'),
+	path('dev/404/'    , handler404           , name='dev'),
+	path('dev/500/'    , handler500           , name='dev'),
+
+	path('admin/login/', login_view           , name='admin-login'),
+	path('admin/'      , admin.site.urls      , name='admin'),
 ]
 
 handler400 = 'pages.views.handler400'

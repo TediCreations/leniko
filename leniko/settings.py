@@ -97,7 +97,7 @@ if DEBUG is True:
 
 ROOT_URLCONF = 'leniko.urls'
 
-LOGIN_URL = '/admin/login'
+LOGIN_URL = '/login'
 
 TEMPLATES = [
 	{

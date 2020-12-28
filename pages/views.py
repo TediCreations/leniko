@@ -1,9 +1,15 @@
 import random
-from django.shortcuts import render
+
+from django.http         import HttpResponseRedirect
+from django.shortcuts    import render
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth import logout
+
+
+from products.models import Product
 
 from .apps import PagesConfig
-
-from products.models        import Product
 
 theme = PagesConfig.theme
 
@@ -54,6 +60,64 @@ def handler500(request, *args, **argv):
 
 	request.status_code = 500
 	return render(request, template_name, context)
+
+
+def login_view(request, *args, **kwargs):
+
+	# Default place to redirect after login is the home page
+	login_msg = "Great to have you back!"
+
+	# Default place to redirect after login is the home page
+	next_url = "/"
+	# Get the url to redirect to if it exists
+	try:
+		next_url = request.GET['next']
+	except Exception:
+		pass
+
+	# With POST we attempt to login
+	if request.method == 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			# Authenticated
+			login(request, user)
+			return HttpResponseRedirect(next_url)
+		else:
+			#Did not authenticate
+			return HttpResponseRedirect(f'?next={next_url}')
+
+	else:
+
+		if request.user.is_authenticated:
+			# No need to see login page
+			return HttpResponseRedirect(next_url)
+		else:
+			template_name = theme + '/login-register.html'
+			webpage_name = "Login or Register"
+			webpage_description = "Leniko jewelry login or register page"
+
+			context = {
+				"webpage_name":        webpage_name,
+				"webpage_description": webpage_description,
+				"login_msg":           login_msg
+			}
+			return render(request, template_name, context)
+
+
+def logout_view(request, *args, **kwargs):
+	# Default place to redirect after login is the home page
+	next_url = "/"
+
+	# Get the url to redirect to if it exists
+	try:
+		next_url = request.GET['next']
+	except Exception:
+		pass
+
+	logout(request)
+	return HttpResponseRedirect(next_url)
 
 
 def home_view(request, *args, **kwargs):

@@ -75,8 +75,8 @@ INSTALLED_APPS = [
 	'products'
 ]
 
-#if DEBUG is True:
-INSTALLED_APPS.append('django.contrib.staticfiles')
+if DEBUG is True:
+	INSTALLED_APPS.append('django.contrib.staticfiles')
 
 if DEBUG is True:
 	INSTALLED_APPS.append('debug_toolbar')

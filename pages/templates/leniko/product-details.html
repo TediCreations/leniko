@@ -56,15 +56,15 @@
           <div class="product-gallery-slider">
 
             {% for image in obj.getPhotoList %}
-            {% thumbnail image.photo "810x1080" crop="center" padding=True quality=80 upscale=True as im %}
+            {% thumbnail image.photo "810x1080" crop="center" padding=True quality=80 upscale=True as im1 %}
             <!-- 810x1080 -->
-            <div class="product-zoom" data-image="{{im.url}}">
-              {% endthumbnail %}
-              {% thumbnail image.photo "570x760" crop="center" padding=True quality=80 upscale=True as im %}
+            <div class="product-zoom" data-image="{{im1.url}}">
+              {% thumbnail image.photo "570x760" crop="center" padding=True quality=80 upscale=True as im2 %}
               <!-- 570x760 -->
-              <img src="{{im.url}}" alt="">
+              <img src="{{im2.url}}" alt="">
               {% endthumbnail %}
             </div>
+            {% endthumbnail %}
             {% endfor %}
 
           </div>

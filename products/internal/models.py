@@ -330,9 +330,9 @@ class JewelryColor(AbstractModel):
 		try:
 			txt = obj.photo.url
 		except IndexError:
-			txt = "/static/img/shop/placeholder.jpg"
+			txt = "/static/img/shop/placeholder_328x437.jpg"
 		except AttributeError:
-			txt = "/static/img/shop/placeholder.jpg"
+			txt = "/static/img/shop/placeholder_328x437.jpg"
 		return f"{txt}"
 
 	class Meta:

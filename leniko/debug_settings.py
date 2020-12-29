@@ -4,4 +4,4 @@
 from .settings import *
 
 # no debug for us
-DEBUG = False
+DEBUG = True

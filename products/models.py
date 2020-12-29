@@ -81,9 +81,6 @@ class Product(AbstractModel):
 			d = { "no": number, "photo": o.photo, "url": o.photo.url, "priority": o.priority}
 			l.append(d)
 			number += 1
-		if len(l) is 0:
-			d = { "no": 1, "url": "/static/img/shop/placeholder.jpg", "priority": 0}
-			l.append(d)
 		return l
 
 

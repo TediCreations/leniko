@@ -125,7 +125,7 @@ def home_view(request, *args, **kwargs):
 	webpage_name = "Home"
 	webpage_description = "Leniko jewelry home page"
 
-	objList = Product.objects.filter(isActive = True)
+	objList = Product.objects.filter(isActive = True).filter(isFeatured = True)[:10]
 
 	context = {
 		"webpage_name":        webpage_name,

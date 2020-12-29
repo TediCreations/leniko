@@ -167,17 +167,23 @@
       <!-- Paginator starts -->
       <div class="text-center learts-mt-70">
           {% if page.has_previous %}
-          <a href="?page=1"                               class="btn btn-dark btn-outline-hover-dark"><i class="ti-angle-double-left"></i></a>
-          <a href="?page={{ page.previous_page_number }}" class="btn btn-dark btn-outline-hover-dark"><i>                             </i>previous</a>
+          <a href="?page={{ page.previous_page_number }}" class="btn btn-dark btn-outline-hover-dark btn-sm"><i class="ti-angle-double-left"></i></a>
+          <a href="?page=1"                               class="btn btn-dark btn-outline-hover-dark btn-sm"><i></i>1</a>
+          {% else %}
+          <a href="" class="btn btn-dark btn-outline-hover-dark btn-sm disabled"><i class="ti-angle-double-left"></i></a>
+          <a href="" class="btn btn-dark btn-outline-hover-dark btn-sm disabled"><i>                             </i>1</a>
           {% endif %}
 
-          <span>
-            Page {{ page.number }} of {{ page.paginator.num_pages }}.
-          </span>
+          <!-- Center starts -->
+          <a href="?page={{ page.number }}"          class="btn btn-dark btn-outline-hover-dark btn-sm disabled"><i>{{page.number}}</i></a>
+          <!-- Center ends -->
 
           {% if page.has_next %}
-          <a href="?page={{ page.next_page_number }}"    class="btn btn-dark btn-outline-hover-dark"><i>                </i>next</a>
-          <a href="?page={{ page.paginator.num_pages }}" class="btn btn-dark btn-outline-hover-dark"><i class="ti-angle-double-right"></i></a>
+          <a href="?page={{ page.paginator.num_pages }}" class="btn btn-dark btn-outline-hover-dark btn-sm"><i                              ></i>{{ page.paginator.num_pages }}</a>
+          <a href="?page={{ page.next_page_number }}"    class="btn btn-dark btn-outline-hover-dark btn-sm"><i class="ti-angle-double-right"></i></a>
+          {% else %}
+          <a href="" class="btn btn-dark btn-outline-hover-dark btn-sm disabled"><i                              ></i>{{ page.paginator.num_pages }}</a>
+          <a href="" class="btn btn-dark btn-outline-hover-dark btn-sm disabled"><i class="ti-angle-double-right"></i></a>
           {% endif %}
       </div>
       <!-- Paginator ends -->

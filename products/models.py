@@ -318,8 +318,9 @@ class ProductTool():
 			try:
 				jewelryPhotoObj.photo.save(f'{dictionary["group"].value}_{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
 				#jewelryPhotoObj.save()
-			except Exception:
-				raise Exception("Could not save {photo}")
+			except Exception as e:
+				print(e)
+				raise Exception(f"Could not save {photo}")
 
 			print(f"Created {jewelryPhotoObj}")
 			print(jewelryPhotoObj.to_txt())

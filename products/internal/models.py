@@ -1,11 +1,12 @@
-#from enum        import Enum
-
 from django.core.exceptions import ValidationError
 from django.db              import models
 from django.urls            import reverse
 
 from django_enum_choices.fields import EnumChoiceField
 from sorl.thumbnail             import ImageField
+from sorl.thumbnail             import get_thumbnail
+from sorl.thumbnail             import delete
+
 
 from .enum  import GroupEnum
 from .enum  import MaterialEnum
@@ -306,13 +307,65 @@ class Jewelry(AbstractModel):
 
 
 class JewelryPhoto(AbstractModel):
-	#photo   = models.ImageField(upload_to='img/jewelryPhoto', blank=False)
-	photo    = ImageField(upload_to='img/jewelryPhoto', blank=False)
+
+	def uploadTo(self, filename):
+
+		groupName = self.jewelry.getGroup().lower()
+		#priority  = self.priority
+		title     = self.jewelry.getTitle()
+		title.replace(" ", "__")
+		title.replace("&", "_and_")
+
+		filepath = f'img/jewelry/{groupName}/{title}/{title}'
+		return filepath
+
+
+	photo   = models.ImageField(upload_to=uploadTo, blank=False)
 	jewelry  = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
 	priority = models.DecimalField(decimal_places=0, max_digits=2)
 
+	geometries = [
+		"35x35",
+		"120x150",
+		"270x360",
+		"328x437",
+		"570x760",
+		"768x1024",
+		"810x1080"
+	]
+
+
 	def __str__(self):
 		return f"{self.jewelry} | {self.photo}"
+
+
+	def thumbnail(self, geometry='50x50'):
+		"""Get thumbnail or generate it"""
+		if self.photo:
+			return get_thumbnail(self.photo, geometry_string=geometry, crop='center', quality=80)
+		return None
+
+
+	def save(self, *args, **kwargs):
+
+		# On edit
+		# Delete old thumbnails
+		# Is the old photo the same as the new?
+		delete(self.photo, delete_file=False)
+
+		# Create new
+		for geometry in self.geometries:
+			self.thumbnail(geometry)
+
+		super().save(*args, **kwargs)
+
+
+	def delete(self, *args, **kwargs):
+		# Delete thumbnails and original image
+		delete(self.photo)
+
+		super().delete(*args, **kwargs)
+
 
 	class Meta:
 		db_table = 'JewelryPhoto'

@@ -70,12 +70,18 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 
-	'sorl.thumbnail',
-
 	'pages',
 	'products'
 ]
 
+
+# Thumbnails
+#THUMBNAIL_BACKEND = 'sorl.thumbnail.base.ThumbnailBackend'
+THUMBNAIL_BACKEND = 'products.internal.utils.MyThumbnailBackend'
+INSTALLED_APPS.append('sorl.thumbnail')
+
+
+# Static files
 if DEBUG is True:
 	INSTALLED_APPS.append('django.contrib.staticfiles')
 

@@ -1,8 +1,12 @@
+import os
 import random
 
 from django.core.exceptions import FieldDoesNotExist
 from django.core.exceptions import ValidationError
 from django.db              import models
+
+from sorl.thumbnail.base import ThumbnailBackend
+from sorl.thumbnail.base import EXTENSIONS
 
 from enum        import Enum
 from itertools   import chain
@@ -89,3 +93,43 @@ class AbstractModel(models.Model):
 
 	class Meta:
 		abstract = True
+
+
+
+
+class MyThumbnailBackend(ThumbnailBackend):
+
+	def _get_thumbnail_filename(self,  *args, **kwargs):
+
+		filepath = str(args[0])
+		dirname = os.path.dirname(filepath)
+		name = os.path.splitext(os.path.basename(filepath))[0]
+
+		# New attributes
+		geometry   = args[1]
+		crop       = args[2]['crop']
+		quality    = args[2]['quality']
+		newSuffix  = EXTENSIONS[args[2]['format']]
+		colorspace = args[2]['colorspace']
+		quality    = args[2]['quality']
+		padding    = args[2]['padding']
+
+		# Default attributes
+		default_colorspace = ThumbnailBackend.default_options['colorspace']
+
+		# Compute the new filepath
+		filepath  = f"{dirname}/{name}"
+
+		if crop:
+			filepath += f"_C"
+		if quality != 100:
+			filepath += f"_Q{quality}"
+		if default_colorspace != colorspace:
+			filepath += f"_S{colorspace}"
+		if padding:
+			filepath += f"_P"
+
+		filepath += f"_{geometry}.{newSuffix}"
+		filepath = os.path.join("cache/", filepath)
+
+		return filepath

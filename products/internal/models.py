@@ -333,11 +333,9 @@ class JewelryPhoto(AbstractModel):
 	class ThumbnailModeEnum(Enum):
 		admin     = "35x35"
 		thumbnail = "120x150"
-		#small    = "270x360"
 		product   = "328x437"
 		big       = "570x760"
-		#huge     = "768x1024"
-		preview   = "810x1080"
+		gallery   = "810x1080"
 
 		def getGeometry(self):
 			return self.value
@@ -371,7 +369,8 @@ class JewelryPhoto(AbstractModel):
 			return self.photo
 
 		if geometry != None:
-			return get_thumbnail(self.photo, geometry_string=geometry, crop='center', quality=80)
+			#{% thumbnail photo "?x?" crop="center" padding=True quality=80 upscale=True as im2 %}
+			return get_thumbnail(self.photo, geometry_string=geometry, crop='center', padding=True, quality=80)
 		else:
 			return self.photo
 

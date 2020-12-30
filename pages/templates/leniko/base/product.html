@@ -1,6 +1,6 @@
 {% load static %}
 
-{% load thumbnail %}
+{% load library %}
 
 <div class="product">
   <div class="product-thumb">
@@ -15,22 +15,14 @@
         {% endif %}
       </span>
 
-      {% thumbnail obj.getPhoto.photo "328x437" crop="center" padding=True quality=80 upscale=True as im %}
-      <!-- 328x437 -->
-      <img src="{{im.url}}" loading="lazy" alt="Product Image">
-      <!--
+      {% if obj.getNoOfPhotos >= 1 %}
+      <img src="{{obj.getPhoto|thumbUrl:'product'}}" loading="lazy" alt="Product Image"><!-- 328x437 -->
+      {% else %}
       <img src="{{obj.getPhotoUrl}}" alt="Product Image">
-      -->
-      {% empty %}
-      <!-- 328x437 -->
-      <img src="{{obj.getPhotoUrl}}" alt="Product Image">
-      {% endthumbnail %}
+      {% endif %}
 
       {% if obj.getNoOfPhotos > 1 %}
-      {% thumbnail obj.getPhotoList.1 "328x437" crop="center" padding=True quality=80 upscale=True as im %}
-      <!-- 328x437 -->
-      <img class="image-hover" src="{{im.url}}" alt="Product Zoom Image">
-      {% endthumbnail %}
+      <img class="image-hover" src="{{obj.getPhotoList.1.photo|thumbUrl:'product'}}" alt="Product Zoom Image"><!-- 328x437 -->
       {% endif %}
     </a>
     <!--

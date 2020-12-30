@@ -1,6 +1,5 @@
 {% extends './base.html' %}
 {% load static %}
-{% load thumbnail %}
 {% load library %}
 
 {% block content %}
@@ -41,17 +40,14 @@
 
             {% if obj.getPhotoList %}
             {% for image in obj.getPhotoList %}
-            {% thumbnail image.photo "810x1080" crop="center" padding=True quality=100 upscale=True as im %}
-            {# 810x1080 #}
-            {"src": "{{im.url}}", "w": 700, "h": 1100},
-            {% endthumbnail %}
+            {"src": "{{image.photo|thumbUrl:'gallery'}}", "w": 700, "h": 1100},{# 810x1080 #}
             {% endfor %}
             {% else %}
             {"src": "{% static 'img/shop/placeholder_810x1080.jpg' %}", "w": 700, "h": 1100},
             {% endif %}
 
             {# Workaround fix for escaping the last comma(,) by providing an extra image only in preview #}
-            {"src": "{% static 'img/shop/generic.jpg' %}", "w": 700, "h": 1100}
+            {"src": "{% static 'img/shop/generic.jpg' %}", "w": 700, "h": 1100}{# 810x1080 #}
             ]'><i class="far fa-expand"></i>
           </button>
           <!--
@@ -62,13 +58,9 @@
             {% if obj.getPhotoList %}
 
             {% for image in obj.getPhotoList %}
-            {% thumbnail image.photo "810x1080" crop="center" padding=True quality=80 upscale=True as im1 %}
-            <div class="product-zoom" data-image="{{im1.url}}"><!-- 810x1080 -->
-              {% thumbnail image.photo "570x760" crop="center" padding=True quality=80 upscale=True as im2 %}
-              <img src="{{im2.url}}" alt=""><!-- 570x760 -->
-              {% endthumbnail %}
+            <div class="product-zoom" data-image="{{image.photo|thumbUrl:'gallery'}}"><!-- 810x1080 -->
+              <img src="{{image.photo|thumbUrl:'big'}}" alt=""><!-- 570x760 -->
             </div>
-            {% endthumbnail %}
             {% endfor %}
 
             {% else %}
@@ -85,9 +77,7 @@
             {% if obj.getPhotoList|length > 1 %}
             {% for image in obj.getPhotoList %}
             <div class="item">
-              {% thumbnail image.photo "120x150" crop="center" padding=True quality=80 upscale=True as im %}
-              <img src="{{im.url}}" alt=""><!-- 120x150 -->
-              {% endthumbnail %}
+              <img src="{{image.photo|thumbUrl:'thumbnail'}}" alt=""><!-- 120x150 -->
             </div>
             {% endfor %}
             {% endif %}

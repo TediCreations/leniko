@@ -53,8 +53,8 @@ admin.site.register(Jewelry, JewelryAdmin)
 
 class JewelryPhotoAdmin(admin.ModelAdmin):
 	def photo_tag(self, obj):
-		thumbnail = obj.thumbnail('35x35')
-		return format_html(f'<img src="{thumbnail.url}" width="35" height="35" >')
+		thumbnail = obj.getPhoto('admin').url
+		return format_html(f'<img src="{thumbnail}" width="35" height="35" >')
 	photo_tag.short_description = 'Photo'
 
 	list_display = ('photo_tag', 'priority', 'jewelry')

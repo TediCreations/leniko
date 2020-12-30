@@ -73,7 +73,7 @@ class Product(AbstractModel):
 		l = list()
 		number = 1
 		for o in obj:
-			d = { "no": number, "photo": obj, "url": o.photo.url, "priority": o.priority}
+			d = { "no": number, "photo": o, "url": o.photo.url, "priority": o.priority}
 			l.append(d)
 			number += 1
 		return l

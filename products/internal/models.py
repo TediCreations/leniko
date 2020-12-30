@@ -401,21 +401,19 @@ class JewelryPhoto(AbstractModel):
 
 
 class JewelryColor(AbstractModel):
+
 	color   = EnumChoiceField(ColorEnum, default=ColorEnum.N) # Secondary color
 	jewelry = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
+
 
 	def __str__(self):
 		return f"{self.jewelry} | {self.color.value['name']}"
 
-	def getPhotoUrl(self):
+
+	def getPhoto(self, mode=None):
 		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()
-		try:
-			txt = obj.photo.url
-		except IndexError:
-			txt = "/static/img/shop/placeholder_328x437.jpg"
-		except AttributeError:
-			txt = "/static/img/shop/placeholder_328x437.jpg"
-		return f"{txt}"
+		return obj.getPhoto(mode)
+
 
 	class Meta:
 		db_table = 'JewelryColor'

@@ -52,16 +52,6 @@ class Product(AbstractModel):
 	def getDescription(self):
 		return self.jewelry.getDescription()
 
-	def getPhotoUrl(self):
-		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()
-		try:
-			txt = obj.photo.url
-		except IndexError:
-			txt = "/static/img/shop/placeholder_328x437.jpg"
-		except AttributeError:
-			txt = "/static/img/shop/placeholder_328x437.jpg"
-		return f"{txt}"
-
 
 	def getPhoto(self):
 		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()
@@ -70,14 +60,7 @@ class Product(AbstractModel):
 
 	def getPhotoList(self):
 		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority")
-		l = list()
-		number = 1
-		for o in obj:
-			#d = { "no": number, "photo": o, "url": o.photo.url, "priority": o.priority}
-			d = {"photo": o}
-			l.append(d)
-			number += 1
-		return l
+		return obj
 
 
 	def getColorList(self):
@@ -98,9 +81,6 @@ class Product(AbstractModel):
 
 		return l
 
-	def getNoOfPhotos(self):
-		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry)
-		return len(obj)
 
 	def getPrevObject(self):
 		obj = Product.objects.filter(id__lt=self.id).order_by('id').last()

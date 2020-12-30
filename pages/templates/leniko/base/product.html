@@ -15,19 +15,20 @@
         {% endif %}
       </span>
 
-      {% if obj.getNoOfPhotos >= 1 %}
+      {% if obj.getPhotoList|length >= 1 %}
       <img src="{{obj.getPhoto|thumbUrl:'product'}}" loading="lazy" alt="Product Image"><!-- 328x437 -->
       {% else %}
-      <img src="{{obj.getPhotoUrl}}" alt="Product Image">
+      <img src="{% static 'img/shop/placeholder_328x437.jpg' %}" alt="Product Image">
       {% endif %}
 
-      {% if obj.getNoOfPhotos > 1 %}
-      <img class="image-hover" src="{{obj.getPhotoList.1.photo|thumbUrl:'product'}}" alt="Product Zoom Image"><!-- 328x437 -->
+      {% if obj.getPhotoList|length > 1 %}
+      <img class="image-hover" src="{{obj.getPhotoList.1|thumbUrl:'product'}}" alt="Product Zoom Image"><!-- 328x437 -->
       {% endif %}
     </a>
     <!--
     <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
     -->
+    {% if obj.getColorList|length > 0 %}
     <div class="product-options">
       <ul class="colors">
         {% for color in obj.getColorList %}
@@ -42,9 +43,10 @@
       </ul>
       -->
     </div>
+    {% endif %}
   </div>
   <div class="product-info">
-    <h6 class="title"><a href="{{obj.getPhotoUrl}}">{{obj.getTitle}}</a></h6>
+    <h6 class="title"><a href="{{obj.get_absolute_url}}">{{obj.getTitle}}</a></h6>
     <span class="price">
       {{obj.getPrice}} &euro;
       <!--

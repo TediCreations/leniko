@@ -15,6 +15,7 @@ from .models import Product
 
 import os
 
+
 admin.site.register(Bracelet)
 admin.site.register(Necklace)
 admin.site.register(Ring)
@@ -52,9 +53,18 @@ admin.site.register(Jewelry, JewelryAdmin)
 
 
 class JewelryPhotoAdmin(admin.ModelAdmin):
+
 	def photo_tag(self, obj):
-		thumbnail = obj.getPhoto('admin').url
-		return format_html(f'<img src="{thumbnail}" width="35" height="35" >')
+
+		photo = obj.getPhoto('admin')
+
+		if photo:
+			url    = photo.url
+			width  = photo.width
+			height = photo.height
+			return format_html(f'<img src="{url}" width="{width}" height="{height}" >')
+		else:
+			return "No image"
 	photo_tag.short_description = 'Photo'
 
 	list_display = ('photo_tag', 'priority', 'jewelry')
@@ -64,8 +74,16 @@ admin.site.register(JewelryPhoto, JewelryPhotoAdmin)
 
 class JewelryColorAdmin(admin.ModelAdmin):
 	def photo_tag(self, obj):
-		return format_html(f'<img src="{obj.getPhotoUrl()}" width="35" height="35" >')
+		photo  = obj.getPhoto('admin')
+		width  = photo.width
+		height = photo.height
+		if photo:
+			url = photo.url
+			return format_html(f'<img src="{url}" width="{width}" height="{height}" >')
+		else:
+			return "No image"
 	photo_tag.short_description = 'Photo'
+
 
 	def color_tag(self, obj):
 		name  = obj.color.value["name"]
@@ -217,7 +235,16 @@ class ProductAdmin(admin.ModelAdmin):
 	export.short_description = "Export"
 
 	def photo_tag(self, obj):
-		return format_html(f'<img src="{obj.getPhotoUrl()}" width="35" height="35" >')
+
+		photo = obj.getPhoto()
+		if photo:
+			photo = photo.getPhoto('admin')
+			url    = photo.url
+			width  = photo.width
+			height = photo.height
+			return format_html(f'<img src="{url}" width="{width}" height="{height}" >')
+		else:
+			return "No photo"
 	photo_tag.short_description = 'Photo'
 
 	list_display = ('photo_tag', 'getTitle', 'sku', 'isFeatured', 'isActive', 'price', 'jewelry')

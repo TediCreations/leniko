@@ -370,7 +370,7 @@ class JewelryPhoto(AbstractModel):
 
 		if geometry != None:
 			#{% thumbnail photo "?x?" crop="center" padding=True quality=80 upscale=True as im2 %}
-			return get_thumbnail(self.photo, geometry_string=geometry, crop='center', padding=True, quality=80)
+			return get_thumbnail(self.photo, geometry_string=geometry, colorspace='RGB', crop='center', padding=True, quality=80)
 		else:
 			return self.photo
 

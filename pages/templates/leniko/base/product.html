@@ -27,7 +27,7 @@
       {% endthumbnail %}
 
       {% if obj.getNoOfPhotos > 1 %}
-      {% thumbnail obj.getPhotoList.1.photo "328x437" crop="center" padding=True quality=80 upscale=True as im %}
+      {% thumbnail obj.getPhotoList.1 "328x437" crop="center" padding=True quality=80 upscale=True as im %}
       <!-- 328x437 -->
       <img class="image-hover" src="{{im.url}}" alt="Product Zoom Image">
       {% endthumbnail %}

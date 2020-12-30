@@ -62,15 +62,10 @@ class Product(AbstractModel):
 			txt = "/static/img/shop/placeholder_328x437.jpg"
 		return f"{txt}"
 
+
 	def getPhoto(self):
 		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()
-		try:
-			p = obj.photo
-		except IndexError:
-			p = None
-		except AttributeError:
-			p = None
-		return p
+		return obj
 
 
 	def getPhotoList(self):
@@ -316,10 +311,10 @@ class ProductTool():
 			i += 1
 
 			try:
-				jewelryPhotoObj.photo.save(f'{dictionary["group"].value}_{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
+				jewelryPhotoObj.photo.save(f'{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
 				#jewelryPhotoObj.save()
 			except Exception as e:
-				print(e)
+				#print(e)
 				raise Exception(f"Could not save {photo}")
 
 			print(f"Created {jewelryPhotoObj}")

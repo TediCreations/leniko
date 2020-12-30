@@ -17,6 +17,9 @@ from .enum  import ColorEnum
 
 from .utils  import AbstractModel
 
+from enum import Enum
+
+
 class JewelryCommon(AbstractModel):
 	title       = models.CharField(max_length=120, unique=True)
 	brief       = models.TextField(blank=True, null=True)
@@ -313,10 +316,13 @@ class JewelryPhoto(AbstractModel):
 		groupName = self.jewelry.getGroup().lower()
 		#priority  = self.priority
 		title     = self.jewelry.getTitle()
-		title.replace(" ", "__")
-		title.replace("&", "_and_")
+		title = title.replace(" ", "__")
+		title = title.replace("&", "_and_")
 
-		filepath = f'img/jewelry/{groupName}/{title}/{title}'
+		filename = filename.replace(" ", "__")
+		filename = filename.replace("&", "_and_")
+
+		filepath = f'img/jewelry/{groupName}/{title}/{filename}'
 		return filepath
 
 
@@ -324,26 +330,50 @@ class JewelryPhoto(AbstractModel):
 	jewelry  = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
 	priority = models.DecimalField(decimal_places=0, max_digits=2)
 
-	geometries = [
-		"35x35",
-		"120x150",
-		"270x360",
-		"328x437",
-		"570x760",
-		"768x1024",
-		"810x1080"
-	]
+	class ThumbnailModeEnum(Enum):
+		admin     = "35x35"
+		thumbnail = "120x150"
+		#small    = "270x360"
+		product   = "328x437"
+		big       = "570x760"
+		#huge     = "768x1024"
+		preview   = "810x1080"
+
+		def getGeometry(self):
+			return self.value
+
+		def getName(self):
+			return str(self.name)
 
 
 	def __str__(self):
 		return f"{self.jewelry} | {self.photo}"
 
 
-	def thumbnail(self, geometry='50x50'):
+	def getPhoto(self, mode=None):
 		"""Get thumbnail or generate it"""
-		if self.photo:
+
+		# We do not want thumbnails
+		if mode == None:
+			return self.photo
+
+		# Get mode
+		geometry = None
+
+		isValid = False
+		for e in self.ThumbnailModeEnum:
+			if e.getName() == mode:
+				geometry = e.getGeometry()
+				isValid = True
+				break
+
+		if not isValid:
+			return self.photo
+
+		if geometry != None:
 			return get_thumbnail(self.photo, geometry_string=geometry, crop='center', quality=80)
-		return None
+		else:
+			return self.photo
 
 
 	def save(self, *args, **kwargs):
@@ -354,8 +384,8 @@ class JewelryPhoto(AbstractModel):
 		delete(self.photo, delete_file=False)
 
 		# Create new
-		for geometry in self.geometries:
-			self.thumbnail(geometry)
+		for e in self.ThumbnailModeEnum:
+			self.getPhoto(e.getName())
 
 		super().save(*args, **kwargs)
 

@@ -1,6 +1,6 @@
 {% extends './base.html' %}
 {% load static %}
-{% load thumbnail %}
+{% load library %}
 
 {% block content %}
 
@@ -9,14 +9,9 @@
 {% for obj in objList %}
 <ul>
   <li>{{obj}}</li>
-  <!--
-  <img src="{{ obj.getPhoto.url }}" loading="lazy" width="328">
-  -->
-  {% thumbnail obj.getPhoto "328x437" padding_color="#123456" crop="center" padding=True quality=80 as im %}
-  <img src="{{ im.url }}" loading="lazy" width="{{ im.width }}" heigth="{{ im.heigth }}">
-  {% empty %}
-  <img src="{% static 'img/shop/placeholder.jpg' %}" loading="lazy" width="{{ im.width }}" heigth="{{ im.heigth }}">
-  {% endthumbnail %}
+  <img src="{{ obj.getPhoto|thumbUrl:'admin'     }}" loading="lazy" width="328">
+  <img src="{{ obj.getPhoto|thumbUrl:'thumbnail' }}" loading="lazy" width="328">
+  <img src="{{ obj.getPhoto|thumbUrl:'normal'    }}" loading="lazy" width="328">
 </ul>
 {% endfor %}
 

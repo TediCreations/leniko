@@ -15,7 +15,7 @@
         {% endif %}
       </span>
 
-      {% thumbnail obj.getPhoto "328x437" crop="center" padding=True quality=80 upscale=True as im %}
+      {% thumbnail obj.getPhoto.photo "328x437" crop="center" padding=True quality=80 upscale=True as im %}
       <!-- 328x437 -->
       <img src="{{im.url}}" loading="lazy" alt="Product Image">
       <!--

@@ -87,7 +87,7 @@ if DEBUG is True:
 
 if DEBUG is True:
 	INSTALLED_APPS.append('debug_toolbar')
-
+	INSTALLED_APPS.append('template_timings_panel')
 
 if DEBUG is False:
 	INSTALLED_APPS.append('storages')
@@ -208,4 +208,5 @@ if DEBUG is True:
 		'debug_toolbar.panels.signals.SignalsPanel',
 		'debug_toolbar.panels.logging.LoggingPanel',
 		'debug_toolbar.panels.redirects.RedirectsPanel',
+		'template_timings_panel.panels.TemplateTimings.TemplateTimings',
 	]

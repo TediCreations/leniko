@@ -15,23 +15,26 @@
         {% endif %}
       </span>
 
-      {% if obj.getPhotoList|length >= 1 %}
-      <img src="{{obj.getPhoto|thumbUrl:'product'}}" loading="lazy" alt="Product Image"><!-- 328x437 -->
+      {% with photoList=obj.getPhotoList %}
+      {% if photoList|length >= 1 %}
+      <img src="{{photoList.0|thumbUrl:'product'}}" loading="lazy" alt="Product Image"><!-- 328x437 -->
       {% else %}
       <img src="{% static 'img/shop/placeholder_328x437.jpg' %}" alt="Product Image">
       {% endif %}
 
-      {% if obj.getPhotoList|length > 1 %}
-      <img class="image-hover" src="{{obj.getPhotoList.1|thumbUrl:'product'}}" alt="Product Zoom Image"><!-- 328x437 -->
+      {% if photoList|length > 1 %}
+      <img class="image-hover" src="{{photoList.1|thumbUrl:'product'}}" alt="Product Zoom Image"><!-- 328x437 -->
       {% endif %}
+      {% endwith %}
     </a>
     <!--
     <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
     -->
-    {% if obj.getColorList|length > 0 %}
+    {% with colorList=obj.getColorList %}
+    {% if colorList|length > 0 %}
     <div class="product-options">
       <ul class="colors">
-        {% for color in obj.getColorList %}
+        {% for color in colorList %}
         <li style="background-color: {{color.color.value}};">{{color.color.name}}</li>
         {% endfor %}
       </ul>
@@ -44,6 +47,7 @@
       -->
     </div>
     {% endif %}
+    {% endwith %}
   </div>
   <div class="product-info">
     <h6 class="title"><a href="{{obj.get_absolute_url}}">{{obj.getTitle}}</a></h6>

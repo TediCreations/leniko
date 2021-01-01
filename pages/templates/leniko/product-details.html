@@ -33,14 +33,15 @@
     <div class="row learts-mb-n40">
 
       <!-- Product Images Start -->
+      {% with photos=obj.getPhotoList %}
       <div class="col-lg-6 col-12 learts-mb-40">
         <div class="product-images">
 
           <button class="product-gallery-popup hintT-left" data-hint="Click to enlarge" data-images='[
 
-            {% if obj.getPhotoList %}
-            {% for image in obj.getPhotoList %}
-            {"src": "{{image|thumbUrl:'gallery'}}", "w": 700, "h": 1100},{# 810x1080 #}
+            {% if photos %}
+            {% for photo in photos %}
+            {"src": "{{photo|thumbUrl:'gallery'}}", "w": 700, "h": 1100},{# 810x1080 #}
             {% endfor %}
             {% else %}
             {"src": "{% static 'img/shop/placeholder_810x1080.jpg' %}", "w": 700, "h": 1100},
@@ -55,11 +56,11 @@
           -->
           <div class="product-gallery-slider">
 
-            {% if obj.getPhotoList %}
+            {% if photos %}
 
-            {% for image in obj.getPhotoList %}
-            <div class="product-zoom" data-image="{{image|thumbUrl:'gallery'}}"><!-- 810x1080 -->
-              <img src="{{image|thumbUrl:'big'}}" alt=""><!-- 570x760 -->
+            {% for photo in photos %}
+            <div class="product-zoom" data-image="{{photo|thumbUrl:'gallery'}}"><!-- 810x1080 -->
+              <img src="{{photo|thumbUrl:'big'}}" alt=""><!-- 570x760 -->
             </div>
             {% endfor %}
 
@@ -74,10 +75,10 @@
           </div>
           <div class="product-thumb-slider">
 
-            {% if obj.getPhotoList|length > 1 %}
-            {% for image in obj.getPhotoList %}
+            {% if photos|length > 1 %}
+            {% for photo in photos %}
             <div class="item">
-              <img src="{{image|thumbUrl:'thumbnail'}}" alt=""><!-- 120x150 -->
+              <img src="{{photo|thumbUrl:'thumbnail'}}" alt=""><!-- 120x150 -->
             </div>
             {% endfor %}
             {% endif %}
@@ -85,6 +86,7 @@
           </div>
         </div>
       </div>
+      {% endwith %}
       <!-- Product Images End -->
 
       <!-- Product Summery Start -->

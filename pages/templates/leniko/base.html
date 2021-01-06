@@ -97,6 +97,14 @@
     <!-- Main Activation JS -->
     <script src="{% static 'js/main.js' %}"></script>
 
+    <!-- Image lazyloading -->
+    <!-- script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script -->
+    <script src="{% static 'js/lazyload/lazyload.js' %}"></script>
+    <script>
+      let images = document.querySelectorAll(".lazyload");
+      lazyload(images);
+    </script>
+
 </body>
 
 </html>

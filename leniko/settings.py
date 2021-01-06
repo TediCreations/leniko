@@ -116,15 +116,15 @@ if DEBUG is True:
 	INSTALLED_APPS.append('debug_toolbar')
 	INSTALLED_APPS.append('template_timings_panel')
 
-if DEBUG is False:
-	INSTALLED_APPS.append('storages')
-
-	DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-
-	DROPBOX_OAUTH2_TOKEN = os.environ.get('DROPBOX_OAUTH2_TOKEN', '')
-	if DROPBOX_OAUTH2_TOKEN == '':
-		print(f"Forgot dropbox token!")
-		exit()
+#if DEBUG is False:
+#	INSTALLED_APPS.append('storages')
+#
+#	DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+#
+#	DROPBOX_OAUTH2_TOKEN = os.environ.get('DROPBOX_OAUTH2_TOKEN', '')
+#	if DROPBOX_OAUTH2_TOKEN == '':
+#		print(f"Forgot dropbox token!")
+#		exit()
 
 
 MIDDLEWARE = [

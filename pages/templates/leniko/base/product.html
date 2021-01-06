@@ -58,7 +58,7 @@
   <div class="product-info">
     <h6 class="title"><a href="{{obj.get_absolute_url}}">{{obj.getTitle}}</a></h6>
     <span class="price">
-      {{obj.getPrice}} &euro;
+      {{obj.getPrice|floatformat:2}} &euro;
       <!--
       <span class="old">$15.00</span>
       <span class="new">$12.00</span>

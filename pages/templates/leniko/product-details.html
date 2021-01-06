@@ -41,14 +41,14 @@
 
             {% if photos %}
             {% for photo in photos %}
-            {"src": "{{photo|thumbUrl:'gallery'}}", "w": 700, "h": 1100},{# 810x1080 #}
+            {"src": "{{photo|thumbUrl:'gallery'}}", "w": 810, "h": 1080},{# 810x1080 #}
             {% endfor %}
             {% else %}
-            {"src": "{% static 'img/shop/placeholder_810x1080.jpg' %}", "w": 700, "h": 1100},
+            {"src": "{% static 'img/shop/placeholder_810x1080.jpg' %}", "w": 810, "h": 1080},
             {% endif %}
 
             {# Workaround fix for escaping the last comma(,) by providing an extra image only in preview #}
-            {"src": "{% static 'img/shop/generic.jpg' %}", "w": 700, "h": 1100}{# 810x1080 #}
+            {"src": "{% static 'img/shop/generic.jpg' %}", "w": 810, "h": 1080}{# 810x1080 #}
             ]'><i class="far fa-expand"></i>
           </button>
           <!--

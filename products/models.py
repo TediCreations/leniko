@@ -68,13 +68,13 @@ class Product(AbstractModel):
 		l = list()
 		number = 1
 		primaryColor = self.jewelry.getPrimaryColor()
-		if primaryColor['name'] is not "None":
+		if primaryColor['name'] != "None":
 			d = { "no": number, "color": primaryColor}
 			l.append(d)
 			number += 1
 		for o in obj:
 			secondaryColor = o.color.value
-			if secondaryColor is not "None" and secondaryColor is not primaryColor:
+			if secondaryColor != "None" and secondaryColor != primaryColor:
 				d = { "no": number, "color": secondaryColor}
 				l.append(d)
 				number += 1

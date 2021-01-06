@@ -65,7 +65,7 @@ def product_list_view(request):
 
 	# --------------------------------------------------
 	# Pagination
-	productsPerPage = 5
+	productsPerPage = 50
 	productPager = Paginator(objList, productsPerPage)
 
 	if 1 > page_num or page_num > productPager.num_pages:

@@ -30,6 +30,11 @@ if not os.path.isfile(dotenv_path):
 	txt += f"DJANGO_DEBUG=False\n"
 	txt += f"DROPBOX_OAUTH2_TOKEN=''\n"
 
+	txt += f"REDIS_LOCATION='redis://127.0.0.1:6379/1'\n"
+	txt += f"REDIS_HOSTNAME='127.0.0.1'\n"
+	txt += f"REDIS_PORT='6379'\n"
+	txt += f"REDIS_PASSWORD=''\n"
+
 	f = open(dotenv_path, "w")
 	f.write(txt)
 	f.close()
@@ -74,12 +79,34 @@ INSTALLED_APPS = [
 	'products'
 ]
 
+# Redis
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', "redis://127.0.0.1:6379/1")
+REDIS_HOSTNAME = os.environ.get('REDIS_HOSTNAME', "127.0.0.1")
+REDIS_PORT     = int(os.environ.get('REDIS_PORT', "6379"))
+REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD', "")
+
+#CACHES = {
+#	"default": {
+#		"BACKEND": "django_redis.cache.RedisCache",
+#		"LOCATION": REDIS_LOCATION,
+#		"OPTIONS": {
+#			"PASSWORD": REDIS_PASSWORD,
+#			"CLIENT_CLASS": "django_redis.client.DefaultClient"
+#		},
+#		"KEY_PREFIX": "example"
+#	}
+#}
+
 
 # Thumbnails
 #THUMBNAIL_BACKEND = 'sorl.thumbnail.base.ThumbnailBackend'
 THUMBNAIL_BACKEND = 'products.internal.utils.MyThumbnailBackend'
 INSTALLED_APPS.append('sorl.thumbnail')
 
+THUMBNAIL_REDIS_HOST     = REDIS_HOSTNAME
+THUMBNAIL_REDIS_PORT     = REDIS_PORT
+THUMBNAIL_REDIS_PASSWORD = REDIS_PASSWORD
+THUMBNAIL_KVSTORE        = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 
 # Static files
 if DEBUG is True:

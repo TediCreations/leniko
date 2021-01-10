@@ -5,14 +5,12 @@ Django==3.1.4
 django-enum-choices==2.1.3
 django-reverse-admin==2.9.4
 django-storages==1.11.1
-dropbox==11.0.0
 idna==2.10
 invoke==1.4.1
 lxml==4.6.2
 Pillow==8.0.1
 ply==3.11
 python-docx==0.8.10
-python-dotenv==0.15.0
 pytz==2019.3
 redis==3.5.3
 requests==2.25.1

@@ -19,8 +19,9 @@ from .models import ProductTool
 
 from .internal.enum import GroupEnum
 
-from leniko.settings import BASE_DIR
-from pages.apps      import PagesConfig
+
+from django.conf import settings
+from pages.apps  import PagesConfig
 
 
 theme = PagesConfig.theme

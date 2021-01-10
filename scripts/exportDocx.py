@@ -1,7 +1,7 @@
 from docx import Document
 from docx.shared import Cm
 
-from leniko.settings import BASE_DIR
+from django.conf import settings
 from products.models import Product
 
 

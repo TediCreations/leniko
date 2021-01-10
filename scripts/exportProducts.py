@@ -4,7 +4,7 @@ import os
 import errno
 import shutil
 
-from leniko.settings import BASE_DIR
+from django.conf import settings
 
 from products.internal.enum import ColorEnum
 

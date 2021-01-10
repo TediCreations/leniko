@@ -34,8 +34,15 @@ def export2WholeSaleCatalog(filepath):
 
 		paragraph = row_cells[1].paragraphs[0]
 		run = paragraph.add_run()
-		p = BASE_DIR + obj.getPhotoUrl()
-		run.add_picture(p, width = Cm(4))
+
+		photoUrl = str(obj.getPhoto().photo.url)
+		p = BASE_DIR + photoUrl
+
+		try:
+			run.add_picture(p, width = Cm(4))
+		except Exception as e:
+			print(p)
+			print(e)
 
 	document.add_page_break()
 	document.save(filepath)

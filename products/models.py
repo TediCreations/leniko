@@ -26,12 +26,42 @@ from .internal.enum   import ColorEnum
 
 
 class Product(AbstractModel):
-	#sku       = https://getshogun.com/learn/sku-generator | https://en.wikipedia.org/wiki/Stock_keeping_unit
-	sku        = models.TextField(blank=False, null=False)
+
+	def get_sku(self):
+
+		group    = str(self.jewelry.getGroup())[0:2].upper()
+		color    = str(self.jewelry.getPrimaryColor()['name'])[0:4].upper().replace(" ", "_")
+		material = str(self.jewelry.getMaterial())[0:2].upper()
+		platting  = str(self.jewelry.platting.value)[0:2].upper()
+
+		#print(self.getInfo())
+		#enum_list = list(map(int, material))
+		#print((MaterialEnum))
+
+		import uuid
+		uid = uuid.uuid4().hex[0:5].upper()
+		rv = f"0-{group}{material}{platting}-{color}-{uid}"
+		print(rv)
+		#rv = f"T-{self.id:03d}-{self.getTitle():04d}"
+		return rv
+
+
+	sku        = models.TextField(default=None, blank=False, null=False, editable=False)
 	price      = models.FloatField(blank=False, null=False)
 	isFeatured = models.BooleanField(default=False)
 	isActive   = models.BooleanField(default=True)
 	jewelry    = models.OneToOneField(Jewelry, on_delete=models.CASCADE, primary_key=False)
+
+	def save(self, *args, **kwargs):
+
+		#print(self)
+
+		# On edit
+		#print(f"Pre:  {self.sku}")
+		self.sku = self.get_sku()
+		#print(f"Post: {self.sku}")
+
+		super().save(*args, **kwargs)
 
 	def __str__(self):
 		return str(self.jewelry)
@@ -152,6 +182,10 @@ class ProductTool():
 	def create(dictionary):
 		className = __class__.__name__
 
+		def vprint(s):
+			#print(s)
+			pass
+
 		# Check arguments
 		if not isinstance(dictionary, dict):
 			raise Exception(f"Needs a dictionary to create {className}")
@@ -192,9 +226,9 @@ class ProductTool():
 			except AttributeError as e:
 				raise Exception(f"Failed to save '{baseJewelryObj}'")
 
-			print(f"Created {baseJewelryObj}")
+			vprint(f"Created {baseJewelryObj}")
 
-		print(baseJewelryObj.to_txt())
+		vprint(baseJewelryObj.to_txt())
 
 		################################################################
 		# Create the jewelryGroup
@@ -257,9 +291,9 @@ class ProductTool():
 			except AttributeError as e:
 				raise Exception(f"Failed to save '{jewelryGroupObj}'")
 
-			print(f"Created {jewelryGroupObj}")
+			vprint(f"Created {jewelryGroupObj}")
 
-		print(jewelryGroupObj.to_txt())
+		vprint(jewelryGroupObj.to_txt())
 
 		################################################################
 		# Create the jewelryVariation
@@ -274,8 +308,8 @@ class ProductTool():
 		except AttributeError as e:
 			raise Exception(f"Failed to save '{jewelryVariationObj}'")
 
-		print(f"Created {jewelryVariationObj}")
-		print(jewelryVariationObj.to_txt())
+		vprint(f"Created {jewelryVariationObj}")
+		vprint(jewelryVariationObj.to_txt())
 
 		################################################################
 		# Create the jewelryPhotos
@@ -298,8 +332,8 @@ class ProductTool():
 				#print(e)
 				raise Exception(f"Could not save {photo}")
 
-			print(f"Created {jewelryPhotoObj}")
-			print(jewelryPhotoObj.to_txt())
+			vprint(f"Created {jewelryPhotoObj}")
+			vprint(jewelryPhotoObj.to_txt())
 
 		################################################################
 		# Create the jewelryColors
@@ -311,15 +345,13 @@ class ProductTool():
 			)
 			jewelryColorObj.save()
 
-			print(f"Created {jewelryColorObj}")
-			print(jewelryColorObj.to_txt())
+			vprint(f"Created {jewelryColorObj}")
+			vprint(jewelryColorObj.to_txt())
 
 		################################################################
 		# Create the product
 
-		import uuid
-		productObj = Product(sku        = str(uuid.uuid4()),
-				     price      = dictionary["price"],
+		productObj = Product(price      = dictionary["price"],
 				     isFeatured = dictionary["isFeatured"],
 				     isActive   = dictionary["isActive"],
 				     jewelry    = jewelryVariationObj

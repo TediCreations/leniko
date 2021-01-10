@@ -193,7 +193,7 @@ def exportData(baseDirPath):
 		# Copy photos
 		for photo in d['photos']:
 			no = photo['priority']
-			sourcePhotoPath = BASE_DIR + photo['path']
+			sourcePhotoPath = settings.BASE_DIR + photo['path']
 			extension = os.path.splitext(sourcePhotoPath)[1]
 			destinationPhotoPath = os.path.join(jewelryVariationDirPath, str(no) + "_" + "photo" + extension)
 

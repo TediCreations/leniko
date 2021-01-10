@@ -36,7 +36,7 @@ def export2WholeSaleCatalog(filepath):
 		run = paragraph.add_run()
 
 		photoUrl = str(obj.getPhoto().photo.url)
-		p = BASE_DIR + photoUrl
+		p = settings.BASE_DIR + photoUrl
 
 		try:
 			run.add_picture(p, width = Cm(4))

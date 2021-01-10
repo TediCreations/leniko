@@ -1,0 +1,33 @@
+#!TITLE: SKU
+
+
+* Group
+| Bracelet | B |
+| Ring     | R |
+| Earring  | E |
+| Necklace | N |
+
+* Title
+Hash[10]
+
+* Stone
+Number[2]
+
+* Primary color
+Number[2]
+
+* Macrame
+| Macrame | T |
+| -       | F |
+
+* Material
+| None        | NO |
+| Bronze      | BZ |
+| Silver 925° | SI |
+| Gold 14K    | 14 |
+| Gold 25K    | 25 |
+
+* Platting
+| None   | N |
+| Silver | S |
+| Gold   | G |

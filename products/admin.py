@@ -254,12 +254,12 @@ class ProductAdmin(admin.ModelAdmin):
 
 	fieldsets = [
 		("Product info", {
-			'fields': ['sku', 'price', ('isFeatured', 'isActive')]
+			'fields': ['price', ('isFeatured', 'isActive')]
 		}),
 		('Jewelry Info',     {
 			'classes': ('extrapretty',),
 			'fields': ['jewelry'],
-			#'legend': ("FUCK")
+			#'legend': ("What is a legend?")
 		}),
 	]
 

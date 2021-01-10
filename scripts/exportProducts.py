@@ -89,6 +89,7 @@ def exportData(baseDirPath):
 		d = dict()
 		d['sku']         = product.sku
 		d['price']       = product.price
+
 		d['isFeatured']  = product.isFeatured
 		d['isActive']    = product.isActive
 
@@ -96,11 +97,11 @@ def exportData(baseDirPath):
 		d['group']       = product.jewelry.getGroup()
 		d['brief']       = product.jewelry.getBrief()
 		d['description'] = product.jewelry.getDescription()
-		d['stone']       = product.jewelry.getStone()
+		d['stone']       = product.jewelry.getStone().getName()
 		d['macrame']     = product.jewelry.getMacrame()
-		d['color']       = product.jewelry.getPrimaryColor()['name'] # Primary
+		d['color']       = product.jewelry.getPrimaryColor().getName() # Primary
 
-		d['material']    = product.jewelry.getMaterial()
+		d['material']    = product.jewelry.getMaterial().getName()
 		d['platting']    = product.jewelry.getPlatting()
 
 		d['photos']      = list()
@@ -220,7 +221,7 @@ def exportData(baseDirPath):
 		#exit()
 		productFilePath = os.path.join(jewelryVariationDirPath, "product.txt")
 		product_txt = ""
-		product_txt += f"Price:             {d['price']}\n"
+		product_txt += f"Price:             {d['price']:g}\n"
 		isFeatured = bool2YesNo(d['isFeatured'])
 		product_txt += f"isFeatured:        {isFeatured}\n"
 		isActive = bool2YesNo(d['isActive'])
@@ -237,28 +238,28 @@ def exportData(baseDirPath):
 			group_txt = ""
 			gd = product.getInfo()
 			if d['group'] is "Bracelet":
-				group_txt += f"diameter_max:   {gd['diameter_max']}\n"
-				group_txt += f"diameter_min:   {gd['diameter_min']}\n"
-				group_txt += f"width_max:      {gd['width_max']}\n"
-				group_txt += f"width_min:      {gd['width_min']}\n"
+				group_txt += f"diameter_max:   {gd['diameter_max']:g}\n"
+				group_txt += f"diameter_min:   {gd['diameter_min']:g}\n"
+				group_txt += f"width_max:      {gd['width_max']:g}\n"
+				group_txt += f"width_min:      {gd['width_min']:g}\n"
 				isAdjustable = bool2YesNo(gd['isAdjustable'])
 				group_txt += f"isAdjustable:   {isAdjustable}\n"
 			elif d['group'] is "Necklace":
-				group_txt += f"length:         {gd['length']}\n"
-				group_txt += f"width_max:      {gd['width_max']}\n"
-				group_txt += f"width_min:      {gd['width_min']}\n"
+				group_txt += f"length:         {gd['length']:g}\n"
+				group_txt += f"width_max:      {gd['width_max']:g}\n"
+				group_txt += f"width_min:      {gd['width_min']:g}\n"
 				isAdjustable = bool2YesNo(gd['isAdjustable'])
 				group_txt += f"isAdjustable:   {isAdjustable}\n"
 			elif d['group'] is "Ring":
-				group_txt += f"circumference:  {gd['circumference']}\n"
-				group_txt += f"width_max:      {gd['width_max']}\n"
-				group_txt += f"width_min:      {gd['width_min']}\n"
+				group_txt += f"circumference:  {gd['circumference']:g}\n"
+				group_txt += f"width_max:      {gd['width_max']:g}\n"
+				group_txt += f"width_min:      {gd['width_min']:g}\n"
 				isAdjustable = bool2YesNo(gd['isAdjustable'])
 				group_txt += f"isAdjustable:   {isAdjustable}\n"
 			elif d['group'] is "Earring":
-				group_txt += f"heigth:         {gd['heigth']}\n"
-				group_txt += f"width_max:      {gd['width_max']}\n"
-				group_txt += f"width_min:      {gd['width_min']}\n"
+				group_txt += f"heigth:         {gd['heigth']:g}\n"
+				group_txt += f"width_max:      {gd['width_max']:g}\n"
+				group_txt += f"width_min:      {gd['width_min']:g}\n"
 
 			group_txt += f"\n"
 			group_f = open(groupFilePath, "w")

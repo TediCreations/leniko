@@ -24,25 +24,31 @@ from .internal.enum   import FinishEnum
 from .internal.enum   import StoneEnum
 from .internal.enum   import ColorEnum
 
+import hashlib
+
 
 class Product(AbstractModel):
 
 	def get_sku(self):
 
-		group    = str(self.jewelry.getGroup())[0:2].upper()
-		color    = str(self.jewelry.getPrimaryColor()['name'])[0:4].upper().replace(" ", "_")
-		material = str(self.jewelry.getMaterial())[0:2].upper()
-		platting  = str(self.jewelry.platting.value)[0:2].upper()
+		title = self.jewelry.getTitle()
 
-		#print(self.getInfo())
-		#enum_list = list(map(int, material))
-		#print((MaterialEnum))
+		group     = str(self.jewelry.getGroup())[0:1].upper()
+		hashedTitle = hashlib.md5(title.encode()).hexdigest()[:10].upper()
+		stoneId   = self.jewelry.getStone().getId()
+		prColorId = str(self.jewelry.getPrimaryColor().getId())
+		macrame   = str(self.jewelry.getMacrame()[0]).upper()
 
-		import uuid
-		uid = uuid.uuid4().hex[0:5].upper()
-		rv = f"0-{group}{material}{platting}-{color}-{uid}"
-		print(rv)
-		#rv = f"T-{self.id:03d}-{self.getTitle():04d}"
+		material  = str(self.jewelry.getMaterial().getId())
+		platting  = str(self.jewelry.platting.value)[0].upper()
+
+		#sColorId = "XXX" # There are a lot of secondary colors. Which one to show
+		#sColorId = ""
+		#for sc in self.getColorList():
+		#	print(sc)
+		#	sColorId += ", "+sc['color']['name']
+
+		rv = f"0-LJ-J-{group}-{hashedTitle}-S{stoneId}C{prColorId}-{macrame}{material}{platting}"
 		return rv
 
 
@@ -98,17 +104,16 @@ class Product(AbstractModel):
 		l = list()
 		number = 1
 		primaryColor = self.jewelry.getPrimaryColor()
-		if primaryColor['name'] != "None":
-			d = { "no": number, "color": primaryColor}
+		if primaryColor != ColorEnum.N:
+			d = { "no": number, "color": primaryColor.value}
 			l.append(d)
 			number += 1
 		for o in obj:
-			secondaryColor = o.color.value
-			if secondaryColor != "None" and secondaryColor != primaryColor:
-				d = { "no": number, "color": secondaryColor}
+			secondaryColor = o.color
+			if secondaryColor != ColorEnum.N and secondaryColor != primaryColor:
+				d = { "no": number, "color": secondaryColor.value}
 				l.append(d)
 				number += 1
-
 		return l
 
 

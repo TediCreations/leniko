@@ -48,14 +48,14 @@ class JewelryCommon(AbstractModel):
 		pass
 
 	def getStone(self):
-		return self.stone.value
+		return self.stone
 
 	def getMacrame(self):
 		return self.macrame
 
 	def getCommonInfo(self):
 		info = dict()
-		info["stone"]    = self.stone.value
+		info["stone"]    = self.stone.getName()
 		info["macrame"]  = self.macrame
 		return info
 
@@ -203,13 +203,13 @@ class JewelryGroup(AbstractModel):
 		if self.group == GroupEnum.N:
 			stone = "ERROR"
 		elif self.group == GroupEnum.BR:
-			stone = f"{self.bracelet.getStone()}"
+			stone = self.bracelet.getStone()
 		elif self.group == GroupEnum.NE:
-			stone = f"{self.necklace.getStone()}"
+			stone = self.necklace.getStone()
 		elif self.group == GroupEnum.RI:
-			stone = f"{self.ring.getStone()}"
+			stone = self.ring.getStone()
 		elif self.group == GroupEnum.EA:
-			stone = f"{self.earring.getStone()}"
+			stone = self.earring.getStone()
 		return stone
 
 
@@ -232,14 +232,15 @@ class JewelryGroup(AbstractModel):
 		if self.group == GroupEnum.N:
 			color = None
 		elif self.group == GroupEnum.BR:
-			color = self.bracelet.color.value
+			color = self.bracelet.color
 		elif self.group == GroupEnum.NE:
-			color = self.necklace.color.value
+			color = self.necklace.color
 		elif self.group == GroupEnum.RI:
-			color = self.ring.color.value
+			color = self.ring.color
 		elif self.group == GroupEnum.EA:
-			color = self.earring.color.value
+			color = self.earring.color
 		return color
+
 
 	class Meta:
 		db_table = 'JewelryGroup'
@@ -250,44 +251,56 @@ class Jewelry(AbstractModel):
 	material = EnumChoiceField(MaterialEnum, default=MaterialEnum.N)
 	platting = EnumChoiceField(PlattingEnum, default=PlattingEnum.N)
 
+
 	def getGroup(self):
 		return self.group.group.value
 
+
 	def getMaterial(self):
-		return self.material.value
+		return self.material
+
 
 	def getPlatting(self):
 		return self.platting.value
+
 
 	def getInfo(self):
 		info = dict()
 		info["type"]     = "Jewelry"
 		info["group"]    = self.group.group.value
-		info["material"] = self.material.value
+		info["material"] = self.material.getName()
 		info["platting"] = self.platting.value
 		return {**info, **self.group.getInfo()}
 
+
 	def __str__(self):
-		return f"{self.group} | {self.material.value} | {self.platting.value}"
+		return f"{self.group} | {self.material.getName()} | {self.platting.value}"
+
 
 	def get_absolute_url(self):
 		return reverse("products:product-detail", kwargs={"id": self.id})
+
 
 	def getTitle(self):
 		return f"{self.group.getTitle()}"
 	getTitle.short_description = 'Title'
 
+
 	def getBrief(self):
 		return f"{self.group.getBrief()}"
+
 
 	def getDescription(self):
 		return self.group.getDescription()
 
+
 	def getStone(self):
-		return f"{self.group.getStone()}"
+		return self.group.getStone()
+
 
 	def getMacrame(self):
 		return f"{self.group.getMacrame()}"
+
 
 	def getPhotos(self):
 		photos = JewelryPhoto.objects.filter(jewelry=self).order_by("priority") #.first()
@@ -301,8 +314,10 @@ class Jewelry(AbstractModel):
 		obj = random.choice(objList)
 		return obj
 
+
 	def getPrimaryColor(self):
 		return self.group.getPrimaryColor()
+
 
 	class Meta:
 		db_table = 'Jewelry'

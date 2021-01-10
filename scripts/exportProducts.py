@@ -237,26 +237,26 @@ def exportData(baseDirPath):
 		if not os.path.isfile(groupFilePath):
 			group_txt = ""
 			gd = product.getInfo()
-			if d['group'] is "Bracelet":
+			if d['group'] == "Bracelet":
 				group_txt += f"diameter_max:   {gd['diameter_max']:g}\n"
 				group_txt += f"diameter_min:   {gd['diameter_min']:g}\n"
 				group_txt += f"width_max:      {gd['width_max']:g}\n"
 				group_txt += f"width_min:      {gd['width_min']:g}\n"
 				isAdjustable = bool2YesNo(gd['isAdjustable'])
 				group_txt += f"isAdjustable:   {isAdjustable}\n"
-			elif d['group'] is "Necklace":
+			elif d['group'] == "Necklace":
 				group_txt += f"length:         {gd['length']:g}\n"
 				group_txt += f"width_max:      {gd['width_max']:g}\n"
 				group_txt += f"width_min:      {gd['width_min']:g}\n"
 				isAdjustable = bool2YesNo(gd['isAdjustable'])
 				group_txt += f"isAdjustable:   {isAdjustable}\n"
-			elif d['group'] is "Ring":
+			elif d['group'] == "Ring":
 				group_txt += f"circumference:  {gd['circumference']:g}\n"
 				group_txt += f"width_max:      {gd['width_max']:g}\n"
 				group_txt += f"width_min:      {gd['width_min']:g}\n"
 				isAdjustable = bool2YesNo(gd['isAdjustable'])
 				group_txt += f"isAdjustable:   {isAdjustable}\n"
-			elif d['group'] is "Earring":
+			elif d['group'] == "Earring":
 				group_txt += f"heigth:         {gd['heigth']:g}\n"
 				group_txt += f"width_max:      {gd['width_max']:g}\n"
 				group_txt += f"width_min:      {gd['width_min']:g}\n"

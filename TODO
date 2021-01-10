@@ -1,10 +1,12 @@
 # TODO
 
+- Only one secondary color
+- Sorl thumbnail quicker backend
+- url == name of variation
+
 - Solve bug in product detail view when there are no photos
 - Common utilities
 - PostGreSql or MySql instead of sqlite
-- Django storages(Dropbox, Amazon, Azure)
-- Thumbnails (Redis)
 - Google analytics
 - seo
 - More actions

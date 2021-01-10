@@ -45,7 +45,7 @@ def readCommonTxt(path, d):
 		if line == "":
 			continue
 		data = line.split(":")
-		if len(data) is not 2:
+		if len(data) != 2:
 			raise Exception(f"Failed to parse '{filepath}'")
 		key   = data[0]
 		value = data[1].strip()
@@ -81,7 +81,7 @@ def readGroupTxt(path, d):
 		if line == "":
 			continue
 		data = line.split(":")
-		if len(data) is not 2:
+		if len(data) != 2:
 			raise Exception(f"Failed to parse '{filepath}'")
 		key   = data[0]
 		value = data[1].strip()
@@ -147,7 +147,7 @@ def readInfoTxt(path, d):
 		if line == "":
 			continue
 		data = line.split(":")
-		if len(data) is not 2:
+		if len(data) != 2:
 			raise Exception(f"Failed to parse '{filepath}'")
 		key   = data[0]
 		value = data[1].strip()
@@ -179,7 +179,7 @@ def readProductTxt(path, d):
 		if line == "":
 			continue
 		data = line.split(":")
-		if len(data) is not 2:
+		if len(data) != 2:
 			raise Exception(f"Failed to parse '{filepath}'")
 		key   = data[0]
 		value = data[1].strip()

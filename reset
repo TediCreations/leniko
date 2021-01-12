@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 py3clean .
+redis-cli FLUSHDB
 rm -rf db.sqlite3
 rm -rf media
 rm -rf static

@@ -1,8 +1,9 @@
 language: python
 python:
-  - "3.6"
+  - "3.8"
 install:
   - pip install -r requirements.txt
 script:
   - ./tasks.py populate -n 100
-  - ./deploy
+  - ./tasks.py exportProduct -d /tmp/data
+  - ./tasks.py importProduct -d /tmp/data

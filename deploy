@@ -12,4 +12,4 @@ git pull origin "${GIT_BRANCH}"
 pip install -r requirements.txt
 
 rm -rf static
-./manage.py collectstatic --settings=leniko.debug_settings
+./manage.py collectstatic

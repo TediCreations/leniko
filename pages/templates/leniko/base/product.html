@@ -17,19 +17,22 @@
 
       {% with photoList=obj.getPhotoList %}
       {% if photoList|length >= 1 %}
+      <!-- 328x437 -->
       <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs="
            data-src="{{photoList.0|thumbUrl:'product'}}"
-           width="328" height="437" alt="Product Image">
+           alt="Product Image">
       {% else %}
+      <!-- 328x437 -->
       <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs="
            data-src="{% static 'img/shop/placeholder_328x437.jpg' %}"
-           width="328" height="437" alt="Product Image">
+           alt="Product Image">
       {% endif %}
 
       {% if photoList|length > 1 %}
+      <!-- 328x437 -->
       <img class="image-hover lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs="
            data-src="{{photoList.1|thumbUrl:'product'}}"
-           width="328" height="437" alt="Product Zoom Image">
+           alt="Product Zoom Image">
       {% endif %}
       {% endwith %}
     </a>

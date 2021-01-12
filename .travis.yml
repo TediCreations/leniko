@@ -4,6 +4,4 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - ./tasks.py populate -n 100
-  - ./tasks.py exportProduct -d /tmp/data
-  - ./tasks.py importProduct -d /tmp/data
+  - ./manage.py test

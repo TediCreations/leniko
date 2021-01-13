@@ -11,7 +11,6 @@ from products.models        import Product
 from products.models        import Jewelry
 from products.models        import JewelryGroup
 from products.models        import JewelryPhoto
-from products.models        import JewelryColor
 from products.models        import Bracelet
 from products.models        import Necklace
 from products.models        import Ring
@@ -58,8 +57,8 @@ def readCommonTxt(path, d):
 			d['stone'] = StoneEnum.str2Enum(value)
 		elif key == "macrame":
 			d['macrame'] = str2Bool(value)
-		elif key == "color":
-			d['color'] = ColorEnum.str2Enum(value)
+		elif key == "pcolor":
+			d['pcolor'] = ColorEnum.str2Enum(value)
 		else:
 			raise Exception(f"Invalid key '{key}' for '{filepath}'")
 
@@ -156,13 +155,8 @@ def readInfoTxt(path, d):
 			d['material'] = MaterialEnum.str2Enum(value)
 		elif key == "platting":
 			d['platting'] = PlattingEnum.str2Enum(value)
-		elif key == "colors":
-			colors = list()
-			value = value.lstrip("[").rstrip("]")
-			rawColors = value.split(",")
-			for rawColor in rawColors:
-				colors.append(ColorEnum.str2Enum(rawColor.strip()))
-			d['colors'] = colors
+		elif key == "scolor":
+			d['scolor'] = ColorEnum.str2Enum(value)
 		else:
 			raise Exception(f"Invalid key '{key}' for '{filepath}'")
 
@@ -230,13 +224,13 @@ def importData(sourceDir):
 		d['description'] = None
 		d['stone']       = None
 		d['macrame']     = None
-		d['color']       = None # Primary
+		d['pcolor']      = None # Primary
 
 		d['material']    = None
 		d['platting']    = None
+		d['scolor']      = None # Secondary
 
 		d['photos']      = None
-		d['colors']      = list()
 
 		path = os.path.join(sourceDir, group)
 		jewelrys = os.listdir(path)

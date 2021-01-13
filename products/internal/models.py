@@ -26,7 +26,7 @@ class JewelryCommon(AbstractModel):
 	description = models.TextField(blank=True, null=True)
 	stone       = EnumChoiceField(StoneEnum, default=StoneEnum.N)
 	macrame     = models.BooleanField(default=False)
-	color       = EnumChoiceField(ColorEnum, default=ColorEnum.N) # Primary Color
+	pcolor      = EnumChoiceField(ColorEnum, default=ColorEnum.N) # Primary Color
 
 	def isRegistered(self):
 		theClass = type(self)
@@ -228,18 +228,18 @@ class JewelryGroup(AbstractModel):
 
 
 	def getPrimaryColor(self):
-		color = None
+		pcolor = None
 		if self.group == GroupEnum.N:
-			color = None
+			pcolor = None
 		elif self.group == GroupEnum.BR:
-			color = self.bracelet.color
+			pcolor = self.bracelet.pcolor
 		elif self.group == GroupEnum.NE:
-			color = self.necklace.color
+			pcolor = self.necklace.pcolor
 		elif self.group == GroupEnum.RI:
-			color = self.ring.color
+			pcolor = self.ring.pcolor
 		elif self.group == GroupEnum.EA:
-			color = self.earring.color
-		return color
+			pcolor = self.earring.pcolor
+		return pcolor
 
 
 	class Meta:
@@ -250,6 +250,7 @@ class Jewelry(AbstractModel):
 	group    = models.ForeignKey(JewelryGroup, on_delete=models.CASCADE)
 	material = EnumChoiceField(MaterialEnum, default=MaterialEnum.N)
 	platting = EnumChoiceField(PlattingEnum, default=PlattingEnum.N)
+	scolor   = EnumChoiceField(ColorEnum, default=ColorEnum.N) # Secondary Color
 
 
 	def getGroup(self):
@@ -317,6 +318,10 @@ class Jewelry(AbstractModel):
 
 	def getPrimaryColor(self):
 		return self.group.getPrimaryColor()
+
+
+	def getSecondaryColor(self):
+		return self.scolor
 
 
 	class Meta:
@@ -413,22 +418,3 @@ class JewelryPhoto(AbstractModel):
 
 	class Meta:
 		db_table = 'JewelryPhoto'
-
-
-class JewelryColor(AbstractModel):
-
-	color   = EnumChoiceField(ColorEnum, default=ColorEnum.N) # Secondary color
-	jewelry = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
-
-
-	def __str__(self):
-		return f"{self.jewelry} | {self.color.value['name']}"
-
-
-	def getPhoto(self, mode=None):
-		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()
-		return obj.getPhoto(mode)
-
-
-	class Meta:
-		db_table = 'JewelryColor'

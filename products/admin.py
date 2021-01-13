@@ -10,7 +10,6 @@ from .models import Earring
 from .models import JewelryGroup
 from .models import Jewelry
 from .models import JewelryPhoto
-from .models import JewelryColor
 from .models import Product
 
 import os
@@ -23,7 +22,6 @@ admin.site.register(Earring)
 admin.site.register(JewelryGroup)
 #admin.site.register(Jewelry)
 #admin.site.register(JewelryPhoto)
-#admin.site.register(JewelryColor)
 #admin.site.register(Product)
 
 
@@ -88,30 +86,6 @@ class JewelryPhotoAdmin(admin.ModelAdmin):
 	list_display = ('photo_tag', 'priority', 'jewelry')
 
 admin.site.register(JewelryPhoto, JewelryPhotoAdmin)
-
-
-class JewelryColorAdmin(admin.ModelAdmin):
-	def photo_tag(self, obj):
-		photo  = obj.getPhoto('admin')
-		width  = photo.width
-		height = photo.height
-		if photo:
-			url = photo.url
-			return format_html(f'<img src="{url}" width="{width}" height="{height}" >')
-		else:
-			return "No image"
-	photo_tag.short_description = 'Photo'
-
-
-	def color_tag(self, obj):
-		name  = obj.color.value["name"]
-		#value = obj.color.value["value"]
-		return format_html(f'<div>{name}</div>')
-	color_tag.short_description = 'Color'
-
-	list_display = ('photo_tag', 'color_tag', 'jewelry')
-
-admin.site.register(JewelryColor, JewelryColorAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):

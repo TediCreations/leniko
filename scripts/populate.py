@@ -5,7 +5,6 @@ from products.models     import Product
 from products.models     import Jewelry
 from products.models     import JewelryGroup
 from products.models     import JewelryPhoto
-from products.models     import JewelryColor
 from products.models     import Bracelet
 from products.models     import Necklace
 from products.models     import Ring
@@ -67,12 +66,12 @@ def registerJewelryVariation():
 	dictionary["description"]   = "Default description..."
 	dictionary["stone"]         = StoneEnum.random()
 	dictionary["macrame"]       = random_bool()
-	dictionary["color"]         = ColorEnum.random()
+	dictionary["pcolor"]        = ColorEnum.random()
 
 	# Jewelry Variation
-	dictionary["material"]     = MaterialEnum.random()
-	dictionary["platting"]     = PlattingEnum.random()
-	dictionary["group"]        = group
+	dictionary["material"]      = MaterialEnum.random()
+	dictionary["platting"]      = PlattingEnum.random()
+	dictionary["group"]         = group
 
 	dictionary["heigth"]        = int(random.uniform(0, 999))
 	dictionary["length"]        = int(random.uniform(0, 999))
@@ -84,7 +83,7 @@ def registerJewelryVariation():
 	dictionary["isAdjustable"]  = random_bool()
 
 	dictionary["photos"]        = getRandomPhotoList("pages/static/delete/jewel3/")
-	dictionary["colors"]        = getRandomColorList()
+	dictionary["scolor"]        = ColorEnum.random()
 
 	# Invalid
 	dictionary["invalid"]       = "Invalid dictionary keys are ignored!"

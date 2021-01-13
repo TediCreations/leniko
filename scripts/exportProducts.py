@@ -12,7 +12,6 @@ from products.models        import Product
 from products.models        import Jewelry
 from products.models        import JewelryGroup
 from products.models        import JewelryPhoto
-from products.models        import JewelryColor
 from products.models        import Bracelet
 from products.models        import Necklace
 from products.models        import Ring
@@ -99,13 +98,13 @@ def exportData(baseDirPath):
 		d['description'] = product.jewelry.getDescription()
 		d['stone']       = product.jewelry.getStone().getName()
 		d['macrame']     = product.jewelry.getMacrame()
-		d['color']       = product.jewelry.getPrimaryColor().getName() # Primary
+		d['pcolor']      = product.jewelry.getPrimaryColor().getName() # Primary
 
 		d['material']    = product.jewelry.getMaterial().getName()
 		d['platting']    = product.jewelry.getPlatting()
+		d['scolor']      = product.jewelry.getSecondaryColor().getName() # Secondary
 
 		d['photos']      = list()
-		d['colors']      = "[" #Secondary
 
 		i = 1
 		variationNumber = None
@@ -126,19 +125,6 @@ def exportData(baseDirPath):
 				pd['priority'] = photo.priority
 				d['photos'].append(pd)
 				j += 1
-
-			# Colors
-			for color in JewelryColor.objects.filter(jewelry=variation): #.order_by("priority")
-				if color.color is not ColorEnum.N:
-					colorName = color.color.value['name']
-					d['colors'] += colorName + ", "
-
-			def rchop(s, suffix):
-				if suffix and s.endswith(suffix):
-					return s[:-len(suffix)]
-				return s
-			d['colors'] = rchop(d['colors'], ', ')
-			d['colors'] += "]"
 
 		# Create jewelry group directory
 		group = product.jewelry.getGroup()
@@ -180,7 +166,7 @@ def exportData(baseDirPath):
 			common_txt += f"stone:       {d['stone']}\n"
 			macrame = bool2YesNo(d['macrame'])
 			common_txt += f"macrame:     {macrame}\n"
-			common_txt += f"color:       {d['color']}\n"
+			common_txt += f"pcolor:      {d['pcolor']}\n"
 			common_txt += f"\n"
 			common_f = open(commonFilePath, "w")
 			common_f.write(common_txt)
@@ -209,7 +195,7 @@ def exportData(baseDirPath):
 		info_txt = ""
 		info_txt += f"material:          {d['material']}\n"
 		info_txt += f"platting:          {d['platting']}\n"
-		info_txt += f"colors:            {d['colors']}\n"
+		info_txt += f"scolor:            {d['scolor']}\n"
 		info_txt += f"\n"
 		info_f = open(infoFilePath, "w")
 		info_f.write(info_txt)
@@ -217,8 +203,6 @@ def exportData(baseDirPath):
 		#print(f"Wrote file to {infoFilePath}")
 
 		# Write product.txt
-		#print(d)
-		#exit()
 		productFilePath = os.path.join(jewelryVariationDirPath, "product.txt")
 		product_txt = ""
 		product_txt += f"Price:             {d['price']:g}\n"

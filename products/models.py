@@ -13,7 +13,6 @@ from .internal.models import Necklace
 from .internal.models import Earring
 from .internal.models import JewelryGroup
 from .internal.models import JewelryPhoto
-from .internal.models import JewelryColor
 
 from .internal.utils  import AbstractModel
 
@@ -36,19 +35,14 @@ class Product(AbstractModel):
 		group     = str(self.jewelry.getGroup())[0:1].upper()
 		hashedTitle = hashlib.md5(title.encode()).hexdigest()[:10].upper()
 		stoneId   = self.jewelry.getStone().getId()
-		prColorId = str(self.jewelry.getPrimaryColor().getId())
+		pColorId = str(self.jewelry.getPrimaryColor().getId())
 		macrame   = str(self.jewelry.getMacrame()[0]).upper()
 
 		material  = str(self.jewelry.getMaterial().getId())
 		platting  = str(self.jewelry.platting.value)[0].upper()
+		sColorId = str(self.jewelry.getSecondaryColor().getId())
 
-		#sColorId = "XXX" # There are a lot of secondary colors. Which one to show
-		#sColorId = ""
-		#for sc in self.getColorList():
-		#	print(sc)
-		#	sColorId += ", "+sc['color']['name']
-
-		rv = f"0-LJ-J-{group}-{hashedTitle}-S{stoneId}C{prColorId}-{macrame}{material}{platting}"
+		rv = f"0-LJ-J-{group}-{hashedTitle}-S{stoneId}C{pColorId}{sColorId}-{macrame}{material}{platting}"
 		return rv
 
 
@@ -60,12 +54,7 @@ class Product(AbstractModel):
 
 	def save(self, *args, **kwargs):
 
-		#print(self)
-
-		# On edit
-		#print(f"Pre:  {self.sku}")
 		self.sku = self.get_sku()
-		#print(f"Post: {self.sku}")
 
 		super().save(*args, **kwargs)
 
@@ -100,20 +89,21 @@ class Product(AbstractModel):
 
 
 	def getColorList(self):
-		obj = JewelryColor.objects.filter(jewelry = self.jewelry).order_by("color")
 		l = list()
 		number = 1
+
 		primaryColor = self.jewelry.getPrimaryColor()
 		if primaryColor != ColorEnum.N:
 			d = { "no": number, "color": primaryColor.value}
 			l.append(d)
 			number += 1
-		for o in obj:
-			secondaryColor = o.color
-			if secondaryColor != ColorEnum.N and secondaryColor != primaryColor:
-				d = { "no": number, "color": secondaryColor.value}
-				l.append(d)
-				number += 1
+
+		secondaryColor = self.jewelry.getSecondaryColor()
+		if secondaryColor != ColorEnum.N:
+			d = { "no": number, "color": secondaryColor.value}
+			l.append(d)
+			number += 1
+
 		return l
 
 
@@ -121,12 +111,15 @@ class Product(AbstractModel):
 		obj = Product.objects.filter(id__lt=self.id).order_by('id').last()
 		return obj
 
+
 	def getNextObject(self):
 		obj = Product.objects.filter(id__gt=self.id).order_by('id').first()
 		return obj
 
+
 	def getInfo(self):
 		return self.jewelry.getInfo()
+
 
 	class Meta:
 		db_table = 'Product'
@@ -146,11 +139,6 @@ class ProductTool():
 
 		dictionary = dict()
 
-		colors = list()
-		for sc in d["colors"]:
-			ec = ColorEnum.str2Enum(sc)
-			colors.append(ec)
-
 		# Product
 		dictionary["price"]         = d["price"]
 		dictionary["isFeatured"]    = d["isFeatured"]
@@ -162,12 +150,12 @@ class ProductTool():
 		dictionary["description"]   = d['description']
 		dictionary["stone"]         = StoneEnum.str2Enum(d['stone'])
 		dictionary["macrame"]       = d['macrame']
-		dictionary["color"]         = ColorEnum.str2Enum(d['color'])
+		dictionary["pcolor"]        = ColorEnum.str2Enum(d['pcolor'])
 
 		# Jewelry Variation
-		dictionary["material"]     = MaterialEnum.str2Enum(d['material'])
-		dictionary["platting"]     = PlattingEnum.str2Enum(d['platting'])
-		dictionary["group"]        = GroupEnum.str2Enum(d['group'])
+		dictionary["material"]      = MaterialEnum.str2Enum(d['material'])
+		dictionary["platting"]      = PlattingEnum.str2Enum(d['platting'])
+		dictionary["group"]         = GroupEnum.str2Enum(d['group'])
 
 		dictionary["heigth"]        = getDictValue(d, 'heigth')
 		dictionary["length"]        = getDictValue(d, 'length')
@@ -179,7 +167,7 @@ class ProductTool():
 		dictionary["isAdjustable"]  = getDictValue(d, 'isAdjustable')
 
 		dictionary["photos"]        = d["photos"]
-		dictionary["colors"]        = colors
+		dictionary["scolor"]        = ColorEnum.str2Enum(d['scolor'])
 
 		return ProductTool.create(dictionary)
 
@@ -229,7 +217,7 @@ class ProductTool():
 			try:
 				baseJewelryObj.save()
 			except AttributeError as e:
-				raise Exception(f"Failed to save '{baseJewelryObj}'")
+				raise Exception(f"Failed to save JewelryGroup '{baseJewelryObj}'")
 
 			vprint(f"Created {baseJewelryObj}")
 
@@ -294,7 +282,7 @@ class ProductTool():
 			try:
 				jewelryGroupObj.save()
 			except AttributeError as e:
-				raise Exception(f"Failed to save '{jewelryGroupObj}'")
+				raise Exception(f"Failed to save JewelryGroup '{jewelryGroupObj}'")
 
 			vprint(f"Created {jewelryGroupObj}")
 
@@ -305,13 +293,14 @@ class ProductTool():
 
 		jewelryVariationObj = Jewelry(group    = jewelryGroupObj,
 					      material = dictionary["material"],
-					      platting = dictionary["platting"])
+					      platting = dictionary["platting"],
+					      scolor   = dictionary["scolor"])
 
 		# Check if name already exists
 		try:
 			jewelryVariationObj.save()
 		except AttributeError as e:
-			raise Exception(f"Failed to save '{jewelryVariationObj}'")
+			raise Exception(f"Failed to save JewelryVariation: '{jewelryVariationObj}'")
 
 		vprint(f"Created {jewelryVariationObj}")
 		vprint(jewelryVariationObj.to_txt())
@@ -341,19 +330,6 @@ class ProductTool():
 			vprint(jewelryPhotoObj.to_txt())
 
 		################################################################
-		# Create the jewelryColors
-
-		for color in dictionary["colors"]:
-			jewelryColorObj = JewelryColor(
-				jewelry  = jewelryVariationObj,
-				color    = color
-			)
-			jewelryColorObj.save()
-
-			vprint(f"Created {jewelryColorObj}")
-			vprint(jewelryColorObj.to_txt())
-
-		################################################################
 		# Create the product
 
 		productObj = Product(price      = dictionary["price"],
@@ -366,7 +342,7 @@ class ProductTool():
 		try:
 			productObj.save()
 		except AttributeError as e:
-			raise Exception(f"Failed to save '{productObj}'")
+			raise Exception(f"Failed to save Product '{productObj}'")
 
 		print(f"Created {productObj}")
 		print(productObj.to_txt())

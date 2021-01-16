@@ -1,7 +1,6 @@
 # TODO
 
 
-- Only one secondary color
 - Sorl thumbnail quicker backend
 - url == name of variation
 - REST API
@@ -11,7 +10,6 @@
 - Google analytics
 - seo
 - More actions
-- Drop JewelryPhoto. Only one secondary color per Variation Jewelry.
 - UNITTESTS
 
 

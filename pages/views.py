@@ -181,3 +181,16 @@ def dev_form(request, *args, **kwargs):
 		"webpage_description": webpage_description,
 	}
 	return render(request, template_name, context)
+
+def dev_coming_soon(request, *args, **kwargs):
+	template_name = theme + '/coming-soon.html'
+	webpage_name = "Coming soon"
+	webpage_description = "Coming soon!!!"
+
+	objList = Product.objects.all()
+
+	context = {
+		"webpage_name":        webpage_name,
+		"webpage_description": webpage_description
+	}
+	return render(request, template_name, context)

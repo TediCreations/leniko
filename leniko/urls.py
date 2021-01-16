@@ -29,6 +29,7 @@ from pages.views import contact_view
 
 from pages.views import dev_view
 from pages.views import dev_form
+from pages.views import dev_coming_soon
 from pages.views import handler400
 from pages.views import handler404
 from pages.views import handler500
@@ -44,6 +45,7 @@ urlpatterns = [
 	path('product/'    , include('products.urls')),
 
 	path('dev/'        , dev_view             , name='dev'),
+	path('coming-soon/', dev_coming_soon      , name='coming-soon'),
 	path('dev/form/'   , dev_form             , name='dev'),
 	path('dev/400/'    , handler400           , name='dev'),
 	path('dev/404/'    , handler404           , name='dev'),

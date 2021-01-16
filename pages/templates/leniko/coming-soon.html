@@ -1,0 +1,33 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Comming soon Start -->
+<div class="coming-soon-section section section-padding" data-bg-image="{% static 'img/coming-soon-bg.jpg' %}">
+  <div class="container">
+    <div class="coming-soon-content">
+      <div class="logo">
+        <a href="/coming-soon"><img src="{% static 'img/coming-soon-bg.jpg' %}" alt=""></a>
+      </div>
+      <h2 class="title">Coming soon</h2>
+      <div class="countdown3" data-countdown="2021/03/10"></div -->
+      <!-- div class="coming-soon-subscribe" -->
+        <!-- form id="mc-form" class="mc-form widget-subscibe" -->
+          <!-- input id="mc-email" class="bg-light" autocomplete="off" type="email" placeholder="Enter your e-mail address" -->
+          <!-- button id="mc-submit" class="btn btn-dark">subscibe</button -->
+        <!-- /form -->
+        <!-- mailchimp-alerts Start -->
+        <!-- div class="mailchimp-alerts text-centre" -->
+          <!-- div class="mailchimp-submitting"></div --><!-- mailchimp-submitting end -->
+          <!-- div class="mailchimp-success text-success"></div --><!-- mailchimp-success end -->
+          <!-- div class="mailchimp-error text-danger"></div --><!-- mailchimp-error end -->
+        <!-- /div -->
+        <!-- mailchimp-alerts end -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Comming soon End -->
+
+{% endblock %}

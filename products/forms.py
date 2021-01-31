@@ -18,15 +18,15 @@ class JewelryCommonForm(ProductForm):
 	brief       = forms.CharField(required=False)
 	description = forms.CharField(required=False)
 	stone       = forms.ChoiceField(choices = StoneEnum.choices(), initial=StoneEnum.N)
-	color       = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
+	pcolor      = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
 	macrame     = forms.BooleanField(required=False, initial=False)
 
 	material    = forms.ChoiceField(choices = MaterialEnum.choices(), initial=MaterialEnum.N)
 	platting    = forms.ChoiceField(choices = PlattingEnum.choices(), initial=PlattingEnum.N)
 
 	photos      = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': True}))
-	colors      = forms.MultipleChoiceField(required=False, choices = ColorEnum.choices(), widget=forms.SelectMultiple(), initial=ColorEnum.N)
-	#colors     = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
+	#scolor     = forms.MultipleChoiceField(required=False, choices = ColorEnum.choices(), widget=forms.SelectMultiple(), initial=ColorEnum.N)
+	scolor      = forms.ChoiceField(choices = ColorEnum.choices(), initial=ColorEnum.N)
 
 class BraceletForm(JewelryCommonForm):
 	group        = forms.ChoiceField(widget=forms.HiddenInput(), choices = GroupEnum.choices(), initial=GroupEnum.BR.value)

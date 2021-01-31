@@ -13,7 +13,7 @@ class BraceletTestCase(TestCase):
 			description  = "My description",
 			stone        = StoneEnum.LAPIS_LAZULI,
 			macrame      = True,
-			color        = ColorEnum.RED,
+			pcolor       = ColorEnum.RED,
 
 			# Bracelet
 			diameter_max = 2.5,

@@ -133,7 +133,7 @@ def product_create_view(request, *args, **kwargs):
 			#		for chunk in f.chunks():
 			#			destination.write(chunk)
 			#
-			#handle_uploaded_file(request, 'photo', os.path.join(BASE_DIR, "media/restapi/"))
+			#handle_uploaded_file(request, 'photo', os.path.join(settings.BASE_DIR, "media/restapi/"))
 
 			def handle_multiuploaded_file(request, key, destPath):
 				filePathList = list()
@@ -153,7 +153,7 @@ def product_create_view(request, *args, **kwargs):
 
 			d = dict(form.cleaned_data)
 
-			filePathList = handle_multiuploaded_file(request, 'photos', os.path.join(BASE_DIR, "media/restapi/"))
+			filePathList = handle_multiuploaded_file(request, 'photos', os.path.join(settings.BASE_DIR, "media/restapi/"))
 			d['photos'] = filePathList
 
 			obj = None

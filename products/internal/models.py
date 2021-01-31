@@ -43,9 +43,9 @@ class JewelryCommon(AbstractModel):
 		if self.title == '':
 			raise ValidationError('Empty error message')
 
-	@classmethod
-	def compare(self, instance):
-		pass
+	#@classmethod
+	#def compare(self, instance):
+	#	pass
 
 	def getStone(self):
 		return self.stone

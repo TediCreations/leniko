@@ -17,6 +17,8 @@ from .forms  import BraceletForm
 from .models import Product
 from .models import ProductTool
 
+from cart.models import Cart
+
 from .internal.enum import GroupEnum
 
 
@@ -41,6 +43,10 @@ def product_list_view(request):
 				page_num = int(raw_page_num)
 			except Exception:
 				raise Http404("Invalid page number")
+
+	# --------------------------------------------------
+	# Cart
+	cart = Cart(request)
 
 	# --------------------------------------------------
 	# Objects
@@ -81,7 +87,8 @@ def product_list_view(request):
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
 		"objList":             objList,
-		"page":                page
+		"page":                page,
+		"cart":                cart
 	}
 
 	return render(request, template_name, context)
@@ -90,10 +97,18 @@ def product_list_view(request):
 def product_detail_view(request, id):
 	template_name = theme + '/product-details.html'
 	webpage_name = "Product list"
+
+	# --------------------------------------------------
+	# Cart
+	cart = Cart(request)
+
+	# --------------------------------------------------
+	# Product
 	obj = get_object_or_404(Product, id=id)
 	context = {
 		"webpage_name": "SKU:" + str(obj.id),
-		"obj":          obj
+		"obj":          obj,
+		"cart":         cart
 	}
 	return render(request, template_name, context)
 

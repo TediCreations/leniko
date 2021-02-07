@@ -34,6 +34,7 @@ from pages.views import handler400
 from pages.views import handler404
 from pages.views import handler500
 
+
 urlpatterns = [
 	path(''            , home_view            , name='home'),
 
@@ -43,6 +44,7 @@ urlpatterns = [
 	path('contact/'    , contact_view         , name='contact'),
 
 	path('product/'    , include('products.urls')),
+	path('cart/'       , include('cart.urls')),
 
 	path('dev/'        , dev_view             , name='dev'),
 	path('coming-soon/', dev_coming_soon      , name='coming-soon'),

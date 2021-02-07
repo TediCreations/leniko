@@ -11,7 +11,8 @@
 - seo
 - More actions
 - UNITTESTS
-
+- Notify me on failed login attempt
+- 2 factor authentication
 
 # Lazy loading
 -https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/
@@ -19,3 +20,13 @@
 
 # Best practices
 https://12factor.net/
+
+#######################################################
+http://reader.epubee.com/books/mobile/12/12281e5b8cf834db1ecf92812fd7ce5f/text00054.html
+
+
+<form action="{% url 'cart:cart-add' obj.id %}" method="post">
+              {% csrf_token %}
+              {{ cart.add_product_form }}
+              <input type="submit" value="Add to cart">
+            </form>

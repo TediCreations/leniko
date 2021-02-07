@@ -8,6 +8,7 @@ from django.http                    import Http404
 from django.http                    import HttpResponseRedirect
 from django.http                    import HttpResponseBadRequest
 from django.http                    import HttpResponseServerError
+from django.views                   import View
 
 from .forms  import RingForm
 from .forms  import EarringForm
@@ -27,14 +28,17 @@ from pages.apps  import PagesConfig
 theme = PagesConfig.theme
 
 
+class ProductListView(View):
 
-def product_list_view(request):
-	template_name = theme +'/shop.html'
+	"""Show an overview of all available products"""
+
+	template_name = theme + '/shop.html'
 	webpage_name = "Shop"
 	webpage_description = "Leniko jewelry shop page"
 
-	page_num = 1
-	if request.method == 'GET':
+	def get(self, request):
+
+		page_num = 1
 		raw_page_num = request.GET.get('page')
 		if raw_page_num is not None:
 			try:
@@ -42,49 +46,47 @@ def product_list_view(request):
 			except Exception:
 				raise Http404("Invalid page number")
 
-	# --------------------------------------------------
-	# Objects
-	#objList = Product.objects.all()
-	objList = Product.objects.filter(isActive = True).order_by('sku')
+		# --------------------------------------------------
+		# Objects
+		# objList = Product.objects.all()
+		objList = Product.objects.filter(isActive=True).order_by('sku')
 
+		# featured = request.GET.get("featured")
+		# if featured:
+		#    objList = objList.filter(featured = True)
 
-	#featured = request.GET.get("featured")
-	#if featured:
-	#    objList = objList.filter(featured = True)
+		# macrame = request.GET.get("macrame")
+		# if macrame:
+		#    objList = objList.filter(macrame = True)
 
-	#macrame = request.GET.get("macrame")
-	#if macrame:
-	#    objList = objList.filter(macrame = True)
+		# price_max = request.GET.get("price_max")
+		# if price_max:
+		#    objList = objList.filter(price__lte = price_max )
 
-	#price_max = request.GET.get("price_max")
-	#if price_max:
-	#    objList = objList.filter(price__lte = price_max )
+		# price_min = request.GET.get("price_min")
+		# if price_min:
+		#    objList = objList.filter(price__gte = price_min )
 
-	#price_min = request.GET.get("price_min")
-	#if price_min:
-	#    objList = objList.filter(price__gte = price_min )
+		# --------------------------------------------------
+		# Pagination
+		productsPerPage = 50
+		productPager = Paginator(objList, productsPerPage)
 
-	# --------------------------------------------------
-	# Pagination
-	productsPerPage = 50
-	productPager = Paginator(objList, productsPerPage)
+		if 1 > page_num or page_num > productPager.num_pages:
+			raise Http404("Page does not exist")
 
-	if 1 > page_num or page_num > productPager.num_pages:
-		raise Http404("Page does not exist")
+		objList = productPager.page(page_num).object_list
+		page = productPager.page(page_num)
 
-	objList = productPager.page(page_num).object_list
-	page = productPager.page(page_num)
-
-	# --------------------------------------------------
-	# Render
-	context = {
-		"webpage_name":        webpage_name,
-		"webpage_description": webpage_description,
-		"objList":             objList,
-		"page":                page
-	}
-
-	return render(request, template_name, context)
+		# --------------------------------------------------
+		# Render
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"objList": objList,
+			"page": page
+		}
+		return render(request, self.template_name, context)
 
 
 def product_detail_view(request, id):

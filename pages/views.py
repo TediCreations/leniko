@@ -5,6 +5,7 @@ from django.shortcuts    import render
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
+from django.views        import View
 
 
 from products.models import Product
@@ -136,60 +137,75 @@ def logout_view(request, *args, **kwargs):
 	return HttpResponseRedirect(next_url)
 
 
-def home_view(request, *args, **kwargs):
+class HomeView(View):
+
+	"""Show the website's home page"""
+
 	template_name = theme + '/home.html'
 	webpage_name = "Home"
 	webpage_description = "Leniko jewelry home page"
 
-	# --------------------------------------------------
-	# Cart
-	cart = Cart(request)
+	def get(self, request):
 
-	# --------------------------------------------------
-	# Products
-	objList = Product.objects.filter(isActive = True).filter(isFeatured = True)[:10]
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
 
-	context = {
-		"webpage_name":        webpage_name,
-		"webpage_description": webpage_description,
-		"objList":             objList,
-		"cart":                cart
-	}
-	return render(request, template_name, context)
+		# --------------------------------------------------
+		# Products
+		objList = Product.objects.filter(isActive=True).filter(isFeatured=True)[:10]
+
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"objList": objList,
+			"cart": cart
+		}
+		return render(request, self.template_name, context)
 
 
-def about_view(request, *args, **kwargs):
+class AboutView(View):
+
+	"""Show the website's about page"""
+
 	template_name = theme + '/about.html'
 	webpage_name = "About"
 	webpage_description = "Leniko jewelry about page"
 
-	# --------------------------------------------------
-	# Cart
-	cart = Cart(request)
+	def get(self, request):
 
-	context = {
-		"webpage_name":        webpage_name,
-		"webpage_description": webpage_description,
-		"cart":                cart
-	}
-	return render(request, template_name, context)
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"cart": cart
+		}
+		return render(request, self.template_name, context)
 
 
-def contact_view(request, *args, **kwargs):
+class ContactView(View):
+
+	"""Show the website's contact page"""
+
 	template_name = theme + '/contact.html'
 	webpage_name = "Contact"
 	webpage_description = "Leniko jewelry contact page"
 
-	# --------------------------------------------------
-	# Cart
-	cart = Cart(request)
+	def get(self, request):
 
-	context = {
-		"webpage_name":        webpage_name,
-		"webpage_description": webpage_description,
-		"cart":                cart
-	}
-	return render(request, template_name, context)
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"cart": cart
+		}
+		return render(request, self.template_name, context)
 
 
 def dev_view(request, *args, **kwargs):

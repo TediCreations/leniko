@@ -67,6 +67,9 @@ class JewelryProductManager(models.Manager):
 	def silver925(self):
 		return self.active().filter(jewelry__material=MaterialEnum.SI)
 
+	def brass(self):
+		return self.active().filter(jewelry__material=MaterialEnum.BR)
+
 
 class Product(AbstractModel):
 

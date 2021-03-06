@@ -39,7 +39,7 @@ def createMaterial(id, name):
 
 class MaterialEnum(Enum):
 	N    = createMaterial("NO", "None")
-	BR   = createMaterial("BZ", "Bronze")
+	BR   = createMaterial("BR", "Brass")
 	SI   = createMaterial("SI", "Silver 925")
 	GO14 = createMaterial("14", "Gold 14K")
 	GO25 = createMaterial("25", "Gold 25K")

@@ -1,8 +1,8 @@
-from django.db   import models
+from django.db import models
 from django.urls import reverse
 
-from django.core.files          import File
-from django.core.exceptions     import ValidationError
+from django.core.files import File
+from django.core.exceptions import ValidationError
 
 from django_enum_choices.fields import EnumChoiceField
 
@@ -14,16 +14,57 @@ from .internal.models import Earring
 from .internal.models import JewelryGroup
 from .internal.models import JewelryPhoto
 
-from .internal.utils  import AbstractModel
+from .internal.utils import AbstractModel
 
-from .internal.enum   import GroupEnum
-from .internal.enum   import MaterialEnum
-from .internal.enum   import PlattingEnum
-from .internal.enum   import FinishEnum
-from .internal.enum   import StoneEnum
-from .internal.enum   import ColorEnum
+from .internal.enum import GroupEnum
+from .internal.enum import MaterialEnum
+from .internal.enum import PlattingEnum
+from .internal.enum import FinishEnum
+from .internal.enum import StoneEnum
+from .internal.enum import ColorEnum
 
 import hashlib
+
+
+class JewelryProductManager(models.Manager):
+
+	def get_queryset(self):
+		return super().get_queryset()
+
+	def active(self):
+		return self.get_queryset().filter(isActive=True).order_by('sku')
+
+	def rings(self):
+		JewelryGroupList = JewelryGroup.objects.filter(group=GroupEnum.RI)
+		return self.active().filter(jewelry__group__in=JewelryGroupList)
+
+	def bracelets(self):
+		JewelryGroupList = JewelryGroup.objects.filter(group=GroupEnum.BR)
+		return self.active().filter(jewelry__group__in=JewelryGroupList)
+
+	def necklaces(self):
+		JewelryGroupList = JewelryGroup.objects.filter(group=GroupEnum.NE)
+		return self.active().filter(jewelry__group__in=JewelryGroupList)
+
+	def earrings(self):
+		JewelryGroupList = JewelryGroup.objects.filter(material=GroupEnum.EA)
+		return self.active().filter(jewelry__material__in=JewelryGroupList)
+
+	def macrame(self):
+		RingList = Ring.objects.filter(macrame=True)
+		BraceletList = Bracelet.objects.filter(macrame=True)
+		NecklaceList = Necklace.objects.filter(macrame=True)
+		EarringList = Earring.objects.filter(macrame=True)
+
+		JewelryGroupList = JewelryGroup.objects.exclude(ring__in=RingList)
+		JewelryGroupList = JewelryGroupList.exclude(bracelet__in=BraceletList)
+		JewelryGroupList = JewelryGroupList.exclude(necklace__in=NecklaceList)
+		JewelryGroupList = JewelryGroupList.exclude(earring__in=EarringList)
+
+		return self.active().filter(jewelry__group__in=JewelryGroupList)
+
+	def silver925(self):
+		return self.active().filter(jewelry__material=MaterialEnum.SI)
 
 
 class Product(AbstractModel):
@@ -32,25 +73,26 @@ class Product(AbstractModel):
 
 		title = self.jewelry.getTitle()
 
-		group     = str(self.jewelry.getGroup())[0:1].upper()
+		group = str(self.jewelry.getGroup())[0:1].upper()
 		hashedTitle = hashlib.md5(title.encode()).hexdigest()[:10].upper()
-		stoneId   = self.jewelry.getStone().getId()
+		stoneId = self.jewelry.getStone().getId()
 		pColorId = str(self.jewelry.getPrimaryColor().getId())
-		macrame   = str(self.jewelry.getMacrame()[0]).upper()
+		macrame = str(self.jewelry.getMacrame()[0]).upper()
 
-		material  = str(self.jewelry.getMaterial().getId())
-		platting  = str(self.jewelry.platting.value)[0].upper()
+		material = str(self.jewelry.getMaterial().getId())
+		platting = str(self.jewelry.platting.value)[0].upper()
 		sColorId = str(self.jewelry.getSecondaryColor().getId())
 
 		rv = f"0-LJ-J-{group}-{hashedTitle}-S{stoneId}C{pColorId}{sColorId}-{macrame}{material}{platting}"
 		return rv
 
-
-	sku        = models.TextField(default=None, blank=False, null=False, editable=False)
-	price      = models.FloatField(blank=False, null=False)
+	sku = models.TextField(default=None, blank=False, null=False, editable=False)
+	price = models.FloatField(blank=False, null=False)
 	isFeatured = models.BooleanField(default=False)
-	isActive   = models.BooleanField(default=True)
-	jewelry    = models.OneToOneField(Jewelry, on_delete=models.CASCADE, primary_key=False)
+	isActive = models.BooleanField(default=True)
+	jewelry = models.OneToOneField(Jewelry, on_delete=models.CASCADE, primary_key=False)
+
+	objects = JewelryProductManager()
 
 	def save(self, *args, **kwargs):
 
@@ -77,16 +119,13 @@ class Product(AbstractModel):
 	def getDescription(self):
 		return self.jewelry.getDescription()
 
-
 	def getPhoto(self):
-		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority").first()
+		obj = JewelryPhoto.objects.filter(jewelry=self.jewelry).order_by("priority").first()
 		return obj
-
 
 	def getPhotoList(self):
-		obj = JewelryPhoto.objects.filter(jewelry = self.jewelry).order_by("priority")
+		obj = JewelryPhoto.objects.filter(jewelry=self.jewelry).order_by("priority")
 		return obj
-
 
 	def getColorList(self):
 		l = list()
@@ -94,32 +133,28 @@ class Product(AbstractModel):
 
 		primaryColor = self.jewelry.getPrimaryColor()
 		if primaryColor != ColorEnum.N:
-			d = { "no": number, "color": primaryColor.value}
+			d = {"no": number, "color": primaryColor.value}
 			l.append(d)
 			number += 1
 
 		secondaryColor = self.jewelry.getSecondaryColor()
 		if secondaryColor != ColorEnum.N:
-			d = { "no": number, "color": secondaryColor.value}
+			d = {"no": number, "color": secondaryColor.value}
 			l.append(d)
 			number += 1
 
 		return l
 
-
 	def getPrevObject(self):
 		obj = Product.objects.filter(id__lt=self.id).order_by('id').last()
 		return obj
-
 
 	def getNextObject(self):
 		obj = Product.objects.filter(id__gt=self.id).order_by('id').first()
 		return obj
 
-
 	def getInfo(self):
 		return self.jewelry.getInfo()
-
 
 	class Meta:
 		db_table = 'Product'
@@ -171,12 +206,11 @@ class ProductTool():
 
 		return ProductTool.create(dictionary)
 
-
 	def create(dictionary):
 		className = __class__.__name__
 
 		def vprint(s):
-			#print(s)
+			# print(s)
 			pass
 
 		# Check arguments
@@ -186,7 +220,7 @@ class ProductTool():
 		# Get group so as to decide
 		def getGroupClass(group):
 			if group == GroupEnum.N:
-				#raise Exception("Group is None")
+				# raise Exception("Group is None")
 				print("Group is None")
 				exit()
 			elif group == GroupEnum.BR:
@@ -205,9 +239,9 @@ class ProductTool():
 		# Create the jewelry
 		groupClass = getGroupClass(dictionary["group"])
 		baseJewelryObj = groupClass.create(dictionary)
-		#print(baseJewelryObj.to_txt())
+		# print(baseJewelryObj.to_txt())
 		isBaseJewelryRegistered = baseJewelryObj.isRegistered()
-		#Ring.isRegistered()
+		# Ring.isRegistered()
 
 		# Check if name already exists
 		if isBaseJewelryRegistered is True:
@@ -216,7 +250,7 @@ class ProductTool():
 		else:
 			try:
 				baseJewelryObj.save()
-			except AttributeError as e:
+			except AttributeError:
 				raise Exception(f"Failed to save JewelryGroup '{baseJewelryObj}'")
 
 			vprint(f"Created {baseJewelryObj}")
@@ -227,12 +261,12 @@ class ProductTool():
 		# Create the jewelryGroup
 		def buildJewelryGroup(group, jewelryObj):
 			bracelet = None
-			earring  = None
+			earring = None
 			necklace = None
-			ring     = None
+			ring = None
 
 			if group == GroupEnum.N:
-				#raise Exception("Group is None")
+				# raise Exception("Group is None")
 				print("Group is None")
 				exit()
 			elif group == GroupEnum.BR:
@@ -251,7 +285,7 @@ class ProductTool():
 			# So jewelryGroup is SHOULD  also be available
 			def locateJewelryGroup(group, jewelryObj):
 				if group == GroupEnum.N:
-					#raise Exception("Group is None")
+					# raise Exception("Group is None")
 					print("Group is None")
 					exit()
 				elif group == GroupEnum.BR:
@@ -277,11 +311,11 @@ class ProductTool():
 		else:
 			try:
 				jewelryGroupObj = buildJewelryGroup(dictionary["group"], baseJewelryObj)
-			except AttributeError as e:
+			except AttributeError:
 				raise Exception(f"Failed to create '{jewelryGroupObj}'")
 			try:
 				jewelryGroupObj.save()
-			except AttributeError as e:
+			except AttributeError:
 				raise Exception(f"Failed to save JewelryGroup '{jewelryGroupObj}'")
 
 			vprint(f"Created {jewelryGroupObj}")
@@ -291,15 +325,17 @@ class ProductTool():
 		################################################################
 		# Create the jewelryVariation
 
-		jewelryVariationObj = Jewelry(group    = jewelryGroupObj,
-					      material = dictionary["material"],
-					      platting = dictionary["platting"],
-					      scolor   = dictionary["scolor"])
+		jewelryVariationObj = Jewelry(
+			group=jewelryGroupObj,
+			material=dictionary["material"],
+			platting=dictionary["platting"],
+			scolor=dictionary["scolor"]
+		)
 
 		# Check if name already exists
 		try:
 			jewelryVariationObj.save()
-		except AttributeError as e:
+		except AttributeError:
 			raise Exception(f"Failed to save JewelryVariation: '{jewelryVariationObj}'")
 
 		vprint(f"Created {jewelryVariationObj}")
@@ -313,17 +349,16 @@ class ProductTool():
 		sortedPhotoList.sort()
 		for photo in sortedPhotoList:
 			jewelryPhotoObj = JewelryPhoto(
-				photo    = photo,
-				jewelry  = jewelryVariationObj,
-				priority = i
+				photo=photo,
+				jewelry=jewelryVariationObj,
+				priority=i
 			)
 			i += 1
 
 			try:
 				jewelryPhotoObj.photo.save(f'{dictionary["title"]}.jpg', File(open(photo, 'rb')), save=True)
-				#jewelryPhotoObj.save()
-			except Exception as e:
-				#print(e)
+				# jewelryPhotoObj.save()
+			except Exception:
 				raise Exception(f"Could not save {photo}")
 
 			vprint(f"Created {jewelryPhotoObj}")
@@ -332,16 +367,17 @@ class ProductTool():
 		################################################################
 		# Create the product
 
-		productObj = Product(price      = dictionary["price"],
-				     isFeatured = dictionary["isFeatured"],
-				     isActive   = dictionary["isActive"],
-				     jewelry    = jewelryVariationObj
+		productObj = Product(
+			price=dictionary["price"],
+			isFeatured=dictionary["isFeatured"],
+			isActive=dictionary["isActive"],
+			jewelry=jewelryVariationObj
 		)
 
 		# Check if name already exists
 		try:
 			productObj.save()
-		except AttributeError as e:
+		except AttributeError:
 			raise Exception(f"Failed to save Product '{productObj}'")
 
 		print(f"Created {productObj}")

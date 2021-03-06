@@ -154,6 +154,9 @@ class JewelryGroup(AbstractModel):
 			info = self.earring.getInfo()
 		return info
 
+	def getGroupName(self):
+		return self.group.value
+
 	def getTitle(self):
 		title = None
 		if self.group == GroupEnum.N:

@@ -54,7 +54,25 @@ class ProductListView(View):
 
 		# --------------------------------------------------
 		# Objects
-		objList = Product.objects.active()
+
+		# Type of the jewelry to show in the page
+		view = request.GET.get("view")
+		if view == "rings":
+			objList = Product.objects.rings()
+		elif view == "bracelets":
+			objList = Product.objects.bracelets()
+		elif view == "necklaces":
+			objList = Product.objects.necklaces()
+		elif view == "earrings":
+			objList = Product.objects.earrings()
+		elif view == "macrame":
+			objList = Product.objects.macrame()
+		elif view == "silver925":
+			objList = Product.objects.silver925()
+		elif view == "brass":
+			objList = Product.objects.brass()
+		else:
+			objList = Product.objects.active()
 
 		# featured = request.GET.get("featured")
 		# if featured:

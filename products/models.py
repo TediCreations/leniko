@@ -47,8 +47,8 @@ class JewelryProductManager(models.Manager):
 		return self.active().filter(jewelry__group__in=JewelryGroupList)
 
 	def earrings(self):
-		JewelryGroupList = JewelryGroup.objects.filter(material=GroupEnum.EA)
-		return self.active().filter(jewelry__material__in=JewelryGroupList)
+		JewelryGroupList = JewelryGroup.objects.filter(group=GroupEnum.EA)
+		return self.active().filter(jewelry__group__in=JewelryGroupList)
 
 	def macrame(self):
 		RingList = Ring.objects.filter(macrame=False)

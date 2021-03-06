@@ -54,8 +54,7 @@ class ProductListView(View):
 
 		# --------------------------------------------------
 		# Objects
-		# objList = Product.objects.all()
-		objList = Product.objects.filter(isActive=True).order_by('sku')
+		objList = Product.objects.active()
 
 		# featured = request.GET.get("featured")
 		# if featured:

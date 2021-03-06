@@ -51,12 +51,13 @@ class JewelryProductManager(models.Manager):
 		return self.active().filter(jewelry__material__in=JewelryGroupList)
 
 	def macrame(self):
-		RingList = Ring.objects.filter(macrame=True)
-		BraceletList = Bracelet.objects.filter(macrame=True)
-		NecklaceList = Necklace.objects.filter(macrame=True)
-		EarringList = Earring.objects.filter(macrame=True)
+		RingList = Ring.objects.filter(macrame=False)
+		BraceletList = Bracelet.objects.filter(macrame=False)
+		NecklaceList = Necklace.objects.filter(macrame=False)
+		EarringList = Earring.objects.filter(macrame=False)
 
-		JewelryGroupList = JewelryGroup.objects.exclude(ring__in=RingList)
+		JewelryGroupList = JewelryGroup.objects.all()
+		JewelryGroupList = JewelryGroupList.exclude(ring__in=RingList)
 		JewelryGroupList = JewelryGroupList.exclude(bracelet__in=BraceletList)
 		JewelryGroupList = JewelryGroupList.exclude(necklace__in=NecklaceList)
 		JewelryGroupList = JewelryGroupList.exclude(earring__in=EarringList)

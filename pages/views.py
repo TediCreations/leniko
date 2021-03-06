@@ -153,13 +153,21 @@ class HomeView(View):
 
 		# --------------------------------------------------
 		# Products
-		objList = Product.objects.filter(isActive=True).filter(isFeatured=True)[:10]
+		objList = Product.objects.featured()
+
+		# --------------------------------------------------
+		# Category count
+		productCount = dict()
+		productCount["all"] = Product.objects.all().count()
+		productCount["macrame"] = Product.objects.macrame().count()
+		productCount["metal"] = Product.objects.metal().count()
 
 		context = {
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
 			"objList": objList,
-			"cart": cart
+			"cart": cart,
+			"productCount": productCount
 		}
 		return render(request, self.template_name, context)
 

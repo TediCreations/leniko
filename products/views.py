@@ -71,6 +71,8 @@ class ProductListView(View):
 			objList = Product.objects.silver925()
 		elif view == "brass":
 			objList = Product.objects.brass()
+		elif view == "metal":
+			objList = Product.objects.metal()
 		else:
 			objList = Product.objects.active()
 

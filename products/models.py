@@ -34,6 +34,9 @@ class JewelryProductManager(models.Manager):
 	def active(self):
 		return self.get_queryset().filter(isActive=True).order_by('sku')
 
+	def featured(self):
+		return self.active().filter(isFeatured=True)[:10]
+
 	def rings(self):
 		JewelryGroupList = JewelryGroup.objects.filter(group=GroupEnum.RI)
 		return self.active().filter(jewelry__group__in=JewelryGroupList)
@@ -69,6 +72,9 @@ class JewelryProductManager(models.Manager):
 
 	def brass(self):
 		return self.active().filter(jewelry__material=MaterialEnum.BR)
+
+	def metal(self):
+		return self.active().exclude(jewelry__material=MaterialEnum.N)
 
 
 class Product(AbstractModel):

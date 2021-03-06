@@ -9,11 +9,11 @@
         <div class="category-banner2">
           <div class="inner">
             <!-- 525x280 -->
-            <a href="/product" class="image"><img src="{% static 'img/home/banner/metalsmith.jpg' %}" alt=""></a>
+            <a href="/product?view=metal" class="image"><img src="{% static 'img/home/banner/metalsmith.jpg' %}" alt=""></a>
             <div class="content">
               <h3 class="title">
-                <a href="/product">Jewelry metalsmith</a>
-                <span class="number">?</span>
+                <a href="/product?view=metal">Jewelry metalsmith</a>
+                <span class="number">{{ productCount.metal }}</span>
               </h3>
             </div>
           </div>
@@ -24,11 +24,11 @@
         <div class="category-banner2">
           <div class="inner">
             <!-- 525x280 -->
-            <a href="/product" class="image"><img src="{% static 'img/home/banner/macrame.jpg' %}" alt=""></a>
+            <a href="/product?view=macrame" class="image"><img src="{% static 'img/home/banner/macrame.jpg' %}" alt=""></a>
             <div class="content">
               <h3 class="title">
-                <a href="/product">Macrame</a>
-                <span class="number">?</span>
+                <a href="/product?view=macrame">Macrame</a>
+                <span class="number">{{ productCount.macrame }}</span>
               </h3>
             </div>
           </div>
@@ -43,7 +43,7 @@
             <div class="content">
               <h3 class="title">
                 <a href="/product">Full collection</a>
-                <span class="number">?</span>
+                <span class="number">{{ productCount.all }}</span>
               </h3>
             </div>
           </div>

@@ -355,6 +355,7 @@ class JewelryPhoto(AbstractModel):
 
 	class ThumbnailModeEnum(Enum):
 		admin     = "35x35"
+		cart      = "75x100"
 		thumbnail = "120x150"
 		product   = "328x437"
 		big       = "570x760"

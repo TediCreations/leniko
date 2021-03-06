@@ -107,6 +107,9 @@ class Product(AbstractModel):
 	def get_absolute_url(self):
 		return reverse("products:product-detail", kwargs={"id": self.id})
 
+	def get_absolute_addTocart_url(self):
+		return reverse("cart:cart-add", kwargs={"product_id": self.id})
+
 	def getTitle(self):
 		return str(self.jewelry.getTitle())
 	getTitle.short_description = 'Title'

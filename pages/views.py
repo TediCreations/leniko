@@ -9,6 +9,7 @@ from django.views        import View
 
 
 from products.models import Product
+from cart.models import Cart
 
 from .apps import PagesConfig
 
@@ -20,11 +21,16 @@ def handler400(request, *args, **argv):
 	webpage_name = "400"
 	webpage_description = "400 error"
 
+	# --------------------------------------------------
+	# Cart
+	cart = Cart(request)
+
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
 		"previousUrl":         request.META.get('HTTP_REFERER'),
 		"Message":             "Bad request!",
+		"cart":                cart
 	}
 
 	request.status_code = 400
@@ -36,11 +42,16 @@ def handler404(request, *args, **argv):
 	webpage_name = "404"
 	webpage_description = "404 error"
 
+	# --------------------------------------------------
+	# Cart
+	cart = Cart(request)
+
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
 		"previousUrl":         request.META.get('HTTP_REFERER'),
 		"Message":             "The page you requested cannot be found!",
+		"cart":                cart
 	}
 
 	request.status_code = 404
@@ -52,11 +63,16 @@ def handler500(request, *args, **argv):
 	webpage_name = "500"
 	webpage_description = "500 error"
 
+	# --------------------------------------------------
+	# Cart
+	cart = Cart(request)
+
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
 		"previousUrl":         request.META.get('HTTP_REFERER'),
 		"Message":             "Server error! We are informed!",
+		"cart":                cart
 	}
 
 	request.status_code = 500
@@ -86,7 +102,7 @@ def login_view(request, *args, **kwargs):
 			login(request, user)
 			return HttpResponseRedirect(next_url)
 		else:
-			#Did not authenticate
+			# Did not authenticate
 			return HttpResponseRedirect(f'?next={next_url}')
 
 	else:
@@ -131,12 +147,19 @@ class HomeView(View):
 
 	def get(self, request):
 
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
+		# --------------------------------------------------
+		# Products
 		objList = Product.objects.filter(isActive=True).filter(isFeatured=True)[:10]
 
 		context = {
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
-			"objList": objList
+			"objList": objList,
+			"cart": cart
 		}
 		return render(request, self.template_name, context)
 
@@ -151,9 +174,14 @@ class AboutView(View):
 
 	def get(self, request):
 
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
 		context = {
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
+			"cart": cart
 		}
 		return render(request, self.template_name, context)
 
@@ -168,9 +196,14 @@ class ContactView(View):
 
 	def get(self, request):
 
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
 		context = {
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
+			"cart": cart
 		}
 		return render(request, self.template_name, context)
 
@@ -180,12 +213,19 @@ def dev_view(request, *args, **kwargs):
 	webpage_name = "Test"
 	webpage_description = "Leniko jewelry test page"
 
+	# --------------------------------------------------
+	# Cart
+	cart = Cart(request)
+
+	# --------------------------------------------------
+	# Products
 	objList = Product.objects.all()
 
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
-		"objList":             objList
+		"objList":             objList,
+		"cart":                cart
 	}
 	return render(request, template_name, context)
 
@@ -194,9 +234,14 @@ def dev_form(request, *args, **kwargs):
 	webpage_name = "Test"
 	webpage_description = "Leniko jewelry test page"
 
+	# --------------------------------------------------
+	# Cart
+	cart = Cart(request)
+
 	context = {
 		"webpage_name":        webpage_name,
 		"webpage_description": webpage_description,
+		"cart":                cart
 	}
 	return render(request, template_name, context)
 
@@ -204,8 +249,6 @@ def dev_coming_soon(request, *args, **kwargs):
 	template_name = theme + '/coming-soon.html'
 	webpage_name = "Coming soon"
 	webpage_description = "Coming soon!!!"
-
-	objList = Product.objects.all()
 
 	context = {
 		"webpage_name":        webpage_name,

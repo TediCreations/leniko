@@ -1,0 +1,40 @@
+{% load library %}
+
+<div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+  <div class="inner">
+    <div class="head">
+      <span class="title">Cart</span>
+      <button class="offcanvas-close">×</button>
+    </div>
+    <div class="body customScroll">
+      <ul class="minicart-product-list">
+
+        {% for cartitem in cart %}
+        {% with product=cartitem.product %}
+        <li>
+          <!-- 75x100 -->
+          <a href="{{product.get_absolute_url}}" class="image"><img src="{{product.getPhoto|thumbUrl:'cart'}}" alt="Cart product Image"></a>
+          <div class="content">
+            <a href="{{product.get_absolute_url}}" class="title">{{ product.getTitle }}</a>
+            <span class="quantity-price">{{cartitem.quantity}} x <span class="amount">{{ cartitem.price|floatformat:2 }} &euro;</span></span>
+            <a href="{{cartitem.remove_url}}" class="remove">×</a>
+          </div>
+        </li>
+        {% endwith %}
+        {% endfor %}
+
+      </ul>
+    </div>
+    <div class="foot">
+      <div class="sub-total">
+        <strong>Subtotal :</strong>
+        <span class="amount">{{cart.get_total_price|floatformat:2}} &euro;</span>
+      </div>
+      <div class="buttons">
+        <a href="/cart" class="btn btn-dark btn-hover-primary">view cart</a>
+        <a href="checkout.html" class="btn btn-outline-dark">checkout</a>
+      </div>
+      <p class="minicart-message">Thank you for shopping with us!</p>
+    </div>
+  </div>
+</div>

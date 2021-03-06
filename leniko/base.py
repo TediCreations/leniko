@@ -61,7 +61,8 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 
 	'pages',
-	'products'
+	'products',
+	'cart'
 ]
 
 # ------------------------------------------------------------------------------

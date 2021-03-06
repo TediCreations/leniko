@@ -1,0 +1,104 @@
+{% extends './base.html' %}
+{% load static %}
+{% load library %}
+
+{% block content %}
+
+{% include './shopbase/header.html' %}
+
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static 'img/cart/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="page-title">
+          <h1 class="title">Cart</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Cart</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Title/Header End -->
+
+<!-- Shopping Cart Section Start -->
+<div class="section section-padding">
+  <div class="container">
+    <form class="cart-form" method="post" action="/cart/">
+      {% csrf_token %}
+      <table class="cart-wishlist-table table">
+        <thead>
+          <tr>
+            <th class="name" colspan="2">Product</th>
+            <th class="price">Price</th>
+            <th class="quantity">Quantity</th>
+            <th class="subtotal">Total</th>
+            <th class="remove">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for cartitem in cart %}
+          {% with product=cartitem.product %}
+          <tr>
+            <td class="thumbnail"><a href="{{product.get_absolute_url}}"><img src="{{product.getPhoto|thumbUrl:'cart'}}"></a></td>
+            <td class="name"> <a href="{{product.get_absolute_url}}">{{ product.getTitle }}</a></td>
+            <td class="price"><span>{{ cartitem.price|floatformat:2 }} &euro;</span></td>
+            <td class="quantity">
+              <div class="product-quantity">
+                <span class="qty-btn minus"><i class="ti-minus"></i></span>
+                <input type="text" class="input-qty" value={{cartitem.quantity}}>
+                <span class="qty-btn plus"><i class="ti-plus"></i></span>
+              </div>
+            </td>
+            <td class="subtotal"><span>{{cartitem.total_price|floatformat:2}} &euro;</span></td>
+            <td class="remove"><a href="{{cartitem.remove_url}}" class="btn">×</a></td>
+          </tr>
+          {% endwith %}
+          {% endfor %}
+
+        </tbody>
+      </table>
+      <div class="row justify-content-between mb-n3">
+        <div class="col-auto mb-3">
+          <div class="cart-coupon">
+            <input type="text" placeholder="Enter your coupon code">
+            <button class="btn"><i class="fal fa-gift"></i></button>
+          </div>
+        </div>
+        <div class="col-auto">
+          <a class="btn btn-light btn-hover-dark mr-3 mb-3" href="/product">Continue Shopping</a>
+          <button class="btn btn-dark btn-outline-hover-dark mb-3">Update Cart</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="cart-totals mt-5">
+      <h2 class="title">Cart totals</h2>
+      <table>
+        <tbody>
+          <tr class="subtotal">
+            <th>Subtotal</th>
+            <td><span class="amount">{{cart.get_total_price|floatformat:2}} &euro;</span></td>
+          </tr>
+          <tr class="total">
+            <th>Total</th>
+            <td><strong><span class="amount">{{cart.get_total_price|floatformat:2}} &euro;</span></strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="checkout.html" class="btn btn-dark btn-outline-hover-dark">Proceed to checkout</a>
+    </div>
+  </div>
+
+</div>
+<!-- Shopping Cart Section End -->
+
+{% include './base/footer2.html' %}
+
+{% endblock %}

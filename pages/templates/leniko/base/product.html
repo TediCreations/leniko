@@ -69,13 +69,13 @@
     </span>
     <div class="product-buttons">
       <a href="{{obj.get_absolute_url}}" class="product-button hintT-top" data-hint="View"><i class="fal fa-eye"></i></a>
+      <a href="{{obj.get_absolute_addTocart_url}}" class="product-button hintT-top" data-hint="Add to Cart"><i class="fal fa-shopping-cart"></i></a>
       {% if request.user.is_superuser %}
       <a href="/admin/products/product/{{obj.id}}/change/" class="product-button hintT-top" data-hint="Edit product"><i class="fal fa-pencil"></i></a>
       <a href="/admin/products/jewelry/{{obj.id}}/change/" class="product-button hintT-top" data-hint="Edit base"><i class="fal fa-pencil"></i></a>
       {% endif %}
       <!--
       <a href="#quickViewModal" data-toggle="modal" class="product-button hintT-top" data-hint="Quick View"><i class="fal fa-search"></i></a>
-      <a href="#" class="product-button hintT-top" data-hint="Add to Cart"><i class="fal fa-shopping-cart"></i></a>
       <a href="#" class="product-button hintT-top" data-hint="Compare"><i class="fal fa-random"></i></a>
       <a href="#" class="product-button hintT-top" data-hint="Add variation"><i class="fal fa-plus"></i></a>
       -->

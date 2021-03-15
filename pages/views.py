@@ -1,11 +1,9 @@
-import random
-
-from django.http         import HttpResponseRedirect
-from django.shortcuts    import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
-from django.views        import View
+from django.views import View
 
 from django_countries import countries
 
@@ -27,11 +25,11 @@ def handler400(request, *args, **argv):
 	cart = Cart(request)
 
 	context = {
-		"webpage_name":        webpage_name,
+		"webpage_name": webpage_name,
 		"webpage_description": webpage_description,
-		"previousUrl":         request.META.get('HTTP_REFERER'),
-		"Message":             "Bad request!",
-		"cart":                cart
+		"previousUrl": request.META.get('HTTP_REFERER'),
+		"Message": "Bad request!",
+		"cart": cart
 	}
 
 	request.status_code = 400
@@ -48,11 +46,11 @@ def handler404(request, *args, **argv):
 	cart = Cart(request)
 
 	context = {
-		"webpage_name":        webpage_name,
+		"webpage_name": webpage_name,
 		"webpage_description": webpage_description,
-		"previousUrl":         request.META.get('HTTP_REFERER'),
-		"Message":             "The page you requested cannot be found!",
-		"cart":                cart
+		"previousUrl": request.META.get('HTTP_REFERER'),
+		"Message": "The page you requested cannot be found!",
+		"cart": cart
 	}
 
 	request.status_code = 404
@@ -69,11 +67,11 @@ def handler500(request, *args, **argv):
 	cart = Cart(request)
 
 	context = {
-		"webpage_name":        webpage_name,
+		"webpage_name": webpage_name,
 		"webpage_description": webpage_description,
-		"previousUrl":         request.META.get('HTTP_REFERER'),
-		"Message":             "Server error! We are informed!",
-		"cart":                cart
+		"previousUrl": request.META.get('HTTP_REFERER'),
+		"Message": "Server error! We are informed!",
+		"cart": cart
 	}
 
 	request.status_code = 500
@@ -117,9 +115,9 @@ def login_view(request, *args, **kwargs):
 			webpage_description = "Leniko jewelry login or register page"
 
 			context = {
-				"webpage_name":        webpage_name,
+				"webpage_name": webpage_name,
 				"webpage_description": webpage_description,
-				"login_msg":           login_msg
+				"login_msg": login_msg
 			}
 			return render(request, template_name, context)
 
@@ -238,52 +236,3 @@ class CheckoutView(View):
 			"countries": countries
 		}
 		return render(request, self.template_name, context)
-
-
-def dev_view(request, *args, **kwargs):
-	template_name = theme + '/dev.html'
-	webpage_name = "Test"
-	webpage_description = "Leniko jewelry test page"
-
-	# --------------------------------------------------
-	# Cart
-	cart = Cart(request)
-
-	# --------------------------------------------------
-	# Products
-	objList = Product.objects.all()
-
-	context = {
-		"webpage_name":        webpage_name,
-		"webpage_description": webpage_description,
-		"objList":             objList,
-		"cart":                cart
-	}
-	return render(request, template_name, context)
-
-def dev_form(request, *args, **kwargs):
-	template_name = theme + '/dev/form.html'
-	webpage_name = "Test"
-	webpage_description = "Leniko jewelry test page"
-
-	# --------------------------------------------------
-	# Cart
-	cart = Cart(request)
-
-	context = {
-		"webpage_name":        webpage_name,
-		"webpage_description": webpage_description,
-		"cart":                cart
-	}
-	return render(request, template_name, context)
-
-def dev_coming_soon(request, *args, **kwargs):
-	template_name = theme + '/coming-soon.html'
-	webpage_name = "Coming soon"
-	webpage_description = "Coming soon!!!"
-
-	context = {
-		"webpage_name":        webpage_name,
-		"webpage_description": webpage_description
-	}
-	return render(request, template_name, context)

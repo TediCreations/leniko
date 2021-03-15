@@ -58,12 +58,16 @@ INSTALLED_APPS = [
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
-	'django.contrib.messages',
-
-	'pages',
-	'products',
-	'cart'
+	'django.contrib.messages'
 ]
+
+# ------------------------------------------------------------------------------
+# My apps
+
+INSTALLED_APPS.append('pages')
+INSTALLED_APPS.append('dev')
+INSTALLED_APPS.append('products')
+INSTALLED_APPS.append('cart')
 
 # ------------------------------------------------------------------------------
 # Redis

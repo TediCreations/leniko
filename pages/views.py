@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.views        import View
 
+from django_countries import countries
 
 from products.models import Product
 from cart.models import Cart
@@ -212,6 +213,29 @@ class ContactView(View):
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
 			"cart": cart
+		}
+		return render(request, self.template_name, context)
+
+
+class CheckoutView(View):
+
+	"""Show the website's checkout page"""
+
+	template_name = theme + '/checkout.html'
+	webpage_name = "Checkout"
+	webpage_description = "Leniko jewelry checkout page"
+
+	def get(self, request):
+
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"cart": cart,
+			"countries": countries
 		}
 		return render(request, self.template_name, context)
 

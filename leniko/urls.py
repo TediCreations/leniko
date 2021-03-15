@@ -26,6 +26,8 @@ from pages.views import HomeView
 from pages.views import AboutView
 from pages.views import ContactView
 
+from pages.views import CheckoutView
+
 from pages.views import dev_view
 from pages.views import dev_form
 from pages.views import dev_coming_soon
@@ -35,25 +37,27 @@ from pages.views import handler500
 
 
 urlpatterns = [
-	path(''            , HomeView.as_view()    , name='home'),
+	path(''            , HomeView.as_view()     , name='home'),
 
-	path('login/'      , login_view            , name='login'),
-	path('logout/'     , logout_view           , name='logout'),
-	path('about/'      , AboutView.as_view()   , name='about'),
-	path('contact/'    , ContactView.as_view() , name='contact'),
+	path('login/'      , login_view             , name='login'),
+	path('logout/'     , logout_view            , name='logout'),
+	path('about/'      , AboutView.as_view()    , name='about'),
+	path('contact/'    , ContactView.as_view()  , name='contact'),
+
+	path('checkout/'   , CheckoutView.as_view() , name='checkout'),
 
 	path('product/'    , include('products.urls')),
 	path('cart/'       , include('cart.urls')),
 
-	path('dev/'        , dev_view              , name='dev'),
-	path('coming-soon/', dev_coming_soon       , name='coming-soon'),
-	path('dev/form/'   , dev_form              , name='dev'),
-	path('dev/400/'    , handler400            , name='dev'),
-	path('dev/404/'    , handler404            , name='dev'),
-	path('dev/500/'    , handler500            , name='dev'),
+	path('dev/'        , dev_view               , name='dev'),
+	path('coming-soon/', dev_coming_soon        , name='coming-soon'),
+	path('dev/form/'   , dev_form               , name='dev'),
+	path('dev/400/'    , handler400             , name='dev'),
+	path('dev/404/'    , handler404             , name='dev'),
+	path('dev/500/'    , handler500             , name='dev'),
 
-	path('admin/login/', login_view            , name='admin-login'),
-	path('admin/'      , admin.site.urls       , name='admin'),
+	path('admin/login/', login_view             , name='admin-login'),
+	path('admin/'      , admin.site.urls        , name='admin'),
 ]
 
 handler400 = 'pages.views.handler400'

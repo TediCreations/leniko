@@ -1,0 +1,267 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include './shopbase/header.html' %}
+
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static 'img/shop/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="page-title">
+          <h1 class="title">Checkout</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Checkout</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Title/Header End -->
+
+<!-- Checkout Section Start -->
+<div class="section section-padding">
+  <div class="container">
+    <!--
+    <div class="checkout-coupon">
+      <p class="coupon-toggle">Have a coupon? <a href="#checkout-coupon-form" data-toggle="collapse">Click here to enter your code</a></p>
+      <div id="checkout-coupon-form" class="collapse">
+        <div class="coupon-form">
+          <p>If you have a coupon code, please apply it below.</p>
+          <form action="#" class="learts-mb-n10">
+            <input class="learts-mb-10" type="text" placeholder="Coupon code">
+            <button class="btn btn-dark btn-outline-hover-dark learts-mb-10">apply coupon</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="section-title2">
+      <h2 class="title">Billing details</h2>
+    </div>
+    <form action="#" class="checkout-form learts-mb-50">
+      <div class="row">
+        <div class="col-md-6 col-12 learts-mb-20">
+          <label for="bdFirstName">FIrst Name <abbr class="required">*</abbr></label>
+          <input type="text" id="bdFirstName">
+        </div>
+        <div class="col-md-6 col-12 learts-mb-20">
+          <label for="bdLastName">Last Name <abbr class="required">*</abbr></label>
+          <input type="text" id="bdLastName">
+        </div>
+        <!--
+        <div class="col-12 learts-mb-20">
+          <label for="bdCompanyName">Company name (optional)</label>
+          <input type="text" id="bdCompanyName">
+        </div>
+        -->
+        <div class="col-12 learts-mb-20">
+          <label for="bdCountry">Country <abbr class="required">*</abbr></label>
+          <select id="bdCountry" class="select2-basic">
+            {% for country in countries %}
+            <option value="{{ country.code }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdAddress1">Street address <abbr class="required">*</abbr></label>
+          <input type="text" id="bdAddress1" placeholder="House number and street name">
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdAddress2" class="sr-only">Apartment, suite, unit etc. (optional)</label>
+          <input type="text" id="bdAddress2" placeholder="Apartment, suite, unit etc. (optional) ">
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdTownOrCity">Town / City <abbr class="required">*</abbr></label>
+          <input type="text" id="bdTownOrCity">
+        </div>
+        <!--
+        <div class="col-12 learts-mb-20">
+          <label for="bdDistrict">District <abbr class="required">*</abbr></label>
+          <select id="bdDistrict" class="select2-basic">
+            <option value="">Select an option…</option>
+            <option value="BD-05">Bagerhat</option>
+            <option value="BD-01">Bandarban</option>
+            <option value="BD-02">Barguna</option>
+            <option value="BD-06">Barishal</option>
+            <option value="BD-07">Bhola</option>
+            <option value="BD-03">Bogura</option>
+            <option value="BD-04">Brahmanbaria</option>
+            <option value="BD-09">Chandpur</option>
+            <option value="BD-10">Chattogram</option>
+            <option value="BD-12">Chuadanga</option>
+            <option value="BD-11">Cox's Bazar</option>
+            <option value="BD-08">Cumilla</option>
+            <option value="BD-13">Dhaka</option>
+            <option value="BD-14">Dinajpur</option>
+            <option value="BD-15">Faridpur </option>
+            <option value="BD-16">Feni</option>
+            <option value="BD-19">Gaibandha</option>
+            <option value="BD-18">Gazipur</option>
+            <option value="BD-17">Gopalganj</option>
+            <option value="BD-20">Habiganj</option>
+            <option value="BD-21">Jamalpur</option>
+            <option value="BD-22">Jashore</option>
+            <option value="BD-25">Jhalokati</option>
+            <option value="BD-23">Jhenaidah</option>
+            <option value="BD-24">Joypurhat</option>
+            <option value="BD-29">Khagrachhari</option>
+            <option value="BD-27">Khulna</option>
+            <option value="BD-26">Kishoreganj</option>
+            <option value="BD-28">Kurigram</option>
+            <option value="BD-30">Kushtia</option>
+            <option value="BD-31">Lakshmipur</option>
+            <option value="BD-32">Lalmonirhat</option>
+            <option value="BD-36">Madaripur</option>
+            <option value="BD-37">Magura</option>
+            <option value="BD-33">Manikganj </option>
+            <option value="BD-39">Meherpur</option>
+            <option value="BD-38">Moulvibazar</option>
+            <option value="BD-35">Munshiganj</option>
+            <option value="BD-34">Mymensingh</option>
+            <option value="BD-48">Naogaon</option>
+            <option value="BD-43">Narail</option>
+            <option value="BD-40">Narayanganj</option>
+            <option value="BD-42">Narsingdi</option>
+            <option value="BD-44">Natore</option>
+            <option value="BD-45">Nawabganj</option>
+            <option value="BD-41">Netrakona</option>
+            <option value="BD-46">Nilphamari</option>
+            <option value="BD-47">Noakhali</option>
+            <option value="BD-49">Pabna</option>
+            <option value="BD-52">Panchagarh</option>
+            <option value="BD-51">Patuakhali</option>
+            <option value="BD-50">Pirojpur</option>
+            <option value="BD-53">Rajbari</option>
+            <option value="BD-54">Rajshahi</option>
+            <option value="BD-56">Rangamati</option>
+            <option value="BD-55">Rangpur</option>
+            <option value="BD-58">Satkhira</option>
+            <option value="BD-62">Shariatpur</option>
+            <option value="BD-57">Sherpur</option>
+            <option value="BD-59">Sirajganj</option>
+            <option value="BD-61">Sunamganj</option>
+            <option value="BD-60">Sylhet</option>
+            <option value="BD-63">Tangail</option>
+            <option value="BD-64">Thakurgaon</option>
+          </select>
+        </div>
+        -->
+        <div class="col-12 learts-mb-20">
+          <label for="bdPostcode">Postcode / ZIP (optional)</label>
+          <input type="text" id="bdPostcode">
+        </div>
+        <div class="col-md-6 col-12 learts-mb-20">
+          <label for="bdEmail">Email address <abbr class="required">*</abbr></label>
+          <input type="text" id="bdEmail">
+        </div>
+        <div class="col-md-6 col-12 learts-mb-30">
+          <label for="bdPhone">Phone <abbr class="required">*</abbr></label>
+          <input type="text" id="bdPhone">
+        </div>
+        <!--
+        <div class="col-12 learts-mb-40">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Create an account?</label>
+          </div>
+        </div>
+        -->
+        <div class="col-12 learts-mb-20">
+          <label for="bdOrderNote">Order Notes (optional)</label>
+          <textarea id="bdOrderNote" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+        </div>
+      </div>
+    </form>
+    <div class="section-title2 text-center">
+      <h2 class="title">Your order</h2>
+    </div>
+    <div class="row learts-mb-n30">
+      <div class="col-lg-6 order-lg-2 learts-mb-30">
+        <div class="order-review">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="name">Product</th>
+                <th class="total">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for cartitem in cart %}
+              {% with product=cartitem.product %}
+              <tr>
+                <td class="name">{{ product.getTitle }}&nbsp; <strong class="quantity">×&nbsp;{{ cartitem.quantity }}</strong></td>
+                <td class="total"><span>{{cartitem.total_price|floatformat:2}} &euro;</span></td>
+              </tr>
+              {% endwith %}
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr class="subtotal">
+                <th>Subtotal</th>
+                <td><span>{{ cart.get_total_price|floatformat:2 }} &euro;</span></td>
+              </tr>
+              <tr class="total">
+                <th>Total</th>
+                <td><strong><span>{{ cart.get_total_price|floatformat:2 }} &euro;</span></strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1 learts-mb-30">
+        <div class="order-payment">
+          <div class="payment-method">
+            <div class="accordion" id="paymentMethod">
+              <div class="card active">
+                <div class="card-header">
+                  <button data-toggle="collapse" data-target="#checkPayments">Check payments</button>
+                </div>
+                <div id="checkPayments" class="collapse show" data-parent="#paymentMethod">
+                  <div class="card-body">
+                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <button data-toggle="collapse" data-target="#cashkPayments">Cash on delivery </button>
+                </div>
+                <div id="cashkPayments" class="collapse" data-parent="#paymentMethod">
+                  <div class="card-body">
+                    <p>Pay with cash upon delivery.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <button data-toggle="collapse" data-target="#payPalPayments">PayPal <img src="assets/images/others/pay-2.png" alt=""></button>
+                </div>
+                <div id="payPalPayments" class="collapse" data-parent="#paymentMethod">
+                  <div class="card-body">
+                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <p class="payment-note">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+            <button class="btn btn-dark btn-outline-hover-dark">place order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Checkout Section End -->
+
+{% include './base/footer2.html' %}
+
+{% endblock %}

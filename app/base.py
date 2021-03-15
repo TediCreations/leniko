@@ -122,7 +122,7 @@ MIDDLEWARE = [
 # ------------------------------------------------------------------------------
 # URLS
 
-ROOT_URLCONF = 'leniko.urls'
+ROOT_URLCONF = 'app.urls'
 
 LOGIN_URL = '/login'
 
@@ -142,7 +142,7 @@ TEMPLATES = [
 	},
 ]
 
-WSGI_APPLICATION = 'leniko.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # ------------------------------------------------------------------------------

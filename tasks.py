@@ -25,7 +25,7 @@ from invoke import Collection, Config, Exit, task
 
 import django
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "leniko.development")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.development")
 django.setup()
 
 

@@ -84,10 +84,13 @@ class PayView(View):
 		# Cart
 		cart = Cart(request)
 
+		stripe_public_key = settings.STRIPE_PUBLIC_KEY
+
 		context = {
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
-			"cart": cart
+			"cart": cart,
+			"stripe_public_key": stripe_public_key
 		}
 		return render(request, self.template_name, context)
 

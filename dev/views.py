@@ -110,7 +110,7 @@ class PayView(View):
 				currency='eur'
 			)
 
-			# print(f"Intent: {intent}")
+			print(f"Intent: {intent}")
 
 			return JsonResponse({
 				'clientSecret': intent['client_secret']

@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.views import View
+from django.http import JsonResponse
 
 from products.models import Product
 from cart.models import Cart
 from pages.apps import PagesConfig
+from django.conf import settings
+
+import stripe
 
 theme = PagesConfig.theme
 
@@ -86,3 +90,27 @@ class PayView(View):
 			"cart": cart
 		}
 		return render(request, self.template_name, context)
+
+	def post(self, request):
+		"""Create Stripe payment intent"""
+
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+		total = int(cart.get_total_price() * 100)  # We multiply with 100 because Stripe uses cents
+
+		stripe.api_key = settings.STRIPE_SECRET_KEY
+
+		try:
+			intent = stripe.PaymentIntent.create(
+				amount=total,
+				currency='eur'
+			)
+
+			# print(f"Intent: {intent}")
+
+			return JsonResponse({
+				'clientSecret': intent['client_secret']
+			})
+		except Exception as e:
+			return JsonResponse({"error": str(e)}, status=403)

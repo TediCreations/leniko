@@ -1,16 +1,13 @@
 import random
 from enum import Enum
 
-from django.db import models
-
 
 class GroupEnum(Enum):
-	N  = "Not in group"
+	N = "Not in group"
 	BR = "Bracelet"
 	NE = "Necklace"
 	RI = "Ring"
 	EA = "Earring"
-
 
 	@staticmethod
 	def str2Enum(s):
@@ -19,11 +16,9 @@ class GroupEnum(Enum):
 				return e
 		return GroupEnum.N
 
-
 	def random():
 		v = [e for e in GroupEnum]
 		return random.choice(v)
-
 
 	def choices():
 		return [(e.value, e.value) for e in GroupEnum]
@@ -31,29 +26,26 @@ class GroupEnum(Enum):
 
 def createMaterial(id, name):
 	d = dict()
-	d["id"]    = id
-	d["name"]  = name
+	d["id"] = id
+	d["name"] = name
 
 	return d
 
 
 class MaterialEnum(Enum):
-	N    = createMaterial("NO", "None")
-	BR   = createMaterial("BR", "Brass")
-	SI   = createMaterial("SI", "Silver 925")
+	N = createMaterial("NO", "None")
+	BR = createMaterial("BR", "Brass")
+	SI = createMaterial("SI", "Silver 925")
 	GO14 = createMaterial("14", "Gold 14K")
 	GO25 = createMaterial("25", "Gold 25K")
-
 
 	def getId(self):
 		n = self.value['id']
 		return n
 
-
 	def getName(self):
 		name = self.value['name']
 		return name
-
 
 	@staticmethod
 	def str2Enum(s):
@@ -62,21 +54,18 @@ class MaterialEnum(Enum):
 				return e
 		return MaterialEnum.N
 
-
 	def random():
 		v = [e for e in MaterialEnum]
 		return random.choice(v)
-
 
 	def choices():
 		return [(e.value, e.value['name']) for e in MaterialEnum]
 
 
 class PlattingEnum(Enum):
-	N  = "Not platted"
+	N = "Not platted"
 	SI = "Silver"
 	GO = "Gold"
-
 
 	@staticmethod
 	def str2Enum(s):
@@ -85,11 +74,9 @@ class PlattingEnum(Enum):
 				return e
 		return PlattingEnum.N
 
-
 	def random():
 		v = [e for e in PlattingEnum]
 		return random.choice(v)
-
 
 	def choices():
 		return [(e.value, e.value) for e in PlattingEnum]
@@ -100,7 +87,6 @@ class FinishEnum(Enum):
 	M = "Matte"
 	B = "Bright"
 
-
 	@staticmethod
 	def str2Enum(s):
 		for e in FinishEnum:
@@ -108,11 +94,9 @@ class FinishEnum(Enum):
 				return e
 		return FinishEnum.N
 
-
 	def random():
 		v = [e for e in FinishEnum]
 		return random.choice(v)
-
 
 	def choices():
 		return [(e.value, e.value) for e in FinishEnum]
@@ -120,8 +104,8 @@ class FinishEnum(Enum):
 
 def createStone(id, name):
 	d = dict()
-	d["id"]    = id
-	d["name"]  = name
+	d["id"] = id
+	d["name"] = name
 
 	return d
 
@@ -166,16 +150,13 @@ class StoneEnum(Enum):
 	TURQUOISE              = createStone(36, "Turquoise")
 	ZIRCON                 = createStone(37, "Zircon")
 
-
 	def getId(self):
 		n = self.value['id']
 		return f"{n:02d}"
 
-
 	def getName(self):
 		name = self.value['name']
 		return name
-
 
 	@staticmethod
 	def str2Enum(s):
@@ -184,11 +165,9 @@ class StoneEnum(Enum):
 				return e
 		return StoneEnum.N
 
-
 	def random():
 		v = [e for e in StoneEnum]
 		return random.choice(v)
-
 
 	def choices():
 		return [(e.value, e.value['name']) for e in StoneEnum]
@@ -196,8 +175,8 @@ class StoneEnum(Enum):
 
 def createColor(id, name, hexValue):
 	d = dict()
-	d["id"]    = id
-	d["name"]  = name
+	d["id"] = id
+	d["name"] = name
 	d["value"] = hexValue
 
 	return d
@@ -254,16 +233,13 @@ class ColorEnum(Enum):
 	INDIAN_RED       = createColor(44, "Indian Red",       "#CD5C5C")
 	BLUE_RAF         = createColor(45, "Blue Raf",         "#20639B")
 
-
 	def getId(self):
 		n = self.value['id']
 		return f"{n:02d}"
 
-
 	def getName(self):
 		name = self.value['name']
 		return name
-
 
 	@staticmethod
 	def str2Enum(s):
@@ -272,11 +248,9 @@ class ColorEnum(Enum):
 				return e
 		return ColorEnum.N
 
-
 	def random():
 		v = [e for e in ColorEnum]
 		return random.choice(v)
-
 
 	def choices():
 		return [(e.value, e.value['name']) for e in ColorEnum]

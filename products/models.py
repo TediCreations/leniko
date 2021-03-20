@@ -2,10 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 from django.core.files import File
-from django.core.exceptions import ValidationError
-
-from django_enum_choices.fields import EnumChoiceField
-
 from .internal.models import Jewelry
 from .internal.models import Bracelet
 from .internal.models import Ring
@@ -19,7 +15,6 @@ from .internal.utils import AbstractModel
 from .internal.enum import GroupEnum
 from .internal.enum import MaterialEnum
 from .internal.enum import PlattingEnum
-from .internal.enum import FinishEnum
 from .internal.enum import StoneEnum
 from .internal.enum import ColorEnum
 
@@ -141,22 +136,22 @@ class Product(AbstractModel):
 		return obj
 
 	def getColorList(self):
-		l = list()
+		colorList = list()
 		number = 1
 
 		primaryColor = self.jewelry.getPrimaryColor()
 		if primaryColor != ColorEnum.N:
 			d = {"no": number, "color": primaryColor.value}
-			l.append(d)
+			colorList.append(d)
 			number += 1
 
 		secondaryColor = self.jewelry.getSecondaryColor()
 		if secondaryColor != ColorEnum.N:
 			d = {"no": number, "color": secondaryColor.value}
-			l.append(d)
+			colorList.append(d)
 			number += 1
 
-		return l
+		return colorList
 
 	def getPrevObject(self):
 		obj = Product.objects.filter(id__lt=self.id).order_by('id').last()
@@ -188,34 +183,34 @@ class ProductTool():
 		dictionary = dict()
 
 		# Product
-		dictionary["price"]         = d["price"]
-		dictionary["isFeatured"]    = d["isFeatured"]
-		dictionary["isActive"]      = d["isActive"]
+		dictionary["price"] = d["price"]
+		dictionary["isFeatured"] = d["isFeatured"]
+		dictionary["isActive"] = d["isActive"]
 
 		# Jewelry Common
-		dictionary["title"]         = d['title']
-		dictionary["brief"]         = d['brief']
-		dictionary["description"]   = d['description']
-		dictionary["stone"]         = StoneEnum.str2Enum(d['stone'])
-		dictionary["macrame"]       = d['macrame']
-		dictionary["pcolor"]        = ColorEnum.str2Enum(d['pcolor'])
+		dictionary["title"] = d['title']
+		dictionary["brief"] = d['brief']
+		dictionary["description"] = d['description']
+		dictionary["stone"] = StoneEnum.str2Enum(d['stone'])
+		dictionary["macrame"] = d['macrame']
+		dictionary["pcolor"] = ColorEnum.str2Enum(d['pcolor'])
 
 		# Jewelry Variation
-		dictionary["material"]      = MaterialEnum.str2Enum(d['material'])
-		dictionary["platting"]      = PlattingEnum.str2Enum(d['platting'])
-		dictionary["group"]         = GroupEnum.str2Enum(d['group'])
+		dictionary["material"] = MaterialEnum.str2Enum(d['material'])
+		dictionary["platting"] = PlattingEnum.str2Enum(d['platting'])
+		dictionary["group"] = GroupEnum.str2Enum(d['group'])
 
-		dictionary["heigth"]        = getDictValue(d, 'heigth')
-		dictionary["length"]        = getDictValue(d, 'length')
+		dictionary["heigth"] = getDictValue(d, 'heigth')
+		dictionary["length"] = getDictValue(d, 'length')
 		dictionary["circumference"] = getDictValue(d, 'circumference')
-		dictionary["width_max"]     = getDictValue(d, 'width_max')
-		dictionary["width_min"]     = getDictValue(d, 'width_min')
-		dictionary["diameter_max"]  = getDictValue(d, 'diameter_max')
-		dictionary["diameter_min"]  = getDictValue(d, 'diameter_min')
-		dictionary["isAdjustable"]  = getDictValue(d, 'isAdjustable')
+		dictionary["width_max"] = getDictValue(d, 'width_max')
+		dictionary["width_min"] = getDictValue(d, 'width_min')
+		dictionary["diameter_max"] = getDictValue(d, 'diameter_max')
+		dictionary["diameter_min"] = getDictValue(d, 'diameter_min')
+		dictionary["isAdjustable"] = getDictValue(d, 'isAdjustable')
 
-		dictionary["photos"]        = d["photos"]
-		dictionary["scolor"]        = ColorEnum.str2Enum(d['scolor'])
+		dictionary["photos"] = d["photos"]
+		dictionary["scolor"] = ColorEnum.str2Enum(d['scolor'])
 
 		return ProductTool.create(dictionary)
 
@@ -311,11 +306,11 @@ class ProductTool():
 					obj = JewelryGroup.objects.filter(earring=jewelryObj)
 				else:
 					raise Exception(f"{group} is not a registered jewelry group")
-				l = len(obj)
+				objLen = len(obj)
 				obj = obj.first()
-				if l == 0:
+				if objLen == 0:
 					raise Exception(f"Could not find the JewelryGroup for {jewelryObj}")
-				elif l != 1:
+				elif objLen != 1:
 					raise Exception(f"Found more that one JewelryGroup for {jewelryObj}")
 				return obj
 

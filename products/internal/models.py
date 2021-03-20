@@ -1,40 +1,41 @@
+import random
+
 from django.core.exceptions import ValidationError
-from django.db              import models
-from django.urls            import reverse
+from django.db import models
+from django.urls import reverse
 
 from django_enum_choices.fields import EnumChoiceField
-from sorl.thumbnail             import ImageField
-from sorl.thumbnail             import get_thumbnail
-from sorl.thumbnail             import delete
+from sorl.thumbnail import ImageField
+from sorl.thumbnail import get_thumbnail
+from sorl.thumbnail import delete
 
 
-from .enum  import GroupEnum
-from .enum  import MaterialEnum
-from .enum  import PlattingEnum
-from .enum  import FinishEnum
-from .enum  import StoneEnum
-from .enum  import ColorEnum
+from .enum import GroupEnum
+from .enum import MaterialEnum
+from .enum import PlattingEnum
+from .enum import StoneEnum
+from .enum import ColorEnum
 
-from .utils  import AbstractModel
+from .utils import AbstractModel
 
 from enum import Enum
 
 
 class JewelryCommon(AbstractModel):
-	title       = models.CharField(max_length=120, unique=True)
-	brief       = models.TextField(blank=True, null=True)
+	title = models.CharField(max_length=120, unique=True)
+	brief = models.TextField(blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
-	stone       = EnumChoiceField(StoneEnum, default=StoneEnum.N)
-	macrame     = models.BooleanField(default=False)
-	pcolor      = EnumChoiceField(ColorEnum, default=ColorEnum.N) # Primary Color
+	stone = EnumChoiceField(StoneEnum, default=StoneEnum.N)
+	macrame = models.BooleanField(default=False)
+	pcolor = EnumChoiceField(ColorEnum, default=ColorEnum.N)  # Primary Color
 
 	def isRegistered(self):
 		theClass = type(self)
 		objList = theClass.objects.filter(title=self.title)
-		l = len(objList)
-		if l == 0:
+		objLen = len(objList)
+		if objLen == 0:
 			return False
-		elif l == 1:
+		elif objLen == 1:
 			return True
 		else:
 			raise Exception(f"More that one instance of {self.title} @ {theClass.__name__}")
@@ -42,10 +43,6 @@ class JewelryCommon(AbstractModel):
 	def clean(self):
 		if self.title == '':
 			raise ValidationError('Empty error message')
-
-	#@classmethod
-	#def compare(self, instance):
-	#	pass
 
 	def getStone(self):
 		return self.stone
@@ -55,8 +52,8 @@ class JewelryCommon(AbstractModel):
 
 	def getCommonInfo(self):
 		info = dict()
-		info["stone"]    = self.stone.getName()
-		info["macrame"]  = self.macrame
+		info["stone"] = self.stone.getName()
+		info["macrame"] = self.macrame
 		return info
 
 	def __str__(self):
@@ -67,64 +64,64 @@ class JewelryCommon(AbstractModel):
 
 
 class Bracelet(JewelryCommon):
-	diameter_max = models.FloatField(blank=True, null=True) # in cm
-	diameter_min = models.FloatField(blank=True, null=True) # in cm
-	width_max    = models.FloatField(blank=True, null=True) # in cm
-	width_min    = models.FloatField(blank=True, null=True) # in cm
+	diameter_max = models.FloatField(blank=True, null=True)  # in cm
+	diameter_min = models.FloatField(blank=True, null=True)  # in cm
+	width_max = models.FloatField(blank=True, null=True)  # in cm
+	width_min = models.FloatField(blank=True, null=True)  # in cm
 	isAdjustable = models.BooleanField(default=True)
 
 	def getInfo(self):
-		#info = dict()
+		# info = dict()
 		info = self.getCommonInfo()
 		info["diameter_max"] = self.diameter_max
 		info["diameter_min"] = self.diameter_min
-		info["width_max"]    = self.width_max
-		info["width_min"]    = self.width_min
+		info["width_max"] = self.width_max
+		info["width_min"] = self.width_min
 		info["isAdjustable"] = self.isAdjustable
 		return info
 
 
 class Necklace(JewelryCommon):
-	length       = models.FloatField(blank=True, null=True) # in cm
-	width_max    = models.FloatField(blank=True, null=True) # in cm
-	width_min    = models.FloatField(blank=True, null=True) # in cm
+	length = models.FloatField(blank=True, null=True)  # in cm
+	width_max = models.FloatField(blank=True, null=True)  # in cm
+	width_min = models.FloatField(blank=True, null=True)  # in cm
 	isAdjustable = models.BooleanField(default=True)
 
 	def getInfo(self):
-		#info = dict()
+		# info = dict()
 		info = self.getCommonInfo()
-		info["length"]	     = self.length
-		info["width_max"]    = self.width_max
-		info["width_min"]    = self.width_min
+		info["length"] = self.length
+		info["width_max"] = self.width_max
+		info["width_min"] = self.width_min
 		info["isAdjustable"] = self.isAdjustable
 		return info
 
 
 class Ring(JewelryCommon):
-	circumference = models.FloatField(blank=True, null=True) # in mm
-	width_max     = models.FloatField(blank=True, null=True) # in cm
-	width_min     = models.FloatField(blank=True, null=True) # in cm
-	isAdjustable  = models.BooleanField(default=True)
+	circumference = models.FloatField(blank=True, null=True)  # in mm
+	width_max = models.FloatField(blank=True, null=True)  # in cm
+	width_min = models.FloatField(blank=True, null=True)  # in cm
+	isAdjustable = models.BooleanField(default=True)
 
 	def getInfo(self):
-		#info = dict()
+		# info = dict()
 		info = self.getCommonInfo()
 		info["circumference"] = self.circumference
-		info["width_max"]     = self.width_max
-		info["width_min"]     = self.width_min
-		info["isAdjustable"]  = self.isAdjustable
+		info["width_max"] = self.width_max
+		info["width_min"] = self.width_min
+		info["isAdjustable"] = self.isAdjustable
 		return info
 
 
 class Earring(JewelryCommon):
-	heigth    = models.FloatField(blank=True, null=True) # in cm
-	width_max = models.FloatField(blank=True, null=True) # in cm
-	width_min = models.FloatField(blank=True, null=True) # in cm
+	heigth = models.FloatField(blank=True, null=True)  # in cm
+	width_max = models.FloatField(blank=True, null=True)  # in cm
+	width_min = models.FloatField(blank=True, null=True)  # in cm
 
 	def getInfo(self):
-		#info = dict()
+		# info = dict()
 		info = self.getCommonInfo()
-		info["heigth"]    = self.heigth
+		info["heigth"] = self.heigth
 		info["width_max"] = self.width_max
 		info["width_min"] = self.width_min
 		return info
@@ -132,11 +129,11 @@ class Earring(JewelryCommon):
 
 class JewelryGroup(AbstractModel):
 	# RnD new function for 1 to 1
-	group    = EnumChoiceField(GroupEnum, default=GroupEnum.N)
+	group = EnumChoiceField(GroupEnum, default=GroupEnum.N)
 	bracelet = models.ForeignKey(Bracelet, blank=True, null=True, on_delete=models.CASCADE)
 	necklace = models.ForeignKey(Necklace, blank=True, null=True, on_delete=models.CASCADE)
-	ring     = models.ForeignKey(Ring,     blank=True, null=True, on_delete=models.CASCADE)
-	earring  = models.ForeignKey(Earring,  blank=True, null=True, on_delete=models.CASCADE)
+	ring = models.ForeignKey(Ring, blank=True, null=True, on_delete=models.CASCADE)
+	earring = models.ForeignKey(Earring, blank=True, null=True, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return f"{self.getTitle()} | {self.group.value}"
@@ -185,7 +182,6 @@ class JewelryGroup(AbstractModel):
 			brief = f"{self.earring.brief}"
 		return brief
 
-
 	def getDescription(self):
 		description = None
 		if self.group == GroupEnum.N:
@@ -201,7 +197,6 @@ class JewelryGroup(AbstractModel):
 
 		return description
 
-
 	def getStone(self):
 		if self.group == GroupEnum.N:
 			stone = "ERROR"
@@ -215,7 +210,6 @@ class JewelryGroup(AbstractModel):
 			stone = self.earring.getStone()
 		return stone
 
-
 	def getMacrame(self):
 		if self.group == GroupEnum.N:
 			macrame = "ERROR"
@@ -228,7 +222,6 @@ class JewelryGroup(AbstractModel):
 		elif self.group == GroupEnum.EA:
 			macrame = f"{self.earring.getMacrame()}"
 		return macrame
-
 
 	def getPrimaryColor(self):
 		pcolor = None
@@ -244,92 +237,76 @@ class JewelryGroup(AbstractModel):
 			pcolor = self.earring.pcolor
 		return pcolor
 
-
 	class Meta:
 		db_table = 'JewelryGroup'
 
 
 class Jewelry(AbstractModel):
-	group    = models.ForeignKey(JewelryGroup, on_delete=models.CASCADE)
+	group = models.ForeignKey(JewelryGroup, on_delete=models.CASCADE)
 	material = EnumChoiceField(MaterialEnum, default=MaterialEnum.N)
 	platting = EnumChoiceField(PlattingEnum, default=PlattingEnum.N)
-	scolor   = EnumChoiceField(ColorEnum, default=ColorEnum.N) # Secondary Color
-
+	scolor = EnumChoiceField(ColorEnum, default=ColorEnum.N)  # Secondary Color
 
 	def getGroup(self):
 		return self.group.group.value
 
-
 	def getMaterial(self):
 		return self.material
-
 
 	def getPlatting(self):
 		return self.platting.value
 
-
 	def getInfo(self):
 		info = dict()
-		info["type"]     = "Jewelry"
-		info["group"]    = self.group.group.value
+		info["type"] = "Jewelry"
+		info["group"] = self.group.group.value
 		info["material"] = self.material.getName()
 		info["platting"] = self.platting.value
 		return {**info, **self.group.getInfo()}
 
-
 	def __str__(self):
 		return f"{self.group} | {self.material.getName()} | {self.platting.value}"
 
-
 	def get_absolute_url(self):
 		return reverse("products:product-detail", kwargs={"id": self.id})
-
 
 	def getTitle(self):
 		return f"{self.group.getTitle()}"
 	getTitle.short_description = 'Title'
 
-
 	def getBrief(self):
 		return f"{self.group.getBrief()}"
-
 
 	def getDescription(self):
 		return self.group.getDescription()
 
-
 	def getStone(self):
 		return self.group.getStone()
-
 
 	def getMacrame(self):
 		return f"{self.group.getMacrame()}"
 
-
 	def getPhotos(self):
-		photos = JewelryPhoto.objects.filter(jewelry=self).order_by("priority") #.first()
-		l = len(photos)
-		#for p in photos:
-		#    pass
-		return f"{l} |          {photos}"
+		photos = JewelryPhoto.objects.filter(jewelry=self).order_by("priority")  # .first()
+		photoLen = len(photos)
+		# for p in photos:
+		#     pass
+		return f"{photoLen} |          {photos}"
 
 	def getRandomObject(self):
 		objList = Jewelry.objects.all()
 		obj = random.choice(objList)
 		return obj
 
-
 	def getPrimaryColor(self):
 		return self.group.getPrimaryColor()
-
 
 	def getSecondaryColor(self):
 		return self.scolor
 
-
 	class Meta:
 		db_table = 'Jewelry'
-		#order_with_respect_to = 'material'
+		# order_with_respect_to = 'material'
 
 
 class JewelryPhoto(AbstractModel):
@@ -337,8 +314,8 @@ class JewelryPhoto(AbstractModel):
 	def uploadTo(self, filename):
 
 		groupName = self.jewelry.getGroup().lower()
-		#priority  = self.priority
-		title     = self.jewelry.getTitle()
+		# priority = self.priority
+		title = self.jewelry.getTitle()
 		title = title.replace(" ", "__")
 		title = title.replace("&", "_and_")
 
@@ -348,18 +325,17 @@ class JewelryPhoto(AbstractModel):
 		filepath = f'img/jewelry/{groupName}/{title}/{filename}'
 		return filepath
 
-
-	photo   = models.ImageField(upload_to=uploadTo, blank=False)
-	jewelry  = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
+	photo = models.ImageField(upload_to=uploadTo, blank=False)
+	jewelry = models.ForeignKey(Jewelry, on_delete=models.CASCADE)
 	priority = models.DecimalField(decimal_places=0, max_digits=2)
 
 	class ThumbnailModeEnum(Enum):
-		admin     = "35x35"
-		cart      = "75x100"
+		admin = "35x35"
+		cart = "75x100"
 		thumbnail = "120x150"
-		product   = "328x437"
-		big       = "570x760"
-		gallery   = "810x1080"
+		product = "328x437"
+		big = "570x760"
+		gallery = "810x1080"
 
 		def getGeometry(self):
 			return self.value
@@ -367,16 +343,14 @@ class JewelryPhoto(AbstractModel):
 		def getName(self):
 			return str(self.name)
 
-
 	def __str__(self):
 		return f"{self.jewelry} | {self.photo}"
-
 
 	def getPhoto(self, mode=None):
 		"""Get thumbnail or generate it"""
 
 		# We do not want thumbnails
-		if mode == None:
+		if mode is None:
 			return self.photo
 
 		# Get mode
@@ -392,12 +366,11 @@ class JewelryPhoto(AbstractModel):
 		if not isValid:
 			return self.photo
 
-		if geometry != None:
-			#{% thumbnail photo "?x?" crop="center" padding=True quality=80 upscale=True as im2 %}
+		if geometry is not None:
+			# {% thumbnail photo "?x?" crop="center" padding=True quality=80 upscale=True as im2 %}
 			return get_thumbnail(self.photo, geometry_string=geometry, colorspace='RGB', crop='center', padding=True, quality=80)
 		else:
 			return self.photo
-
 
 	def save(self, *args, **kwargs):
 
@@ -412,13 +385,11 @@ class JewelryPhoto(AbstractModel):
 
 		super().save(*args, **kwargs)
 
-
 	def delete(self, *args, **kwargs):
 		# Delete thumbnails and original image
 		delete(self.photo)
 
 		super().delete(*args, **kwargs)
-
 
 	class Meta:
 		db_table = 'JewelryPhoto'

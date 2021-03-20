@@ -1,19 +1,19 @@
 import os
 
-from django.core.paginator          import Paginator
-from django.shortcuts               import render
-from django.shortcuts               import get_object_or_404
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
-from django.http                    import Http404
-from django.http                    import HttpResponseRedirect
-from django.http                    import HttpResponseBadRequest
-from django.http                    import HttpResponseServerError
-from django.views                   import View
+from django.http import Http404
+from django.http import HttpResponseRedirect
+from django.http import HttpResponseBadRequest
+from django.http import HttpResponseServerError
+from django.views import View
 
-from .forms  import RingForm
-from .forms  import EarringForm
-from .forms  import NecklaceForm
-from .forms  import BraceletForm
+from .forms import RingForm
+from .forms import EarringForm
+from .forms import NecklaceForm
+from .forms import BraceletForm
 
 from .models import Product
 from .models import ProductTool
@@ -24,7 +24,7 @@ from .internal.enum import GroupEnum
 
 
 from django.conf import settings
-from pages.apps  import PagesConfig
+from pages.apps import PagesConfig
 
 
 theme = PagesConfig.theme
@@ -117,7 +117,6 @@ class ProductListView(View):
 
 def product_detail_view(request, id):
 	template_name = theme + '/product-details.html'
-	webpage_name = "Product list"
 
 	# --------------------------------------------------
 	# Cart
@@ -128,8 +127,8 @@ def product_detail_view(request, id):
 	obj = get_object_or_404(Product, id=id)
 	context = {
 		"webpage_name": "SKU:" + str(obj.id),
-		"obj":          obj,
-		"cart":         cart
+		"obj": obj,
+		"cart": cart
 	}
 	return render(request, template_name, context)
 
@@ -157,23 +156,23 @@ def product_create_view(request, *args, **kwargs):
 
 		if form.is_valid():
 
-			#def handle_uploaded_file(request, key, destPath):
-			#	os.makedirs(destPath, exist_ok = True)
-			#	f = None
-			#	try:
-			#		f = request.FILES[key]
-			#	except Exception as e:
-			#		return HttpResponseServerError(e)
-			#	with open(os.path.join(destPath + str(f)), 'wb+') as destination:
-			#	#with open(destPath + str(f), 'wb+') as destination:
-			#		for chunk in f.chunks():
-			#			destination.write(chunk)
+			# def handle_uploaded_file(request, key, destPath):
+			# 	os.makedirs(destPath, exist_ok = True)
+			# 	f = None
+			# 	try:
+			# 		f = request.FILES[key]
+			# 	except Exception as e:
+			# 		return HttpResponseServerError(e)
+			# 	with open(os.path.join(destPath + str(f)), 'wb+') as destination:
+			# 	#with open(destPath + str(f), 'wb+') as destination:
+			# 		for chunk in f.chunks():
+			# 			destination.write(chunk)
 			#
-			#handle_uploaded_file(request, 'photo', os.path.join(settings.BASE_DIR, "media/restapi/"))
+			# handle_uploaded_file(request, 'photo', os.path.join(settings.BASE_DIR, "media/restapi/"))
 
 			def handle_multiuploaded_file(request, key, destPath):
 				filePathList = list()
-				os.makedirs(destPath, exist_ok = True)
+				os.makedirs(destPath, exist_ok=True)
 				f_list = request.FILES.getlist(key)
 				for f in f_list:
 					print(f"File: '{f}'")
@@ -185,7 +184,6 @@ def product_create_view(request, *args, **kwargs):
 							destination.write(chunk)
 
 				return filePathList
-
 
 			d = dict(form.cleaned_data)
 
@@ -220,10 +218,10 @@ def product_create_view(request, *args, **kwargs):
 	webpage_description = "Leniko jewelry create product"
 
 	context = {
-		"webpage_name":        webpage_name,
+		"webpage_name": webpage_name,
 		"webpage_description": webpage_description,
-		"message":             msg,
-		"form":                form,
-		"group":               group
+		"message": msg,
+		"form": form,
+		"group": group
 	}
 	return render(request, template_name, context)

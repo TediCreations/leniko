@@ -1,5 +1,6 @@
 # TODO
 
+- Stripe https://stripe.com/docs/payments/integration-builder
 - Sorl thumbnail quicker backend
 - url == name of variation
 - REST API

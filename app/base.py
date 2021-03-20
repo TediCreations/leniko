@@ -205,6 +205,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # ------------------------------------------------------------------------------
+# Stripe
+
+STRIPE_PUBLIC_KEY = envconfig("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = envconfig("STRIPE_SECRET_KEY")
+
+# ------------------------------------------------------------------------------
 # Filestorage
 
 # Dropbox

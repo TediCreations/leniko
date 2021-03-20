@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import View
 
 from products.models import Product
 from cart.models import Cart
@@ -7,52 +8,81 @@ from pages.apps import PagesConfig
 theme = PagesConfig.theme
 
 
-def dev_view(request, *args, **kwargs):
+class DevView(View):
+
 	template_name = theme + '/dev.html'
-	webpage_name = "Test"
+	webpage_name = "Dev"
 	webpage_description = "Leniko jewelry test page"
 
-	# --------------------------------------------------
-	# Cart
-	cart = Cart(request)
+	def get(self, request):
 
-	# --------------------------------------------------
-	# Products
-	objList = Product.objects.all()
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
 
-	context = {
-		"webpage_name": webpage_name,
-		"webpage_description": webpage_description,
-		"objList": objList,
-		"cart": cart
-	}
-	return render(request, template_name, context)
+		# --------------------------------------------------
+		# Products
+		objList = Product.objects.all()
 
-
-def dev_form(request, *args, **kwargs):
-	template_name = theme + '/dev/form.html'
-	webpage_name = "Test"
-	webpage_description = "Leniko jewelry test page"
-
-	# --------------------------------------------------
-	# Cart
-	cart = Cart(request)
-
-	context = {
-		"webpage_name": webpage_name,
-		"webpage_description": webpage_description,
-		"cart": cart
-	}
-	return render(request, template_name, context)
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"objList": objList,
+			"cart": cart
+		}
+		return render(request, self.template_name, context)
 
 
-def dev_coming_soon(request, *args, **kwargs):
+class TestView(View):
+
+	template_name = theme + '/dev/test.html'
+	webpage_name = "Form"
+	webpage_description = "Form!"
+
+	def get(self, request):
+
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"cart": cart
+		}
+		return render(request, self.template_name, context)
+
+
+class CommingSoonView(View):
+
 	template_name = theme + '/coming-soon.html'
 	webpage_name = "Coming soon"
 	webpage_description = "Coming soon!!!"
 
-	context = {
-		"webpage_name": webpage_name,
-		"webpage_description": webpage_description
-	}
-	return render(request, template_name, context)
+	def get(self, request):
+
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description
+		}
+		return render(request, self.template_name, context)
+
+
+class PayView(View):
+
+	template_name = theme + '/dev/pay.html'
+	webpage_name = "Pay"
+	webpage_description = "Leniko jewelry test pay page"
+
+	def get(self, request):
+
+		# --------------------------------------------------
+		# Cart
+		cart = Cart(request)
+
+		context = {
+			"webpage_name": self.webpage_name,
+			"webpage_description": self.webpage_description,
+			"cart": cart
+		}
+		return render(request, self.template_name, context)

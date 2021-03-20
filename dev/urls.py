@@ -4,16 +4,18 @@ from pages.views import handler400
 from pages.views import handler404
 from pages.views import handler500
 
-from .views import dev_view
-from .views import dev_form
-from .views import dev_coming_soon
+from .views import DevView
+from .views import TestView
+from .views import CommingSoonView
+from .views import PayView
 
 app_name = 'dev'
 
 urlpatterns = [
-	path('', dev_view, name='dev'),
-	path('form', dev_form, name='form'),
-	path('coming-soon', dev_coming_soon, name='coming-soon'),
+	path('', DevView.as_view(), name='dev'),
+	path('pay', PayView.as_view(), name='pay'),
+	path('test', TestView.as_view(), name='test'),
+	path('coming-soon', CommingSoonView.as_view(), name='coming-soon'),
 	path('400', handler400, name='400'),
 	path('404', handler404, name='404'),
 	path('500', handler500, name='500')

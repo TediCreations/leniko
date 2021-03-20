@@ -1,0 +1,32 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include '../shopbase/header.html' %}
+
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static 'img/contact/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="page-title">
+          <h1 class="title">Pay</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Pay</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Title/Header End -->
+
+<div>Stripe here</div>
+
+{% include '../base/footer2.html' %}
+
+{% endblock %}

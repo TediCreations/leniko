@@ -1,8 +1,11 @@
 /* Variables */
-* {
+/*
+ * {
   box-sizing: border-box;
 }
+*/
 
+/*
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
@@ -13,6 +16,7 @@ body {
   height: 100vh;
   width: 100vw;
 }
+*/
 
 form {
   width: 30vw;
@@ -165,8 +169,10 @@ button:disabled {
   }
 }
 
+/*
 @media only screen and (max-width: 600px) {
   form {
     width: 80vw;
   }
 }
+*/

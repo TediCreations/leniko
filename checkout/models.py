@@ -2,6 +2,7 @@ from django.db import models
 
 from django_countries.fields import CountryField
 
+from enum import Enum
 import uuid
 
 
@@ -14,6 +15,22 @@ class Customer(models.Model):
 	billingAddress = models.CharField(max_length=50, blank=True, null=True)
 	shippingAddress = models.CharField(max_length=50, blank=True, null=True)
 """
+
+
+class CheckOutEnum(Enum):
+	N = "None"
+	BILLING = "Billing"
+	SHIPPING = "Shipping"
+	CONFIRM = "Confirm"
+	SUCCESS = "Success"
+	FAIL = "Fail"
+
+	@staticmethod
+	def str2Enum(s):
+		for e in CheckOutEnum:
+			if s == e.value:
+				return e
+		return CheckOutEnum.N
 
 
 class Order(models.Model):

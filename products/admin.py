@@ -41,8 +41,6 @@ class RingAdmin(admin.ModelAdmin):
 
 	list_display = ('title', 'brief', 'stone_tag', 'macrame', 'primaryColor_tag')
 
-	# fields = ('title', 'brief', 'macrame')
-
 
 admin.site.register(Ring, RingAdmin)
 
@@ -58,12 +56,8 @@ class JewelryAdmin(admin.ModelAdmin):
 		model = JewelryPhoto
 		extra = 0
 
-	#fieldsets = [
-	#	('Variation',        {'fields': ['material']}),
-	#	('Variation',        {'fields': ['platting']}),
-	#	('Variation',        {'fields': ['photos']}),
-	#]
 	inlines = [JewelryInline]
+
 
 admin.site.register(Jewelry, JewelryAdmin)
 
@@ -75,8 +69,8 @@ class JewelryPhotoAdmin(admin.ModelAdmin):
 		photo = obj.getPhoto('admin')
 
 		if photo:
-			url    = photo.url
-			width  = photo.width
+			url = photo.url
+			width = photo.width
 			height = photo.height
 			return format_html(f'<img src="{url}" width="{width}" height="{height}" >')
 		else:
@@ -85,37 +79,30 @@ class JewelryPhotoAdmin(admin.ModelAdmin):
 
 	list_display = ('photo_tag', 'priority', 'jewelry')
 
+
 admin.site.register(JewelryPhoto, JewelryPhotoAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
 
-	#def has_change_permission(self, request, obj=None):
-	#	"""Disable edit"""
-	#	#if obj is not None and obj.status > 1:
-	#	return False
-	#	#return super().has_change_permission(request, obj=obj)
-
 	def activate(modeladmin, request, queryset):
-		l = len(queryset)
+		productLen = len(queryset)
 		for product in queryset:
 			product.isActive = True
 			product.save()
-		messages.add_message(request, messages.INFO, f"Activated {l} products.")
-
+		messages.add_message(request, messages.INFO, f"Activated {productLen} products.")
 
 	def deactivate(modeladmin, request, queryset):
-		l = len(queryset)
+		productLen = len(queryset)
 		for product in queryset:
 			product.isActive = False
 			product.save()
-		messages.add_message(request, messages.INFO, f"Deactivated {l} products.")
+		messages.add_message(request, messages.INFO, f"Deactivated {productLen} products.")
 
 	def export(modeladmin, request, queryset):
 		"""Action to export selected products"""
 
 		# Delete directory
-		#baseDirPath = os.path.join(os.getcwd(), "static/export/")
 		baseDirPath = os.path.join("/tmp/", "lenikoExport")
 		import shutil
 		try:
@@ -139,21 +126,21 @@ class ProductAdmin(admin.ModelAdmin):
 			# Name in the list
 			listFilePath = os.path.join(baseDirPath, "list.txt")
 			listFile = open(listFilePath, "w")
-			txt  = ""
+			txt = ""
 			txt += f"Name:        {product}\n"
 			txt += f"Title:       {product.getTitle()}\n"
 			txt += f"sku:         {product.sku}\n"
 			txt += f"price:       {product.price}\n"
 			txt += f"isFeatured:  {product.isFeatured}\n"
 			txt += f"isActive:    {product.isActive}\n"
-			txt += f"\n"
+			txt += "\n"
 			txt += f"Brief:       {product.jewelry.getBrief()}\n"
 			txt += f"Description: {product.jewelry.getDescription()}\n"
 			#txt += f"Photos:\n"
 			#for photo in product.getPhotoList():
 			#	photoPath = os.path.join(os.getcwd(), str(photo['url']))
 			#	txt += f"Photo:       {photo['priority']} | {photoPath}\n"
-			txt += f"Variations:\n"
+			txt += "Variations:\n"
 			txt += f"Variation1: {product.jewelry.group}\n"
 			txt += f"Variation2: {JewelryGroup.objects.all()}\n"
 			txt += f"Variation3: {JewelryGroup.objects.filter(id=product.jewelry.group.id)}\n"
@@ -163,7 +150,7 @@ class ProductAdmin(admin.ModelAdmin):
 				txt += f"Variation-:  {no}\n"
 			jewelryGroup = Jewelry.objects.filter(group=product.jewelry.group)
 			#Jewelry.objects.Group.all()
-			txt += f"\n"
+			txt += "\n"
 
 			# Create jewelry group directory
 			group = product.jewelry.getGroup()
@@ -231,8 +218,8 @@ class ProductAdmin(admin.ModelAdmin):
 		photo = obj.getPhoto()
 		if photo:
 			photo = photo.getPhoto('admin')
-			url    = photo.url
-			width  = photo.width
+			url = photo.url
+			width = photo.width
 			height = photo.height
 			return format_html(f'<img src="{url}" width="{width}" height="{height}" >')
 		else:
@@ -248,15 +235,16 @@ class ProductAdmin(admin.ModelAdmin):
 		("Product info", {
 			'fields': ['price', ('isFeatured', 'isActive')]
 		}),
-		('Jewelry Info',     {
+		('Jewelry Info', {
 			'classes': ('extrapretty',),
 			'fields': ['jewelry'],
-			#'legend': ("What is a legend?")
+			# 'legend': ("What is a legend?")
 		}),
 	]
 
 	list_filter = ('isFeatured', 'isActive')
 
-	#search_fields = ("sku", "isFeatured" )
+	search_fields = ["sku"]
+
 
 admin.site.register(Product, ProductAdmin)

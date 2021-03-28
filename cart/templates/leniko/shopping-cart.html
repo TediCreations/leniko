@@ -92,7 +92,13 @@
           </tr>
         </tbody>
       </table>
+      <form action={% url 'checkout:checkout' %} method="post">
+        {% csrf_token %}
+        <button class="btn btn-dark btn-outline-hover-dark" name="foo" value="checkout">Checkout</button>
+      </form>
+      <!-- With Get request
       <a href="/checkout" class="btn btn-dark btn-outline-hover-dark">Proceed to checkout</a>
+      -->
     </div>
   </div>
 

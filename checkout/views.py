@@ -36,10 +36,12 @@ class CheckOutManager(object):
 		self.state = state
 
 	def handle(self):
-		if self.state == CheckOutEnum.BILLING:
-			self._writeSession(CheckOutEnum.CONFIRM)
-		else:
-			self._writeSession(CheckOutEnum.BILLING)
+		self._writeSession(CheckOutEnum.BILLING)
+
+		# if self.state == CheckOutEnum.BILLING:
+		# 	self._writeSession(CheckOutEnum.CONFIRM)
+		# else:
+		# 	self._writeSession(CheckOutEnum.BILLING)
 
 	def debug(self, text=None):
 		print('----------------------------------')

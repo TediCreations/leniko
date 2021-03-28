@@ -17,16 +17,16 @@ import os
 
 admin.site.register(Bracelet)
 admin.site.register(Necklace)
-#admin.site.register(Ring)
+# admin.site.register(Ring)
 admin.site.register(Earring)
 admin.site.register(JewelryGroup)
-#admin.site.register(Jewelry)
-#admin.site.register(JewelryPhoto)
-#admin.site.register(Product)
+# admin.site.register(Jewelry)
+# admin.site.register(JewelryPhoto)
+# admin.site.register(Product)
 
 
 # Globally disable delete selected
-#admin.site.disable_action('delete_selected')
+# admin.site.disable_action('delete_selected')
 
 
 class RingAdmin(admin.ModelAdmin):
@@ -35,14 +35,14 @@ class RingAdmin(admin.ModelAdmin):
 		return obj.getStone().getName()
 	stone_tag.short_description = 'Stone'
 
-
 	def primaryColor_tag(self, obj):
-		return obj.color.getName()
+		return obj.pcolor.getName()
 	primaryColor_tag.short_description = 'Primary Color'
 
 	list_display = ('title', 'brief', 'stone_tag', 'macrame', 'primaryColor_tag')
 
-	#fields = ('title', 'brief', 'macrame')
+	# fields = ('title', 'brief', 'macrame')
+
 
 admin.site.register(Ring, RingAdmin)
 

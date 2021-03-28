@@ -41,21 +41,26 @@ class CheckoutView(View):
 		for key, value in request.session.items():
 			print(f'{key}: {value}')
 
-		#page = request.GET.get('p')
-		page = request.session.get('page')
+		# page = request.GET.get('p')
+		page = request.session.get(CHECKOUTSTEP_SESSION_ID)
 
 		if not page:
-			request.session['page'] = "b"
+			# page =
+			request.session[CHECKOUTSTEP_SESSION_ID] = "b"
+			request.session.modified = True
 			page = "b"
 
 		if page == "b":
-			request.session['page'] = "s"
+			request.session[CHECKOUTSTEP_SESSION_ID] = "s"
+			request.session.modified = True
 			template_name = theme + '/checkout/billing.html'
 		elif page == "s":
-			request.session['page'] = "c"
+			request.session[CHECKOUTSTEP_SESSION_ID] = "c"
+			request.session.modified = True
 			template_name = theme + '/checkout/shipping.html'
 		elif page == "c":
-			request.session['page'] = "f"
+			request.session[CHECKOUTSTEP_SESSION_ID] = "f"
+			request.session.modified = True
 			template_name = theme + '/checkout/confirm.html'
 		else:
 			return HttpResponseRedirect(reverse("products:list"))

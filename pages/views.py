@@ -5,8 +5,6 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.views import View
 
-from django_countries import countries
-
 from products.models import Product
 from cart.models import Cart
 
@@ -22,7 +20,7 @@ def handler400(request, *args, **argv):
 
 	# --------------------------------------------------
 	# Cart
-	cart = Cart(request)
+	cart = Cart.objects.find(request)
 
 	context = {
 		"webpage_name": webpage_name,
@@ -43,7 +41,7 @@ def handler404(request, *args, **argv):
 
 	# --------------------------------------------------
 	# Cart
-	cart = Cart(request)
+	cart = Cart.objects.find(request)
 
 	context = {
 		"webpage_name": webpage_name,
@@ -64,7 +62,7 @@ def handler500(request, *args, **argv):
 
 	# --------------------------------------------------
 	# Cart
-	cart = Cart(request)
+	cart = Cart.objects.find(request)
 
 	context = {
 		"webpage_name": webpage_name,
@@ -148,7 +146,7 @@ class HomeView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 
 		# --------------------------------------------------
 		# Products
@@ -183,7 +181,7 @@ class AboutView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 
 		context = {
 			"webpage_name": self.webpage_name,
@@ -205,34 +203,11 @@ class ContactView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 
 		context = {
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
 			"cart": cart
-		}
-		return render(request, self.template_name, context)
-
-
-class CheckoutView(View):
-
-	"""Show the website's checkout page"""
-
-	template_name = theme + '/checkout.html'
-	webpage_name = "Checkout"
-	webpage_description = "Leniko jewelry checkout page"
-
-	def get(self, request):
-
-		# --------------------------------------------------
-		# Cart
-		cart = Cart(request)
-
-		context = {
-			"webpage_name": self.webpage_name,
-			"webpage_description": self.webpage_description,
-			"cart": cart,
-			"countries": countries
 		}
 		return render(request, self.template_name, context)

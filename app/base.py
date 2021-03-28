@@ -68,6 +68,7 @@ INSTALLED_APPS.append('pages')
 INSTALLED_APPS.append('dev')
 INSTALLED_APPS.append('products')
 INSTALLED_APPS.append('cart')
+INSTALLED_APPS.append('checkout')
 
 # ------------------------------------------------------------------------------
 # Redis

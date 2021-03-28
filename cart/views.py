@@ -23,7 +23,7 @@ def cart_detail(request):
 	webpage_name = "Shopping cart"
 	webpage_description = "Leniko jewelry shopping cart page"
 
-	cart = Cart(request)
+	cart = Cart.objects.find(request)
 
 	context = {
 		"webpage_name": webpage_name,
@@ -36,7 +36,7 @@ def cart_detail(request):
 def cart_add(request, product_id):
 
 	product = get_object_or_404(Product, id=product_id)
-	cart = Cart(request)
+	cart = Cart.objects.find(request)
 
 	if request.method == 'GET':
 		cart.add(product=product)
@@ -46,13 +46,13 @@ def cart_add(request, product_id):
 			cd = form.cleaned_data
 			cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
 
-	return redirect('cart:cart-detail')
+	return redirect('cart:detail')
 
 
 def cart_remove(request, product_id):
 
-	cart = Cart(request)
+	cart = Cart.objects.find(request)
 
 	product = get_object_or_404(Product, id=product_id)
 	cart.remove(product)
-	return redirect('cart:cart-detail')
+	return redirect('cart:detail')

@@ -22,7 +22,7 @@ class DevView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 
 		# --------------------------------------------------
 		# Products
@@ -47,7 +47,7 @@ class TestView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 
 		context = {
 			"webpage_name": self.webpage_name,
@@ -82,7 +82,7 @@ class PayView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 
 		stripe_public_key = settings.STRIPE_PUBLIC_KEY
 
@@ -99,7 +99,7 @@ class PayView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 		total = int(cart.get_total_price() * 100)  # We multiply with 100 because Stripe uses cents
 
 		stripe.api_key = settings.STRIPE_SECRET_KEY

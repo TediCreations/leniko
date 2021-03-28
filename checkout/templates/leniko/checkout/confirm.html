@@ -1,0 +1,130 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include '../shopbase/header.html' %}
+
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static 'img/shop/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="page-title">
+          <h1 class="title">Checkout</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Checkout</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Title/Header End -->
+
+<!-- Checkout Section Start -->
+<div class="section section-padding">
+  <div class="container">
+    <!--
+    <div class="checkout-coupon">
+      <p class="coupon-toggle">Have a coupon? <a href="#checkout-coupon-form" data-toggle="collapse">Click here to enter your code</a></p>
+      <div id="checkout-coupon-form" class="collapse">
+        <div class="coupon-form">
+          <p>If you have a coupon code, please apply it below.</p>
+          <form action="#" class="learts-mb-n10">
+            <input class="learts-mb-10" type="text" placeholder="Coupon code">
+            <button class="btn btn-dark btn-outline-hover-dark learts-mb-10">apply coupon</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="section-title2 text-center">
+      <h2 class="title">Your order</h2>
+    </div>
+    <div class="row learts-mb-n30">
+      <div class="col-lg-6 order-lg-2 learts-mb-30">
+        <div class="order-review">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="name">Product</th>
+                <th class="total">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for cartitem in cart %}
+              {% with product=cartitem.product %}
+              <tr>
+                <td class="name">{{ product.getTitle }}&nbsp; <strong class="quantity">×&nbsp;{{ cartitem.quantity }}</strong></td>
+                <td class="total"><span>{{cartitem.total_price|floatformat:2}} &euro;</span></td>
+              </tr>
+              {% endwith %}
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr class="subtotal">
+                <th>Subtotal</th>
+                <td><span>{{ cart.get_total_price|floatformat:2 }} &euro;</span></td>
+              </tr>
+              <tr class="total">
+                <th>Total</th>
+                <td><strong><span>{{ cart.get_total_price|floatformat:2 }} &euro;</span></strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1 learts-mb-30">
+        <div class="order-payment">
+          <div class="payment-method">
+            <div class="accordion" id="paymentMethod">
+              <div class="card active">
+                <div class="card-header">
+                  <button data-toggle="collapse" data-target="#checkPayments">Check payments</button>
+                </div>
+                <div id="checkPayments" class="collapse show" data-parent="#paymentMethod">
+                  <div class="card-body">
+                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <button data-toggle="collapse" data-target="#cashkPayments">Cash on delivery </button>
+                </div>
+                <div id="cashkPayments" class="collapse" data-parent="#paymentMethod">
+                  <div class="card-body">
+                    <p>Pay with cash upon delivery.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <button data-toggle="collapse" data-target="#payPalPayments">PayPal <img src="assets/images/others/pay-2.png" alt=""></button>
+                </div>
+                <div id="payPalPayments" class="collapse" data-parent="#paymentMethod">
+                  <div class="card-body">
+                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <p class="payment-note">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+            <button class="btn btn-dark btn-outline-hover-dark">place order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Checkout Section End -->
+
+{% include '../base/footer2.html' %}
+
+{% endblock %}

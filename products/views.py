@@ -50,7 +50,7 @@ class ProductListView(View):
 
 		# --------------------------------------------------
 		# Cart
-		cart = Cart(request)
+		cart = Cart.objects.find(request)
 
 		# --------------------------------------------------
 		# Objects
@@ -120,7 +120,7 @@ def product_detail_view(request, id):
 
 	# --------------------------------------------------
 	# Cart
-	cart = Cart(request)
+	cart = Cart.objects.find(request)
 
 	# --------------------------------------------------
 	# Product

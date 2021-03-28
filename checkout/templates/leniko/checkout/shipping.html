@@ -1,0 +1,117 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include '../shopbase/header.html' %}
+
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static 'img/shop/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="page-title">
+          <h1 class="title">Checkout</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Checkout</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Title/Header End -->
+
+<!-- Checkout Section Start -->
+<div class="section section-padding">
+  <div class="container">
+    <!--
+    <div class="checkout-coupon">
+      <p class="coupon-toggle">Have a coupon? <a href="#checkout-coupon-form" data-toggle="collapse">Click here to enter your code</a></p>
+      <div id="checkout-coupon-form" class="collapse">
+        <div class="coupon-form">
+          <p>If you have a coupon code, please apply it below.</p>
+          <form action="#" class="learts-mb-n10">
+            <input class="learts-mb-10" type="text" placeholder="Coupon code">
+            <button class="btn btn-dark btn-outline-hover-dark learts-mb-10">apply coupon</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="section-title2">
+      <h2 class="title">Shipping details</h2>
+    </div>
+
+    <form action="/checkout/" method="post" class="checkout-form learts-mb-50">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6 col-12 learts-mb-20">
+          <label for="bdFirstName">First Name <abbr class="required">*</abbr></label>
+          <input type="text" id="bdFirstName" name="bdFirstName">
+        </div>
+        <div class="col-md-6 col-12 learts-mb-20">
+          <label for="bdLastName">Last Name <abbr class="required">*</abbr></label>
+          <input type="text" id="bdLastName" name="bdLastName">
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdCountry">Country <abbr class="required">*</abbr></label>
+          <select id="bdCountry" name="bdCountry" class="select2-basic">
+            {% for country in countries %}
+            <option value="{{ country.code }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdAddress1">Street address <abbr class="required">*</abbr></label>
+          <input type="text" id="bdAddress1" name="bdAddress1"placeholder="House number and street name">
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdAddress2" class="sr-only">Apartment, suite, unit etc. (optional)</label>
+          <input type="text" id="bdAddress2" name="bdAddress2" placeholder="Apartment, suite, unit etc. (optional) ">
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdTownOrCity">Town / City <abbr class="required">*</abbr></label>
+          <input type="text" id="bdTownOrCity" name="bdTownOrCity">
+        </div>
+        <div class="col-12 learts-mb-20">
+          <label for="bdPostcode">Postcode / ZIP (optional)</label>
+          <input type="text" id="bdPostcode" name="bdPostcode">
+        </div>
+        <div class="col-md-6 col-12 learts-mb-20">
+          <label for="bdEmail">Email address <abbr class="required">*</abbr></label>
+          <input type="text" id="bdEmail" name="bdEmail">
+        </div>
+        <div class="col-md-6 col-12 learts-mb-30">
+          <label for="bdPhone">Phone <abbr class="required">*</abbr></label>
+          <input type="text" id="bdPhone" name="bdPhone">
+        </div>
+        <!--
+        <div class="col-12 learts-mb-40">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Create an account?</label>
+          </div>
+        </div>
+        -->
+        <div class="col-12 learts-mb-20">
+          <label for="bdOrderNote">Order Notes (optional)</label>
+          <textarea id="bdOrderNote" name="bdOrderNote" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+        </div>
+      </div>
+      <div class="text-center">
+        <p class="payment-note">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+        <button class="btn btn-dark btn-outline-hover-dark">place order</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+<!-- Checkout Section End -->
+
+{% include '../base/footer2.html' %}
+
+{% endblock %}

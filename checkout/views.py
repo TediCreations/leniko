@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views import View
 
 from django_countries import countries
+import json
 
 from cart.models import Cart
 from .models import CheckOutEnum
@@ -19,6 +20,7 @@ theme = PagesConfig.theme
 CHECKOUTSTEP_SESSION_ID = "checkoutStep"
 BILLINGFORM_SESSION_ID = "billingForm"
 SHIPPINGFORM_SESSION_ID = "shippingForm"
+CHECKOUTINFO_SESSION_ID = "checkoutInfo"
 
 
 class CheckOutManager(object):
@@ -50,21 +52,21 @@ class CheckOutManager(object):
 			form = BillingForm(self.request.POST)
 			if form.is_valid():
 				# Save form
-				self.request.session['BILLINGFORM_SESSION_ID'] = form.cleaned_data
+				self.request.session[BILLINGFORM_SESSION_ID] = form.cleaned_data
 				self.request.session.modified = True
 
 				# Get cleaned data fromthe form
 				billing = dict()
-				billing['firstName'] = form.cleaned_data['billing_firstName']
-				billing['lastName'] = form.cleaned_data['billing_lastName']
-				billing['phone'] = form.cleaned_data['billing_phone']
-				billing['email'] = form.cleaned_data['billing_email']
-				billing['address'] = form.cleaned_data['billing_address']
-				billing['address2'] = form.cleaned_data['billing_address2']
-				billing['town'] = form.cleaned_data['billing_town']
-				billing['state'] = form.cleaned_data['billing_state']
-				billing['country'] = form.cleaned_data['billing_country']
-				billing['postalCode'] = form.cleaned_data['billing_postalCode']
+				billing['billing_firstName'] = form.cleaned_data['billing_firstName']
+				billing['billing_lastName'] = form.cleaned_data['billing_lastName']
+				billing['billing_phone'] = form.cleaned_data['billing_phone']
+				billing['billing_email'] = form.cleaned_data['billing_email']
+				billing['billing_address'] = form.cleaned_data['billing_address']
+				billing['billing_address2'] = form.cleaned_data['billing_address2']
+				billing['billing_town'] = form.cleaned_data['billing_town']
+				billing['billing_state'] = form.cleaned_data['billing_state']
+				billing['billing_country'] = form.cleaned_data['billing_country']
+				billing['billing_postalCode'] = form.cleaned_data['billing_postalCode']
 
 				billing['isShippingAddress'] = form.cleaned_data['isShippingAddress']
 				billing['paymentOption'] = form.cleaned_data['paymentOption']
@@ -73,43 +75,43 @@ class CheckOutManager(object):
 
 					# Create shipping form
 					shipping = dict()
-					shipping['shipping_firstName'] = billing['firstName']
-					shipping['shipping_lastName'] = billing['lastName']
-					shipping['shipping_phone'] = billing['phone']
-					shipping['shipping_email'] = billing['email']
-					shipping['shipping_address'] = billing['address']
-					shipping['shipping_address2'] = billing['address2']
-					shipping['shipping_town'] = billing['town']
-					shipping['shipping_state'] = billing['state']
-					shipping['shipping_country'] = billing['country']
-					shipping['shipping_postalCode'] = billing['postalCode']
+					shipping['shipping_firstName'] = billing['billing_firstName']
+					shipping['shipping_lastName'] = billing['billing_lastName']
+					shipping['shipping_phone'] = billing['billing_phone']
+					shipping['shipping_email'] = billing['billing_email']
+					shipping['shipping_address'] = billing['billing_address']
+					shipping['shipping_address2'] = billing['billing_address2']
+					shipping['shipping_town'] = billing['billing_town']
+					shipping['shipping_state'] = billing['billing_state']
+					shipping['shipping_country'] = billing['billing_country']
+					shipping['shipping_postalCode'] = billing['billing_postalCode']
 
-					shippingForm = ShippingForm(initial=shipping)
+					shippingForm = ShippingForm(shipping)
 					if shippingForm.is_valid():
 						# Save form
-						self.request.session['SHIPPING_SESSION_ID'] = shippingForm.cleaned_data
+						self.request.session[SHIPPINGFORM_SESSION_ID] = shippingForm.cleaned_data
+						self.request.session.modified = True
+
+						#
+						order = {**billing, **shipping}
+						self.request.session[CHECKOUTINFO_SESSION_ID] = order
 						self.request.session.modified = True
 
 						# We can skip shipping page
 						self._writeSession(CheckOutEnum.CONFIRM)
 					else:
 						# Critical error
-						print("\033[91mERROR ERROR ERROR ERROR ERROR ERROR ERROR !!!!!!!!!!!!!!!!!!!!\033[0m")
-						# print(f"Form:   {shippingForm}")
+						print("\033[91mCRITICAL ERROR!!!!\033[0m")
 						print(f"Errors: {shippingForm.errors}")
-						print(f"Errors: {shippingForm.non_field_errors()}")
 				else:
 					# We can not skip the shiping page
 					self._writeSession(CheckOutEnum.SHIPPING)
-
-				# Debug
-				for key in billing:
-					print(f"B: {key} = {billing[key]}")
-				#for key in shipping:
-				#	print(f"S: {key} = {shipping[key]}")
-
 			else:
 				print(f"\033[91mERROR in FORM\033[0m | {form.errors}")
+		elif self.state == CheckOutEnum.BILLING:
+			pass
+		elif self.state == CheckOutEnum.CONFIRM:
+			pass
 		else:
 			print("\033[91mState not coded yet!!!!!!!!!!!\033[0m")
 
@@ -148,6 +150,9 @@ class CheckoutView(View):
 
 	def get(self, request):
 
+		order = None
+		form = None
+
 		manager = CheckOutManager(request)
 
 		# manager.debug("GET PRE")
@@ -159,13 +164,13 @@ class CheckoutView(View):
 			return HttpResponseRedirect(reverse("cart:detail"))
 		if checkoutState == CheckOutEnum.BILLING:
 			template_name = theme + '/checkout/billing.html'
-			form = BillingForm(initial=self.request.session.get('BILLINGFORM_SESSION_ID'))
+			form = BillingForm(initial=self.request.session.get(BILLINGFORM_SESSION_ID))
 		elif checkoutState == CheckOutEnum.SHIPPING:
 			template_name = theme + '/checkout/shipping.html'
-			form = ShippingForm(initial=self.request.session.get('SHIPPINGFORM_SESSION_ID'))
+			form = ShippingForm(initial=self.request.session.get(SHIPPINGFORM_SESSION_ID))
 		elif checkoutState == CheckOutEnum.CONFIRM:
 			template_name = theme + '/checkout/confirm.html'
-			form = None  # ConfirmForm(initial=self.request.session.get('confirmForm'))
+			order = self.request.session.get(CHECKOUTINFO_SESSION_ID)
 		elif checkoutState == CheckOutEnum.SUCCESS:
 			return HttpResponseRedirect(reverse("products:list"))
 		elif checkoutState == CheckOutEnum.FAIL:
@@ -184,7 +189,8 @@ class CheckoutView(View):
 			"webpage_description": self.webpage_description,
 			"cart": cart,
 			"countries": countries,
-			"form": form
+			"form": form,
+			"order": order
 		}
 
 		return render(request, template_name, context)
@@ -192,7 +198,7 @@ class CheckoutView(View):
 	def post(self, request):
 
 		manager = CheckOutManager(request)
-		manager.debug("POST PRE")
+		# manager.debug("POST PRE")
 		manager.handle()
 		# manager.debug("POST POST")
 		return HttpResponseRedirect(reverse("checkout:checkout"))

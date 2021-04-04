@@ -2,9 +2,14 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
+from django.core.mail import EmailMessage
+from django.template.loader import get_template
 
 from django_countries import countries
-import json
+from constance import config
+
+from datetime import date
+from datetime import timedelta
 
 from cart.models import Cart
 from .models import CheckOutEnum
@@ -108,10 +113,92 @@ class CheckOutManager(object):
 					self._writeSession(CheckOutEnum.SHIPPING)
 			else:
 				print(f"\033[91mERROR in FORM\033[0m | {form.errors}")
-		elif self.state == CheckOutEnum.BILLING:
+		elif self.state == CheckOutEnum.SHIPPING:
 			pass
 		elif self.state == CheckOutEnum.CONFIRM:
-			pass
+
+			# ------------------------------------------------------
+			# Cart
+			cart = Cart.objects.find(self.request)
+
+			# ------------------------------------------------------
+			# Time
+			today = date.today()
+
+			def date_by_adding_business_days(from_date, add_days):
+				business_days_to_add = add_days
+				current_date = from_date
+				while business_days_to_add > 0:
+					current_date += timedelta(days=1)
+					weekday = current_date.weekday()
+					if weekday >= 5:  # sunday = 6
+						continue
+					business_days_to_add -= 1
+				return current_date
+
+			estimatedDeliveryDate = date_by_adding_business_days(today, config.ORDER_DELIVERY_DAYS)
+
+			# ------------------------------------------------------
+			# Products
+			products = list()
+			for cart_item in cart:
+				product = dict()
+				product["name"] = cart_item.product.getTitle()
+				product["quantity"] = cart_item.quantity
+				product["total"] = cart_item.total_price()
+				product["url"] = cart_item.product.get_absolute_url()
+				products.append(product)
+
+			# ------------------------------------------------------
+			# Order
+			order = dict()
+			order["ref_code"] = "63473458356934568"
+			order["created_at"] = today
+
+			order["name"] = "Elias"
+			order["surname"] = "Kaneliss"
+			order["billing_email"] = "hkanelhs@yahoo.gr"
+
+			order["shipping_address"] = "Konstanta 22"
+			order["shipping_address2"] = None
+			order["shipping_city"] = "Volos"
+			order["shipping_country"] = "Greece"
+			order["shipping_postalCode"] = "38333"
+			order["shipping_email"] = "support@leniko.gr"
+			# order["phone"] = "6981957165"
+
+			order["estimatedDeliveryDate"] = estimatedDeliveryDate
+			order["products"] = products
+			order["total"] = cart.get_total_price()
+
+			# ------------------------------------------------------
+			# Email
+			template_name = theme + '/emails/orderConfirmation.html'
+			context = {
+				"message": "Your order is being handled with care.",
+				"order": order,
+				"config": config,
+				"shipping_cost": 5,
+				"tax": 24,
+			}
+
+			message = get_template(template_name).render(context)
+
+			emails = set([order["billing_email"], order["shipping_email"]])
+
+			try:
+				mail = EmailMessage(
+					subject=f'[INVOICE] | No: {order["ref_code"]}',
+					body=message,
+					from_email=config.EMAIL,
+					to=list(emails),
+					headers={'Content-Type': 'text/plain'},
+				)
+				mail.content_subtype = "html"
+				mail.send()
+				print("Mail sent")
+			except Exception as e:
+				print(f"Error: {e}")
 		else:
 			print("\033[91mState not coded yet!!!!!!!!!!!\033[0m")
 

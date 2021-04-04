@@ -74,7 +74,6 @@ MIDDLEWARE = [
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 # ------------------------------------------------------------------------------
 # Templates
 
@@ -150,11 +149,13 @@ CONSTANCE_CONFIG = {
 	# 'SITE_NAME': ('Leniko Jewelry', 'Website title', str),
 	# 'SITE_DESCRIPTION': ('Handmade Jewelry design', 'Website description', str),
 	'SITE_THEME': ('leniko', 'Website theme', str),
+	'SITE_URL': ('https://dev.leniko.gr', 'Website theme', str),
 
 	# Contact
 	'EMAIL': ('support@leniko.gr', 'Website email', 'email'),
 	'PHONE': ('6979321203', 'Phone number', str),
 	'ADDRESS': ('Patriarxou Ioakeim 10', 'Address', str),
+	'COUNTRY': ('Greece', 'Country', str),
 	'CITY': ('Thessaloniki', 'City', str),
 	'POSTAL_CODE': ('54622', 'Postal code', str),
 
@@ -169,26 +170,21 @@ CONSTANCE_CONFIG = {
 	'IS_ORDERS': (True, 'Order system', bool),
 
 	# Shop information
-	'SHOP_TIMETABLE_MONDAY': ("10:00 - 20:00", 'Monday', str),
-	'SHOP_TIMETABLE_TUESDAY': ("10:00 - 20:00", 'Tuesday', str),
-	'SHOP_TIMETABLE_WEDNESDAY': ("10:00 - 16:00", 'Wednesday', str),
-	'SHOP_TIMETABLE_THURSDAY': ("10:00 - 20:00", 'Tuesday', str),
-	'SHOP_TIMETABLE_FRIDAY': ("10:00 - 20:00", 'Friday', str),
-	'SHOP_TIMETABLE_SATURDAY': ("10:00 - 15:00", 'Saturday', str),
-	'SHOP_TIMETABLE_SUNDAY': ("Closed", 'Sunday', str)
+	'HOUR_OF_OPERATION': ("Monday – Friday : 09:00 – 20:00\n<br>\nSaturday: 10:30 – 15:00\n<br>\nSunday: Closed", 'Monday', str),
+	'ORDER_DELIVERY_DAYS': (5, 'How many working days for shipping?', int),
 }
 
 CONSTANCE_CONFIG_FIELDSETS = {
 
 	'General Options': {
-		'fields': ('SITE_THEME',),  # 'SITE_NAME', 'SITE_DESCRIPTION'
+		'fields': ('SITE_URL', 'SITE_THEME',),  # 'SITE_NAME', 'SITE_DESCRIPTION'
 		'collapse': True
 	},
 
 	'Contact': {
 		'fields': (
 			'EMAIL', 'PHONE', 'ADDRESS',
-			'CITY', 'POSTAL_CODE'),
+			'COUNTRY', 'CITY', 'POSTAL_CODE'),
 		'collapse': True
 	},
 
@@ -206,9 +202,7 @@ CONSTANCE_CONFIG_FIELDSETS = {
 
 	'Shop info': {
 		'fields': (
-			'SHOP_TIMETABLE_MONDAY', 'SHOP_TIMETABLE_TUESDAY',
-			'SHOP_TIMETABLE_WEDNESDAY', 'SHOP_TIMETABLE_THURSDAY',
-			'SHOP_TIMETABLE_FRIDAY', 'SHOP_TIMETABLE_SATURDAY', 'SHOP_TIMETABLE_SUNDAY'),
+			'HOUR_OF_OPERATION', 'ORDER_DELIVERY_DAYS'),
 		'collapse': True
 	}
 }

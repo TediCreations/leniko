@@ -13,20 +13,20 @@
       <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
         <div class="contact-info">
           <h4 class="title">ADDRESS</h4>
-          <span class="info"><i class="icon fal fa-map-marker-alt"></i> Patriarchou Ioakeim 10 <br>Thessaloniki <br> 546 22</span>
+          <span class="info"><i class="icon fal fa-map-marker-alt"></i> {{config.ADDRESS}} <br>{{config.CITY}} <br> {{config.POSTAL_CODE}}</span>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
         <div class="contact-info">
           <h4 class="title">CONTACT</h4>
-          <span class="info"><i class="icon fal fa-phone-alt"></i> Mobile: (+30) 697 9321 203</span>
-          <span class="info"><i class="icon fal fa-envelope"></i> Mail: <a href="mailto:contact@leniko.gr">contact@leniko.gr</a></span>
+          <span class="info"><i class="icon fal fa-phone-alt"></i> Phone: {{config.PHONE}}</span>
+          <span class="info"><i class="icon fal fa-envelope"></i> Mail: <a href="mailto:{{config.EMAIL}}">{{config.EMAIL}}</a></span>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
         <div class="contact-info">
           <h4 class="title"> HOUR OF OPERATION</h4>
-          <span class="info"><i class="icon fal fa-clock"></i> Monday – Friday : 09:00 – 20:00 <br> Saturday: 10:30 – 15:00 <br> Sunday: </span>
+          <span class="info"><i class="icon fal fa-clock"></i>{{config.HOUR_OF_OPERATION|safe}}</span>
         </div>
       </div>
     </div>

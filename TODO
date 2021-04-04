@@ -1,5 +1,6 @@
 # TODO
 
+- Constance: https://django-constance.readthedocs.io/en/latest/
 - Custom action buttons https://hakibenita.medium.com/how-to-add-custom-action-buttons-to-django-admin-8d266f5b0d41#.hrf1amukg
 - Stripe https://stripe.com/docs/payments/integration-builder
 - Sorl thumbnail quicker backend
@@ -27,7 +28,8 @@
 -https://github.com/jazzband/sorl-thumbnail
 
 # Best practices
-https://12factor.net/
+- https://12factor.net/
+- noreply@leniko.gr
 
 #######################################################
 http://reader.epubee.com/books/mobile/12/12281e5b8cf834db1ecf92812fd7ce5f/text00054.html

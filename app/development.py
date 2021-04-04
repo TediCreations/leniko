@@ -11,6 +11,16 @@ DEBUG = True
 ALLOWED_HOSTS = envconfig("ALLOWED_HOSTS", "localhost").split()
 
 # ------------------------------------------------------------------------------
+# Email
+
+# Console backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Filesystem backend
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = '/tmp/django'
+
+# ------------------------------------------------------------------------------
 # Static files
 
 # Django will serve static files

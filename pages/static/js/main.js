@@ -615,27 +615,29 @@
 
     /*--
         MailChimp
-    -----------------------------------*/
-    $('#mc-form').ajaxChimp({
-        language: 'en',
-        callback: mailChimpResponse,
-        // ADD YOUR MAILCHIMP URL BELOW HERE!
-        url: 'http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
+        -----------------------------------*/
+    /*
+      $('#mc-form').ajaxChimp({
+      language: 'en',
+      callback: mailChimpResponse,
+      // ADD YOUR MAILCHIMP URL BELOW HERE!
+      url: 'http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
 
-    });
+      });
 
-    function mailChimpResponse(resp) {
-        if (resp.result === 'success') {
-            $('.mailchimp-success').html('' + resp.msg).fadeIn(900);
-            $('.mailchimp-error').fadeOut(400);
-        } else if (resp.result === 'error') {
-            $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
-        }
-    }
+      function mailChimpResponse(resp) {
+      if (resp.result === 'success') {
+      $('.mailchimp-success').html('' + resp.msg).fadeIn(900);
+      $('.mailchimp-error').fadeOut(400);
+      } else if (resp.result === 'error') {
+      $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
+      }
+      }
+    */
 
     /*--
-        Instagram Feed
-    -----------------------------------*/
+      Instagram Feed
+      -----------------------------------*/
     $.instagramFeed({
         'username': 'ecommerce.devitems',
         'container': ".instagram-feed",
@@ -697,8 +699,8 @@
         }
     });
     /*--
-        CountDown
-    -----------------------------------*/
+      CountDown
+      -----------------------------------*/
     $('[data-countdown]').each(function () {
         var $this = $(this),
             $finalDate = $this.data('countdown');
@@ -708,8 +710,8 @@
     });
 
     /*--
-        Bootstrap
-    -----------------------------------*/
+      Bootstrap
+      -----------------------------------*/
 
     /* Accordion/Collapse */
     $('.collapse').on('show.bs.collapse', function (e) {
@@ -732,8 +734,8 @@
     })
 
     /*--
-        Product Quantity
-    -----------------------------------*/
+      Product Quantity
+      -----------------------------------*/
     $('.qty-btn').on('click', function () {
         var $this = $(this);
         var oldValue = $this.siblings('input').val();
@@ -815,7 +817,8 @@
     /*--
         Ajax Contact Form
     -----------------------------------*/
-    $(function () {
+    /*
+      $(function () {
         // Get the form.
         var form = $('#contact-form');
         // Get the messages div.
@@ -850,6 +853,7 @@
                 });
         });
     });
+    */
 
     /*--
         On Load Function

@@ -1,3 +1,5 @@
+from django.core.mail import EmailMessage
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate
@@ -7,6 +9,8 @@ from django.views import View
 
 from products.models import Product
 from cart.models import Cart
+
+from .forms import ContactForm
 
 from .apps import PagesConfig
 
@@ -208,6 +212,35 @@ class ContactView(View):
 		context = {
 			"webpage_name": self.webpage_name,
 			"webpage_description": self.webpage_description,
+			"form": ContactForm(),
 			"cart": cart
 		}
 		return render(request, self.template_name, context)
+
+	def post(self, request):
+
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			contact = dict()
+			contact['name'] = form.cleaned_data['name']
+			contact['email'] = form.cleaned_data['email']
+			contact['message'] = form.cleaned_data['message']
+
+			email = "support@leniko.gr"
+
+			try:
+				mail = EmailMessage(
+					subject=f"[Customer contact] {contact['name']} want to talk",
+					body=contact['message'],
+					from_email=email,
+					to=[contact['email']],
+					headers={'Content-Type': 'text/plain'},
+				)
+				mail.send()
+				print("Mail sent")
+			except Exception as e:
+				print(f"Error: {e}")
+		else:
+			print("Error")
+
+		return HttpResponseRedirect(reverse("contact"))

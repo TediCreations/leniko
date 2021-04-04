@@ -62,21 +62,37 @@ INSTALLED_APPS = [
 ]
 
 # ------------------------------------------------------------------------------
-# My apps
+# Middleware
 
-INSTALLED_APPS.append('pages')
-INSTALLED_APPS.append('dev')
-INSTALLED_APPS.append('products')
-INSTALLED_APPS.append('cart')
-INSTALLED_APPS.append('checkout')
+MIDDLEWARE = [
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
 
 # ------------------------------------------------------------------------------
-# Redis
+# Templates
 
-REDIS_LOCATION = envconfig('REDIS_LOCATION', "redis://127.0.0.1:6379/1")
-REDIS_HOSTNAME = envconfig('REDIS_HOSTNAME', "127.0.0.1")
-REDIS_PORT = int(envconfig('REDIS_PORT', "6379"))
-REDIS_PASSWORD = envconfig('REDIS_PASSWORD', "")
+TEMPLATES = [
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [os.path.join(BASE_DIR, 'templates')],
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+			],
+		},
+	},
+]
 
 # ------------------------------------------------------------------------------
 # Cache
@@ -96,6 +112,118 @@ CACHES = {
 """
 
 # ------------------------------------------------------------------------------
+# My apps
+
+INSTALLED_APPS.append('pages')
+INSTALLED_APPS.append('dev')
+INSTALLED_APPS.append('products')
+INSTALLED_APPS.append('cart')
+INSTALLED_APPS.append('checkout')
+
+# ------------------------------------------------------------------------------
+# Redis
+
+REDIS_LOCATION = envconfig('REDIS_LOCATION', "redis://127.0.0.1:6379/1")
+REDIS_HOSTNAME = envconfig('REDIS_HOSTNAME', "127.0.0.1")
+REDIS_PORT = int(envconfig('REDIS_PORT', "6379"))
+REDIS_PASSWORD = envconfig('REDIS_PASSWORD', "")
+
+# ------------------------------------------------------------------------------
+# Constance
+
+INSTALLED_APPS.append('constance')
+
+CONSTANCE_ADDITIONAL_FIELDS = {
+	'yes_no_null_select': [
+		'django.forms.fields.ChoiceField',
+		{
+			'widget': 'django.forms.Select',
+			'choices': ((None, "-----"), ("yes", "Yes"), ("no", "No"))
+		}
+	],
+	'email': ('django.forms.fields.EmailField',),
+	'time': ('django.forms.fields.TimeField',)
+}
+
+CONSTANCE_CONFIG = {
+
+	# 'SITE_NAME': ('Leniko Jewelry', 'Website title', str),
+	# 'SITE_DESCRIPTION': ('Handmade Jewelry design', 'Website description', str),
+	'SITE_THEME': ('leniko', 'Website theme', str),
+
+	# Contact
+	'EMAIL': ('support@leniko.gr', 'Website email', 'email'),
+	'PHONE': ('6979321203', 'Phone number', str),
+	'ADDRESS': ('Patriarxou Ioakeim 10', 'Address', str),
+	'CITY': ('Thessaloniki', 'City', str),
+	'POSTAL_CODE': ('54622', 'Postal code', str),
+
+	# Website messages
+	'TOPBAR_MESSAGE': ('Welcome to leniko shop', 'Topbar message', str),
+	'CART_MESSAGE': ('Thank you for shopping with us!', 'Cart message', str),
+
+	# Functionality
+	'IS_CUSTOMER_LOGIN': (False, 'Customer login system', bool),
+	'IS_WISHLIST': (False, 'Wishlist system', bool),
+	'IS_CART': (True, 'Cart system', bool),
+	'IS_ORDERS': (True, 'Order system', bool),
+
+	# Shop information
+	'SHOP_TIMETABLE_MONDAY': ("10:00 - 20:00", 'Monday', str),
+	'SHOP_TIMETABLE_TUESDAY': ("10:00 - 20:00", 'Tuesday', str),
+	'SHOP_TIMETABLE_WEDNESDAY': ("10:00 - 16:00", 'Wednesday', str),
+	'SHOP_TIMETABLE_THURSDAY': ("10:00 - 20:00", 'Tuesday', str),
+	'SHOP_TIMETABLE_FRIDAY': ("10:00 - 20:00", 'Friday', str),
+	'SHOP_TIMETABLE_SATURDAY': ("10:00 - 15:00", 'Saturday', str),
+	'SHOP_TIMETABLE_SUNDAY': ("Closed", 'Sunday', str)
+}
+
+CONSTANCE_CONFIG_FIELDSETS = {
+
+	'General Options': {
+		'fields': ('SITE_THEME',),  # 'SITE_NAME', 'SITE_DESCRIPTION'
+		'collapse': True
+	},
+
+	'Contact': {
+		'fields': (
+			'EMAIL', 'PHONE', 'ADDRESS',
+			'CITY', 'POSTAL_CODE'),
+		'collapse': True
+	},
+
+	'Functionality': {
+		'fields': (
+			'IS_CUSTOMER_LOGIN', 'IS_WISHLIST',
+			'IS_CART', 'IS_ORDERS'),
+		'collapse': True
+	},
+
+	'Messages': {
+		'fields': ('TOPBAR_MESSAGE', 'CART_MESSAGE'),
+		'collapse': True
+	},
+
+	'Shop info': {
+		'fields': (
+			'SHOP_TIMETABLE_MONDAY', 'SHOP_TIMETABLE_TUESDAY',
+			'SHOP_TIMETABLE_WEDNESDAY', 'SHOP_TIMETABLE_THURSDAY',
+			'SHOP_TIMETABLE_FRIDAY', 'SHOP_TIMETABLE_SATURDAY', 'SHOP_TIMETABLE_SUNDAY'),
+		'collapse': True
+	}
+}
+
+# Database backend
+INSTALLED_APPS.append('constance.backends.database')
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+# For the template system
+TEMPLATES[0]['OPTIONS']['context_processors'].append('constance.context_processors.config')
+# TEMPLATE_CONTEXT_PROCESSORS = (
+# 	'constance.context_processors.config',
+# )
+
+# ------------------------------------------------------------------------------
 # Thumbnails
 
 # THUMBNAIL_BACKEND = 'sorl.thumbnail.base.ThumbnailBackend'
@@ -108,40 +236,11 @@ THUMBNAIL_REDIS_PASSWORD = REDIS_PASSWORD
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 
 # ------------------------------------------------------------------------------
-# Middleware
-
-MIDDLEWARE = [
-	'django.middleware.security.SecurityMiddleware',
-	'django.contrib.sessions.middleware.SessionMiddleware',
-	'django.middleware.common.CommonMiddleware',
-	'django.middleware.csrf.CsrfViewMiddleware',
-	'django.contrib.auth.middleware.AuthenticationMiddleware',
-	'django.contrib.messages.middleware.MessageMiddleware',
-	'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-# ------------------------------------------------------------------------------
 # URLS
 
 ROOT_URLCONF = 'app.urls'
 
 LOGIN_URL = '/login'
-
-TEMPLATES = [
-	{
-		'BACKEND': 'django.template.backends.django.DjangoTemplates',
-		'DIRS': [os.path.join(BASE_DIR, 'templates')],
-		'APP_DIRS': True,
-		'OPTIONS': {
-			'context_processors': [
-				'django.template.context_processors.debug',
-				'django.template.context_processors.request',
-				'django.contrib.auth.context_processors.auth',
-				'django.contrib.messages.context_processors.messages',
-			],
-		},
-	},
-]
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
@@ -155,7 +254,6 @@ DATABASES = {
 		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 	}
 }
-
 
 # ------------------------------------------------------------------------------
 # Password validation

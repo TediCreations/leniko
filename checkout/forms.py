@@ -23,7 +23,7 @@ class BillingForm(forms.Form):
 
 	billing_address = forms.CharField(label='Address', required=True, max_length=50, initial=None)
 	billing_address2 = forms.CharField(label='Address 2', required=False, max_length=50, initial=None)
-	billing_town = forms.CharField(label='Town', required=True, max_length=50, initial=None)
+	billing_city = forms.CharField(label='City', required=True, max_length=50, initial=None)
 	billing_state = forms.CharField(label='State', required=False, max_length=50, initial=None)
 	"""
 	billing_country = CountryField(blank_label='Please select country').formfield(
@@ -60,7 +60,7 @@ class ShippingForm(forms.Form):
 
 	shipping_address = forms.CharField(label='Address', required=True, max_length=50, initial=None)
 	shipping_address2 = forms.CharField(label='Address 2', required=False, max_length=50, initial=None)
-	shipping_town = forms.CharField(label='Town', required=True, max_length=50, initial=None)
+	shipping_city = forms.CharField(label='City', required=True, max_length=50, initial=None)
 	shipping_state = forms.CharField(label='State', required=False, max_length=50, initial=None)
 	"""
 	shipping_country = CountryField(blank_label='Please select country').formfield(

@@ -11,14 +11,14 @@ class OrderAdmin(admin.ModelAdmin):
 
 	readonly_fields = (
 		'ref_code',
-		'dateCreated',
+		'created_at',
 		'isPayed',
 		'isDispatched',
 		'isRefundAsked',
 		'isRefunded'
 	)
 
-	list_display = ('ref_code', 'isPayed', 'isDispatched', 'isRefundAsked', 'isRefunded', 'dateCreated')
+	list_display = ('ref_code', 'isPayed', 'isDispatched', 'isRefundAsked', 'isRefunded', 'created_at')
 
 	def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
 		context.update({
@@ -45,8 +45,7 @@ admin.site.register(Order, OrderAdmin)
 class OrderItemAdmin(admin.ModelAdmin):
 
 	def has_add_permission(self, request):
-		# return False
-		return True
+		return False
 
 	readonly_fields = (
 		'order',

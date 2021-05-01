@@ -1,5 +1,6 @@
 {% extends '../base.html' %}
 {% load static %}
+{% load countries %}
 
 {% block content %}
 
@@ -39,16 +40,17 @@
           <div class="col-md-6 col-12 learts-mb-20">
             <h4>Billing information</h4>
             <br>
-            <p><b>Name:       </b>{{order.billing_firstName}}</p>
-            <p><b>Surname:    </b>{{order.billing_lastName}}</p>
-            <p><b>Phone:      </b>{{order.billing_phone}}</p>
-            <p><b>Email:      </b>{{order.billing_email}}</p>
-            <p><b>Address:    </b>{{order.billing_address}}</p>
-            <p><b>Address2:   </b>{{order.billing_address2}}</p>
-            <p><b>Town:       </b>{{order.billing_town}}</p>
-            <p><b>State:      </b>{{order.billing_state}}</p>
-            <p><b>Country:    </b>{{order.billing_country}}</p>
-            <p><b>PostalCode: </b>{{order.billing_postalCode}}</p>
+            <p><b>Name:       </b>{{ order.billing_firstName }}</p>
+            <p><b>Surname:    </b>{{ order.billing_lastName }}</p>
+            <p><b>Phone:      </b>{{ order.billing_phone }}</p>
+            <p><b>Email:      </b>{{ order.billing_email }}</p>
+            <p><b>Address:    </b>{{ order.billing_address }}</p>
+            <p><b>Address2:   </b>{{ order.billing_address2 }}</p>
+            <p><b>City:       </b>{{ order.billing_city }}</p>
+            <p><b>State:      </b>{{ order.billing_state }}</p>
+            {% get_country order.billing_country as billing_country %}
+            <p><b>Country:    </b>{{ billing_country.name }}</p>
+            <p><b>PostalCode: </b>{{ order.billing_postalCode }}</p>
           </div>
         </div>
       </div>
@@ -57,17 +59,18 @@
           <div class="col-md-6 col-12 learts-mb-20">
             <h4>Shipping information</h4>
             <br>
-            <p><b>Name:       </b>{{order.shipping_firstName}}</p>
-            <p><b>Surname:    </b>{{order.shipping_lastName}}</p>
-            <p><b>Phone:      </b>{{order.shipping_phone}}</p>
-            <p><b>Email:      </b>{{order.shipping_email}}</p>
-            <p><b>Address:    </b>{{order.shipping_address}}</p>
-            <p><b>Address2:   </b>{{order.shipping_address2}}</p>
-            <p><b>Town:       </b>{{order.shipping_town}}</p>
-            <p><b>State:      </b>{{order.shipping_state}}</p>
-            <p><b>Country:    </b>{{order.shipping_country}}</p>
-            <p><b>PostalCode: </b>{{order.shipping_postalCode}}</p>
-          </div>>
+            <p><b>Name:       </b>{{ order.shipping_firstName }}</p>
+            <p><b>Surname:    </b>{{ order.shipping_lastName }}</p>
+            <p><b>Phone:      </b>{{ order.shipping_phone }}</p>
+            <p><b>Email:      </b>{{ order.shipping_email }}</p>
+            <p><b>Address:    </b>{{ order.shipping_address }}</p>
+            <p><b>Address2:   </b>{{ order.shipping_address2 }}</p>
+            <p><b>City:       </b>{{ order.shipping_city }}</p>
+            <p><b>State:      </b>{{ order.shipping_state }}</p>
+            {% get_country order.shipping_country as shipping_country %}
+            <p><b>Country:    </b>{{ shipping_country.name }}</p>
+            <p><b>PostalCode: </b>{{ order.shipping_postalCode }}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,46 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include '../shopbase/header.html' %}
+
+<!-- Page Title/Header Start -->
+<div class="page-title-section section" data-bg-image="{% static 'img/shop/bg.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="page-title">
+          <h1 class="title">Checkout</h1>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Checkout</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Title/Header End -->
+
+<!-- Checkout Section Start -->
+<div class="section section-padding">
+  <div class="container">
+
+    <div class="section-title2 text-center">
+      <h2 class="title">Thank you!</h2>
+    </div>
+
+    <div class="col-12 learts-mb-20">
+      <p class="section-title2 text-center">Your order with number {{ order.ref_code }} is being prepared!</p>
+    </div>
+
+  </div>
+</div>
+<!-- Checkout Section End -->
+
+{% include '../base/footer2.html' %}
+
+{% endblock %}

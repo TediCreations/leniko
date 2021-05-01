@@ -120,6 +120,11 @@ INSTALLED_APPS.append('cart')
 INSTALLED_APPS.append('checkout')
 
 # ------------------------------------------------------------------------------
+# Countries
+
+INSTALLED_APPS.append('django_countries')
+
+# ------------------------------------------------------------------------------
 # Redis
 
 REDIS_LOCATION = envconfig('REDIS_LOCATION', "redis://127.0.0.1:6379/1")

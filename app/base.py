@@ -1,8 +1,9 @@
 import os
-
-from django.utils.crypto import get_random_string
+import sys
 
 from configparser import ConfigParser
+
+from django.utils.crypto import get_random_string
 
 
 # ------------------------------------------------------------------------------
@@ -35,7 +36,7 @@ def envconfig(key, default=None):
 			print(f"\u001b[32m{key} is configured!\u001b[0m")
 		else:
 			print(f"\u001b[31m{key} is not configured!\u001b[0m")
-			exit()
+			sys.exit()
 
 	with open(envfile, 'w') as configfile:
 		config.write(configfile)

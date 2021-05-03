@@ -21,10 +21,11 @@ class CheckOutEnum(Enum):
 	N = "None"
 	BILLING = "Billing"
 	SHIPPING = "Shipping"
-	CONFIRM = "Confirm"
+	OVERVIEW = "Overview"
 	PAYMENT = "Payment"
 	SUCCESS = "Success"
 	FAIL = "Fail"
+	# CONFIRM = "Confirm"
 
 	@staticmethod
 	def str2Enum(s):

@@ -130,7 +130,7 @@ class CheckOutManager(object):
 						self.request.session.modified = True
 
 						# We can skip shipping page
-						self._writeSession(CheckOutEnum.CONFIRM)
+						self._writeSession(CheckOutEnum.OVERVIEW)
 					else:
 						# Critical error
 						self._error(f"ShippingForm Error: {shippingForm.errors}")
@@ -171,9 +171,9 @@ class CheckOutManager(object):
 				self.request.session.modified = True
 
 				# We can skip shipping page
-				self._writeSession(CheckOutEnum.CONFIRM)
+				self._writeSession(CheckOutEnum.OVERVIEW)
 
-		elif self.state == CheckOutEnum.CONFIRM:
+		elif self.state == CheckOutEnum.OVERVIEW:
 			if cart.isEmpty():
 				self._writeSession(CheckOutEnum.N)
 				return
@@ -327,8 +327,8 @@ class CheckoutView(View):
 		elif checkoutState == CheckOutEnum.SHIPPING:
 			template_name = theme + '/checkout/shipping.html'
 			form = ShippingForm(initial=self.request.session.get(SHIPPINGFORM_SESSION_ID))
-		elif checkoutState == CheckOutEnum.CONFIRM:
-			template_name = theme + '/checkout/confirm.html'
+		elif checkoutState == CheckOutEnum.OVERVIEW:
+			template_name = theme + '/checkout/overview.html'
 			order = self.request.session.get(CHECKOUTINFO_SESSION_ID)
 		elif checkoutState == CheckOutEnum.PAYMENT:
 			template_name = theme + '/checkout/payment.html'

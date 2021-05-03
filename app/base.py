@@ -38,9 +38,6 @@ def envconfig(key, default=None):
 			print(f"\u001b[31m{key} is not configured!\u001b[0m")
 			sys.exit()
 
-	with open(envfile, 'w') as configfile:
-		config.write(configfile)
-
 	if v is None:
 		raise Exception("\u001b[31menvconfig failed!\u001b[0m")
 	return v

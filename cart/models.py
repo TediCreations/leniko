@@ -18,7 +18,7 @@ class CartManager(models.Manager):
 
 	def find(self, request):
 		"""
-		Retrieve the cart
+		Retrieve the cart. Create if none.
 		"""
 
 		# return Cart(request)
@@ -143,6 +143,12 @@ class Cart(models.Model):
 		now = timezone.now()
 		self.modified_at = now
 		self.created_at = now
+
+	def isEmpty(self):
+		if self.__len__() == 0:
+			return True
+		else:
+			return False
 
 
 class CartItem(models.Model):

@@ -24,7 +24,6 @@ from pages.apps import PagesConfig
 
 theme = PagesConfig.theme
 
-CHECKOUTSTEP_SESSION_ID = "checkoutStep"
 BILLINGFORM_SESSION_ID = "billingForm"
 SHIPPINGFORM_SESSION_ID = "shippingForm"
 CHECKOUTINFO_SESSION_ID = "checkoutInfo"
@@ -47,16 +46,21 @@ def date_by_adding_business_days(from_date, add_days):
 
 class CheckOutManager(object):
 
+	CHECKOUTSTEP_SESSION_ID = "checkoutStep"
+
 	def __init__(self, request):
 		self.request = request
 		self.state = self._readSession()
 
+	def _error(self, msg):
+		print(f"[\033[91mERROR\033[0m] {msg}")
+
 	def _readSession(self):
-		state = self.request.session.get(CHECKOUTSTEP_SESSION_ID)
+		state = self.request.session.get(self.CHECKOUTSTEP_SESSION_ID)
 		return CheckOutEnum.str2Enum(state)
 
 	def _writeSession(self, state):
-		self.request.session[CHECKOUTSTEP_SESSION_ID] = state.value
+		self.request.session[self.CHECKOUTSTEP_SESSION_ID] = state.value
 		self.request.session.modified = True
 
 	def getState(self):
@@ -65,8 +69,17 @@ class CheckOutManager(object):
 	def setState(self, state):
 		self.state = state
 
+	def resetState(self):
+		self.state = CheckOutEnum.N
+
 	def handle(self):
 		print(f"State = \033[92m{self.state.value}\033[0m")
+
+		# Find cart
+		cart = Cart.objects.find(self.request)
+		if cart.isEmpty():
+			self._writeSession(CheckOutEnum.N)
+			return
 
 		if self.state == CheckOutEnum.N:
 			self._writeSession(CheckOutEnum.BILLING)
@@ -123,7 +136,7 @@ class CheckOutManager(object):
 					# We can not skip the shipping page
 					self._writeSession(CheckOutEnum.SHIPPING)
 			else:
-				self._error(f"\033[91mERROR in FORM\033[0m | {form.errors}")
+				self._error(form.errors)
 		elif self.state == CheckOutEnum.SHIPPING:
 			form = ShippingForm(self.request.POST)
 			if form.is_valid():
@@ -156,10 +169,6 @@ class CheckOutManager(object):
 				self._writeSession(CheckOutEnum.CONFIRM)
 
 		elif self.state == CheckOutEnum.CONFIRM:
-
-			# ------------------------------------------------------
-			# Cart
-			cart = Cart.objects.find(self.request)
 
 			# ------------------------------------------------------
 			# Time

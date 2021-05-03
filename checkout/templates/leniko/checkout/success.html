@@ -37,6 +37,14 @@
       <p class="section-title2 text-center">Your order with number {{ order.ref_code }} is being prepared!</p>
     </div>
 
+    <form action="{% url 'checkout:checkout' %}" method="post" class="checkout-form learts-mb-50">
+      {% csrf_token %}
+      <div class="text-center">
+        <button class="btn btn-dark btn-outline-hover-dark">Continue shopping</button>
+      </div>
+    </form>
+
+
   </div>
 </div>
 <!-- Checkout Section End -->

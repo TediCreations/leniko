@@ -4,11 +4,11 @@ from django.shortcuts import render
 from django.views import View
 from django.core.mail import EmailMessage
 from django.template.loader import get_template
+from django.utils.timezone import now
 
 from django_countries import countries
 from constance import config
 
-from datetime import date
 from datetime import timedelta
 
 from cart.models import Cart
@@ -77,13 +77,16 @@ class CheckOutManager(object):
 
 		# Find cart
 		cart = Cart.objects.find(self.request)
-		if cart.isEmpty():
-			self._writeSession(CheckOutEnum.N)
-			return
 
 		if self.state == CheckOutEnum.N:
+			if cart.isEmpty():
+				self._writeSession(CheckOutEnum.N)
+				return
 			self._writeSession(CheckOutEnum.BILLING)
 		elif self.state == CheckOutEnum.BILLING:
+			if cart.isEmpty():
+				self._writeSession(CheckOutEnum.N)
+				return
 			form = BillingForm(self.request.POST)
 			if form.is_valid():
 				# Save form
@@ -130,7 +133,6 @@ class CheckOutManager(object):
 						self._writeSession(CheckOutEnum.CONFIRM)
 					else:
 						# Critical error
-						# print("\033[91mCRITICAL ERROR!!!!\033[0m")
 						self._error(f"ShippingForm Error: {shippingForm.errors}")
 				else:
 					# We can not skip the shipping page
@@ -138,6 +140,9 @@ class CheckOutManager(object):
 			else:
 				self._error(form.errors)
 		elif self.state == CheckOutEnum.SHIPPING:
+			if cart.isEmpty():
+				self._writeSession(CheckOutEnum.N)
+				return
 			form = ShippingForm(self.request.POST)
 			if form.is_valid():
 				# Save form
@@ -169,11 +174,14 @@ class CheckOutManager(object):
 				self._writeSession(CheckOutEnum.CONFIRM)
 
 		elif self.state == CheckOutEnum.CONFIRM:
+			if cart.isEmpty():
+				self._writeSession(CheckOutEnum.N)
+				return
 
 			# ------------------------------------------------------
 			# Time
-			today = date.today()
-			estimatedDeliveryDate = date_by_adding_business_days(today, config.ORDER_DELIVERY_DAYS)
+
+			estimatedDeliveryDate = date_by_adding_business_days(now(), config.ORDER_DELIVERY_DAYS)
 
 			# ------------------------------------------------------
 			# Get user input data
@@ -247,7 +255,7 @@ class CheckOutManager(object):
 
 			try:
 				mail = EmailMessage(
-					subject=f'[INVOICE] | No: {order["ref_code"]}',
+					subject=f'[INVOICE] | No: {order.ref_code}',
 					body=message,
 					from_email=config.EMAIL,
 					to=list(emails),
@@ -261,6 +269,8 @@ class CheckOutManager(object):
 
 			# Success
 			self._writeSession(CheckOutEnum.SUCCESS)
+		elif self.state == CheckOutEnum.SUCCESS:
+			self._writeSession(CheckOutEnum.N)
 		else:
 			print("\033[91mState not coded yet!!!!!!!!!!!\033[0m")
 

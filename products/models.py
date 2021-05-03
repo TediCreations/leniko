@@ -211,8 +211,7 @@ class Product(AbstractModel):
 		# Invalid
 		dictionary["invalid"] = "Invalid dictionary keys are ignored!"
 
-		ProductTool.create(dictionary)
-		print("Done")
+		return ProductTool.create(dictionary)
 
 	class Meta:
 		db_table = 'Product'

@@ -11,6 +11,10 @@ from .internal.models import JewelryGroup
 from .internal.models import JewelryPhoto
 
 from .internal.utils import AbstractModel
+from .internal.utils import random_price
+from .internal.utils import random_bool
+from .internal.utils import random_line
+from .internal.utils import getRandomPhotoList
 
 from .internal.enum import GroupEnum
 from .internal.enum import MaterialEnum
@@ -19,6 +23,7 @@ from .internal.enum import StoneEnum
 from .internal.enum import ColorEnum
 
 import hashlib
+import random
 
 
 class JewelryProductManager(models.Manager):
@@ -163,6 +168,51 @@ class Product(AbstractModel):
 
 	def getInfo(self):
 		return self.jewelry.getInfo()
+
+	def _create_random():
+		# Make sure group is not None
+		group = GroupEnum.N
+		while group == GroupEnum.N:
+			group = GroupEnum.random()
+
+		dictionary = dict()
+
+		# Product
+		# dictionary["sku"]          = "?"
+		dictionary["price"] = random_price()
+		dictionary["isFeatured"] = random_bool()
+		dictionary["isActive"] = random_bool()
+
+		# Jewelry Common
+		dictionary["title"] = random_line('tests/products/titleList')
+		dictionary["brief"] = random_line('tests/products/briefList')
+		dictionary["description"] = "Default description..."
+		dictionary["stone"] = StoneEnum.random()
+		dictionary["macrame"] = random_bool()
+		dictionary["pcolor"] = ColorEnum.random()
+
+		# Jewelry Variation
+		dictionary["material"] = MaterialEnum.random()
+		dictionary["platting"] = PlattingEnum.random()
+		dictionary["group"] = group
+
+		dictionary["heigth"] = int(random.uniform(0, 999))
+		dictionary["length"] = int(random.uniform(0, 999))
+		dictionary["circumference"] = int(random.uniform(0, 999))
+		dictionary["width_max"] = int(random.uniform(0, 999))
+		dictionary["width_min"] = int(random.uniform(0, 999))
+		dictionary["diameter_max"] = int(random.uniform(0, 999))
+		dictionary["diameter_min"] = int(random.uniform(0, 999))
+		dictionary["isAdjustable"] = random_bool()
+
+		dictionary["photos"] = getRandomPhotoList("pages/static/delete/jewel3/")
+		dictionary["scolor"] = ColorEnum.random()
+
+		# Invalid
+		dictionary["invalid"] = "Invalid dictionary keys are ignored!"
+
+		ProductTool.create(dictionary)
+		print("Done")
 
 	class Meta:
 		db_table = 'Product'

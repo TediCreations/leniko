@@ -11,6 +11,8 @@ from sorl.thumbnail.base import EXTENSIONS
 from enum import Enum
 from itertools import chain
 
+from .enum import ColorEnum
+
 
 class AbstractModel(models.Model):
 
@@ -131,3 +133,37 @@ class MyThumbnailBackend(ThumbnailBackend):
 		filepath = os.path.join("cache/", filepath)
 
 		return filepath
+
+
+def random_line(fname):
+	"""TODO: Depends on file"""
+	lines = open(fname).read().splitlines()
+	return random.choice(lines)
+
+
+def random_bool():
+	return not random.getrandbits(1)
+
+
+def random_price():
+	return round(random.uniform(5, 999), 2)
+
+
+def getRandomPhotoList(static_dir):
+	"""TODO: Depends on file"""
+	n = int(random.uniform(0, 9))
+	photoList = list()
+	for i in range(n):
+		url = random.choice([x for x in os.listdir(static_dir) if os.path.isfile(os.path.join(static_dir, x))])
+		baseUrl = os.path.join(static_dir, url)
+		photoList.append(baseUrl)
+	return photoList
+
+
+def getRandomColorList():
+	n = int(random.uniform(0, 5))
+	colorList = list()
+	for i in range(n):
+		color = ColorEnum.random()
+		colorList.append(color)
+	return colorList
